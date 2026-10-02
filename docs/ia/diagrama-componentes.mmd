@@ -1,0 +1,38 @@
+---
+title: FUGA+ - Diagrama de Componentes
+---
+flowchart LR
+    subgraph U[Usuario]
+        U1["Joven o estudiante que registra sus gastos diarios<br/>(ej. $8.000 en taxi)"]
+    end
+
+    subgraph APP_BOX["Aplicacion movil FUGA+"]
+        APP["React Native + TypeScript<br/>Captura de gastos en lenguaje natural, historial y dashboard"]
+    end
+
+    subgraph API_BOX["Backend / API"]
+        API["Python + FastAPI<br/>Endpoints REST: recepcion de gastos y orquestacion"]
+    end
+
+    subgraph AI_BOX["Servicio de IA"]
+        AI["API de inteligencia artificial<br/>Interpreta el texto: valor, categoria, descripcion y fecha"]
+    end
+
+    subgraph DB_BOX["Base de datos masiva"]
+        DB["MongoDB<br/>Almacena gastos y alimenta historial y dashboard"]
+    end
+
+    subgraph VCS_BOX["Control de versiones"]
+        GIT["Git + GitHub"]
+    end
+
+    U1 -- "escribe un gasto en lenguaje natural" --> APP
+    APP -- "envia el gasto al backend" --> API
+    API -- "solicita interpretacion del texto" --> AI
+    AI -- "devuelve valor, categoria, descripcion y fecha" --> API
+    API -- "persiste el gasto interpretado" --> DB
+    DB -- "recupera historial y datos para el dashboard" --> API
+    API -- "responde historial y resumen de gastos" --> APP
+
+    GIT -. "control de versiones del proyecto" .-> APP
+    GIT -. "control de versiones del proyecto" .-> API
