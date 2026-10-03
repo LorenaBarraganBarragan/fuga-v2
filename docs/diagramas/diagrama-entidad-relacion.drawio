@@ -1,0 +1,168 @@
+<mxfile host="65bd71144e">
+    <diagram id="fuga-plus-modelo-datos-mongodb" name="FUGA+ - Modelo de Datos MongoDB">
+        <mxGraphModel dx="854" dy="560" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1050" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="titulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#1F1F1F;whiteSpace=wrap;" value="Diagrama Entidad-Relación de mongoDB NoSQL — FUGA+" vertex="1">
+                    <mxGeometry height="30" width="800" x="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="subtitulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#555555;whiteSpace=wrap;" value="Estructura de colecciones y relaciones principales" vertex="1">
+                    <mxGeometry height="20" width="800" x="40" y="57" as="geometry"/>
+                </mxCell>
+                <mxCell id="colUsuarios" parent="1" style="swimlane;html=1;rounded=0;horizontal=1;startSize=40;fillColor=#DAE8FC;swimlaneFillColor=#FFFFFF;strokeColor=#6C8EBF;strokeWidth=2;fontSize=14;fontStyle=1;fontColor=#1F1F1F;align=left;spacingLeft=12;" value="Usuarios" vertex="1">
+                    <mxGeometry height="344" width="330" x="80" y="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="fUsuariosId" parent="colUsuarios" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#1F4E79;spacingLeft=12;whiteSpace=wrap;" value="_id" vertex="1">
+                    <mxGeometry height="28" width="310" x="10" y="46" as="geometry"/>
+                </mxCell>
+                <mxCell id="fUsuariosNombre" parent="colUsuarios" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="nombre" vertex="1">
+                    <mxGeometry height="28" width="310" x="10" y="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="fUsuariosCorreo" parent="colUsuarios" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="correo" vertex="1">
+                    <mxGeometry height="28" width="310" x="10" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="fUsuariosHash" parent="colUsuarios" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="contraseñaHash" vertex="1">
+                    <mxGeometry height="28" width="310" x="10" y="142" as="geometry"/>
+                </mxCell>
+                <mxCell id="fUsuariosRol" parent="colUsuarios" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="rol" vertex="1">
+                    <mxGeometry height="28" width="310" x="10" y="174" as="geometry"/>
+                </mxCell>
+                <mxCell id="fUsuariosEstado" parent="colUsuarios" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="estado" vertex="1">
+                    <mxGeometry height="28" width="310" x="10" y="206" as="geometry"/>
+                </mxCell>
+                <mxCell id="fUsuariosFechaReg" parent="colUsuarios" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="fechaRegistro" vertex="1">
+                    <mxGeometry height="28" width="310" x="10" y="238" as="geometry"/>
+                </mxCell>
+                <mxCell id="fUsuariosFechaAct" parent="colUsuarios" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="fechaActualizacion" vertex="1">
+                    <mxGeometry height="28" width="310" x="10" y="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="nUsuarios" parent="colUsuarios" style="text;html=1;strokeColor=none;fillColor=#F5F5F5;align=left;verticalAlign=top;fontSize=10;fontColor=#555555;spacingLeft=12;spacingTop=4;whiteSpace=wrap;" value="Valores permitidos: rol → USER | ADMIN&#xa;estado → ACTIVO | INACTIVO&#xa;La senha nunca se almacena en texto plano." vertex="1">
+                    <mxGeometry height="34" width="310" x="10" y="302" as="geometry"/>
+                </mxCell>
+                <mxCell id="colCategorias" parent="1" style="swimlane;html=1;rounded=0;horizontal=1;startSize=40;fillColor=#D5E8D4;swimlaneFillColor=#FFFFFF;strokeColor=#82B366;strokeWidth=2;fontSize=14;fontStyle=1;fontColor=#1F1F1F;align=left;spacingLeft=12;" value="Categorias" vertex="1">
+                    <mxGeometry height="216" width="330" x="560" y="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="fCatId" parent="colCategorias" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#1F4E79;spacingLeft=12;whiteSpace=wrap;" value="_id" vertex="1">
+                    <mxGeometry height="28" width="310" x="10" y="46" as="geometry"/>
+                </mxCell>
+                <mxCell id="fCatNombre" parent="colCategorias" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="nombre" vertex="1">
+                    <mxGeometry height="28" width="310" x="10" y="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="fCatDescripcion" parent="colCategorias" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="descripcion" vertex="1">
+                    <mxGeometry height="28" width="310" x="10" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="nCategorias" parent="colCategorias" style="text;html=1;strokeColor=none;fillColor=#F5F5F5;align=left;verticalAlign=top;fontSize=10;fontColor=#555555;spacingLeft=12;spacingTop=4;whiteSpace=wrap;" value="Ejemplos de nombres: Transporte, Alimentación, Entretenimiento, Compras, Otros." vertex="1">
+                    <mxGeometry height="60" width="310" x="10" y="146" as="geometry"/>
+                </mxCell>
+                <mxCell id="colGastos" parent="1" style="swimlane;html=1;rounded=0;horizontal=1;startSize=40;fillColor=#FFF2CC;swimlaneFillColor=#FFFFFF;strokeColor=#D6B656;strokeWidth=2;fontSize=14;fontStyle=1;fontColor=#1F1F1F;align=left;spacingLeft=12;" value="Gastos" vertex="1">
+                    <mxGeometry height="364" width="350" x="1040" y="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="fGastosId" parent="colGastos" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#1F4E79;spacingLeft=12;whiteSpace=wrap;" value="_id" vertex="1">
+                    <mxGeometry height="28" width="330" x="10" y="46" as="geometry"/>
+                </mxCell>
+                <mxCell id="fGastosUsuarioId" parent="colGastos" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#B85450;spacingLeft=12;whiteSpace=wrap;" value="usuarioId" vertex="1">
+                    <mxGeometry height="28" width="330" x="10" y="78" as="geometry"/>
+                </mxCell>
+                <mxCell id="fGastosCategoriaId" parent="colGastos" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#B85450;spacingLeft=12;whiteSpace=wrap;" value="categoriaId" vertex="1">
+                    <mxGeometry height="28" width="330" x="10" y="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="fGastosValor" parent="colGastos" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="valor" vertex="1">
+                    <mxGeometry height="28" width="330" x="10" y="142" as="geometry"/>
+                </mxCell>
+                <mxCell id="fGastosDescripcion" parent="colGastos" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="descripcion" vertex="1">
+                    <mxGeometry height="28" width="330" x="10" y="174" as="geometry"/>
+                </mxCell>
+                <mxCell id="fGastosTextoOriginal" parent="colGastos" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="textoOriginal" vertex="1">
+                    <mxGeometry height="28" width="330" x="10" y="206" as="geometry"/>
+                </mxCell>
+                <mxCell id="fGastosFechaGasto" parent="colGastos" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="fechaGasto" vertex="1">
+                    <mxGeometry height="28" width="330" x="10" y="238" as="geometry"/>
+                </mxCell>
+                <mxCell id="fGastosFechaCreacion" parent="colGastos" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="fechaCreacion" vertex="1">
+                    <mxGeometry height="28" width="330" x="10" y="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="nGastos" parent="colGastos" style="text;html=1;strokeColor=none;fillColor=#F5F5F5;align=left;verticalAlign=top;fontSize=10;fontColor=#555555;spacingLeft=12;spacingTop=4;whiteSpace=wrap;" value="textoOriginal guarda el texto natural digitado por el usuario.&#xa;Ejemplo: “Hoy gasté $8.000 en un taxi”." vertex="1">
+                    <mxGeometry height="52" width="330" x="10" y="302" as="geometry"/>
+                </mxCell>
+                <mxCell id="colFugas" parent="1" style="swimlane;html=1;rounded=0;horizontal=1;startSize=40;fillColor=#F8CECC;swimlaneFillColor=#FFFFFF;strokeColor=#B85450;strokeWidth=2;fontSize=14;fontStyle=1;fontColor=#1F1F1F;align=left;spacingLeft=12;" value="Fugas" vertex="1">
+                    <mxGeometry height="364" width="350" x="560" y="600" as="geometry"/>
+                </mxCell>
+                <mxCell id="fFugasId" parent="colFugas" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#1F4E79;spacingLeft=12;whiteSpace=wrap;" value="_id" vertex="1">
+                    <mxGeometry height="26" width="330" x="10" y="46" as="geometry"/>
+                </mxCell>
+                <mxCell id="fFugasUsuarioId" parent="colFugas" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#B85450;spacingLeft=12;whiteSpace=wrap;" value="usuarioId" vertex="1">
+                    <mxGeometry height="26" width="330" x="10" y="76" as="geometry"/>
+                </mxCell>
+                <mxCell id="fFugasCategoriaId" parent="colFugas" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#B85450;spacingLeft=12;whiteSpace=wrap;" value="categoriaId" vertex="1">
+                    <mxGeometry height="26" width="330" x="10" y="106" as="geometry"/>
+                </mxCell>
+                <mxCell id="fFugasPeriodoInicio" parent="colFugas" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="periodoInicio" vertex="1">
+                    <mxGeometry height="26" width="330" x="10" y="136" as="geometry"/>
+                </mxCell>
+                <mxCell id="fFugasPeriodoFin" parent="colFugas" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="periodoFin" vertex="1">
+                    <mxGeometry height="26" width="330" x="10" y="166" as="geometry"/>
+                </mxCell>
+                <mxCell id="fFugasCantidad" parent="colFugas" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="cantidadGastos" vertex="1">
+                    <mxGeometry height="26" width="330" x="10" y="196" as="geometry"/>
+                </mxCell>
+                <mxCell id="fFugasValorTotal" parent="colFugas" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="valorTotal" vertex="1">
+                    <mxGeometry height="26" width="330" x="10" y="226" as="geometry"/>
+                </mxCell>
+                <mxCell id="fFugasRegla" parent="colFugas" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#7F4F00;spacingLeft=12;whiteSpace=wrap;" value="reglaAplicada" vertex="1">
+                    <mxGeometry height="26" width="330" x="10" y="256" as="geometry"/>
+                </mxCell>
+                <mxCell id="fFugasFechaDeteccion" parent="colFugas" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=12;whiteSpace=wrap;" value="fechaDeteccion" vertex="1">
+                    <mxGeometry height="26" width="330" x="10" y="286" as="geometry"/>
+                </mxCell>
+                <mxCell id="nFugas" parent="colFugas" style="text;html=1;strokeColor=none;fillColor=#F5F5F5;align=left;verticalAlign=top;fontSize=10;fontColor=#555555;spacingLeft=12;spacingTop=4;whiteSpace=wrap;" value="Posibles fugas de dinero detectadas con reglas de negocio sobre el historial de Gastos." vertex="1">
+                    <mxGeometry height="40" width="330" x="10" y="316" as="geometry"/>
+                </mxCell>
+                <mxCell id="notaReglas" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=12;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;fontColor=#5A4500;" value="Nota: la colección Fugas no es una predicción de IA. Sus documentos se generan mediante reglas predefinidas del sistema aplicadas al historial de gastos del usuario (gastos repetidos en una categoría dentro de un período)." vertex="1">
+                    <mxGeometry height="140" width="430" x="60" y="580" as="geometry"/>
+                </mxCell>
+                <mxCell id="leyenda" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999999;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;fontSize=10;fontColor=#444444;" value="&lt;b&gt;Leyenda&lt;/b&gt;&lt;br&gt;—  _id : identificador único del documento&#xa;—  usuarioId / categoriaId : campos de referencia&lt;br&gt;—  1:N : relación conceptual entre colecciones&#xa;- - -→  Relación conceptual derivada (no es clave foránea)" vertex="1">
+                    <mxGeometry height="110" width="430" x="60" y="760" as="geometry"/>
+                </mxCell>
+                <mxCell id="notaVisitante" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=10;fontColor=#555555;fontStyle=2;whiteSpace=wrap;" value="No existe una colección para el visitante: los usuarios sin cuenta no dejan datos financieros almacenados." vertex="1">
+                    <mxGeometry height="40" width="350" x="1040" y="510" as="geometry"/>
+                </mxCell>
+                <mxCell id="eUsuariosGastos" edge="1" parent="1" source="colUsuarios" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4D4D4D;strokeWidth=1;endArrow=open;endFill=0;endSize=9;fontSize=10;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.1;exitDx=0;exitDy=0;entryX=1;entryY=0.15;entryDx=0;entryDy=0;" target="colGastos" value="&lt;b&gt;1:N&lt;/b&gt;&lt;br&gt;Gastos.usuarioId → Usuarios._id">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                        <Array as="points">
+                            <mxPoint x="905" y="100"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="eCategoriasGastos" edge="1" parent="1" source="colCategorias" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4D4D4D;strokeWidth=1;endArrow=open;endFill=0;endSize=9;fontSize=10;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.42;exitDx=0;exitDy=0;entryX=0;entryY=0.28;entryDx=0;entryDy=0;" target="colGastos" value="&lt;b&gt;1:N&lt;/b&gt;&lt;br&gt;Gastos.categoriaId → Categorias._id">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="eUsuariosFugas" edge="1" parent="1" source="colUsuarios" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4D4D4D;strokeWidth=1;endArrow=open;endFill=0;endSize=9;fontSize=10;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" target="colFugas" value="&lt;b&gt;1:N&lt;/b&gt;&lt;br&gt;Fugas.usuarioId → Usuarios._id">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                        <Array as="points">
+                            <mxPoint x="245" y="720"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="eCategoriasFugas" edge="1" parent="1" source="colCategorias" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4D4D4D;strokeWidth=1;endArrow=open;endFill=0;endSize=9;fontSize=10;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="colFugas" value="&lt;b&gt;1:N&lt;/b&gt;&lt;br&gt;Fugas.categoriaId → Categorias._id">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="110" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="eGastosFugas" edge="1" parent="1" source="colGastos" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#B85450;strokeWidth=1;dashed=1;dashPattern=8 4;endArrow=open;endFill=0;endSize=9;fontSize=10;fontColor=#7F4F00;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.9;entryY=0;entryDx=0;entryDy=0;" target="colFugas" value="&lt;b&gt;Análisis mediante reglas&lt;/b&gt;&lt;br&gt;Fugas se genera a partir del análisis de Gastos">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                        <Array as="points">
+                            <mxPoint x="1215" y="550"/>
+                            <mxPoint x="875" y="550"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
