@@ -1,118 +1,214 @@
 # FUGA+
 
-App móvil de gestión de gastos personales con Inteligencia Artificial, dirigida
-inicialmente a jóvenes y estudiantes.
+**FUGA+** es una aplicación móvil para el control de gastos personales, dirigida principalmente a jóvenes y estudiantes.
 
-**Repositorio:** https://github.com/Lorenaba/FUGA-plus
+Permite registrar gastos utilizando lenguaje natural, por ejemplo:
+
+> "Hoy gasté $8.000 en un taxi"
+
+La aplicación interpreta la información del gasto mediante IA, permite al usuario revisarla antes de confirmarla y posteriormente organiza los datos para consultar el historial y visualizar estadísticas.
+
+Además, FUGA+ identifica posibles **fugas de dinero** mediante reglas definidas por el proyecto, enfocadas en gastos pequeños y repetitivos.
+
+**Repositorio:** [GitHub](https://github.com/LorenaBarraganBarragan/fuga-v2)
+
+---
 
 ## Problema
 
-Muchas personas realizan pequeños gastos durante el día y luego no recuerdan
-con claridad en qué se fue su dinero. Registrar cada gasto manualmente resulta
-tedioso, lo que dificulta llevar un seguimiento constante de los hábitos de
-consumo.
+Los gastos pequeños del día a día pueden pasar desapercibidos y acumularse con el tiempo.
 
-## Usuarios
+A partir de la entrevista realizada a un usuario potencial, se identificó que registrar manualmente cada gasto puede generar olvido y pérdida de interés en el seguimiento de las finanzas personales.
 
-Jóvenes y estudiantes que quieren organizar sus gastos cotidianos y entender
-mejor sus hábitos de consumo, sin usar herramientas financieras complejas.
+FUGA+ busca reducir esta fricción permitiendo registrar los gastos de una manera más natural y sencilla.
+
+[Ver entrevista](docs/entrevista-real.md)
+
+---
+
+## Objetivo
+
+Desarrollar un MVP que facilite el registro y seguimiento de gastos personales mediante lenguaje natural e inteligencia artificial.
+
+El proyecto contempla:
+
+* Registro de gastos.
+* Interpretación de la información mediante IA.
+* Confirmación y almacenamiento de los gastos.
+* Historial de movimientos.
+* Visualización de estadísticas.
+* Identificación de posibles fugas de dinero mediante reglas.
+
+El proyecto se desarrolla de manera individual en un período académico de 12 semanas.
+
+---
+
+## Público objetivo
+
+FUGA+ está dirigido principalmente a **jóvenes y estudiantes** que desean organizar sus gastos cotidianos y comprender mejor sus hábitos de consumo sin utilizar herramientas financieras complejas.
+
+El sistema contempla diferentes roles de usuario, cuyos permisos y responsabilidades se encuentran definidos en la documentación de requisitos.
+
+[Ver requisitos](docs/requisitos.md)
+
+---
 
 ## Propuesta de valor
 
-FUGA+ permite registrar un gasto escribiendo una frase en lenguaje natural
-(ej. *"Hoy gasté $8.000 en un taxi"*). La IA interpreta y clasifica el gasto
-(valor, categoría, descripción), lo guarda en un historial, y el sistema
-aplica reglas propias para detectar **posibles fugas de dinero** en gastos
-pequeños y repetitivos — sin necesidad de conectar cuentas bancarias ni
-manejar pagos.
+FUGA+ busca hacer que registrar un gasto sea más sencillo que utilizar formularios tradicionales.
 
-## Alcance del MVP (Release 1)
+El usuario puede expresar un gasto utilizando una frase cotidiana. La IA interpreta la información y presenta los datos identificados para que el usuario pueda revisarlos y corregirlos antes de confirmar el registro.
 
-- Registro de gastos mediante texto en lenguaje natural
-- Clasificación automática por IA (valor, categoría, descripción)
-- Historial de gastos consultable
-- Dashboard sencillo con totales por categoría
-- Detección de posibles fugas de dinero mediante reglas propias
-- Consultas básicas por categoría y rango de fechas
+A partir de los gastos registrados, FUGA+ aplica reglas propias para identificar posibles patrones de gastos pequeños y repetitivos que podrían representar una fuga de dinero.
 
-**Fuera de este release:** pagos, conexión bancaria, tarjetas, créditos,
-inversiones, asesoría financiera, notificaciones avanzadas, registro por voz
-(evaluado como funcionalidad adicional si el tiempo lo permite).
+La detección de fugas utiliza **reglas deterministas y explicables**, no inteligencia artificial.
 
-## Uso de IA en el proyecto
+---
 
-| Fase | ¿Para qué se usa la IA? | Herramienta | Riesgo a vigilar |
-|---|---|---|---|
-| Análisis de requisitos | Organizar ideas, definir necesidades y delimitar qué entra y qué queda fuera del MVP. | ChatGPT / Claude | Que la IA sugiera demasiadas funcionalidades y el alcance supere las 12 semanas. |
-| Diseño | Apoyar bocetos y prototipos de pantallas, priorizando una interfaz sencilla. | Figma AI | Diseñar alrededor de funcionalidades que no alcancen a implementarse. |
-| Desarrollo | Interpretar y clasificar los gastos registrados por el usuario (ej. "taxi" → Transporte). La detección de fugas usa reglas propias, no IA. | API de OpenAI o Claude + reglas propias | Clasificación incorrecta, o reglas de detección demasiado laxas/estrictas. |
-| Pruebas | Generar ejemplos de gastos con errores, abreviaciones y lenguaje cotidiano para probar la interpretación. | Claude / GitHub Copilot | Probar solo frases perfectas y que la app falle con lenguaje real. |
-| Documentación | Apoyar la redacción del README y demás documentación del proyecto. | ChatGPT / Claude | Documentar funcionalidades como terminadas cuando aún están en desarrollo. |
-| Despliegue | Participación mínima; el despliegue es principalmente manual. | — | Publicar una versión con errores no probados. |
-| Mantenimiento | Participación limitada, dentro del alcance de las 12 semanas del curso. | No aplica | Prometer mejoras futuras fuera del alcance definido. |
+## Funcionalidades principales
 
-### Resultados de los análisis generados con IA
+El alcance del proyecto contempla las siguientes funcionalidades:
 
-**Análisis competitivo** — Se identificaron 3 competidores reales: **Cleo** y
-**PocketGuard** (dependen de vincular cuentas bancarias, sin registro por
-texto libre) y **Spendee** (registro manual por formulario, sin
-interpretación de lenguaje natural). Ninguno combina registro por lenguaje
-natural + detección explícita de "fugas" por gastos pequeños sin conexión
-bancaria — esa combinación es la ventaja diferencial validada de FUGA+.
+* Información pública sobre FUGA+.
+* Registro e inicio de sesión.
+* Registro de gastos mediante lenguaje natural.
+* Interpretación del gasto mediante IA.
+* Confirmación y almacenamiento de gastos.
+* Consulta del historial.
+* Visualización de estadísticas.
+* Detección de posibles fugas de dinero.
+* Corrección de información de los gastos.
+* Funcionalidades adicionales definidas en el Release 1.
 
-**Documento de visión** — Define el problema (gastos pequeños que pasan
-desapercibidos), el usuario objetivo (jóvenes y estudiantes) y el alcance
-del MVP, marcando explícitamente la voz como funcionalidad opcional
-[ASSUMPTION]. Sirve como documento base para todo el proyecto.
+El detalle completo de los requisitos, historias de usuario y prioridades se encuentra en la documentación del proyecto.
 
-**Requisitos priorizados (MoSCoW)** — De 8 requisitos funcionales y 3 no
-funcionales: **6 Must** (registro, interpretación IA, almacenamiento,
-historial, dashboard, detección de fugas) + 3 RNF Must (viabilidad en 12
-semanas, demo de 3 min, alcance de la IA limitado a clasificación),
-**1 Should** (consultas), **1 Could** (voz), y el resto explícitamente
-**Won't** (todo lo bancario/financiero). Este resultado fue la base sobre la
-que se construyó el backlog de historias de usuario del release 1.
+[Ver requisitos](docs/requisitos.md)
+[Ver requisitos priorizados](docs/respuestas-ia/salida-requerimientos-priorizados.md)
 
-Los prompts completos usados en cada fase, sus salidas completas y las
-entrevistas con usuarios están documentados en [`docs/ia/`](docs/ia/).
+---
 
-## Tecnología
+## Alcance
 
-- **App móvil:** React Native 
-- **IA:** API de OpenAI o Claude para interpretación y clasificación de
-  gastos en lenguaje natural
-- **Detección de fugas:** reglas propias en el código, no aprendizaje
-  automático
+### Incluido
 
-## Estructura del repositorio
+El MVP se centra en la gestión básica de gastos personales, su interpretación mediante lenguaje natural, consulta de información y detección de posibles fugas mediante reglas.
 
-```
-FUGA-plus/
-├── docs/
-│   ├── vision.md                    # Problema, usuarios, propuesta de valor, MVP
-│   ├── requisitos.md                # Backlog priorizado (MoSCoW) con criterios Gherkin
-│   ├── requisitos.xlsx              # Mismo backlog en formato hoja de cálculo
-│   └── ia/
-│       ├── entrevista-real.md       # Entrevista a un usuario potencial
-│       ├── entrevista-cliente.md    # Validación con IA en rol de cliente/usuario
-│       └── prompts/                 # Biblioteca de prompts usados en el proyecto
-├── mobile/                          # Código de la app (por crear)
-└── README.md
+### Fuera del alcance principal
 
-```
+El proyecto no contempla como parte del alcance principal:
 
-## Equipo
+* Conexiones bancarias.
+* Pagos y transferencias.
+* Créditos o préstamos.
+* Inversiones.
+* Asesoría financiera profesional.
+* Entrenamiento de un modelo de IA propio.
+* Integraciones bancarias externas.
 
-**Lorena Barragán** — Desarrolladora y responsable del proyecto (proyecto
-individual: análisis, diseño, desarrollo, IA, datos, pruebas y documentación).
+El alcance puede evolucionar durante el desarrollo académico y se mantiene documentado en los requisitos del proyecto.
+
+---
+
+## Tecnologías
+
+La arquitectura de FUGA+ contempla tecnologías para la aplicación móvil, backend, inteligencia artificial, almacenamiento, autenticación e infraestructura.
+
+Entre las tecnologías definidas para la solución se encuentran:
+
+* **React Native + TypeScript** — aplicación móvil.
+* **Python + FastAPI** — backend y API.
+* **OpenAI API** — interpretación del texto de los gastos.
+* **MongoDB** — almacenamiento de información.
+* **MongoDB Aggregation** — procesamiento de estadísticas.
+* **Redis** — almacenamiento temporal y caché.
+* **JWT** — autenticación y autorización.
+* **Docker + Docker Compose** — infraestructura y ejecución de servicios.
+* **OpenAPI / Swagger** — documentación de la API.
+* **Git + GitHub** — control de versiones.
+
+Estas tecnologías corresponden a la arquitectura definida para FUGA+ y su implementación puede evolucionar durante el desarrollo.
+
+[Ver arquitectura](docs/architecture.md)
+
+---
+
+## Arquitectura
+
+FUGA+ se plantea como una solución compuesta por una aplicación móvil, un backend y servicios de datos e infraestructura.
+
+De forma general, el flujo es:
+
+**Aplicación móvil → Backend → Servicios de IA y lógica de negocio → Datos**
+
+La aplicación móvil permite la interacción con el usuario. El backend gestiona las operaciones del sistema, coordina la interpretación de los gastos y aplica las reglas de negocio. Los servicios de datos permiten almacenar y procesar la información necesaria para el funcionamiento de la aplicación.
+
+La arquitectura detallada se encuentra en la documentación y en los diagramas del proyecto.
+
+[Ver arquitectura](docs/architecture.md)
+
+[Ver diagramas](docs/diagramas/)
+
+---
+
+## Documentación
+
+### Requisitos y análisis
+
+* [Requisitos del proyecto](docs/requisitos.md)
+* [Entrevista real](docs/entrevista-real.md)
+* [Visión del proyecto](docs/respuestas-ia/salida-vision.md)
+* [Análisis competitivo](docs/respuestas-ia/salida-analisis-competitivo.md)
+* [Requisitos priorizados](docs/respuestas-ia/salida-requerimientos-priorizados.md)
+
+### Arquitectura y diseño
+
+* [Arquitectura](docs/architecture.md)
+* [Esquema de manifiestos](docs/manifest_schema.md)
+* [Diagramas](docs/diagramas/)
+* [Prompts de análisis y diseño](docs/prompts-diseño/)
+
+---
+
+## Uso de inteligencia artificial
+
+La inteligencia artificial forma parte del proceso de análisis, diseño y definición de FUGA+.
+
+Durante el desarrollo se ha utilizado para apoyar actividades como:
+
+* Análisis de la visión del proyecto.
+* Análisis competitivo.
+* Priorización de requisitos.
+* Apoyo en el diseño del sistema.
+* Interpretación de los gastos escritos en lenguaje natural.
+
+La IA utilizada dentro de la funcionalidad principal de FUGA+ se limita a la interpretación de la información proporcionada por el usuario.
+
+La detección de posibles fugas de dinero se realiza mediante **reglas definidas por el proyecto**.
+
+---
 
 ## Estado del proyecto
 
-Proyecto académico en desarrollo — Electiva CPC, Corporación Universitaria
-Minuto de Dios. Duración estimada: 12 semanas.
+FUGA+ se encuentra en **desarrollo académico, en fase de diseño y documentación**.
 
-## Documentación relacionada
+Actualmente se han trabajado aspectos como:
 
-- [Documento de visión](docs/vision.md)
-- [Backlog de requisitos – Release 1](docs/requisitos.md)
-- [Entrevistas y prompts con IA](docs/ia/)
+* Definición del problema.
+* Identificación del usuario objetivo.
+* Visión y propuesta de valor.
+* Análisis competitivo.
+* Requisitos.
+* Priorización del MVP.
+* Arquitectura.
+* Diseño del modelo del sistema.
+* Diagramas de diseño.
+
+La implementación funcional del MVP continuará de acuerdo con el proceso de desarrollo definido para el proyecto.
+
+---
+
+## Autor
+
+**Lorena Barragán**
+
+Proyecto académico individual — Ingeniería de Sistemas.
