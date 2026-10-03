@@ -1,12 +1,14 @@
 # Backlog de Requisitos — Release 1 · FUGA+
 
-## Alcance del Release 1 (a partir de la visión y el MVP)
+## Alcance del Release 1
 
-El Release 1 contempla el flujo principal de FUGA+: una persona puede conocer la aplicación sin registrarse, crear una cuenta, registrar gastos mediante texto, utilizar IA para interpretarlos, almacenarlos, consultar su historial, visualizar un dashboard, detectar posibles fugas mediante reglas propias y realizar consultas básicas.
+El Release 1 contempla el flujo principal de FUGA+: una persona puede conocer la aplicación sin autenticarse, registrarse, iniciar sesión, registrar gastos mediante texto en lenguaje natural, obtener una interpretación mediante IA, confirmar y almacenar los gastos, consultar su historial, visualizar un dashboard y detectar posibles fugas mediante reglas predefinidas.
 
-También se contempla un rol de administrador para consultar estadísticas generales y gestionar usuarios.
+También contempla consultas y filtros básicos, corrección de categorías, estadísticas administrativas agregadas y gestión básica de usuarios.
 
-Quedan fuera del Release 1 las integraciones bancarias, pagos, transferencias, notificaciones avanzadas y otras funcionalidades que no sean necesarias para demostrar el MVP. El registro por voz se mantiene como funcionalidad adicional si queda tiempo disponible.
+Como funcionalidades opcionales se contemplan las alertas dentro de la aplicación, el registro por voz y la comparación entre períodos.
+
+Quedan fuera del Release 1 las conexiones bancarias, pagos, transferencias, tarjetas, créditos, préstamos, inversiones, asesoría financiera profesional, entrenamiento de modelos de IA propios, predicción de mercado, datos bancarios reales de terceros, notificaciones push avanzadas, escaneo avanzado de recibos, integraciones bancarias externas y funciones administrativas avanzadas.
 
 ---
 
@@ -14,361 +16,679 @@ Quedan fuera del Release 1 las integraciones bancarias, pagos, transferencias, n
 
 ## HU-01 — Must
 
-**Como** visitante **quiero** conocer qué es FUGA+, cómo funciona y cuáles son sus principales funcionalidades **para** decidir si quiero registrarme.
+**Como** visitante
+**quiero** conocer qué es FUGA+, cómo funciona y cuáles son sus principales funcionalidades
+**para** conocer la propuesta de valor de la aplicación antes de registrarme.
 
 ```gherkin
-Escenario: Consultar información de FUGA+
+Escenario: Consultar información pública de FUGA+
 
   Dado que una persona ingresa a FUGA+ sin iniciar sesión
 
   Cuando accede a la pantalla principal
 
-  Entonces puede visualizar información básica sobre la aplicación
-
+  Entonces puede visualizar qué es FUGA+
   Y puede conocer de forma general cómo funciona el registro de gastos
-
+  Y puede conocer las principales funcionalidades de la aplicación
   Y puede seleccionar la opción de registrarse o iniciar sesión
+
+Escenario: Visitante intenta acceder a información privada
+
+  Dado que la persona no ha iniciado sesión
+
+  Cuando intenta acceder al historial, dashboard o gastos
+
+  Entonces el sistema bloquea el acceso
+  Y mantiene al visitante en la información pública o lo dirige al inicio de sesión
 ```
+
+**Relacionado con:** RF-01.
 
 ---
 
 ## HU-02 — Must
 
-**Como** visitante **quiero** crear una cuenta e iniciar sesión **para** acceder de forma segura a mis funcionalidades y datos personales.
+**Como** visitante
+**quiero** crear una cuenta e iniciar sesión
+**para** acceder de forma segura a mis funcionalidades y datos personales.
 
 ```gherkin
 Escenario: Crear una cuenta
 
   Dado que la persona se encuentra en la pantalla de registro
 
-  Cuando ingresa los datos requeridos y confirma el registro
+  Cuando ingresa un correo electrónico y una contraseña válidos
 
-  Entonces el sistema crea la cuenta
+  Entonces el sistema crea la cuenta con rol Usuario
+  Y permite iniciar sesión posteriormente
 
-  Y permite acceder a las funcionalidades de usuario
+Escenario: Iniciar sesión correctamente
 
-Escenario: Iniciar sesión
+  Dado que existe una cuenta activa registrada
+
+  Cuando el usuario ingresa credenciales válidas
+
+  Entonces el sistema permite el acceso
+  Y muestra las funcionalidades correspondientes al rol Usuario
+
+Escenario: Credenciales inválidas
 
   Dado que existe una cuenta registrada
 
-  Cuando el usuario ingresa sus credenciales correctas
+  Cuando la persona ingresa credenciales incorrectas
 
-  Entonces el sistema permite el acceso
+  Entonces el sistema rechaza el inicio de sesión
+  Y muestra un mensaje de error sin indicar cuál credencial fue incorrecta
 
-  Y muestra la aplicación correspondiente a su rol
+Escenario: Cuenta desactivada
+
+  Dado que una cuenta fue desactivada por un Administrador
+
+  Cuando la persona intenta iniciar sesión
+
+  Entonces el sistema rechaza el acceso
 ```
+
+**Relacionado con:** RF-02 y RNF-04.
 
 ---
 
 ## HU-03 — Must
 
-**Como** usuario **quiero** registrar un gasto escribiendo una descripción en lenguaje natural **para** no perder tiempo llenando formularios.
+**Como** usuario autenticado
+**quiero** registrar un gasto escribiendo una frase en lenguaje natural
+**para** ingresar mis gastos sin utilizar un formulario complejo.
 
 ```gherkin
-Escenario: Registrar un gasto válido
+Escenario: Registrar un gasto mediante texto
 
-  Dado que el usuario está en la pantalla de registro
+  Dado que el usuario inició sesión
 
-  Cuando escribe "Hoy gasté $8.000 en un taxi" y confirma
+  Cuando escribe "Hoy gasté $8.000 en un taxi"
 
-  Entonces el sistema acepta la entrada
+  Entonces el sistema acepta el texto
+  Y envía la información al proceso de interpretación
+  Y muestra el resultado antes de almacenarlo
 
-  Y envía el texto al motor de interpretación
+Escenario: Descartar una interpretación
 
-  Y el usuario puede continuar con el procesamiento del gasto
+  Dado que el sistema mostró una interpretación del gasto
 
-Escenario: Registrar un texto sin información de gasto
+  Cuando el usuario descarta la interpretación
 
-  Dado que el usuario está en la pantalla de registro
+  Entonces el gasto no se almacena
+  Y el usuario puede ingresar una nueva frase
 
-  Cuando escribe un texto sin valor numérico reconocible, como "hola"
+Escenario: Texto sin monto reconocible
 
-  Entonces el sistema no crea un gasto
+  Dado que el usuario ingresó una frase sin un monto identificable
 
-  Y muestra un mensaje indicando que debe incluir un valor
+  Cuando el sistema procesa el texto
+
+  Entonces no confirma el gasto
+  Y solicita información adicional o muestra un mensaje indicando que no pudo identificar el monto
 ```
+
+**Relacionado con:** RF-03.
 
 ---
 
 ## HU-04 — Must
 
-**Como** usuario **quiero** que la IA interprete y clasifique automáticamente mi gasto **para** no tener que categorizar manualmente cada registro.
+**Como** usuario
+**quiero** que la IA interprete mi gasto
+**para** obtener automáticamente el monto, la categoría y la descripción.
 
 ```gherkin
-Escenario: Clasificación automática exitosa
+Escenario: Interpretar un gasto correctamente
 
-  Dado que el usuario registró el texto "Hoy gasté $8.000 en un taxi"
+  Dado que el usuario ingresó "Hoy gasté $8.000 en un taxi"
 
-  Cuando el sistema procesa el texto
+  Cuando el sistema procesa el texto mediante IA
 
-  Entonces identifica el valor 8000
-
+  Entonces identifica el monto 8000
+  Y identifica la moneda correspondiente
   Y asigna la categoría "Transporte"
-
   Y genera la descripción "Taxi"
+  Y muestra los tres campos antes de confirmar el gasto
 
-Escenario: Clasificación con información insuficiente
+Escenario: Editar la interpretación
 
-  Dado que el texto registrado es ambiguo, como "gasté algo por ahí"
+  Dado que el sistema mostró el monto, categoría y descripción
 
-  Cuando el sistema no logra identificar un valor claro
+  Cuando el usuario modifica uno de los campos
 
-  Entonces el sistema no asigna una categoría definitiva
+  Entonces puede revisar la información modificada antes de confirmar
 
-  Y permite que el usuario complete o corrija la información manualmente
+Escenario: Información insuficiente
 
-Escenario: Revisión en lote al final del día
+  Dado que el texto no contiene un monto reconocible
 
-  Dado que el usuario registró varios gastos durante el día
+  Cuando el sistema intenta interpretarlo
 
-  Cuando abre la vista de "revisión del día"
-
-  Entonces puede visualizar los gastos del día con sus categorías asignadas
-
-  Y puede corregir únicamente los que estén clasificados incorrectamente
+  Entonces informa que no pudo identificar el monto
+  Y no permite confirmar el gasto como válido
 ```
 
-*Este criterio mantiene el ajuste realizado a partir de la entrevista real: el usuario puede revisar varios gastos juntos al final del día en lugar de confirmar cada categoría inmediatamente.*
+**Relacionado con:** RF-04 y RNF-03.
+
+> La corrección de categoría se desarrolla específicamente en HU-09. No se agrega una funcionalidad de “revisión del día” porque no está definida en los requisitos.
 
 ---
 
 ## HU-05 — Must
 
-**Como** usuario **quiero** consultar el historial de mis gastos registrados **para** revisar en qué se ha ido mi dinero.
+**Como** usuario
+**quiero** consultar mi historial de gastos
+**para** revisar mis registros y saber en qué he gastado mi dinero.
 
 ```gherkin
-Escenario: Ver historial con gastos registrados
+Escenario: Consultar historial
 
-  Dado que el usuario tiene al menos un gasto registrado
+  Dado que el usuario tiene gastos confirmados
 
   Cuando abre la sección "Historial"
 
-  Entonces ve una lista de sus gastos ordenada por fecha
+  Entonces visualiza sus gastos ordenados del más reciente al más antiguo
+  Y cada registro muestra monto, categoría, descripción y fecha
 
-  Y cada registro muestra al menos valor, categoría y descripción
+Escenario: Consultar un gasto
+
+  Dado que el usuario visualiza su historial
+
+  Cuando selecciona un gasto
+
+  Entonces puede consultar el detalle del gasto
+
+Escenario: Historial con muchos registros
+
+  Dado que el usuario tiene numerosos gastos almacenados
+
+  Cuando consulta el historial
+
+  Entonces el sistema utiliza paginación o desplazamiento infinito
+  Y evita cargar todas las operaciones simultáneamente
 
 Escenario: Historial vacío
 
-  Dado que el usuario no ha registrado ningún gasto
+  Dado que el usuario no tiene gastos confirmados
 
-  Cuando abre la sección "Historial"
+  Cuando abre el historial
 
-  Entonces ve un mensaje indicando que aún no hay gastos registrados
+  Entonces el sistema informa que todavía no existen gastos registrados
 ```
+
+**Relacionado con:** RF-06 y RNF-05.
 
 ---
 
 ## HU-06 — Must
 
-**Como** usuario **quiero** ver un dashboard sencillo con el resumen de mis gastos **para** entender de un vistazo cómo he gastado mi dinero.
+**Como** usuario
+**quiero** visualizar un dashboard con el resumen de mis gastos
+**para** comprender rápidamente cómo estoy gastando mi dinero.
 
 ```gherkin
-Escenario: Visualizar resumen de gastos
+Escenario: Visualizar dashboard
 
-  Dado que el usuario tiene gastos registrados
+  Dado que el usuario tiene gastos almacenados
 
-  Cuando abre el dashboard
+  Cuando accede al dashboard
 
-  Entonces visualiza un resumen de sus gastos
-
-  Y puede ver los totales agrupados por categoría
+  Entonces visualiza el total gastado del período
+  Y visualiza la cantidad de gastos registrados
+  Y visualiza el promedio por gasto
+  Y visualiza la distribución del gasto por categoría
+  Y puede identificar la categoría con mayor peso
 
 Escenario: Dashboard sin gastos
 
   Dado que el usuario no tiene gastos registrados
 
-  Cuando abre el dashboard
+  Cuando accede al dashboard
 
-  Entonces el sistema muestra un estado indicando que todavía no existen datos para analizar
+  Entonces el sistema indica que todavía no existen datos suficientes para mostrar un resumen
 ```
+
+Los datos mostrados deben corresponder únicamente a los gastos del usuario autenticado.
+
+**Relacionado con:** RF-07 y RNF-05.
 
 ---
 
 ## HU-07 — Must
 
-**Como** usuario **quiero** que el sistema identifique posibles fugas de dinero en gastos pequeños y repetitivos **para** detectar patrones que no había visto.
+**Como** usuario
+**quiero** identificar posibles fugas de dinero a partir de gastos pequeños y repetitivos
+**para** reconocer patrones de gasto que podrían estar generando una fuga.
 
 ```gherkin
 Escenario: Detectar una posible fuga
 
-  Dado que el usuario tiene 3 o más gastos similares en la misma categoría
+  Dado que el usuario tiene cinco gastos de "Café" de $4.000
+  Y los gastos cumplen las condiciones definidas por una regla
 
-  Y los gastos se encuentran dentro de un periodo corto
+  Cuando el sistema ejecuta el análisis de fugas
 
-  Cuando el sistema aplica las reglas de detección
+  Entonces identifica una posible fuga
+  Y muestra cinco ocurrencias
+  Y muestra un monto acumulado de $20.000
+  Y muestra la categoría o descripción relacionada
+  Y muestra la regla o evidencia que activó el resultado
 
-  Entonces los gastos cumplen la condición definida
+Escenario: Datos insuficientes
 
-  Y el sistema los marca como "posible fuga"
+  Dado que el usuario tiene menos de tres gastos registrados
 
-  Y la información se muestra en el dashboard
+  Cuando solicita el análisis de fugas
+
+  Entonces el sistema informa que todavía no existen datos suficientes
+
+Escenario: Análisis mediante reglas
+
+  Dado que existen gastos almacenados
+
+  Cuando se ejecuta el análisis
+
+  Entonces el sistema utiliza reglas predefinidas y deterministas
+  Y no utiliza IA para decidir si existe una posible fuga
 ```
 
-La detección se realizará mediante **reglas definidas por el proyecto**, no mediante una valoración de la IA sobre si un gasto es bueno o malo.
+**Relacionado con:** RF-08, RNF-03 y RNF-05.
 
 ---
 
 ## HU-08 — Should
 
-**Como** usuario **quiero** realizar consultas básicas sobre mis gastos por categoría o rango de fechas **para** encontrar información específica sin revisar todo el historial.
+**Como** usuario
+**quiero** filtrar mis gastos por categoría y rango de fechas
+**para** encontrar rápidamente registros específicos.
 
 ```gherkin
-Escenario: Filtrar gastos por categoría
+Escenario: Filtrar por categoría
 
-  Dado que el usuario tiene gastos registrados en varias categorías
+  Dado que el usuario tiene gastos de diferentes categorías
 
   Cuando selecciona la categoría "Transporte"
 
-  Entonces el sistema muestra únicamente los gastos correspondientes a esa categoría
+  Entonces el sistema muestra únicamente sus gastos de Transporte
 
-Escenario: Filtrar gastos por rango de fechas
+Escenario: Filtrar por rango de fechas
 
   Dado que el usuario tiene gastos registrados en diferentes fechas
 
   Cuando selecciona un rango de fechas
 
-  Entonces el sistema muestra únicamente los gastos correspondientes al periodo seleccionado
+  Entonces el sistema muestra únicamente sus gastos dentro del período seleccionado
+
+Escenario: Limpiar filtros
+
+  Dado que el usuario tiene filtros aplicados
+
+  Cuando selecciona la opción para limpiar los filtros
+
+  Entonces el sistema vuelve a mostrar la lista completa de sus gastos
 ```
+
+**Relacionado con:** RF-09 y RNF-05.
 
 ---
 
 ## HU-09 — Should
 
-**Como** usuario **quiero** corregir manualmente la categoría que la IA asignó a un gasto **para** mantener mi historial preciso cuando la IA se equivoque.
+**Como** usuario
+**quiero** corregir la categoría asignada por la IA
+**para** mantener mis registros y análisis actualizados cuando la clasificación sea incorrecta.
 
 ```gherkin
-Escenario: Corregir una categoría
+Escenario: Corregir categoría antes de confirmar
 
-  Dado que un gasto tiene una categoría incorrecta
+  Dado que la IA mostró una categoría para un gasto
 
-  Cuando el usuario selecciona una nueva categoría y guarda el cambio
+  Cuando el usuario selecciona otra categoría válida
 
-  Entonces el sistema actualiza la categoría del gasto
+  Entonces puede confirmar el gasto utilizando la categoría corregida
+  Y el texto original permanece sin cambios
 
-  Y el cambio se refleja en el historial
+Escenario: Corregir categoría de un gasto almacenado
 
-  Y el dashboard utiliza la nueva categoría
+  Dado que existe un gasto confirmado
+
+  Cuando el usuario cambia su categoría desde el detalle del gasto
+
+  Entonces el sistema guarda la nueva categoría
+  Y mantiene el texto original
+  Y actualiza el historial
+  Y actualiza los datos utilizados por el dashboard
+  Y utiliza la categoría corregida en el análisis de posibles fugas
 ```
+
+**Relacionado con:** RF-10.
 
 ---
 
 ## HU-10 — Should
 
-**Como** administrador **quiero** consultar estadísticas generales y gestionar los usuarios registrados **para** supervisar el funcionamiento de FUGA+.
+**Como** administrador
+**quiero** consultar estadísticas generales y gestionar las cuentas de usuarios
+**para** supervisar el funcionamiento general de FUGA+.
 
 ```gherkin
-Escenario: Consultar estadísticas generales
+Escenario: Consultar estadísticas administrativas
 
-  Dado que el administrador inició sesión con permisos administrativos
+  Dado que el administrador inició sesión
 
-  Cuando accede al panel de administración
+  Cuando accede al panel administrativo
 
-  Entonces puede visualizar estadísticas generales
+  Entonces puede visualizar el total de usuarios registrados
+  Y puede visualizar el número total de gastos almacenados
+  Y puede visualizar el promedio general de gasto
+  Y puede visualizar la distribución global de gastos por categoría
 
-  Y puede consultar información como cantidad de usuarios registrados
-
-  Y puede consultar estadísticas generales de uso de la aplicación
-
-Escenario: Gestionar un usuario
+Escenario: Gestionar usuarios
 
   Dado que el administrador se encuentra en el panel de usuarios
 
   Cuando consulta la lista de usuarios
 
-  Entonces puede visualizar las cuentas registradas
+  Entonces puede visualizar sus estados activo o inactivo
+  Y puede activar o desactivar una cuenta
 
-  Y puede activar o desactivar una cuenta según sea necesario
+Escenario: Usuario desactivado
+
+  Dado que el administrador desactivó una cuenta
+
+  Cuando el usuario intenta iniciar sesión
+
+  Entonces el sistema rechaza el acceso
+
+Escenario: Protección de información financiera
+
+  Dado que el administrador consulta el panel administrativo
+
+  Entonces no puede visualizar gastos individuales
+  Y no puede consultar montos o descripciones asociados a un usuario específico
+
+Escenario: Protección de la cuenta administrativa
+
+  Dado que el administrador está gestionando usuarios
+
+  Cuando intenta desactivar su propia cuenta
+
+  Entonces el sistema rechaza la operación
 ```
 
-El administrador trabajará principalmente con **información general y estadísticas**, evitando exponer innecesariamente los detalles financieros personales de los usuarios.
+**Relacionado con:** RF-11, RF-12, RNF-04 y RNF-05.
 
 ---
 
 ## HU-11 — Could
 
-**Como** usuario **quiero** registrar un gasto usando mi voz en lugar de texto **para** hacerlo más rápido cuando estoy ocupado.
+**Como** usuario
+**quiero** registrar un gasto mediante voz
+**para** utilizar una alternativa al ingreso manual de texto.
 
 ```gherkin
-Escenario: Registrar un gasto mediante voz
+Escenario: Registrar gasto mediante voz
 
-  Dado que el usuario activa la opción de registro por voz
+  Dado que el usuario inició sesión
 
-  Cuando dicta un gasto
+  Cuando activa el registro por voz y dicta una frase de gasto
 
-  Entonces el sistema transcribe el contenido
+  Entonces el sistema transcribe la voz
+  Y envía el texto al mismo proceso de interpretación utilizado para los gastos escritos
 
-  Y procesa el texto utilizando el mismo flujo de interpretación de HU-04
+Escenario: Error de transcripción
+
+  Dado que la transcripción de voz no puede realizarse
+
+  Cuando el sistema detecta el error
+
+  Entonces informa al usuario
+  Y permite continuar mediante el registro manual por texto
 ```
 
-Esta funcionalidad solo se implementará si queda tiempo después de completar las funcionalidades Must y Should.
+**Relacionado con:** RF-14.
 
 ---
 
-## HU-12 — Won't (explícitamente fuera de este Release)
+## HU-12 — Could
 
-**Como** usuario **quisiera** conectar mi cuenta bancaria para que mis gastos se registren automáticamente, **pero** esta funcionalidad no se desarrollará en el Release 1 porque requiere integraciones bancarias externas y aumenta considerablemente el alcance y riesgo del proyecto.
+**Como** usuario
+**quiero** recibir una alerta dentro de la aplicación cuando se detecte una posible fuga
+**para** conocer el resultado del análisis sin tener que buscarlo manualmente.
+
+```gherkin
+Escenario: Mostrar alerta de posible fuga
+
+  Dado que el análisis de reglas detectó una nueva posible fuga
+
+  Cuando el usuario consulta la aplicación
+
+  Entonces puede visualizar una alerta dentro de la aplicación
+  Y la alerta muestra la categoría o descripción
+  Y muestra el monto acumulado
+  Y muestra el número de ocurrencias
+
+Escenario: No existen fugas
+
+  Dado que el análisis no detectó posibles fugas
+
+  Cuando el usuario consulta la aplicación
+
+  Entonces no se muestra una alerta de posible fuga
+```
+
+La funcionalidad no requiere notificaciones del sistema operativo.
+
+**Relacionado con:** RF-13.
 
 ---
 
-# Refinamiento crítico (checklist INVEST aplicado)
+## HU-13 — Could
 
-| Problema detectado                                                                                                                                           | Corrección aplicada                                                                                            | Justificación (INVEST)                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| El sistema originalmente comenzaba directamente con el registro de gastos y no contemplaba una experiencia para una persona que aún no conoce la aplicación. | Se agregó HU-01 para permitir que un visitante conozca FUGA+ antes de registrarse.                             | **Valuable** — permite presentar el propósito de la aplicación y facilitar la conversión a usuario. |
-| No estaba definido cómo una persona pasaba de visitante a usuario.                                                                                           | Se agregó HU-02 para crear cuenta e iniciar sesión.                                                            | **Testable** — permite verificar claramente el registro, autenticación y acceso.                    |
-| El requisito original de interpretación mediante IA estaba separado del registro, pero no contemplaba información insuficiente.                              | HU-03 maneja la entrada y HU-04 maneja la interpretación, incluyendo un escenario de información insuficiente. | **Independent / Testable** — cada funcionalidad tiene un objetivo y comportamiento verificable.     |
-| El dashboard no tenía estados observables para validar su funcionamiento.                                                                                    | HU-06 incluye tanto el dashboard con datos como el estado sin gastos.                                          | **Testable** — existen condiciones claras para comprobar el resultado.                              |
-| La detección de fugas podía interpretarse como un juicio de la IA sobre los gastos.                                                                          | HU-07 utiliza una regla explícita basada en gastos similares y utiliza el término "posible fuga".              | **Valuable / Negotiable** — detecta patrones sin afirmar que un gasto sea innecesario.              |
-| No existía un rol administrativo definido.                                                                                                                   | Se agregó HU-10 para estadísticas generales y gestión básica de usuarios.                                      | **Valuable / Testable** — establece claramente qué puede hacer el administrador.                    |
-| El registro por voz podía convertirse en una funcionalidad demasiado grande.                                                                                 | HU-11 se limita a transcribir la voz y reutilizar el flujo de texto existente.                                 | **Small** — evita crear un sistema de procesamiento diferente.                                      |
-| La conexión bancaria tenía un impacto demasiado grande para el MVP.                                                                                          | Se mantiene como HU-12 Won't.                                                                                  | **Negotiable / Small** — queda explícitamente fuera del Release 1.                                  |
+**Como** usuario
+**quiero** comparar dos períodos de gastos
+**para** identificar diferencias entre mis hábitos de gasto en diferentes períodos.
+
+```gherkin
+Escenario: Comparar dos períodos
+
+  Dado que existen gastos registrados en dos períodos diferentes
+
+  Cuando el usuario selecciona los dos períodos
+
+  Entonces el sistema muestra el total gastado de cada período
+  Y muestra la cantidad de gastos de cada período
+  Y muestra el promedio por gasto de cada período
+  Y muestra la variación absoluta
+  Y muestra la variación porcentual
+
+Escenario: Período sin registros
+
+  Dado que uno de los períodos seleccionados no tiene gastos
+
+  Cuando el usuario realiza la comparación
+
+  Entonces el sistema indica que ese período no tiene registros
+```
+
+**Relacionado con:** RF-15.
+
+---
+
+# HU-14 — Won't
+
+**Conexiones bancarias**
+
+Como usuario, quisiera conectar mi cuenta bancaria para registrar automáticamente mis gastos, pero esta funcionalidad queda fuera del Release 1.
+
+---
+
+# HU-15 — Won't
+
+**Pagos, transferencias y tarjetas**
+
+Las funcionalidades relacionadas con pagos, transferencias y gestión de tarjetas quedan fuera del Release 1.
+
+---
+
+# HU-16 — Won't
+
+**Créditos, préstamos e inversiones**
+
+Las funcionalidades relacionadas con líneas de crédito, préstamos e inversiones quedan fuera del Release 1.
+
+---
+
+# HU-17 — Won't
+
+**Asesoría financiera profesional**
+
+FUGA+ no proporcionará asesoría financiera profesional ni recomendaciones financieras personalizadas.
+
+---
+
+# HU-18 — Won't
+
+**Entrenamiento de un modelo de IA propio**
+
+El proyecto no contempla desarrollar ni entrenar un modelo de IA propio.
+
+---
+
+# HU-19 — Won't
+
+**Predicción de mercado**
+
+El sistema no realizará predicciones sobre mercados financieros ni comportamiento futuro de mercados.
+
+---
+
+# HU-20 — Won't
+
+**Datos bancarios reales de terceros**
+
+El sistema no utilizará datos bancarios reales de terceros.
+
+---
+
+# HU-21 — Won't
+
+**Notificaciones push avanzadas**
+
+Las notificaciones push del sistema operativo quedan fuera del Release 1.
+
+---
+
+# HU-22 — Won't
+
+**Escaneo avanzado de recibos**
+
+El procesamiento avanzado de recibos mediante imágenes queda fuera del Release 1.
+
+---
+
+# HU-23 — Won't
+
+**Integraciones bancarias externas**
+
+Las integraciones con servicios bancarios externos quedan fuera del Release 1.
+
+---
+
+# HU-24 — Won't
+
+**Funciones administrativas avanzadas**
+
+El Release 1 no contempla funciones administrativas adicionales diferentes a las definidas en RF-11 y RF-12.
+
+---
+
+# HU-25 — Won't
+
+**Múltiples niveles de administrador**
+
+El sistema tendrá únicamente el rol Administrador definido en los requisitos. No se implementarán múltiples niveles administrativos.
+
+---
+
+# Refinamiento y trazabilidad
+
+Cada historia de usuario debe corresponder a los requisitos funcionales definidos para FUGA+:
+
+| Historia | Requisito    | Prioridad |
+| -------- | ------------ | --------- |
+| HU-01    | RF-01        | Must      |
+| HU-02    | RF-02        | Must      |
+| HU-03    | RF-03        | Must      |
+| HU-04    | RF-04        | Must      |
+| HU-05    | RF-06        | Must      |
+| HU-06    | RF-07        | Must      |
+| HU-07    | RF-08        | Must      |
+| HU-08    | RF-09        | Should    |
+| HU-09    | RF-10        | Should    |
+| HU-10    | RF-11, RF-12 | Should    |
+| HU-11    | RF-14        | Could     |
+| HU-12    | RF-13        | Could     |
+| HU-13    | RF-15        | Could     |
+
+RF-05 (almacenamiento persistente) se implementa como parte del flujo de confirmación del gasto de HU-03/HU-04 y sirve como dependencia de HU-05, HU-06, HU-07, HU-08 y HU-09.
+
+Los requisitos no funcionales RNF-01 a RNF-05 actúan como restricciones transversales del conjunto de historias y no necesitan convertirse individualmente en historias de usuario.
 
 ---
 
 # Requisitos esenciales para la demostración
 
-Las funcionalidades principales que deben estar disponibles durante la demostración de 3 minutos son:
+La demostración principal de aproximadamente 3 minutos debe mostrar:
 
-* HU-01 — Acceso público y presentación de FUGA+
-* HU-02 — Registro e inicio de sesión
-* HU-03 — Registro de gasto por texto
-* HU-04 — Interpretación mediante IA
-* HU-05 — Historial
-* HU-06 — Dashboard
-* HU-07 — Detección de posibles fugas
+* HU-01 — Acceso público.
+* HU-02 — Registro e inicio de sesión.
+* HU-03 — Registro de gasto mediante texto.
+* HU-04 — Interpretación mediante IA.
+* Almacenamiento persistente del gasto.
+* HU-05 — Historial.
+* HU-06 — Dashboard.
+* HU-07 — Detección de posibles fugas.
 
-El panel administrativo de HU-10 podrá mostrarse brevemente como una funcionalidad complementaria del sistema.
+La ruta principal es:
+
+**HU-01 → HU-02 → HU-03 → HU-04 → almacenamiento → HU-05 → HU-06 → HU-07**
+
+El panel administrativo de HU-10 puede mostrarse como funcionalidad complementaria, pero no forma parte de la ruta crítica de la demostración.
 
 ---
 
 # Dependencias
 
-* HU-02 depende de HU-01, porque el visitante debe poder acceder al registro desde la parte pública.
-* HU-03 depende de HU-02, porque el registro de gastos requiere un usuario autenticado.
-* HU-04 depende de HU-03, porque la IA necesita el texto ingresado.
-* HU-05 depende de HU-04 y del almacenamiento de los datos.
-* HU-06 depende de los gastos almacenados.
-* HU-07 depende de los gastos almacenados y de contar con suficientes registros históricos para aplicar las reglas.
-* HU-08 depende del historial y de los datos almacenados.
-* HU-09 depende de HU-04 y de los gastos almacenados.
-* HU-10 depende del sistema de autenticación, roles y datos generales almacenados.
-* HU-11 depende de HU-03 y HU-04, porque la entrada de voz debe reutilizar el flujo de registro e interpretación.
-* HU-12 queda explícitamente fuera del alcance del Release 1.
+* HU-02 depende de HU-01.
+* HU-03 depende de HU-02.
+* HU-04 depende de HU-03.
+* El almacenamiento persistente depende de la confirmación de la interpretación de HU-04.
+* HU-05 depende del almacenamiento persistente.
+* HU-06 depende del almacenamiento persistente.
+* HU-07 depende del almacenamiento persistente y de contar con suficientes gastos históricos.
+* HU-08 depende del historial y de los gastos almacenados.
+* HU-09 depende de la interpretación de HU-04 y de los gastos almacenados.
+* HU-10 depende de autenticación, roles y datos almacenados.
+* HU-11 depende de HU-03 y HU-04.
+* HU-12 depende de HU-07.
+* HU-13 depende de los gastos almacenados y de las métricas utilizadas por el dashboard.
+* Las historias Won't quedan fuera del Release 1.
 
 ---
 
 # Riesgos clave
 
-1. **HU-04 — Interpretación basada en IA:** Extraer correctamente monto, categoría y descripción a partir de lenguaje natural puede requerir pruebas y ajustes.
+1. **HU-04 — Interpretación mediante IA:** la extracción de monto, moneda, categoría y descripción puede requerir validaciones y pruebas con diferentes formas de lenguaje natural.
 
-2. **HU-07 — Identificación de posibles fugas:** Las reglas deben estar suficientemente calibradas para detectar patrones demostrables sin generar demasiados falsos positivos.
+2. **HU-07 — Detección de posibles fugas:** las reglas deben ser claras, deterministas y explicables para evitar resultados inconsistentes.
 
-3. **HU-02 — Autenticación y roles:** La incorporación de usuarios y administrador requiere controlar correctamente los permisos para evitar accesos indebidos.
+3. **HU-02 y HU-10 — Autenticación y roles:** deben mantenerse correctamente separados los permisos de Visitante, Usuario y Administrador.
 
-4. **HU-10 — Panel administrativo:** Se debe evitar que las funcionalidades administrativas aumenten demasiado el alcance del MVP.
+4. **HU-06 — Dashboard:** los cálculos deben utilizar exclusivamente los gastos del usuario correspondiente.
 
-5. **HU-06 — Dashboard:** El dashboard debe integrarse correctamente con los datos almacenados para que los cambios en los gastos se reflejen de forma coherente.
+5. **RNF-02 — Demostración:** la ruta crítica debe estar integrada y probada de extremo a extremo para mantenerse dentro del tiempo establecido.
 
----
-
-*Documento actualizado a partir de la visión y requisitos de FUGA+, incorporando acceso público, autenticación de usuarios y rol administrativo, sin modificar el objetivo principal del MVP.*
+6. **RNF-05 — Privacidad:** todas las consultas de gastos deben estar aisladas por propietario y el Administrador debe recibir únicamente información agregada.
