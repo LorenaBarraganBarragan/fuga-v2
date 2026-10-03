@@ -1,111 +1,55 @@
-Act as a senior software architect and UML component-diagram specialist.
+The previous attempt generated Draw.io XML in the response, but the file was not actually created in the project.
 
-Your task is to create ONLY the component diagram for my project FUGA+.
+Do NOT just display or explain the XML.
 
-IMPORTANT: The project already contains the folder:
+You MUST create the actual file in the project filesystem.
+
+## REQUIRED FILE
+
+The folder already exists:
 
 `docs/diagramas/`
 
-Do NOT create this folder.
-
-You must create ONLY this file:
+Create ONLY this file:
 
 `docs/diagramas/diagrama-componentes.drawio`
 
-Do not create any other diagram, file, document, image, code file, or documentation.
+Do not create any other file.
 
----
+## IMPORTANT
 
-# PROJECT CONTEXT
+Use the available filesystem/file-writing capabilities of OpenCode to physically write the Draw.io XML into:
 
-FUGA+ is a mobile application designed mainly for young people and students.
+`docs/diagramas/diagrama-componentes.drawio`
 
-Its purpose is to help users identify possible "money leaks" by analyzing their daily expenses.
+The XML must be the actual content of the file.
 
-Example:
+Do NOT return the complete XML as your main response instead of creating the file.
 
-"Hoy gasté $8.000 en un taxi"
+After writing the file, verify that the file exists at exactly:
 
-The application uses AI to interpret the expense text and extract:
+`docs/diagramas/diagrama-componentes.drawio`
 
-* Valor
-* Categoría
-* Descripción
+and verify that it is not empty.
 
-For example:
+You may use the terminal to verify the file, for example:
 
-* Valor: $8.000
-* Categoría: Transporte
-* Descripción: Taxi
+`Get-ChildItem docs\diagramas`
 
-The expense is then stored in the database, displayed in the history, included in the dashboard, and used by a rule-based system to identify possible money leaks.
+and, if necessary:
 
-IMPORTANT:
+`Get-Content docs\diagramas\diagrama-componentes.drawio -TotalCount 10`
 
-Money-leak detection is NOT performed by AI.
+## DIAGRAM CONTENT
 
-It is performed using predefined system rules.
+Create a professional UML Component Diagram for the FUGA+ mobile application.
 
-Example rule:
+All visible text inside the diagram MUST be in Spanish.
 
-"Si existen 3 o más gastos similares dentro de una misma categoría durante un período corto, marcar como posible fuga."
+Technical technology names remain unchanged:
 
----
-
-# TECHNOLOGY STACK
-
-Use exactly these technologies:
-
-* React Native + TypeScript — mobile application
-* Python + FastAPI — backend/API
-* OpenAI API — AI-based expense interpretation
-* MongoDB — primary persistent database
-* Redis — cache and temporary data
-* JWT — authentication and authorization
-* Docker + Docker Compose — infrastructure
-* Git + GitHub — version control
-
-Do NOT introduce additional technologies.
-
-Do NOT add:
-
-* Kubernetes
-* Kafka
-* RabbitMQ
-* PostgreSQL
-* Firebase
-* AWS
-* Azure
-* Google Cloud
-* Other databases
-* Other AI providers
-* Additional message brokers
-* Unrequested microservices
-
----
-
-# IMPORTANT LANGUAGE RULE
-
-The instructions and technical reasoning may be written in English.
-
-However, ALL VISIBLE TEXT INSIDE THE DIAGRAM MUST BE IN SPANISH.
-
-This includes:
-
-* Diagram title
-* Component names
-* Actor names
-* Labels
-* Descriptions
-* Group/container names
-* Relationship labels
-* Technology descriptions
-
-Use technical names only when they represent actual technology names, such as:
-
-* React Native
-* TypeScript
-* FastAPI
+* React Native + TypeScript
+* Python + FastAPI
 * OpenAI API
 * MongoDB
 * Redis
@@ -113,109 +57,24 @@ Use technical names only when they represent actual technology names, such as:
 * Docker Compose
 * GitHub
 
-For example, use:
+### Actors
 
-"Servicio de Autenticación"
+* Visitante
+* Usuario
+* Administrador
+* Desarrollador
 
-instead of:
+### Mobile application
 
-"Authentication Service"
+Create a group:
 
-Use:
+`Aplicación móvil FUGA+`
 
-"Servicio de Interpretación con IA"
+Technology:
 
-instead of:
+`React Native + TypeScript`
 
-"AI Interpretation Service"
-
----
-
-# ARCHITECTURE
-
-The main architecture must visually represent:
-
-Actores
-↓
-Aplicación móvil
-↓
-Backend / API
-↓
-Servicios del backend
-↓
-Persistencia y servicios externos
-
-The mobile application MUST NOT connect directly to:
-
-* MongoDB
-* Redis
-* OpenAI API
-
-FastAPI must act as the intermediary between the mobile application and backend services.
-
----
-
-# ACTORS
-
-Include these actors:
-
-### Visitante
-
-The visitor:
-
-* Can access public information about FUGA+.
-* Can see how the application works.
-* Can register.
-* Can log in.
-* Does NOT have access to personal financial information.
-* Does NOT receive a JWT simply for viewing public information.
-
-IMPORTANT:
-
-"Visitante" is NOT a database entity.
-
-It is an unauthenticated/public access role.
-
-### Usuario
-
-The registered user can:
-
-* Register expenses.
-* Use AI interpretation.
-* View expense history.
-* View the dashboard.
-* Filter expenses.
-* Correct categories.
-* View possible money leaks.
-
-### Administrador
-
-The administrator can:
-
-* Access the administrative panel.
-* View general statistics.
-* View users.
-* Activate or deactivate user accounts.
-
-The administrator should NOT unnecessarily access detailed personal financial information.
-
-### Desarrollador
-
-The developer is included only to represent the development/version-control relationship:
-
-Desarrollador → Git → GitHub
-
-GitHub is NOT part of the application's runtime architecture.
-
----
-
-# MOBILE APPLICATION COMPONENTS
-
-Create a container/group named:
-
-"Aplicación móvil FUGA+"
-
-Inside it, represent these logical components:
+Components:
 
 * Acceso público
 * Autenticación
@@ -227,502 +86,205 @@ Inside it, represent these logical components:
 * Perfil de usuario
 * Panel de administración
 
-Do not create dozens of individual screens.
+### Backend
 
-These should be logical application components.
+Create a group:
 
-The mobile application technology must be shown as:
+`Backend FUGA+`
 
-"React Native + TypeScript"
+Technology:
 
----
+`Python + FastAPI`
 
-# BACKEND
+Components:
 
-Create a container/group named:
+* Servicio de Autenticación
+* Servicio de Usuarios
+* Servicio de Gastos
+* Servicio de Interpretación con IA
+* Servicio de Historial
+* Servicio de Dashboard
+* Servicio de Consultas
+* Servicio de Detección de Posibles Fugas
+* Servicio de Administración
 
-"Backend FUGA+"
+### AI
 
-Represent FastAPI as the backend/API technology.
+External component:
 
-Inside the backend, create these logical components:
+`OpenAI API`
 
-### Servicio de Autenticación
+Connect ONLY:
 
-Responsibilities:
+`Servicio de Interpretación con IA → OpenAI API`
 
-* Registro
-* Inicio de sesión
-* Validación de credenciales
-* Generación y validación de JWT
-* Gestión de roles Usuario/Administrador
+Label:
 
-### Servicio de Usuarios
+`Interpretación de gastos`
 
-Responsibilities:
+OpenAI is used only for:
 
-* Datos básicos del usuario
-* Consulta de usuario
-* Actualización de usuario
-* Estado de cuenta
+* Valor
+* Categoría
+* Descripción
 
-### Servicio de Gastos
+Do NOT connect OpenAI to the leak detection component.
 
-Responsibilities:
-
-* Recibir gastos
-* Validar información
-* Coordinar el procesamiento
-* Guardar gastos
-
-### Servicio de Interpretación con IA
-
-Responsibilities:
-
-* Receive expense text
-* Send it to OpenAI API
-* Extract value
-* Determine category
-* Extract description
-* Return structured information to the backend
-
-Visible description must be in Spanish.
-
-Clearly indicate:
-
-"Interpretación de valor, categoría y descripción"
-
-IMPORTANT:
-
-This component is the ONLY backend component that communicates with OpenAI API.
-
-Do NOT use OpenAI for money-leak detection.
-
-### Servicio de Historial
-
-Responsibilities:
-
-* Retrieve expenses
-* Order them chronologically
-* Show date, value, category and description
-
-### Servicio de Dashboard
-
-Responsibilities:
-
-* Calculate expense totals
-* Calculate totals by category
-* Provide summary information
-* Generate dashboard data
-
-It may use MongoDB aggregation operations.
-
-### Servicio de Consultas
-
-Responsibilities:
-
-* Filter by category
-* Filter by date range
-* Perform basic expense queries
-
-### Servicio de Detección de Posibles Fugas
-
-This component MUST be clearly marked as:
-
-"Basado en reglas"
-
-It must NOT communicate with OpenAI.
-
-Example rule:
-
-"3 o más gastos similares en una categoría durante un período corto"
-
-The diagram must make it visually clear that this component uses system rules, not AI.
-
-### Servicio de Administración
-
-Responsibilities:
-
-* General statistics
-* User management
-* Activate/deactivate accounts
-* Administrative operations
-
----
-
-# DATABASE
+### Database
 
 Represent:
 
-"MongoDB — Base de datos principal"
+`MongoDB`
 
-MongoDB is the primary persistent database.
+Label:
 
-Conceptually represent these collections if they improve clarity:
+`Base de datos principal`
+
+MongoDB is the persistent database.
+
+Conceptual data:
 
 * Usuarios
 * Gastos
 * Categorías
 * Resultados de fugas
 
-Do not make every collection a separate UML component if that makes the diagram unnecessarily complex.
-
-The main idea is:
-
-Backend Services → MongoDB
-
-MongoDB stores persistent application data.
-
----
-
-# REDIS
+### Cache
 
 Represent:
 
-"Redis — Caché"
+`Redis`
 
-Redis is NOT the primary database.
+Label:
 
-Use it for:
+`Caché`
 
-* Cache
-* Temporary data
-* Frequently requested results
-* Temporary session-related information when required
+Redis is only for cache and temporary support.
 
-Clearly distinguish Redis from MongoDB visually.
+MongoDB is the primary persistent database.
 
-MongoDB = persistent data.
+### Authentication
 
-Redis = temporary/cache support.
+Represent:
 
----
+`JWT`
 
-# OPENAI API
+Show the authentication relationship between:
 
-Represent an external component:
+`Usuario → Servicio de Autenticación → JWT → Servicios protegidos`
 
-"OpenAI API"
-
-Connect it ONLY with:
-
-"Servicio de Interpretación con IA"
-
-The visible label should communicate:
-
-"Interpretación de gastos"
-
-The flow should be:
-
-Usuario
-→ Aplicación móvil
-→ FastAPI
-→ Servicio de Interpretación con IA
-→ OpenAI API
-→ Resultado estructurado
-→ Servicio de Gastos
-→ MongoDB
-
-Do NOT connect OpenAI directly to:
-
-* React Native
-* MongoDB
-* Redis
-* Detección de Posibles Fugas
-
----
-
-# JWT AUTHENTICATION
-
-Clearly represent JWT authentication.
-
-The logical flow is:
-
-Usuario
-→ Servicio de Autenticación
-→ JWT
-→ Acceso autorizado a los servicios
-
-Represent these application roles:
+Roles:
 
 * Usuario
 * Administrador
 
-The visitor does not require JWT for public access.
+The Visitante is public/unauthenticated and is NOT stored as a database role.
 
----
-
-# DOCKER COMPOSE
-
-Create a visual group:
-
-"Infraestructura — Docker Compose"
-
-Inside it, conceptually include:
-
-* Backend FastAPI
-* MongoDB
-* Redis
-
-React Native should remain outside this infrastructure group because it is the mobile application.
-
-OpenAI API should remain outside because it is an external service.
-
----
-
-# GITHUB
-
-Create a separate development area:
-
-"Control de versiones"
+### Infrastructure
 
 Represent:
 
-Desarrollador
-→ Git
-→ GitHub
+`Docker Compose`
 
-Use the visible label:
+Containing conceptually:
 
-"Repositorio del proyecto"
-
-IMPORTANT:
-
-GitHub is NOT part of the application's runtime flow.
-
-Do NOT connect GitHub to:
-
-* Users
-* Mobile App
 * FastAPI
 * MongoDB
 * Redis
-* OpenAI API
 
----
+### Version control
 
-# MAIN APPLICATION FLOW
+Represent separately:
 
-The diagram must allow the following flow to be understood visually:
+`Desarrollador → Git → GitHub`
 
-1. Visitante accesses public information.
-2. Visitante registers or logs in.
-3. Servicio de Autenticación validates credentials.
-4. JWT is generated.
-5. Usuario registers an expense using natural language.
-6. Servicio de Gastos receives the expense.
-7. Servicio de Interpretación con IA processes the text.
-8. OpenAI API interprets the expense.
-9. The result contains value, category and description.
-10. Servicio de Gastos stores the expense in MongoDB.
-11. Servicio de Historial retrieves expenses.
-12. Servicio de Dashboard generates statistics.
-13. Servicio de Detección de Posibles Fugas analyzes expenses using predefined rules.
-14. The user can view a possible money leak.
-15. Administrador accesses the Panel de Administración.
-16. Administrator can view general statistics and manage users.
+Label:
 
----
+`Repositorio del proyecto`
 
-# COMMUNICATIONS
+GitHub is ONLY for development/version control and is NOT part of runtime.
 
-Show the main communication mechanisms.
+## MAIN FLOW
 
-Use visible Spanish labels such as:
+The diagram must clearly show:
 
-* "HTTPS / REST"
-* "JSON"
-* "JWT"
-* "API de OpenAI"
-* "Conexión a MongoDB"
-* "Caché Redis"
+Visitante
+→ Aplicación móvil
+→ Autenticación
+→ JWT
+→ Usuario
+→ Registro de gastos
+→ Servicio de Gastos
+→ Servicio de Interpretación con IA
+→ OpenAI API
+→ Resultado estructurado
+→ MongoDB
 
-Do not show detailed API endpoints.
+Then:
 
-Do not show implementation-level code.
+MongoDB
+→ Historial
+→ Dashboard
+→ Consultas
 
----
+And:
 
-# VISUAL ORGANIZATION
+MongoDB
+→ Servicio de Detección de Posibles Fugas
+→ Posible fuga
 
-Organize the diagram into clear visual layers.
+The leak detection component must be explicitly labeled:
 
-## Layer 1 — Actores
+`Basado en reglas`
 
-Place on the left:
+and must NOT use OpenAI.
 
-* Visitante
-* Usuario
-* Administrador
-* Desarrollador
+## ARCHITECTURAL RULE
 
-## Layer 2 — Aplicación
-
-Place next to the actors:
-
-"Aplicación móvil FUGA+"
-
-Technology:
-
-"React Native + TypeScript"
-
-## Layer 3 — Backend
-
-Place in the center:
-
-"Backend FUGA+"
-
-Technology:
-
-"Python + FastAPI"
-
-Place the backend services inside this group.
-
-## Layer 4 — Data and external services
-
-Place on the right:
+The mobile application must NOT connect directly to:
 
 * MongoDB
 * Redis
 * OpenAI API
 
-## Layer 5 — Infrastructure and development
+All communication must go through:
 
-Place separately:
+`Python + FastAPI`
 
-* Docker Compose
-* GitHub
+## VISUAL ORGANIZATION
 
-Keep the runtime architecture visually separate from development tools.
+Use clear visual layers:
 
----
+1. Actores
+2. Aplicación móvil
+3. Backend
+4. Persistencia y servicios externos
+5. Infraestructura y desarrollo
 
-# UML STYLE
+Use UML component notation.
 
-This MUST be a UML Component Diagram.
+Avoid excessive line crossings.
 
-Use:
+Make the main flow easy to understand.
 
-* UML components
-* Dependencies
-* Interfaces where useful
-* Containers/groups
-* Actors
-* Clear relationships
+Title:
 
-Do NOT create:
+`Diagrama de Componentes — FUGA+`
 
-* Class diagram
-* Sequence diagram
-* Activity diagram
-* Entity-relationship diagram
-* Deployment diagram
-* Generic flowchart
+Subtitle:
 
-Do not represent source-code classes.
+`Arquitectura de la aplicación móvil para identificación de fugas de dinero`
 
-Do not represent individual database columns.
+## FINAL ACTION
 
-Do not represent API endpoints.
+Do NOT stop after generating XML in the chat.
 
----
-
-# VISUAL QUALITY
-
-The diagram must look professional and suitable for a university software-architecture presentation.
-
-Use:
-
-* Clear grouping
-* Consistent spacing
-* Readable labels
-* Minimal line crossings
-* Clear direction of main flows
-* Consistent component shapes
-* Clear distinction between application, backend, database and external services
-
-Do not make the diagram unnecessarily huge.
-
-It should contain enough detail to demonstrate the architecture without becoming visually confusing.
-
-The most important flow should be easy to follow:
-
-Usuario
-→ Aplicación móvil
-→ FastAPI
-→ Servicios
-→ MongoDB / Redis / OpenAI
-
----
-
-# FILE REQUIREMENTS
-
-The folder already exists:
-
-`docs/diagramas/`
-
-DO NOT create another folder.
-
-Create ONLY:
+Actually write the file to:
 
 `docs/diagramas/diagrama-componentes.drawio`
 
-The file MUST:
+Then verify the file exists.
 
-* Be a valid Draw.io/diagrams.net XML file.
-* Be editable.
-* Open correctly in diagrams.net.
-* Contain the complete component diagram.
-* Use Spanish for all visible diagram text.
-* Include the required technologies.
-* Include the required actors.
-* Include the required backend components.
-* Include the required relationships.
+Only after successful file creation, give a short confirmation stating:
 
-Do NOT create:
-
-* PNG
-* JPG
-* SVG
-* PDF
-* Markdown
-* README
-* Additional `.drawio` files
-* Additional diagrams
-* Additional documentation
-
-ONLY create:
-
-`docs/diagramas/diagrama-componentes.drawio`
-
----
-
-# FINAL VERIFICATION
-
-Before finishing, verify all of the following:
-
-1. The folder `docs/diagramas/` already existed and was not duplicated.
-2. Only `docs/diagramas/diagrama-componentes.drawio` was created or modified.
-3. The file contains valid editable Draw.io XML.
-4. The diagram is a UML component diagram.
-5. All visible diagram text is in Spanish.
-6. React Native + TypeScript is represented.
-7. Python + FastAPI is represented.
-8. OpenAI API is represented.
-9. MongoDB is represented as the primary persistent database.
-10. Redis is represented as cache/temporary support.
-11. JWT authentication is represented.
-12. Docker Compose is represented.
-13. Git + GitHub are represented only as development/version-control tools.
-14. Visitor, User, Administrator and Developer are represented.
-15. The main backend services are represented.
-16. OpenAI is connected only to the AI Interpretation Service.
-17. Money-leak detection is explicitly rule-based and does not use OpenAI.
-18. The mobile application does not connect directly to MongoDB, Redis or OpenAI.
-19. FastAPI acts as the backend intermediary.
-20. No additional technologies have been introduced.
-21. No additional diagrams or files have been created.
-
-The final output must contain ONLY the component diagram file:
-
-`docs/diagramas/diagrama-componentes.drawio`
+`Diagrama creado correctamente en docs/diagramas/diagrama-componentes.drawio`
