@@ -1,0 +1,312 @@
+<mxfile host="65bd71144e" type="device">
+  <diagram id="fuga-plus-diagrama-clases" name="FUGA+ - Diagrama de Clases">
+    <mxGraphModel dx="1500" dy="1050" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="titulo" value="Diagrama de Clases &#8212; FUGA+" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#1F1F1F;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="25" width="800" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitulo" value="Clases principales, atributos, m&#233;todos y relaciones" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#555555;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="57" width="800" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leyenda" value="&lt;b&gt;Convenciones&lt;/b&gt;&lt;br&gt;&#8212;&#160;&#160;atributo privado&#160;&#160;/&#160;&#160;&#160;+ m&#233;todo p&#250;blico&#10;&#8212;&#160;&#160;asociaci&#243;n 1 : 0..*&#10;- - -&gt;&#160;&#160;dependencia" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999999;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;fontSize=10;fontColor=#444444;" vertex="1" parent="1">
+          <mxGeometry x="40" y="890" width="290" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="notas" value="&lt;b&gt;Notas del modelo&lt;/b&gt;&lt;br&gt;&#8226; rol: USER, ADMIN&lt;br&gt;&#8226; estado: ACTIVO, INACTIVO&lt;br&gt;&#8226; Categor&#237;as de ejemplo: Transporte, Alimentaci&#243;n, Entretenimiento, Compras, Otros&lt;br&gt;&#8226; Regla de ejemplo en PosibleFuga: 3 o m&#225;s gastos similares en una categor&#237;a durante un periodo corto&lt;br&gt;&#8226; La detecci&#243;n de fugas se basa en reglas de negocio, no es una predicci&#243;n de IA&lt;br&gt;&#8226; Lascontrase&#241;as nunca se almacenan en texto plano; solo se guarda el hash&lt;br&gt;&#8226; El visitante no se modela como clase: no tiene cuenta ni datos financieros almacenados&lt;br&gt;&#8226; JWT es una tecnolog&#237;a de implementaci&#243;n, no una clase del dominio&lt;br&gt;&#8226; El proveedor externo de IA se invoca desde AnalizadorGasto y no se modela como clase" style="shape=note;whiteSpace=wrap;html=1;size=12;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;fontColor=#5A4500;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="540" width="230" height="330" as="geometry" />
+        </mxCell>
+
+        <mxCell id="clUsuario" value="Usuario" style="swimlane;html=1;rounded=0;horizontal=1;startSize=36;fillColor=#DAE8FC;swimlaneFillColor=#FFFFFF;strokeColor=#6C8EBF;strokeWidth=2;fontSize=14;fontStyle=1;fontColor=#1F1F1F;align=center;" vertex="1" parent="1">
+          <mxGeometry x="50" y="160" width="330" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="divUsuario" style="endArrow=none;html=1;rounded=0;strokeColor=#BBBBBB;dashed=1;" edge="1" parent="clUsuario">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="10" y="178" as="sourcePoint" />
+            <mxPoint x="320" y="178" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="u1" value="- id: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clUsuario">
+          <mxGeometry x="10" y="42" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="u2" value="- nombre: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clUsuario">
+          <mxGeometry x="10" y="64" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="u3" value="- correo: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clUsuario">
+          <mxGeometry x="10" y="86" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="u4" value="- contraseñaHash: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clUsuario">
+          <mxGeometry x="10" y="108" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="u5" value="- rol: Rol" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clUsuario">
+          <mxGeometry x="10" y="130" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="u6" value="- estado: EstadoUsuario" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clUsuario">
+          <mxGeometry x="10" y="152" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="um1" value="+ registrarse()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clUsuario">
+          <mxGeometry x="10" y="184" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="um2" value="+ iniciarSesion()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clUsuario">
+          <mxGeometry x="10" y="206" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="um3" value="+ actualizarPerfil()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clUsuario">
+          <mxGeometry x="10" y="228" width="310" height="22" as="geometry" />
+        </mxCell>
+
+        <mxCell id="clAnalizador" value="AnalizadorGasto" style="swimlane;html=1;rounded=0;horizontal=1;startSize=36;fillColor=#D5E8D4;swimlaneFillColor=#FFFFFF;strokeColor=#82B366;strokeWidth=2;fontSize=14;fontStyle=1;fontColor=#1F1F1F;align=center;" vertex="1" parent="1">
+          <mxGeometry x="450" y="160" width="330" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="divAnalizador" style="endArrow=none;html=1;rounded=0;strokeColor=#BBBBBB;dashed=1;" edge="1" parent="clAnalizador">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="10" y="136" as="sourcePoint" />
+            <mxPoint x="320" y="136" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a1" value="- textoEntrada: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAnalizador">
+          <mxGeometry x="10" y="42" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="- valorDetectado: Decimal" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAnalizador">
+          <mxGeometry x="10" y="64" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="- categoriaDetectada: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAnalizador">
+          <mxGeometry x="10" y="86" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="- descripcionDetectada: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAnalizador">
+          <mxGeometry x="10" y="108" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="am1" value="+ analizarTexto()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAnalizador">
+          <mxGeometry x="10" y="142" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="am2" value="+ extraerValor()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAnalizador">
+          <mxGeometry x="10" y="164" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="am3" value="+ clasificarCategoria()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAnalizador">
+          <mxGeometry x="10" y="186" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="am4" value="+ generarDescripcion()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAnalizador">
+          <mxGeometry x="10" y="208" width="310" height="22" as="geometry" />
+        </mxCell>
+
+        <mxCell id="clGasto" value="Gasto" style="swimlane;html=1;rounded=0;horizontal=1;startSize=36;fillColor=#DAE8FC;swimlaneFillColor=#FFFFFF;strokeColor=#6C8EBF;strokeWidth=2;fontSize=14;fontStyle=1;fontColor=#1F1F1F;align=center;" vertex="1" parent="1">
+          <mxGeometry x="880" y="160" width="330" height="284" as="geometry" />
+        </mxCell>
+        <mxCell id="divGasto" style="endArrow=none;html=1;rounded=0;strokeColor=#BBBBBB;dashed=1;" edge="1" parent="clGasto">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="10" y="202" as="sourcePoint" />
+            <mxPoint x="320" y="202" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g1" value="- id: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clGasto">
+          <mxGeometry x="10" y="42" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="g2" value="- usuarioId: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clGasto">
+          <mxGeometry x="10" y="64" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="g3" value="- valor: Decimal" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clGasto">
+          <mxGeometry x="10" y="86" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="g4" value="- categoriaId: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clGasto">
+          <mxGeometry x="10" y="108" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="g5" value="- descripcion: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clGasto">
+          <mxGeometry x="10" y="130" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="g6" value="- textoOriginal: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clGasto">
+          <mxGeometry x="10" y="152" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="g7" value="- fechaGasto: DateTime" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clGasto">
+          <mxGeometry x="10" y="174" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="gm1" value="+ registrar()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clGasto">
+          <mxGeometry x="10" y="208" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="gm2" value="+ actualizarCategoria()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clGasto">
+          <mxGeometry x="10" y="230" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="gm3" value="+ consultar()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clGasto">
+          <mxGeometry x="10" y="252" width="310" height="22" as="geometry" />
+        </mxCell>
+
+        <mxCell id="clAutenticacion" value="Autenticacion" style="swimlane;html=1;rounded=0;horizontal=1;startSize=36;fillColor=#D5E8D4;swimlaneFillColor=#FFFFFF;strokeColor=#82B366;strokeWidth=2;fontSize=14;fontStyle=1;fontColor=#1F1F1F;align=center;" vertex="1" parent="1">
+          <mxGeometry x="50" y="540" width="330" height="218" as="geometry" />
+        </mxCell>
+        <mxCell id="divAutenticacion" style="endArrow=none;html=1;rounded=0;strokeColor=#BBBBBB;dashed=1;" edge="1" parent="clAutenticacion">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="10" y="114" as="sourcePoint" />
+            <mxPoint x="320" y="114" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n1" value="- token: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAutenticacion">
+          <mxGeometry x="10" y="42" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" value="- usuarioId: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAutenticacion">
+          <mxGeometry x="10" y="64" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" value="- rol: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAutenticacion">
+          <mxGeometry x="10" y="86" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="nm1" value="+ autenticar()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAutenticacion">
+          <mxGeometry x="10" y="120" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="nm2" value="+ generarToken()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAutenticacion">
+          <mxGeometry x="10" y="142" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="nm3" value="+ validarToken()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAutenticacion">
+          <mxGeometry x="10" y="164" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="nm4" value="+ verificarRol()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clAutenticacion">
+          <mxGeometry x="10" y="186" width="310" height="22" as="geometry" />
+        </mxCell>
+
+        <mxCell id="clCategoria" value="Categoria" style="swimlane;html=1;rounded=0;horizontal=1;startSize=36;fillColor=#DAE8FC;swimlaneFillColor=#FFFFFF;strokeColor=#6C8EBF;strokeWidth=2;fontSize=14;fontStyle=1;fontColor=#1F1F1F;align=center;" vertex="1" parent="1">
+          <mxGeometry x="450" y="540" width="330" height="196" as="geometry" />
+        </mxCell>
+        <mxCell id="divCategoria" style="endArrow=none;html=1;rounded=0;strokeColor=#BBBBBB;dashed=1;" edge="1" parent="clCategoria">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="10" y="114" as="sourcePoint" />
+            <mxPoint x="320" y="114" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1" value="- id: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clCategoria">
+          <mxGeometry x="10" y="42" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" value="- nombre: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clCategoria">
+          <mxGeometry x="10" y="64" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="- descripcion: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clCategoria">
+          <mxGeometry x="10" y="86" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="cm1" value="+ crear()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clCategoria">
+          <mxGeometry x="10" y="120" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="cm2" value="+ actualizar()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clCategoria">
+          <mxGeometry x="10" y="142" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="cm3" value="+ consultar()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clCategoria">
+          <mxGeometry x="10" y="164" width="310" height="22" as="geometry" />
+        </mxCell>
+
+        <mxCell id="clPosibleFuga" value="PosibleFuga" style="swimlane;html=1;rounded=0;horizontal=1;startSize=36;fillColor=#DAE8FC;swimlaneFillColor=#FFFFFF;strokeColor=#6C8EBF;strokeWidth=2;fontSize=14;fontStyle=1;fontColor=#1F1F1F;align=center;" vertex="1" parent="1">
+          <mxGeometry x="880" y="540" width="330" height="306" as="geometry" />
+        </mxCell>
+        <mxCell id="divPosibleFuga" style="endArrow=none;html=1;rounded=0;strokeColor=#BBBBBB;dashed=1;" edge="1" parent="clPosibleFuga">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="10" y="246" as="sourcePoint" />
+            <mxPoint x="320" y="246" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f1" value="- id: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clPosibleFuga">
+          <mxGeometry x="10" y="42" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" value="- usuarioId: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clPosibleFuga">
+          <mxGeometry x="10" y="64" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" value="- categoriaId: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clPosibleFuga">
+          <mxGeometry x="10" y="86" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f4" value="- periodoInicio: DateTime" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clPosibleFuga">
+          <mxGeometry x="10" y="108" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f5" value="- periodoFin: DateTime" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clPosibleFuga">
+          <mxGeometry x="10" y="130" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f6" value="- cantidadGastos: Integer" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clPosibleFuga">
+          <mxGeometry x="10" y="152" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f7" value="- valorTotal: Decimal" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clPosibleFuga">
+          <mxGeometry x="10" y="174" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f8" value="- reglaAplicada: String" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clPosibleFuga">
+          <mxGeometry x="10" y="196" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="f9" value="- fechaDeteccion: DateTime" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clPosibleFuga">
+          <mxGeometry x="10" y="218" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="fm1" value="+ detectar()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clPosibleFuga">
+          <mxGeometry x="10" y="252" width="310" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="fm2" value="+ consultar()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#1F4E79;spacingLeft=14;whiteSpace=wrap;" vertex="1" parent="clPosibleFuga">
+          <mxGeometry x="10" y="274" width="310" height="22" as="geometry" />
+        </mxCell>
+
+        <mxCell id="asUsuarioGasto" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4D4D4D;strokeWidth=1;endArrow=none;fontSize=10;fontStyle=1;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="clUsuario" target="clGasto">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="215" y="115" />
+              <mxPoint x="1045" y="115" />
+            </Array>
+            <mxPoint x="0" y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mUs1" value="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="200" y="126" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="mGa1" value="0..*" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="126" width="40" height="18" as="geometry" />
+        </mxCell>
+
+        <mxCell id="asCategoriaGasto" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4D4D4D;strokeWidth=1;endArrow=none;fontSize=10;fontStyle=1;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="clCategoria" target="clGasto">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="615" y="495" />
+              <mxPoint x="1045" y="495" />
+            </Array>
+            <mxPoint x="0" y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mCa2" value="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="600" y="516" width="30" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="mGa2" value="0..*" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="1055" y="456" width="40" height="18" as="geometry" />
+        </mxCell>
+
+        <mxCell id="asCategoriaFuga" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4D4D4D;strokeWidth=1;endArrow=none;fontSize=10;fontStyle=1;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.485;exitDx=0;exitDy=0;entryX=0;entryY=0.31;entryDx=0;entryDy=0;" edge="1" parent="1" source="clCategoria" target="clPosibleFuga">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="-18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mCa5" value="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="770" y="648" width="24" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="mFu5" value="0..*" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="870" y="648" width="30" height="16" as="geometry" />
+        </mxCell>
+
+        <mxCell id="asUsuarioFuga" value="1:N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4D4D4D;strokeWidth=1;endArrow=none;fontSize=10;fontStyle=1;fontColor=#333333;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.846;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="clUsuario" target="clPosibleFuga">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="30" y="380" />
+              <mxPoint x="30" y="900" />
+              <mxPoint x="1045" y="900" />
+            </Array>
+            <mxPoint x="0" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mUs4" value="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="26" y="386" width="26" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="mFu4" value="0..*" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="852" width="40" height="18" as="geometry" />
+        </mxCell>
+
+        <mxCell id="depUsuarioAuth" value="&#171;dependencia&#187;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7F4F00;strokeWidth=1;dashed=1;dashPattern=8 4;endArrow=open;endFill=0;endSize=9;fontSize=10;fontColor=#7F4F00;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="clUsuario" target="clAutenticacion">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="95" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="depGastoAnalizador" value="&#171;dependencia&#187;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7F4F00;strokeWidth=1;dashed=1;dashPattern=8 4;endArrow=open;endFill=0;endSize=9;fontSize=10;fontColor=#7F4F00;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.775;exitDx=0;exitDy=0;entryX=1;entryY=0.917;entryDx=0;entryDy=0;" edge="1" parent="1" source="clGasto" target="clAnalizador">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="-18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
