@@ -134,17 +134,11 @@ Estas tecnologías corresponden a la arquitectura definida para FUGA+ y su imple
 
 ## Arquitectura
 
-FUGA+ se plantea como una solución compuesta por una aplicación móvil, un backend y servicios de datos e infraestructura.
+La arquitectura de FUGA+ se encuentra actualmente en fase de diseño y está representada principalmente mediante los diagramas del proyecto.
 
-De forma general, el flujo es:
+De forma general, la solución contempla una aplicación móvil, un backend, servicios de inteligencia artificial y una capa de datos.
 
-**Aplicación móvil → Backend → Servicios de IA y lógica de negocio → Datos**
-
-La aplicación móvil permite la interacción con el usuario. El backend gestiona las operaciones del sistema, coordina la interpretación de los gastos y aplica las reglas de negocio. Los servicios de datos permiten almacenar y procesar la información necesaria para el funcionamiento de la aplicación.
-
-La arquitectura detallada se encuentra en la documentación y en los diagramas del proyecto.
-
-[Ver arquitectura](docs/architecture.md)
+El diseño detallado puede consultarse en los diagramas del proyecto:
 
 [Ver diagramas](docs/diagramas/)
 
@@ -162,10 +156,9 @@ La arquitectura detallada se encuentra en la documentación y en los diagramas d
 
 ### Arquitectura y diseño
 
-* [Arquitectura](docs/architecture.md)
-* [Esquema de manifiestos](docs/manifest_schema.md)
-* [Diagramas](docs/diagramas/)
+* [Diagramas del sistema](docs/diagramas/)
 * [Prompts de análisis y diseño](docs/prompts-diseño/)
+
 
 ---
 
@@ -209,6 +202,6 @@ La implementación funcional del MVP continuará de acuerdo con el proceso de de
 
 ## Autor
 
-**Lorena Barragán**
+**Lorena Barragan Barragan**
 
-Proyecto académico individual — Ingeniería de Sistemas.
+Proyecto académico — Ingeniería de Sistemas — Electiva Cpc.
