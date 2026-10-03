@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="opencode" version="24.7.17" type="device">
+  <diagram id="fuga-componentes" name="Diagrama de Componentes">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="2000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="titulo" value="Diagrama de Componentes — FUGA+" style="text;html=1;align=left;verticalAlign=middle;fontSize=28;fontStyle=1;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitulo" value="Arquitectura tecnológica de la aplicación móvil" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="40" y="62" width="1200" height="26" as="geometry" />
+        </mxCell>
+
+        <mxCell id="capaPresentacion" value="A. PRESENTACIÓN" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontSize=17;fontStyle=1;fillColor=none;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="40" y="110" width="1000" height="430" as="geometry" />
+        </mxCell>
+
+        <mxCell id="visitante" value="&lt;b&gt;«actor» Visitante&lt;/b&gt;&lt;br&gt;&lt;br&gt;Sin cuenta.&lt;br&gt;Accede solo a la información general." style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=11;fillColor=#F5F5F5;strokeColor=#666666;strokeWidth=2;fontColor=#333333;" vertex="1" parent="capaPresentacion">
+          <mxGeometry x="20" y="45" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="usuario" value="&lt;b&gt;«actor» Usuario&lt;/b&gt;&lt;br&gt;&lt;br&gt;Registrado. Gestiona sus gastos, historial y dashboard." style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=11;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaPresentacion">
+          <mxGeometry x="260" y="45" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="admin" value="&lt;b&gt;«actor» Administrador&lt;/b&gt;&lt;br&gt;&lt;br&gt;Gestiona cuentas y consulta estadísticas agregadas." style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=11;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaPresentacion">
+          <mxGeometry x="500" y="45" width="220" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="app" value="&lt;b&gt;«component»&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Aplicación móvil FUGA+&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: React Native + TypeScript&lt;/b&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Interfaz de FUGA+ para visitantes y usuarios.&lt;br&gt;&lt;br&gt;• Registro de gastos en lenguaje natural&lt;br&gt;• Historial de gastos y categorías&lt;br&gt;• Dashboard personal y posibles fugas&lt;br&gt;• Comparación de periodos&lt;br&gt;• Alertas dentro de la aplicación&lt;br&gt;• Conserva el token JWT y lo envía en cada solicitud" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=16;spacingTop=6;spacingRight=10;fontSize=11;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaPresentacion">
+          <mxGeometry x="20" y="160" width="700" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="app_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;" vertex="1" parent="capaPresentacion">
+          <mxGeometry x="6" y="190" width="14" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="app_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;" vertex="1" parent="capaPresentacion">
+          <mxGeometry x="6" y="280" width="14" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leyenda" value="&lt;b&gt;Convenciones&lt;/b&gt;&lt;br&gt;&lt;br&gt;• Caja con dos pestañas: componente UML.&lt;br&gt;• «actor»: rol que usa la aplicación.&lt;br&gt;• Flecha con etiqueta: tecnología o propósito del vínculo.&lt;br&gt;• Línea punteada: componente opcional o de desarrollo.&lt;br&gt;&lt;br&gt;&lt;b&gt;Flujo principal&lt;/b&gt;&lt;br&gt;React Native + TypeScript&lt;br&gt;↓ HTTPS / JSON&lt;br&gt;Python + FastAPI&lt;br&gt;↓ Persistencia&lt;br&gt;MongoDB&lt;br&gt;&lt;br&gt;El backend también invoca OpenAI API (interpretación), JWT (autenticación), Redis (caché) y MongoDB Aggregation (estadísticas)." style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;spacingRight=8;fontSize=9;fillColor=#FFFFFF;strokeColor=#999999;dashed=1;fontColor=#333333;" vertex="1" parent="capaPresentacion">
+          <mxGeometry x="740" y="160" width="240" height="250" as="geometry" />
+        </mxCell>
+
+        <mxCell id="capaBackend" value="B. BACKEND" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontSize=17;fontStyle=1;fillColor=none;strokeColor=#82B366;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="40" y="580" width="1000" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="fastapi" value="&lt;b&gt;«component»&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;API / Backend&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: Python + FastAPI&lt;/b&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; API, lógica del sistema, autenticación y conexión entre componentes.&lt;br&gt;&lt;br&gt;• Endpoints REST con especificación OpenAPI&lt;br&gt;• Validación de datos y reglas de negocio&lt;br&gt;• Gestión de usuarios, gastos y categorías&lt;br&gt;• Coordinación de la interpretación con IA&lt;br&gt;• Orquestación de la detección de posibles fugas&lt;br&gt;• Consulta de estadísticas para el dashboard" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=16;spacingTop=6;spacingRight=10;fontSize=11;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaBackend">
+          <mxGeometry x="40" y="45" width="660" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="fastapi_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;" vertex="1" parent="capaBackend">
+          <mxGeometry x="26" y="75" width="14" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="fastapi_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;" vertex="1" parent="capaBackend">
+          <mxGeometry x="26" y="170" width="14" height="38" as="geometry" />
+        </mxCell>
+
+        <mxCell id="jwt" value="&lt;b&gt;«service»&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Autenticación&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: JWT&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Identificar usuarios y diferenciar Usuario/Administrador.&lt;br&gt;&lt;br&gt;• Inicio de sesión&lt;br&gt;• Generación de token&lt;br&gt;• Validación de token&lt;br&gt;• Autorización por rol&lt;br&gt;• Protección de endpoints" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaBackend">
+          <mxGeometry x="720" y="60" width="240" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="jwt_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;" vertex="1" parent="capaBackend">
+          <mxGeometry x="706" y="88" width="14" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="jwt_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;" vertex="1" parent="capaBackend">
+          <mxGeometry x="706" y="180" width="14" height="36" as="geometry" />
+        </mxCell>
+
+        <mxCell id="capaInfra" value="E. INFRAESTRUCTURA" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontSize=17;fontStyle=1;fillColor=none;strokeColor=#9673A6;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="470" width="560" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="docker" value="&lt;b&gt;«node» Contenedores&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: Docker + Docker Compose&lt;/b&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Ejecutar backend, MongoDB y Redis de forma organizada.&lt;br&gt;&lt;br&gt;&lt;i&gt;Contiene y ejecuta los siguientes servicios:&lt;/i&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaInfra">
+          <mxGeometry x="40" y="50" width="480" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="docker_fastapi" value="&lt;b&gt;API&lt;/b&gt;&lt;br&gt;Python + FastAPI" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=10;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1A1A1A;" vertex="1" parent="docker">
+          <mxGeometry x="25" y="95" width="205" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="docker_mongo" value="&lt;b&gt;Base de datos&lt;/b&gt;&lt;br&gt;MongoDB" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=10;fillColor=#D0E0E3;strokeColor=#6C8EBF;fontColor=#1A1A1A;" vertex="1" parent="docker">
+          <mxGeometry x="250" y="95" width="205" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="docker_redis" value="&lt;b&gt;Caché&lt;/b&gt; — Redis" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=10;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1A1A1A;" vertex="1" parent="docker">
+          <mxGeometry x="25" y="185" width="430" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="docker_nota" value="&lt;i&gt;docker-compose.yml coordina el inicio conjunto de la API, la base de datos y la caché.&lt;/i&gt;" style="text;html=1;align=left;verticalAlign=top;fontSize=9;fontColor=#555555;" vertex="1" parent="docker">
+          <mxGeometry x="25" y="255" width="430" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="de1" value="contiene" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;dashed=1;dashPattern=6 6;strokeWidth=1;strokeColor=#9673A6;fontSize=9;fontColor=#9673A6;labelBackgroundColor=#FFFFFF;exitX=0.12;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="docker" target="docker_fastapi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="de2" value="contiene" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;dashed=1;dashPattern=6 6;strokeWidth=1;strokeColor=#9673A6;fontSize=9;fontColor=#9673A6;labelBackgroundColor=#FFFFFF;exitX=0.45;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="docker" target="docker_mongo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="de3" value="contiene" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;dashed=1;dashPattern=6 6;strokeWidth=1;strokeColor=#9673A6;fontSize=9;fontColor=#9673A6;labelBackgroundColor=#FFFFFF;exitX=0.85;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="docker" target="docker_redis">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="capaDatos" value="D. DATOS" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontSize=17;fontStyle=1;fillColor=none;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="40" y="920" width="1000" height="480" as="geometry" />
+        </mxCell>
+
+        <mxCell id="streams" value="&lt;b&gt;«module» (opcional)&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Cambios en tiempo real&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología:&lt;/b&gt; MongoDB Change Streams&lt;br&gt;&lt;b&gt;(opcional)&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Actualizar la información cuando cambien los datos.&lt;br&gt;&lt;br&gt;• Escucha cambios en las colecciones&lt;br&gt;• Avisa al backend para refrescar la vista&lt;br&gt;• Componente opcional del proyecto" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#FFFFFF;strokeColor=#B85450;dashed=1;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaDatos">
+          <mxGeometry x="40" y="55" width="280" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="streams_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B85450;dashed=1;strokeWidth=2;" vertex="1" parent="capaDatos">
+          <mxGeometry x="26" y="85" width="14" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="streams_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B85450;dashed=1;strokeWidth=2;" vertex="1" parent="capaDatos">
+          <mxGeometry x="26" y="185" width="14" height="36" as="geometry" />
+        </mxCell>
+
+        <mxCell id="mongo" value="&lt;b&gt;«database»&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Base de datos&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: MongoDB&lt;/b&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Usuarios, gastos, categorías, historial y estadísticas.&lt;br&gt;&lt;br&gt;&lt;b&gt;Datos lógicos almacenados:&lt;/b&gt;&lt;br&gt;• &lt;b&gt;Usuarios&lt;/b&gt; — credenciales, rol y estado de la cuenta&lt;br&gt;• &lt;b&gt;Gastos&lt;/b&gt; — monto, moneda, categoría, descripción, fecha y propietario&lt;br&gt;• &lt;b&gt;Categorías&lt;/b&gt; — categorías predefinidas del sistema&lt;br&gt;• &lt;b&gt;Historial&lt;/b&gt; — gastos confirmados del usuario&lt;br&gt;• &lt;b&gt;Estadísticas&lt;/b&gt; — totales, promedios y comparaciones de periodos&lt;br&gt;&lt;br&gt;Cada gasto pertenece a exactamente un usuario." style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=16;spacingTop=6;spacingRight=10;fontSize=11;fillColor=#D0E0E3;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaDatos">
+          <mxGeometry x="340" y="55" width="620" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="mongo_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#D0E0E3;strokeColor=#6C8EBF;strokeWidth=2;" vertex="1" parent="capaDatos">
+          <mxGeometry x="326" y="88" width="14" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="mongo_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#D0E0E3;strokeColor=#6C8EBF;strokeWidth=2;" vertex="1" parent="capaDatos">
+          <mxGeometry x="326" y="195" width="14" height="38" as="geometry" />
+        </mxCell>
+
+        <mxCell id="redis" value="&lt;b&gt;«database» Caché&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: Redis&lt;/b&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Caché, sesiones/datos temporales y consultas frecuentes.&lt;br&gt;• Resultados de consultas repetidas&lt;br&gt;• Datos temporales de sesión" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;spacingRight=8;fontSize=9;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaDatos">
+          <mxGeometry x="340" y="335" width="300" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="redis_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;" vertex="1" parent="capaDatos">
+          <mxGeometry x="326" y="358" width="14" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="redis_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;" vertex="1" parent="capaDatos">
+          <mxGeometry x="326" y="415" width="14" height="32" as="geometry" />
+        </mxCell>
+
+        <mxCell id="aggregation" value="&lt;b&gt;«module» Consultas y estadísticas&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología:&lt;/b&gt; MongoDB Aggregation&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Totales por categoría, estadísticas y análisis del dashboard.&lt;br&gt;• Totales y acumulados por categoría&lt;br&gt;• Promedios de gasto&lt;br&gt;• Comparación de periodos" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;spacingRight=8;fontSize=9;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaDatos">
+          <mxGeometry x="660" y="335" width="300" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregation_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;" vertex="1" parent="capaDatos">
+          <mxGeometry x="646" y="358" width="14" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="aggregation_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;" vertex="1" parent="capaDatos">
+          <mxGeometry x="646" y="415" width="14" height="32" as="geometry" />
+        </mxCell>
+
+        <mxCell id="capaIA" value="C. SERVICIOS DE IA" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontSize=17;fontStyle=1;fillColor=none;strokeColor=#9673A6;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="920" width="560" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="openai" value="&lt;b&gt;«service»&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Servicio de IA&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: OpenAI API&lt;/b&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Extraer monto, categoría y descripción de los gastos.&lt;br&gt;&lt;br&gt;&lt;b&gt;Ejemplo de interpretación&lt;/b&gt;&lt;br&gt;Texto: &amp;quot;Hoy gasté $8.000 en un taxi&amp;quot;&lt;br&gt;Resultado:&lt;br&gt;  monto: 8000&lt;br&gt;  categoría: Transporte&lt;br&gt;  descripción: Taxi&lt;br&gt;&lt;br&gt;&lt;b&gt;Límites del componente&lt;/b&gt;&lt;br&gt;• No detecta fugas de dinero.&lt;br&gt;• No predice fugas de dinero.&lt;br&gt;• No da asesoría financiera.&lt;br&gt;• No predice mercados." style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=16;spacingTop=6;spacingRight=10;fontSize=11;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaIA">
+          <mxGeometry x="60" y="70" width="440" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="openai_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;" vertex="1" parent="capaIA">
+          <mxGeometry x="46" y="100" width="14" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="openai_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;" vertex="1" parent="capaIA">
+          <mxGeometry x="46" y="290" width="14" height="38" as="geometry" />
+        </mxCell>
+
+        <mxCell id="capaDesarrollo" value="F. DESARROLLO Y DOCUMENTACIÓN" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontSize=17;fontStyle=1;fillColor=none;strokeColor=#999999;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="1460" width="560" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="git" value="&lt;b&gt;«component»&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Control de versiones&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: Git + GitHub&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Código y seguimiento del proyecto." style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaDesarrollo">
+          <mxGeometry x="40" y="50" width="230" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="git_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;" vertex="1" parent="capaDesarrollo">
+          <mxGeometry x="26" y="78" width="14" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="git_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;" vertex="1" parent="capaDesarrollo">
+          <mxGeometry x="26" y="140" width="14" height="34" as="geometry" />
+        </mxCell>
+
+        <mxCell id="proyecto" value="&lt;b&gt;«component»&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Proyecto FUGA+&lt;/b&gt;&lt;br&gt;&lt;br&gt;Código fuente del proyecto:&lt;br&gt;• Aplicación móvil (React Native + TypeScript)&lt;br&gt;• Backend (Python + FastAPI)&lt;br&gt;• Documentación de la API" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#F5F5F5;strokeColor=#82B366;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaDesarrollo">
+          <mxGeometry x="290" y="50" width="230" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="proyecto_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#82B366;strokeWidth=2;" vertex="1" parent="capaDesarrollo">
+          <mxGeometry x="276" y="78" width="14" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="proyecto_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#82B366;strokeWidth=2;" vertex="1" parent="capaDesarrollo">
+          <mxGeometry x="276" y="140" width="14" height="34" as="geometry" />
+        </mxCell>
+
+        <mxCell id="swagger" value="&lt;b&gt;«component» Documentación y pruebas de la API&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología:&lt;/b&gt; OpenAPI/Swagger mediante FastAPI&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Probar y documentar los endpoints.&lt;br&gt;• Especificación OpenAPI generada por FastAPI&lt;br&gt;• Prueba interactiva de cada endpoint&lt;br&gt;• Contrato de la API para el equipo" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#FFFFFF;strokeColor=#9673A6;dashed=1;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaDesarrollo">
+          <mxGeometry x="40" y="230" width="480" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="swagger_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9673A6;dashed=1;strokeWidth=2;" vertex="1" parent="capaDesarrollo">
+          <mxGeometry x="26" y="258" width="14" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="swagger_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9673A6;dashed=1;strokeWidth=2;" vertex="1" parent="capaDesarrollo">
+          <mxGeometry x="26" y="320" width="14" height="34" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#6C8EBF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.157;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="visitante" target="app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#6C8EBF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="usuario" target="app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#D79B00;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.843;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="admin" target="app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e4" value="HTTPS / JSON" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=3;strokeColor=#333333;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="app" target="fastapi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e5" value="Autenticación" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#D79B00;fontSize=11;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fastapi" target="jwt">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e6" value="Interpretación de gastos" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#9673A6;fontSize=11;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0.9;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.167;entryDx=0;entryDy=0;" edge="1" parent="1" source="fastapi" target="openai">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="674" y="560" />
+              <mxPoint x="1140" y="560" />
+              <mxPoint x="1140" y="1050" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e7" value="Persistencia" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=3;strokeColor=#333333;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.048;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="fastapi" target="mongo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e8" value="Caché" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#D79B00;fontSize=11;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.65;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fastapi" target="redis">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="20" y="781" />
+              <mxPoint x="20" y="1315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e9" value="Consultas y estadísticas" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#D6B656;fontSize=11;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.94;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fastapi" target="aggregation">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1070" y="851" />
+              <mxPoint x="1070" y="1315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e10" value="Agregaciones" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#D6B656;fontSize=11;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="aggregation" target="mongo">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="690" y="1315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e11" value="Cambios en datos" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;dashed=1;dashPattern=6 6;strokeWidth=2;strokeColor=#B85450;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="streams" target="mongo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e12" value="Actualización en tiempo real" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;dashed=1;dashPattern=6 6;strokeWidth=2;strokeColor=#B85450;fontSize=10;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.333;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="streams" target="fastapi">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="220" y="890" />
+              <mxPoint x="300" y="890" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e13" value="Documentación y pruebas" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;dashed=1;dashPattern=6 6;strokeWidth=2;strokeColor=#9673A6;fontSize=11;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.727;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="swagger" target="fastapi">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1100" y="1765" />
+              <mxPoint x="1100" y="570" />
+              <mxPoint x="560" y="570" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e14" value="Control de versiones" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#82B366;fontSize=10;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="git" target="proyecto">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

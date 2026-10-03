@@ -1,266 +1,199 @@
-# Diagrama Entidad-Relación de mongoDB NoSQL — FUGA+
+Modify the existing Draw.io file:
 
-Create the MongoDB data model diagram for the FUGA+ mobile application.
+docs/diagramas/diagrama-entidad-relacion.drawio
 
-IMPORTANT: You must physically create the Draw.io file in the project filesystem. Do NOT only generate or display XML in your response.
+The current diagram is understandable structurally, but the entity/collection names are not clear enough. Replace the generic text "«colección»" with explicit collection names and make the database structure easier to understand.
 
-## EXACT FILE TO CREATE
+IMPORTANT:
+- Modify ONLY this existing file.
+- Do NOT create another file.
+- Do NOT create any additional files.
+- Physically edit the Draw.io file.
+- All visible text must be in Spanish.
+- Keep official technical terms such as MongoDB unchanged.
 
-`docs/diagramas/modelo-datos-mongodb.drawio`
+TITLE:
+"Diagrama Entidad-Relación — FUGA+"
 
-Do not create another folder.
-Do not create any other diagram.
-Do not create any other file.
+SUBTITLE:
+"Estructura de datos de la aplicación"
 
-## PROJECT CONTEXT
+DATABASE:
+MongoDB
 
-FUGA+ is a mobile application that helps young people and students identify possible money leaks by recording expenses in natural language.
+IMPORTANT VISUAL RULE:
 
-The application uses MongoDB as the persistent database.
+Each entity must clearly display BOTH:
+1. The conceptual name in Spanish.
+2. The exact MongoDB collection name.
 
-This diagram represents the Entity-Relationship model of FUGA+ adapted to a NoSQL document-oriented database using MongoDB.
+Use this format in every entity header:
 
-It is NOT a traditional SQL ER diagram.
+"USUARIOS"
+"Colección MongoDB: usuarios"
 
-## IMPORTANT MONGODB / NOSQL RULE
+Do NOT use only "«colección»".
 
-Represent MongoDB as a document-oriented NoSQL database using collections and document fields.
+ENTITIES AND EXACT COLLECTION NAMES:
 
-Do not represent the model as SQL tables.
+1. USUARIOS
+Collection: usuarios
 
-The purpose of this diagram is to show the main entities, their data fields, and their conceptual relationships while respecting the document-oriented nature of MongoDB.
+Attributes:
+- _id — PK — Identificador del usuario
+- nombre — Nombre del usuario
+- correo — Correo electrónico
+- contrasenaHash — Hash de la contraseña
+- rol — Visitante / Usuario / Administrador
+- estado — Activo / Inactivo
 
-## COLLECTION 1 — Usuarios
 
-Collection name:
+2. GASTOS
+Collection: gastos
 
-`Usuarios`
+Attributes:
+- _id — PK — Identificador del gasto
+- usuarioId — Referencia a usuarios._id
+- categoriaId — Referencia a categorias._id
+- monto — Valor del gasto
+- moneda — Moneda del gasto
+- descripcion — Descripción del gasto
+- fecha — Fecha del gasto
+- textoOriginal — Texto escrito por el usuario
 
-Fields:
 
-- `_id`
-- `nombre`
-- `correo`
-- `contraseñaHash`
-- `rol`
-- `estado`
-- `fechaRegistro`
-- `fechaActualizacion`
+3. CATEGORÍAS
+Collection: categorias
 
-The `rol` field can contain:
+Attributes:
+- _id — PK — Identificador de la categoría
+- nombre — Nombre de la categoría
 
-- `USER`
-- `ADMIN`
-
-The `estado` field can contain:
-
-- `ACTIVO`
-- `INACTIVO`
-
-Never represent a plain-text password. Use `contraseñaHash`.
-
-## COLLECTION 2 — Gastos
-
-Collection name:
-
-`Gastos`
-
-Fields:
-
-- `_id`
-- `usuarioId`
-- `valor`
-- `categoriaId`
-- `descripcion`
-- `textoOriginal`
-- `fechaGasto`
-- `fechaCreacion`
-
-The expense stores the original natural-language text entered by the user in `textoOriginal`.
-
-## COLLECTION 3 — Categorias
-
-Collection name:
-
-`Categorias`
-
-Fields:
-
-- `_id`
-- `nombre`
-- `descripcion`
-
-Examples of category names may include:
-
+Example values:
 - Transporte
 - Alimentación
-- Entretenimiento
-- Compras
-- Otros
+- Ocio
+- Educación
+- Servicios
 
-## COLLECTION 4 — Fugas
 
-Collection name:
+4. POSIBLES FUGAS
+Collection: posibles_fugas
 
-`Fugas`
+Attributes:
+- _id — PK — Identificador de la posible fuga
+- usuarioId — Referencia a usuarios._id
+- categoriaId — Referencia a categorias._id
+- descripcion — Categoría o descripción afectada
+- cantidadOcurrencias — Número de ocurrencias
+- montoAcumulado — Suma de los montos acumulados
+- reglaActivada — Regla de negocio activada
+- fechaDeteccion — Fecha de detección
 
-Fields:
 
-- `_id`
-- `usuarioId`
-- `categoriaId`
-- `periodoInicio`
-- `periodoFin`
-- `cantidadGastos`
-- `valorTotal`
-- `reglaAplicada`
-- `fechaDeteccion`
+5. ALERTAS
+Collection: alertas
 
-The `Fugas` collection represents possible money leaks detected through rule-based analysis of expense history.
+Attributes:
+- _id — PK — Identificador de la alerta
+- usuarioId — Referencia a usuarios._id
+- fugaId — Referencia a posibles_fugas._id
+- tipo — Tipo de alerta
+- mensaje — Mensaje mostrado al usuario
+- fecha — Fecha de la alerta
+- leida — Indica si fue leída
 
-Do not describe `Fugas` as an AI prediction.
 
-## RELATIONSHIPS
+RELATIONSHIPS:
 
-Show the following conceptual references:
+USUARIOS 1 ───── N GASTOS
+Label: "registra"
 
-### 1. Usuarios 1:N Gastos
+USUARIOS 1 ───── N POSIBLES FUGAS
+Label: "tiene"
 
-Reference:
+USUARIOS 1 ───── N ALERTAS
+Label: "recibe"
 
-`Gastos.usuarioId -> Usuarios._id`
+CATEGORÍAS 1 ───── N GASTOS
+Label: "clasifica"
 
-Meaning:
+CATEGORÍAS 1 ───── N POSIBLES FUGAS
+Label: "identifica"
 
-One user can have many expenses.
+POSIBLES FUGAS 1 ───── N GASTOS
+Label: "se detecta mediante"
 
-### 2. Categorias 1:N Gastos
+POSIBLES FUGAS 1 ───── N ALERTAS
+Label: "genera"
 
-Reference:
 
-`Gastos.categoriaId -> Categorias._id`
+VISUAL DESIGN:
 
-Meaning:
+Make the collection name highly visible.
 
-One category can be associated with many expenses.
+For example:
 
-### 3. Usuarios 1:N Fugas
+┌─────────────────────────────────┐
+│ USUARIOS                        │
+│ Colección MongoDB: usuarios     │
+├─────────────────────────────────┤
+│ _id — PK                        │
+│ nombre                          │
+│ correo                          │
+│ contrasenaHash                  │
+│ rol                             │
+│ estado                          │
+└─────────────────────────────────┘
 
-Reference:
+Use a different visual header color for each entity, but keep the overall diagram professional.
 
-`Fugas.usuarioId -> Usuarios._id`
+Use:
+- PK = clave primaria/document identifier
+- Reference = reference to another MongoDB document
 
-Meaning:
+For reference fields, explicitly write:
+"usuarioId — Ref. usuarios._id"
+"categoriaId — Ref. categorias._id"
+"fugaId — Ref. posibles_fugas._id"
 
-One user can have many possible money-leak detections.
+Do not use the term "FK" as if MongoDB were a relational SQL database.
 
-### 4. Categorias 1:N Fugas
+IMPORTANT:
 
-Reference:
+The diagram should make it immediately clear:
 
-`Fugas.categoriaId -> Categorias._id`
+MongoDB
+  ↓
+Colecciones
+  ↓
+Documentos / atributos
+  ↓
+Referencias entre documentos
 
-Meaning:
+Add this note at the bottom:
 
-One category can be associated with many possible money-leak detections.
+"Nota: FUGA+ utiliza MongoDB. Las colecciones almacenan documentos y las referencias mediante usuarioId, categoriaId y fugaId relacionan documentos entre colecciones."
 
-### 5. Gastos -> Fugas
-
-Show that `Fugas` is generated from the analysis of `Gastos` using business rules.
-
-For this relationship, do not invent a database foreign key if it is not necessary.
-
-It can be represented as a conceptual/dashed relationship labeled:
-
-`Análisis mediante reglas`
-
-## IMPORTANT
-
-Do NOT create a collection for Visitor.
-
-Visitors are public users without an account and without stored personal financial data.
-
-Do NOT include:
-
-- Redis
-- OpenAI
-- FastAPI
+Do NOT add:
 - React Native
+- TypeScript
+- FastAPI
+- Python
+- OpenAI API
+- Redis
 - JWT
 - Docker
 - GitHub
-- External APIs
-- Deployment infrastructure
+- Swagger
 
-Those belong to other diagrams, not this Entity-Relationship / MongoDB data model.
+Those technologies belong to the component/architecture diagram, not this ERD.
 
-## VISUAL REQUIREMENTS
-
-Title:
-
-**"Diagrama Entidad-Relación — FUGA+"**
-
-Subtitle:
-
-**"Modelo NoSQL adaptado a MongoDB"**
-
-Use clear collection/document boxes.
-
-Each collection should have:
-
-- Collection name at the top.
-- A clear separation between the collection name and its fields.
-- Fields listed vertically.
-- `_id` clearly identifiable as the document identifier.
-- Reference fields such as `usuarioId` and `categoriaId` clearly visible.
-
-Use connectors/arrows to show the conceptual relationships.
-
-Use cardinality labels such as:
-
-`1:N`
-
-The diagram must make it visually clear that the model represents MongoDB/NoSQL collections and documents rather than traditional SQL tables.
-
-All visible diagram text must be in Spanish.
-
-Keep technical field names exactly as specified.
-
-The diagram should be clean, readable, organized, and suitable for a university software architecture presentation.
-
-Do not overcomplicate the diagram.
-
-## FILE CREATION REQUIREMENTS
-
-1. Physically create the file:
-
-`docs/diagramas/modelo-datos-mongodb.drawio`
-
-2. The file must contain valid editable Draw.io / diagrams.net XML.
-
-3. Do not merely print the XML in your response.
-
-4. After creating the file, verify that:
-
-- The file exists.
-- The file is not empty.
-- It contains valid Draw.io XML structure.
-- The diagram contains the four required collections.
-- The title is `Diagrama Entidad-Relación — FUGA+`.
-- The subtitle is `Modelo NoSQL adaptado a MongoDB`.
-- The relationships are present.
-- The diagram clearly represents a NoSQL/MongoDB model.
-
-5. If the file already exists, update/overwrite only this requested diagram file.
-
-6. Do not create additional files.
-
-7. Do not modify other project files.
-
-## FINAL RESPONSE
-
-After physically creating and verifying the file, respond briefly in English confirming:
-
-"Created and verified docs/diagramas/modelo-datos-mongodb.drawio"
-
-Do not paste the XML into the response.
+FINAL VERIFICATION:
+1. Modify docs/diagramas/diagrama-entidad-relacion.drawio.
+2. Verify the file exists.
+3. Verify it is not empty.
+4. Verify it is valid Draw.io XML.
+5. Make sure every entity visibly shows its Spanish name AND MongoDB collection name.
+6. Make sure "«colección»" is no longer used as a generic placeholder.
+7. Do not create any other files.

@@ -1,26 +1,61 @@
-# Task — Create FUGA+ User Story Diagram
+# Create the FUGA+ User Story Diagram in Draw.io
 
-Create ONLY this file:
+Create the UML-style User Story Diagram for the FUGA+ mobile application.
+
+---
+
+## IMPORTANT — PHYSICAL FILE CREATION
+
+You MUST physically create the Draw.io file in the project filesystem.
+
+The exact file that MUST be created is:
 
 `docs/diagramas/diagrama-historias-usuario.drawio`
 
-Do NOT create additional folders.
-Do NOT create any other files.
-Do NOT modify any existing files.
+This is the ONLY file that this task is allowed to create or modify.
 
-## Objective
+DO NOT:
 
-Create a visual User Story Diagram for the FUGA+ mobile application.
+- Only display XML in the chat.
+- Only explain the diagram.
+- Generate XML without saving it.
+- Create the diagram only in memory.
+- Create a Markdown diagram.
+- Create a Mermaid file.
+- Create an SVG.
+- Create a PNG.
+- Create an HTML file.
+- Create another Draw.io file.
+- Create another folder.
+- Save the file somewhere else.
 
-The diagram must organize the main user stories according to the actors and main functionality of the application.
+The final result MUST be a real `.drawio` file containing a complete visible diagram.
 
-The diagram must be editable in Draw.io / diagrams.net and must use valid Draw.io XML.
+When the file is opened with diagrams.net / Draw.io, the diagram must be visually displayed.
 
-## IMPORTANT LANGUAGE REQUIREMENT
+---
 
-The instructions in this prompt are written in English, but ALL VISIBLE TEXT INSIDE THE DIAGRAM MUST BE IN SPANISH.
+# PROJECT
 
-The diagram title must be:
+FUGA+ is a mobile application that helps users identify possible "money leaks" caused by small and repetitive expenses.
+
+The diagram represents the current functional requirements and the corrected Release 1 user stories.
+
+---
+
+# VISIBLE LANGUAGE
+
+ALL visible text inside the diagram MUST be in Spanish.
+
+Do not use English labels inside the diagram.
+
+Use the exact actor names and user story names specified below.
+
+---
+
+# DIAGRAM HEADER
+
+Title:
 
 **Diagrama de Historias de Usuario — FUGA+**
 
@@ -28,383 +63,476 @@ Subtitle:
 
 **Funcionalidades principales de la aplicación móvil**
 
-## Project Context
+Place the title and subtitle clearly at the top of the diagram.
 
-FUGA+ is a mobile application designed to help young people and students identify possible money leaks by recording and analyzing their expenses.
+---
 
-The user can enter expenses using natural language, for example:
+# ACTORS
 
-"Hoy gasté $8.000 en un taxi"
+The diagram MUST contain exactly these three actors:
 
-The application extracts relevant information such as:
+- **Visitante**
+- **Usuario**
+- **Administrador**
 
-- Valor
-- Categoría
-- Descripción
+Use UML-style actor symbols or clean actor boxes.
 
-The application stores the expense history and analyzes recurring spending patterns using business rules to identify possible money leaks.
+---
 
-The MVP focuses on expense registration, expense history, categorization, dashboard information, and possible money-leak detection.
+# USER STORIES
 
-## Actors
+The diagram MUST contain exactly these 14 user stories.
 
-Create the following actors:
+Do not omit any.
 
-### Usuario
+Do not add additional user stories.
 
-The main authenticated user of FUGA+.
+---
 
-### Administrador
+## MUST — OBLIGATORIO
 
-The administrative user responsible for managing categories and administrative information.
-
-### Visitante
-
-An unauthenticated visitor who can access the public part of the application.
-
-Do NOT create technical actors such as:
-
-- OpenAI
-- MongoDB
-- Redis
-- FastAPI
-- React Native
-- JWT
-- Docker
-- GitHub
-
-These are technologies or infrastructure and must not appear as actors.
-
-## User Stories
-
-Create the following user stories.
-
-### US01 — Registrarse
-
-**Como usuario, quiero registrarme en FUGA+ para crear una cuenta y guardar mis gastos.**
-
-Actor:
-
-Usuario
-
-Priority:
-
-Must
-
-### US02 — Iniciar sesión
-
-**Como usuario, quiero iniciar sesión para acceder de forma segura a mi información financiera.**
-
-Actor:
-
-Usuario
-
-Priority:
-
-Must
-
-### US03 — Registrar gasto
-
-**Como usuario, quiero registrar un gasto escribiendo una descripción en lenguaje natural para guardar rápidamente lo que gasté.**
-
-Actor:
-
-Usuario
-
-Priority:
-
-Must
-
-Example:
-
-"Hoy gasté $8.000 en un taxi"
-
-### US04 — Interpretar gasto
-
-**Como usuario, quiero que el sistema interprete el texto de mi gasto para identificar el valor, la categoría y la descripción.**
-
-Actor:
-
-Usuario
-
-Priority:
-
-Must
-
-This functionality is related to the expense analysis logic.
-
-Do not represent this as a separate external actor.
-
-### US05 — Consultar historial
-
-**Como usuario, quiero consultar mi historial de gastos para conocer en qué he utilizado mi dinero.**
-
-Actor:
-
-Usuario
-
-Priority:
-
-Must
-
-### US06 — Categorizar gasto
-
-**Como usuario, quiero que mis gastos estén organizados por categorías para entender mejor mis hábitos de consumo.**
-
-Actor:
-
-Usuario
-
-Priority:
-
-Must
-
-Examples:
-
-- Transporte
-- Alimentación
-- Entretenimiento
-- Compras
-- Otros
-
-### US07 — Consultar dashboard
-
-**Como usuario, quiero visualizar un resumen de mis gastos para conocer mis principales categorías y valores gastados.**
-
-Actor:
-
-Usuario
-
-Priority:
-
-Should
-
-### US08 — Detectar posible fuga
-
-**Como usuario, quiero recibir alertas sobre posibles fugas de dinero para identificar gastos repetitivos que pueden estar afectando mi presupuesto.**
-
-Actor:
-
-Usuario
-
-Priority:
-
-Must
-
-The detection is based on business rules and expense history.
-
-Do NOT describe it as an AI prediction.
-
-### US09 — Consultar posibles fugas
-
-**Como usuario, quiero consultar las posibles fugas detectadas para entender qué gastos repetitivos debo revisar.**
-
-Actor:
-
-Usuario
-
-Priority:
-
-Should
-
-### US10 — Gestionar perfil
-
-**Como usuario, quiero actualizar mis datos personales para mantener mi información actualizada.**
-
-Actor:
-
-Usuario
-
-Priority:
-
-Could
-
-### US11 — Gestionar categorías
-
-**Como administrador, quiero crear, actualizar y consultar categorías para mantener organizada la clasificación de gastos.**
-
-Actor:
-
-Administrador
-
-Priority:
-
-Should
-
-### US12 — Acceder a información pública
-
-**Como visitante, quiero consultar información general sobre FUGA+ para conocer el propósito de la aplicación antes de registrarme.**
+### HU-01 — Conocer FUGA+
 
 Actor:
 
 Visitante
 
-Priority:
+Description:
 
-Could
+Consulta información pública sobre FUGA+ y puede acceder a las opciones de registro e inicio de sesión.
 
-## Diagram Structure
+---
 
-Create a visual hierarchy using:
+### HU-02 — Registrarse e iniciar sesión
 
-**Actor → Epic/Module → User Stories**
+Actor:
 
-Organize the diagram into the following main functional areas:
+Visitante
 
-### 1. Autenticación y acceso
+Description:
+
+Crea una cuenta como Usuario e inicia sesión con correo y contraseña.
+
+---
+
+### HU-03 — Registrar gasto en lenguaje natural
+
+Actor:
+
+Usuario
+
+Description:
+
+Escribe un gasto en español mediante una frase libre y envía el texto para su interpretación.
+
+---
+
+### HU-04 — Interpretar gasto con IA
+
+Actor:
+
+Usuario
+
+Description:
+
+La IA identifica monto, categoría y descripción, muestra los datos para revisión y permite corregirlos antes de confirmar.
+
+---
+
+### HU-05 — Consultar historial de gastos
+
+Actor:
+
+Usuario
+
+Description:
+
+Consulta sus gastos confirmados ordenados del más reciente al más antiguo y puede ver el detalle.
+
+---
+
+### HU-06 — Consultar dashboard personal
+
+Actor:
+
+Usuario
+
+Description:
+
+Consulta total del periodo actual, cantidad de gastos, promedio, acumulado por categoría y categoría de mayor peso.
+
+---
+
+### HU-07 — Detectar posibles fugas de dinero
+
+Actor:
+
+Usuario
+
+Description:
+
+Consulta posibles fugas identificadas mediante reglas determinísticas de gastos pequeños y repetitivos.
+
+---
+
+# SHOULD — IMPORTANTE
+
+### HU-08 — Filtrar historial
+
+Actor:
+
+Usuario
+
+Description:
+
+Filtra sus gastos por rango de fechas y categoría y puede limpiar los filtros.
+
+---
+
+### HU-09 — Corregir categoría de un gasto
+
+Actor:
+
+Usuario
+
+Description:
+
+Corrige la categoría antes de confirmar o después de guardar el gasto; el cambio se refleja en historial, dashboard y análisis de fugas.
+
+---
+
+### HU-10 — Consultar estadísticas generales
+
+Actor:
+
+Administrador
+
+Description:
+
+Consulta estadísticas agregadas de usuarios y gastos sin acceder a datos financieros individuales.
+
+---
+
+### HU-11 — Gestionar usuarios
+
+Actor:
+
+Administrador
+
+Description:
+
+Consulta el estado de las cuentas y puede activar o desactivar usuarios; una cuenta desactivada no puede iniciar sesión.
+
+---
+
+# COULD — OPCIONAL
+
+### HU-12 — Recibir alertas de posibles fugas
+
+Actor:
+
+Usuario
+
+Description:
+
+Recibe una alerta dentro de la aplicación cuando se detecta una nueva posible fuga.
+
+---
+
+### HU-13 — Registrar gasto por voz
+
+Actor:
+
+Usuario
+
+Description:
+
+Registra un gasto mediante voz, convirtiendo la voz a texto y reutilizando el flujo de interpretación.
+
+---
+
+### HU-14 — Comparar periodos
+
+Actor:
+
+Usuario
+
+Description:
+
+Compara dos periodos mediante total, cantidad, promedio y variaciones.
+
+---
+
+# ACTOR-STORY RELATIONSHIPS
+
+Create visible connectors between every actor and the user stories that actor can perform.
+
+Use simple UML-style association lines.
+
+---
+
+## VISITANTE
+
+Connect:
+
+Visitante → HU-01
+
+Visitante → HU-02
+
+Do NOT connect Visitante to any other story.
+
+---
+
+## USUARIO
+
+Connect:
+
+Usuario → HU-03
+
+Usuario → HU-04
+
+Usuario → HU-05
+
+Usuario → HU-06
+
+Usuario → HU-07
+
+Usuario → HU-08
+
+Usuario → HU-09
+
+Usuario → HU-12
+
+Usuario → HU-13
+
+Usuario → HU-14
+
+Do NOT connect Usuario to HU-01, HU-02, HU-10 or HU-11.
+
+---
+
+## ADMINISTRADOR
+
+Connect:
+
+Administrador → HU-10
+
+Administrador → HU-11
+
+Do NOT connect Administrador to any other story.
+
+---
+
+# MOSCOW PRIORITY GROUPING
+
+The diagram MUST visually separate the user stories into three priority groups.
+
+---
+
+## MUST — OBLIGATORIO
+
+This group contains:
+
+- HU-01
+- HU-02
+- HU-03
+- HU-04
+- HU-05
+- HU-06
+- HU-07
+
+---
+
+## SHOULD — IMPORTANTE
+
+This group contains:
+
+- HU-08
+- HU-09
+- HU-10
+- HU-11
+
+---
+
+## COULD — OPCIONAL
+
+This group contains:
+
+- HU-12
+- HU-13
+- HU-14
+
+---
+
+Use large containers, section headers, or clearly separated areas.
+
+The three priority groups must be visually obvious.
+
+Do not use:
+
+- rankings
+- scores
+- winner labels
+- "best"
+- "worst"
+
+---
+
+# FUNCTIONAL AREAS
+
+Organize the diagram so that the user stories are easy to understand.
+
+Use these functional areas:
+
+1. **Autenticación y acceso**
+2. **Gestión de gastos**
+3. **Análisis financiero**
+4. **Administración**
+5. **Funcionalidades opcionales**
+
+These functional areas should help organize the stories while maintaining the three MoSCoW priority groups.
+
+---
+
+# DRAW.IO DESIGN
+
+Create a professional academic UML-style diagram.
+
+Use:
+
+- A clear title at the top.
+- A subtitle below the title.
+- UML-style actors.
+- Rounded rectangles for user stories.
+- Association connectors between actors and stories.
+- Clearly separated MoSCoW containers.
+- Consistent typography.
+- Good spacing.
+- Readable text.
+- Clean alignment.
+- No overlapping elements.
+- No unnecessary connector crossings.
+
+All 14 stories must be visible at the same time when the diagram is opened.
+
+Do not make the story text so small that it becomes unreadable.
+
+---
+
+# LEGEND
+
+Add a visible legend.
+
+Title:
+
+**Leyenda**
 
 Include:
 
-- US01 — Registrarse
-- US02 — Iniciar sesión
-- US10 — Gestionar perfil
-- US12 — Acceder a información pública
+**Must = Obligatorio**
 
-### 2. Gestión de gastos
+**Should = Importante**
 
-Include:
+**Could = Opcional**
 
-- US03 — Registrar gasto
-- US04 — Interpretar gasto
-- US05 — Consultar historial
-- US06 — Categorizar gasto
+The legend must be inside the diagram.
 
-### 3. Análisis financiero
+---
 
-Include:
+# WON'T REQUIREMENTS
 
-- US07 — Consultar dashboard
-- US08 — Detectar posible fuga
-- US09 — Consultar posibles fugas
+Do NOT include any of these as user stories:
 
-### 4. Administración
+- Conexión con bancos
+- Pagos o transferencias
+- Tarjetas
+- Líneas de crédito
+- Préstamos
+- Inversiones
+- Asesoría financiera profesional
+- Entrenamiento de un modelo de IA propio
+- Predicción de mercados
+- Datos bancarios reales de terceros
+- Notificaciones push avanzadas
+- Escaneo avanzado de recibos
+- Integraciones bancarias externas
+- Funciones administrativas avanzadas
+- Múltiples niveles de administrador
 
-Include:
+None of these may appear as user-story boxes.
 
-- US11 — Gestionar categorías
+---
 
-## Visual Requirements
+# TECHNICAL DRAW.IO REQUIREMENTS
 
-Use a clean UML-like or Agile user-story visualization.
+The file MUST be a valid Draw.io XML document.
 
-Each user story must be represented as a separate visual element.
+The root must be compatible with diagrams.net / Draw.io.
 
-Each story element must contain:
+Use:
 
-- Story ID
-- Short title
-- Full user story
-- Priority
+- `mxfile`
+- `diagram`
+- `mxGraphModel`
+- `mxCell`
+- `mxGeometry`
 
-Example:
+Every visual element must be represented by valid `mxCell` elements.
 
-`US03`
+Every connector must have valid:
 
-`Registrar gasto`
+- `source`
+- `target`
 
-`Como usuario, quiero registrar un gasto escribiendo una descripción en lenguaje natural para guardar rápidamente lo que gasté.`
+IDs.
 
-`Prioridad: Must`
+All cell IDs must be unique.
 
-Do not make the story elements excessively large.
+Do not create duplicate IDs.
 
-Use containers or sections to visually separate:
+Do not create broken references.
 
-- Autenticación y acceso
-- Gestión de gastos
-- Análisis financiero
-- Administración
+The XML must be well formed.
 
-Clearly distinguish the actors from the user stories.
+---
 
-Use connectors to show which actor is associated with each story.
+# REQUIRED DIAGRAM ELEMENTS
 
-## Priority Representation
+The final `.drawio` file MUST contain actual visual elements for:
 
-Represent priorities visually using labels:
+1. Title
+2. Subtitle
+3. Visitante actor
+4. Usuario actor
+5. Administrador actor
+6. HU-01
+7. HU-02
+8. HU-03
+9. HU-04
+10. HU-05
+11. HU-06
+12. HU-07
+13. HU-08
+14. HU-09
+15. HU-10
+16. HU-11
+17. HU-12
+18. HU-13
+19. HU-14
+20. Actor-story connectors
+21. MUST container
+22. SHOULD container
+23. COULD container
+24. Legend
 
-- `Must`
-- `Should`
-- `Could`
+---
 
-Do NOT use numerical scores.
+# IMPORTANT — DO NOT CREATE AN EMPTY DIAGRAM
 
-Do NOT invent additional priorities.
+The file MUST NOT contain an empty `mxGraphModel`.
 
-## Important Restrictions
+For example, this is NOT acceptable:
 
-Do NOT add user stories that are not specified in this prompt.
-
-Do NOT add payment functionality.
-
-Do NOT add bank integrations.
-
-Do NOT add voice input.
-
-Do NOT add financial transactions.
-
-Do NOT add cryptocurrency.
-
-Do NOT add social networking.
-
-Do NOT add external APIs as user stories.
-
-Do NOT represent OpenAI as an actor.
-
-Do NOT represent MongoDB as an actor.
-
-## File Requirements
-
-Physically create:
-
-`docs/diagramas/diagrama-historias-usuario.drawio`
-
-The file must:
-
-- Be valid Draw.io XML.
-- Be editable in Draw.io / diagrams.net.
-- Contain the title and subtitle.
-- Contain all 12 user stories.
-- Contain the three actors:
-  - Usuario
-  - Administrador
-  - Visitante
-- Contain the four functional areas.
-- Show the relationship between actors and user stories.
-- Show the priority of each story.
-- Use Spanish for all visible diagram text.
-
-## Mandatory Verification
-
-After creating the file:
-
-1. Verify that `docs/diagramas/diagrama-historias-usuario.drawio` physically exists.
-2. Verify that the file is not empty.
-3. Verify that it contains valid Draw.io XML.
-4. Verify that all 12 user stories exist:
-   - US01
-   - US02
-   - US03
-   - US04
-   - US05
-   - US06
-   - US07
-   - US08
-   - US09
-   - US10
-   - US11
-   - US12
-5. Verify that the three actors exist:
-   - Usuario
-   - Administrador
-   - Visitante
-6. Verify that the four functional areas exist.
-7. Verify that the title is:
-   `Diagrama de Historias de Usuario — FUGA+`
-8. Verify that all visible text inside the diagram is in Spanish.
-9. Do not create any other file.
-10. Do not modify any other project file.
-
-## Final Response
-
-After successfully creating and verifying the file, respond only with a short confirmation that the file was created and verified.
+```xml
+<mxGraphModel>
+</mxGraphModel>
