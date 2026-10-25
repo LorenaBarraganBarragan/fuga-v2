@@ -1,186 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mxfile host="app.diagrams.net" agent="opencode" version="24.7.17" type="device">
-  <diagram id="fuga-entidad-relacion" name="Diagrama Entidad-Relacion">
-    <mxGraphModel dx="1400" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1320" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-
-        <mxCell id="titulo" value="Diagrama Entidad-Relación — FUGA+" style="text;html=1;align=left;verticalAlign=middle;fontSize=28;fontStyle=1;fontColor=#1A1A1A;" vertex="1" parent="1">
-          <mxGeometry x="60" y="20" width="900" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="subtitulo" value="Estructura de datos de la aplicación" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontColor=#555555;" vertex="1" parent="1">
-          <mxGeometry x="60" y="62" width="900" height="26" as="geometry" />
-        </mxCell>
-
-        <mxCell id="usuario" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6C8EBF;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="400" y="150" width="340" height="222" as="geometry" />
-        </mxCell>
-        <mxCell id="usuario_hdrbg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6C8EBF;strokeColor=#6C8EBF;" vertex="1" parent="usuario">
-          <mxGeometry x="1" y="1" width="338" height="54" as="geometry" />
-        </mxCell>
-        <mxCell id="usuario_hdr" value="USUARIOS&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;Colección MongoDB: usuarios&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="usuario">
-          <mxGeometry x="1" y="1" width="338" height="54" as="geometry" />
-        </mxCell>
-        <mxCell id="usuario_body" value="&lt;font color=&quot;#B85450&quot;&gt;&lt;b&gt;_id&lt;/b&gt;&lt;/font&gt; &lt;b&gt;(PK)&lt;/b&gt; — Identificador del usuario&lt;br&gt;&lt;b&gt;nombre&lt;/b&gt; — Nombre del usuario&lt;br&gt;&lt;b&gt;correo&lt;/b&gt; — Correo electrónico&lt;br&gt;&lt;b&gt;contrasenaHash&lt;/b&gt; — Hash de la contraseña&lt;br&gt;&lt;b&gt;rol&lt;/b&gt; — Visitante / Usuario / Administrador&lt;br&gt;&lt;b&gt;estado&lt;/b&gt; — Activo / Inactivo" style="text;html=1;align=left;verticalAlign=top;fontSize=10;spacingLeft=6;spacingRight=4;spacingTop=8;fontColor=#1A1A1A;" vertex="1" parent="usuario">
-          <mxGeometry x="6" y="58" width="328" height="158" as="geometry" />
-        </mxCell>
-
-        <mxCell id="gasto" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#82B366;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="60" y="480" width="340" height="252" as="geometry" />
-        </mxCell>
-        <mxCell id="gasto_hdrbg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#82B366;strokeColor=#82B366;" vertex="1" parent="gasto">
-          <mxGeometry x="1" y="1" width="338" height="54" as="geometry" />
-        </mxCell>
-        <mxCell id="gasto_hdr" value="GASTOS&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;Colección MongoDB: gastos&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="gasto">
-          <mxGeometry x="1" y="1" width="338" height="54" as="geometry" />
-        </mxCell>
-        <mxCell id="gasto_body" value="&lt;font color=&quot;#B85450&quot;&gt;&lt;b&gt;_id&lt;/b&gt;&lt;/font&gt; &lt;b&gt;(PK)&lt;/b&gt; — Identificador del gasto&lt;br&gt;&lt;font color=&quot;#9673A6&quot;&gt;&lt;b&gt;usuarioId&lt;/b&gt;&lt;/font&gt; — Ref. usuarios._id&lt;br&gt;&lt;font color=&quot;#9673A6&quot;&gt;&lt;b&gt;categoriaId&lt;/b&gt;&lt;/font&gt; — Ref. categorias._id&lt;br&gt;&lt;b&gt;monto&lt;/b&gt; — Valor del gasto&lt;br&gt;&lt;b&gt;moneda&lt;/b&gt; — Moneda del gasto&lt;br&gt;&lt;b&gt;descripcion&lt;/b&gt; — Descripción del gasto&lt;br&gt;&lt;b&gt;fecha&lt;/b&gt; — Fecha del gasto&lt;br&gt;&lt;b&gt;textoOriginal&lt;/b&gt; — Texto escrito por el usuario" style="text;html=1;align=left;verticalAlign=top;fontSize=10;spacingLeft=6;spacingRight=4;spacingTop=8;fontColor=#1A1A1A;" vertex="1" parent="gasto">
-          <mxGeometry x="6" y="58" width="328" height="188" as="geometry" />
-        </mxCell>
-
-        <mxCell id="posibleFuga" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B85450;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="510" y="480" width="360" height="262" as="geometry" />
-        </mxCell>
-        <mxCell id="posibleFuga_hdrbg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B85450;strokeColor=#B85450;" vertex="1" parent="posibleFuga">
-          <mxGeometry x="1" y="1" width="358" height="54" as="geometry" />
-        </mxCell>
-        <mxCell id="posibleFuga_hdr" value="POSIBLES FUGAS&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;Colección MongoDB: posibles_fugas&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="posibleFuga">
-          <mxGeometry x="1" y="1" width="358" height="54" as="geometry" />
-        </mxCell>
-        <mxCell id="posibleFuga_body" value="&lt;font color=&quot;#B85450&quot;&gt;&lt;b&gt;_id&lt;/b&gt;&lt;/font&gt; &lt;b&gt;(PK)&lt;/b&gt; — Identificador de la posible fuga&lt;br&gt;&lt;font color=&quot;#9673A6&quot;&gt;&lt;b&gt;usuarioId&lt;/b&gt;&lt;/font&gt; — Ref. usuarios._id&lt;br&gt;&lt;font color=&quot;#9673A6&quot;&gt;&lt;b&gt;categoriaId&lt;/b&gt;&lt;/font&gt; — Ref. categorias._id&lt;br&gt;&lt;b&gt;descripcion&lt;/b&gt; — Categoría o descripción afectada&lt;br&gt;&lt;b&gt;cantidadOcurrencias&lt;/b&gt; — Número de ocurrencias&lt;br&gt;&lt;b&gt;montoAcumulado&lt;/b&gt; — Suma de los montos acumulados&lt;br&gt;&lt;b&gt;reglaActivada&lt;/b&gt; — Regla de negocio activada&lt;br&gt;&lt;b&gt;fechaDeteccion&lt;/b&gt; — Fecha de detección" style="text;html=1;align=left;verticalAlign=top;fontSize=10;spacingLeft=6;spacingRight=4;spacingTop=8;fontColor=#1A1A1A;" vertex="1" parent="posibleFuga">
-          <mxGeometry x="6" y="58" width="348" height="198" as="geometry" />
-        </mxCell>
-
-        <mxCell id="alerta" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D79B00;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="970" y="480" width="320" height="242" as="geometry" />
-        </mxCell>
-        <mxCell id="alerta_hdrbg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D79B00;strokeColor=#D79B00;" vertex="1" parent="alerta">
-          <mxGeometry x="1" y="1" width="318" height="54" as="geometry" />
-        </mxCell>
-        <mxCell id="alerta_hdr" value="ALERTAS&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;Colección MongoDB: alertas&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="alerta">
-          <mxGeometry x="1" y="1" width="318" height="54" as="geometry" />
-        </mxCell>
-        <mxCell id="alerta_body" value="&lt;font color=&quot;#B85450&quot;&gt;&lt;b&gt;_id&lt;/b&gt;&lt;/font&gt; &lt;b&gt;(PK)&lt;/b&gt; — Identificador de la alerta&lt;br&gt;&lt;font color=&quot;#9673A6&quot;&gt;&lt;b&gt;usuarioId&lt;/b&gt;&lt;/font&gt; — Ref. usuarios._id&lt;br&gt;&lt;font color=&quot;#9673A6&quot;&gt;&lt;b&gt;fugaId&lt;/b&gt;&lt;/font&gt; — Ref. posibles_fugas._id&lt;br&gt;&lt;b&gt;tipo&lt;/b&gt; — Tipo de alerta&lt;br&gt;&lt;b&gt;mensaje&lt;/b&gt; — Mensaje mostrado al usuario&lt;br&gt;&lt;b&gt;fecha&lt;/b&gt; — Fecha de la alerta&lt;br&gt;&lt;b&gt;leida&lt;/b&gt; — Indica si fue leída" style="text;html=1;align=left;verticalAlign=top;fontSize=10;spacingLeft=6;spacingRight=4;spacingTop=8;fontColor=#1A1A1A;" vertex="1" parent="alerta">
-          <mxGeometry x="6" y="58" width="308" height="178" as="geometry" />
-        </mxCell>
-
-        <mxCell id="categoria" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9673A6;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="530" y="890" width="320" height="192" as="geometry" />
-        </mxCell>
-        <mxCell id="categoria_hdrbg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#9673A6;strokeColor=#9673A6;" vertex="1" parent="categoria">
-          <mxGeometry x="1" y="1" width="318" height="54" as="geometry" />
-        </mxCell>
-        <mxCell id="categoria_hdr" value="CATEGORÍAS&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;Colección MongoDB: categorias&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="categoria">
-          <mxGeometry x="1" y="1" width="318" height="54" as="geometry" />
-        </mxCell>
-        <mxCell id="categoria_body" value="&lt;font color=&quot;#B85450&quot;&gt;&lt;b&gt;_id&lt;/b&gt;&lt;/font&gt; &lt;b&gt;(PK)&lt;/b&gt; — Identificador de la categoría&lt;br&gt;&lt;b&gt;nombre&lt;/b&gt; — Nombre de la categoría&lt;br&gt;&lt;br&gt;&lt;b&gt;Valores de ejemplo:&lt;/b&gt;&lt;br&gt;Transporte · Alimentación · Ocio&lt;br&gt;Educación · Servicios" style="text;html=1;align=left;verticalAlign=top;fontSize=10;spacingLeft=6;spacingRight=4;spacingTop=8;fontColor=#1A1A1A;" vertex="1" parent="categoria">
-          <mxGeometry x="6" y="58" width="308" height="128" as="geometry" />
-        </mxCell>
-
-        <mxCell id="card11" value="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#6C8EBF;" vertex="1" parent="1">
-          <mxGeometry x="415" y="377" width="22" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="card1n" value="N" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#82B366;" vertex="1" parent="1">
-          <mxGeometry x="205" y="430" width="22" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="card21" value="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#9673A6;" vertex="1" parent="1">
-          <mxGeometry x="505" y="976" width="22" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="card2n" value="N" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#82B366;" vertex="1" parent="1">
-          <mxGeometry x="238" y="738" width="22" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="card31" value="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#6C8EBF;" vertex="1" parent="1">
-          <mxGeometry x="547" y="377" width="22" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="card3n" value="N" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#B85450;" vertex="1" parent="1">
-          <mxGeometry x="700" y="445" width="22" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="card41" value="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#9673A6;" vertex="1" parent="1">
-          <mxGeometry x="680" y="862" width="22" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="card4n" value="N" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#B85450;" vertex="1" parent="1">
-          <mxGeometry x="700" y="748" width="22" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="card51" value="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#B85450;" vertex="1" parent="1">
-          <mxGeometry x="458" y="565" width="22" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="card5n" value="N" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#82B366;" vertex="1" parent="1">
-          <mxGeometry x="408" y="565" width="22" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="card61" value="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#6C8EBF;" vertex="1" parent="1">
-          <mxGeometry x="683" y="377" width="22" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="card6n" value="N" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#D79B00;" vertex="1" parent="1">
-          <mxGeometry x="1148" y="445" width="22" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="card71" value="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#B85450;" vertex="1" parent="1">
-          <mxGeometry x="884" y="565" width="22" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="card7n" value="N" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#D79B00;" vertex="1" parent="1">
-          <mxGeometry x="938" y="565" width="22" height="22" as="geometry" />
-        </mxCell>
-
-        <mxCell id="r1" value="registra" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;strokeWidth=2;strokeColor=#333333;fontSize=12;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0.12;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="usuario" target="gasto">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="441" y="425" />
-              <mxPoint x="230" y="425" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-
-        <mxCell id="r2" value="clasifica" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;strokeWidth=2;strokeColor=#333333;fontSize=12;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="categoria" target="gasto">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="230" y="986" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-
-        <mxCell id="r3" value="tiene" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;strokeWidth=2;strokeColor=#333333;fontSize=12;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="usuario" target="posibleFuga">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="570" y="440" />
-              <mxPoint x="690" y="440" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-
-        <mxCell id="r4" value="identifica" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;strokeWidth=2;strokeColor=#333333;fontSize=12;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="categoria" target="posibleFuga">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="r5" value="se detecta&lt;br&gt;mediante" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;strokeWidth=2;strokeColor=#333333;fontSize=11;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.489;exitDx=0;exitDy=0;entryX=1;entryY=0.508;entryDx=0;entryDy=0;" edge="1" parent="1" source="posibleFuga" target="gasto">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="r6" value="recibe" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;strokeWidth=2;strokeColor=#333333;fontSize=12;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0.9;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="usuario" target="alerta">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="706" y="405" />
-              <mxPoint x="1130" y="405" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-
-        <mxCell id="r7" value="genera" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;strokeWidth=2;strokeColor=#333333;fontSize=12;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.489;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="posibleFuga" target="alerta">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="jerarquia" value="&lt;b&gt;«note» Estructura en MongoDB&lt;/b&gt;&lt;br&gt;&lt;br&gt;MongoDB&lt;br&gt;↓ Colecciones&lt;br&gt;↓ Documentos / atributos&lt;br&gt;↓ Referencias entre documentos&lt;br&gt;&lt;br&gt;&lt;i&gt;usuarioId · categoriaId · fugaId&lt;/i&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#FFFFFF;strokeColor=#6C8EBF;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="60" y="1120" width="300" height="170" as="geometry" />
-        </mxCell>
-
-        <mxCell id="leyenda" value="&lt;b&gt;«note» Leyenda&lt;/b&gt;&lt;br&gt;&lt;br&gt;• &lt;font color=&quot;#B85450&quot;&gt;&lt;b&gt;(PK)&lt;/b&gt;&lt;/font&gt; — Clave primaria / identificador del documento&lt;br&gt;• &lt;font color=&quot;#9673A6&quot;&gt;&lt;b&gt;Ref. colección._id&lt;/b&gt;&lt;/font&gt; — Referencia a un documento de otra colección&lt;br&gt;• &lt;b&gt;1&lt;/b&gt; — Un registro relacionado&lt;br&gt;• &lt;b&gt;N&lt;/b&gt; — Varios registros relacionados&lt;br&gt;• No se usan claves foráneas: MongoDB no es una base de datos relacional." style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#FFFFFF;strokeColor=#999999;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="380" y="1120" width="380" height="170" as="geometry" />
-        </mxCell>
-
-        <mxCell id="nota" value="&lt;b&gt;«note» Nota&lt;/b&gt;&lt;br&gt;&lt;br&gt;FUGA+ utiliza MongoDB. Las colecciones almacenan documentos y las referencias mediante usuarioId, categoriaId y fugaId relacionan documentos entre colecciones." style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#FFFFFF;strokeColor=#B85450;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="780" y="1120" width="510" height="170" as="geometry" />
-        </mxCell>
-
-      </root>
-    </mxGraphModel>
-  </diagram>
+<mxfile host="app.diagrams.net" agent="opencode" version="24.7.17" modified="2026-10-25T00:00:00.000Z" type="device">
+<diagram id="fuga-er-ix8apz3haq" name="FUGA+ — Diagrama Entidad-Relación">
+<mxGraphModel dx="1800" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1400" math="0" shadow="0" background="#FFFFFF">
+<root>
+<mxCell id="0"/>
+<mxCell id="1" parent="0"/>
+<mxCell id="titulo" value="FUGA+ — Diagrama Entidad-Relación" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=30;fontStyle=1;fontFamily=Helvetica;fontColor=#0F172A;" parent="1" vertex="1"><mxGeometry x="80" y="24" width="1180" height="44" as="geometry"/></mxCell>
+<mxCell id="subtitulo" value="Modelo lógico documental propuesto · MongoDB Atlas · 5 entidades · 0 verificadas" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontFamily=Helvetica;fontColor=#475569;" parent="1" vertex="1"><mxGeometry x="80" y="76" width="1120" height="26" as="geometry"/></mxCell>
+<mxCell id="badge" value="&lt;b&gt;5 propuestas&lt;/b&gt; · 0 verificadas · MongoDB" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#1E40AF;strokeWidth=1;fontSize=11;fontFamily=Helvetica;fontColor=#1E3A8A;align=center;verticalAlign=middle;" parent="1" vertex="1"><mxGeometry x="1390" y="42" width="330" height="42" as="geometry"/></mxCell>
+<mxCell id="ent_usuario" value="" style="group" vertex="1" parent="1"><mxGeometry x="100" y="360" width="380" height="300" as="geometry"/></mxCell>
+<mxCell id="hdr_usuario" value="&lt;b style=&quot;font-size:14px;&quot;&gt;USUARIO&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9px;font-weight:normal;&quot;&gt;«propuesta» · colección: &lt;b&gt;usuarios&lt;/b&gt;&lt;/span&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#1E40AF;strokeColor=#1E40AF;strokeWidth=1.2;fontColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=10;fontFamily=Helvetica;" parent="ent_usuario" vertex="1"><mxGeometry x="0" y="0" width="380" height="58" as="geometry"/></mxCell>
+<mxCell id="body_usuario" value="&lt;span style=&quot;color:#B91C1C;&quot;&gt;&lt;b&gt;_id&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;color:#B91C1C;&quot;&gt;(PK)&lt;/span&gt; — Identificador del usuario&lt;br&gt;&lt;b&gt;nombre&lt;/b&gt; — Nombre&lt;br&gt;&lt;b&gt;apellido&lt;/b&gt; — Apellido (opcional)&lt;br&gt;&lt;b&gt;telefono&lt;/b&gt; — Teléfono (opcional)&lt;br&gt;&lt;b&gt;correo&lt;/b&gt; — Correo de acceso&lt;br&gt;&lt;b&gt;contrasenaHash&lt;/b&gt; — Hash de la contraseña&lt;br&gt;&lt;b&gt;rol&lt;/b&gt; — Visitante · Usuario · Administrador&lt;br&gt;&lt;b&gt;estado&lt;/b&gt; — Activo · Inactivo&lt;br&gt;&lt;b&gt;imagenPerfilUrl&lt;/b&gt; — Foto de perfil (opcional)" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1E40AF;strokeWidth=1.2;align=left;verticalAlign=top;spacingLeft=12;spacingRight=12;spacingTop=9;fontSize=11;fontFamily=Helvetica;fontColor=#1E293B;" parent="ent_usuario" vertex="1"><mxGeometry x="0" y="58" width="380" height="242" as="geometry"/></mxCell>
+<mxCell id="ent_categoria" value="" style="group" vertex="1" parent="1"><mxGeometry x="620" y="140" width="380" height="150" as="geometry"/></mxCell>
+<mxCell id="hdr_categoria" value="&lt;b style=&quot;font-size:14px;&quot;&gt;CATEGORÍA&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9px;font-weight:normal;&quot;&gt;«propuesta» · colección: &lt;b&gt;categorias&lt;/b&gt;&lt;/span&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#1E40AF;strokeColor=#1E40AF;strokeWidth=1.2;fontColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=10;fontFamily=Helvetica;" parent="ent_categoria" vertex="1"><mxGeometry x="0" y="0" width="380" height="58" as="geometry"/></mxCell>
+<mxCell id="body_categoria" value="&lt;span style=&quot;color:#B91C1C;&quot;&gt;&lt;b&gt;_id&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;color:#B91C1C;&quot;&gt;(PK)&lt;/span&gt; — Identificador de la categoría&lt;br&gt;&lt;b&gt;nombre&lt;/b&gt; — Nombre de la categoría" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1E40AF;strokeWidth=1.2;align=left;verticalAlign=top;spacingLeft=12;spacingRight=12;spacingTop=9;fontSize=11;fontFamily=Helvetica;fontColor=#1E293B;" parent="ent_categoria" vertex="1"><mxGeometry x="0" y="58" width="380" height="92" as="geometry"/></mxCell>
+<mxCell id="ent_gasto" value="" style="group" vertex="1" parent="1"><mxGeometry x="620" y="620" width="420" height="340" as="geometry"/></mxCell>
+<mxCell id="hdr_gasto" value="&lt;b style=&quot;font-size:14px;&quot;&gt;GASTO&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9px;font-weight:normal;&quot;&gt;«propuesta» · colección: &lt;b&gt;gastos&lt;/b&gt;&lt;/span&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#1E40AF;strokeColor=#1E40AF;strokeWidth=1.2;fontColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=10;fontFamily=Helvetica;" parent="ent_gasto" vertex="1"><mxGeometry x="0" y="0" width="420" height="58" as="geometry"/></mxCell>
+<mxCell id="body_gasto" value="&lt;span style=&quot;color:#B91C1C;&quot;&gt;&lt;b&gt;_id&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;color:#B91C1C;&quot;&gt;(PK)&lt;/span&gt; — Identificador del gasto&lt;br&gt;&lt;span style=&quot;color:#6D28D9;&quot;&gt;&lt;b&gt;usuarioId&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;color:#6D28D9;&quot;&gt;(Ref.)&lt;/span&gt; — Ref. usuarios._id&lt;br&gt;&lt;span style=&quot;color:#6D28D9;&quot;&gt;&lt;b&gt;categoriaId&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;color:#6D28D9;&quot;&gt;(Ref.)&lt;/span&gt; — Ref. categorias._id&lt;br&gt;&lt;b&gt;monto&lt;/b&gt; — Valor del gasto&lt;br&gt;&lt;b&gt;moneda&lt;/b&gt; — Moneda&lt;br&gt;&lt;b&gt;descripcion&lt;/b&gt; — Descripción&lt;br&gt;&lt;b&gt;fecha&lt;/b&gt; — Fecha del gasto&lt;br&gt;&lt;b&gt;textoOriginal&lt;/b&gt; — Texto escrito por el usuario&lt;br&gt;&lt;b&gt;versionDiccionario&lt;/b&gt; — Versión del diccionario&lt;br&gt;&lt;b&gt;versionReglas&lt;/b&gt; — Versión de reglas&lt;br&gt;&lt;b&gt;fechaCreacion&lt;/b&gt; — Alta / desempate de orden" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1E40AF;strokeWidth=1.2;align=left;verticalAlign=top;spacingLeft=12;spacingRight=12;spacingTop=9;fontSize=11;fontFamily=Helvetica;fontColor=#1E293B;" parent="ent_gasto" vertex="1"><mxGeometry x="0" y="58" width="420" height="282" as="geometry"/></mxCell>
+<mxCell id="ent_posible_fuga" value="" style="group" vertex="1" parent="1"><mxGeometry x="1260" y="380" width="440" height="390" as="geometry"/></mxCell>
+<mxCell id="hdr_posible_fuga" value="&lt;b style=&quot;font-size:14px;&quot;&gt;POSIBLE FUGA&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9px;font-weight:normal;&quot;&gt;«propuesta» · colección: &lt;b&gt;posibles_fugas&lt;/b&gt;&lt;/span&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#1E40AF;strokeColor=#1E40AF;strokeWidth=1.2;fontColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=10;fontFamily=Helvetica;" parent="ent_posible_fuga" vertex="1"><mxGeometry x="0" y="0" width="440" height="58" as="geometry"/></mxCell>
+<mxCell id="body_posible_fuga" value="&lt;span style=&quot;color:#B91C1C;&quot;&gt;&lt;b&gt;_id&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;color:#B91C1C;&quot;&gt;(PK)&lt;/span&gt; — Identificador de la posible fuga&lt;br&gt;&lt;span style=&quot;color:#6D28D9;&quot;&gt;&lt;b&gt;usuarioId&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;color:#6D28D9;&quot;&gt;(Ref.)&lt;/span&gt; — Ref. usuarios._id&lt;br&gt;&lt;span style=&quot;color:#6D28D9;&quot;&gt;&lt;b&gt;categoriaId&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;color:#6D28D9;&quot;&gt;(Ref.)&lt;/span&gt; — Ref. categorias._id&lt;br&gt;&lt;b&gt;descripcion&lt;/b&gt; — Categoría o patrón afectado&lt;br&gt;&lt;b&gt;reglaId&lt;/b&gt; — Regla aplicada&lt;br&gt;&lt;b&gt;versionRegla&lt;/b&gt; — Versión de la regla&lt;br&gt;&lt;b&gt;cantidadOcurrencias&lt;/b&gt; — Número de ocurrencias&lt;br&gt;&lt;b&gt;montoAcumulado&lt;/b&gt; — Suma de los montos&lt;br&gt;&lt;b&gt;ventanaInicio&lt;/b&gt; — Inicio de la ventana&lt;br&gt;&lt;b&gt;ventanaFin&lt;/b&gt; — Fin de la ventana&lt;br&gt;&lt;b&gt;fechaDeteccion&lt;/b&gt; — Fecha de detección&lt;br&gt;&lt;b&gt;vigente&lt;/b&gt; — Indica si sigue vigente" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1E40AF;strokeWidth=1.2;align=left;verticalAlign=top;spacingLeft=12;spacingRight=12;spacingTop=9;fontSize=11;fontFamily=Helvetica;fontColor=#1E293B;" parent="ent_posible_fuga" vertex="1"><mxGeometry x="0" y="58" width="440" height="332" as="geometry"/></mxCell>
+<mxCell id="ent_alerta" value="" style="group" vertex="1" parent="1"><mxGeometry x="1260" y="900" width="420" height="260" as="geometry"/></mxCell>
+<mxCell id="hdr_alerta" value="&lt;b style=&quot;font-size:14px;&quot;&gt;ALERTA&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9px;font-weight:normal;&quot;&gt;«propuesta · opcional» · colección: &lt;b&gt;alertas&lt;/b&gt;&lt;/span&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#B45309;strokeColor=#B45309;strokeWidth=1.2;fontColor=#FFFFFF;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=10;fontFamily=Helvetica;" parent="ent_alerta" vertex="1"><mxGeometry x="0" y="0" width="420" height="58" as="geometry"/></mxCell>
+<mxCell id="body_alerta" value="&lt;span style=&quot;color:#B91C1C;&quot;&gt;&lt;b&gt;_id&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;color:#B91C1C;&quot;&gt;(PK)&lt;/span&gt; — Identificador de la alerta&lt;br&gt;&lt;span style=&quot;color:#6D28D9;&quot;&gt;&lt;b&gt;usuarioId&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;color:#6D28D9;&quot;&gt;(Ref.)&lt;/span&gt; — Ref. usuarios._id&lt;br&gt;&lt;span style=&quot;color:#6D28D9;&quot;&gt;&lt;b&gt;fugaId&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;color:#6D28D9;&quot;&gt;(Ref.)&lt;/span&gt; — Ref. posibles_fugas._id&lt;br&gt;&lt;b&gt;tipo&lt;/b&gt; — Tipo de alerta&lt;br&gt;&lt;b&gt;mensaje&lt;/b&gt; — Mensaje al usuario&lt;br&gt;&lt;b&gt;fecha&lt;/b&gt; — Fecha de la alerta&lt;br&gt;&lt;b&gt;leida&lt;/b&gt; — Indica si fue leída" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B45309;strokeWidth=1.2;align=left;verticalAlign=top;spacingLeft=12;spacingRight=12;spacingTop=9;fontSize=11;fontFamily=Helvetica;fontColor=#1E293B;" parent="ent_alerta" vertex="1"><mxGeometry x="0" y="58" width="420" height="202" as="geometry"/></mxCell>
+<mxCell id="rel_usuario_gasto" value="" style="edgeStyle=none;rounded=0;html=1;endArrow=none;startArrow=none;endFill=0;startFill=0;strokeColor=#334155;strokeWidth=1.5;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.868;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.412;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1" source="ent_usuario" target="ent_gasto"><mxGeometry x="0" y="0" width="0" height="0" as="geometry"><Array as="points"><mxPoint x="430" y="760"/></Array></mxGeometry></mxCell>
+<mxCell id="rel_categoria_gasto" value="" style="edgeStyle=none;rounded=0;html=1;endArrow=none;startArrow=none;endFill=0;startFill=0;strokeColor=#334155;strokeWidth=1.5;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.452;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1" source="ent_categoria" target="ent_gasto"><mxGeometry x="0" y="0" width="0" height="0" as="geometry"/></mxCell>
+<mxCell id="rel_usuario_fuga" value="" style="edgeStyle=none;rounded=0;html=1;endArrow=none;startArrow=none;endFill=0;startFill=0;strokeColor=#334155;strokeWidth=1.5;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.467;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.773;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1" source="ent_usuario" target="ent_posible_fuga"><mxGeometry x="0" y="0" width="0" height="0" as="geometry"><Array as="points"><mxPoint x="50" y="500"/><mxPoint x="50" y="120"/><mxPoint x="1600" y="120"/><mxPoint x="1600" y="380"/></Array></mxGeometry></mxCell>
+<mxCell id="rel_categoria_fuga" value="" style="edgeStyle=none;rounded=0;html=1;endArrow=none;startArrow=none;endFill=0;startFill=0;strokeColor=#334155;strokeWidth=1.5;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.6;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.591;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1" source="ent_categoria" target="ent_posible_fuga"><mxGeometry x="0" y="0" width="0" height="0" as="geometry"><Array as="points"><mxPoint x="1150" y="230"/><mxPoint x="1150" y="300"/><mxPoint x="1520" y="300"/></Array></mxGeometry></mxCell>
+<mxCell id="rel_gasto_fuga_derivada" value="" style="edgeStyle=none;rounded=0;html=1;endArrow=none;startArrow=none;endFill=0;startFill=0;strokeColor=#334155;strokeWidth=1.5;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.235;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.821;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;dashPattern=8 5;" parent="1" edge="1" source="ent_gasto" target="ent_posible_fuga"><mxGeometry x="0" y="0" width="0" height="0" as="geometry"/></mxCell>
+<mxCell id="rel_usuario_alerta" value="" style="edgeStyle=none;rounded=0;html=1;endArrow=none;startArrow=none;endFill=0;startFill=0;strokeColor=#334155;strokeWidth=1.5;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.658;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.327;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1" source="ent_usuario" target="ent_alerta"><mxGeometry x="0" y="0" width="0" height="0" as="geometry"><Array as="points"><mxPoint x="350" y="985"/></Array></mxGeometry></mxCell>
+<mxCell id="rel_fuga_alerta" value="" style="edgeStyle=none;rounded=0;html=1;endArrow=none;startArrow=none;endFill=0;startFill=0;strokeColor=#334155;strokeWidth=1.5;fontFamily=Helvetica;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.524;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1" source="ent_posible_fuga" target="ent_alerta"><mxGeometry x="0" y="0" width="0" height="0" as="geometry"/></mxCell>
+<mxCell id="card_u_g_1" value="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontFamily=Helvetica;fontColor=#1E40AF;" parent="1" vertex="1"><mxGeometry x="438" y="678" width="26" height="16" as="geometry"/></mxCell>
+<mxCell id="card_u_g_n" value="0..*" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontFamily=Helvetica;fontColor=#1E40AF;" parent="1" vertex="1"><mxGeometry x="568" y="742" width="38" height="16" as="geometry"/></mxCell>
+<mxCell id="rel_registra" value="registra" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Helvetica;fontColor=#334155;" parent="1" vertex="1"><mxGeometry x="455" y="735" width="84" height="18" as="geometry"/></mxCell>
+<mxCell id="card_c_g_1" value="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontFamily=Helvetica;fontColor=#1E40AF;" parent="1" vertex="1"><mxGeometry x="818" y="298" width="26" height="16" as="geometry"/></mxCell>
+<mxCell id="card_c_g_n" value="0..*" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontFamily=Helvetica;fontColor=#1E40AF;" parent="1" vertex="1"><mxGeometry x="818" y="596" width="38" height="16" as="geometry"/></mxCell>
+<mxCell id="rel_clasifica" value="clasifica" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Helvetica;fontColor=#334155;" parent="1" vertex="1"><mxGeometry x="820" y="450" width="78" height="18" as="geometry"/></mxCell>
+<mxCell id="card_u_f_1" value="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontFamily=Helvetica;fontColor=#1E40AF;" parent="1" vertex="1"><mxGeometry x="72" y="503" width="26" height="16" as="geometry"/></mxCell>
+<mxCell id="card_u_f_n" value="0..*" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontFamily=Helvetica;fontColor=#1E40AF;" parent="1" vertex="1"><mxGeometry x="1608" y="342" width="38" height="16" as="geometry"/></mxCell>
+<mxCell id="rel_posee" value="posee" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Helvetica;fontColor=#334155;" parent="1" vertex="1"><mxGeometry x="690" y="121" width="58" height="14" as="geometry"/></mxCell>
+<mxCell id="card_c_f_1" value="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontFamily=Helvetica;fontColor=#1E40AF;" parent="1" vertex="1"><mxGeometry x="1008" y="239" width="26" height="16" as="geometry"/></mxCell>
+<mxCell id="card_c_f_n" value="0..*" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontFamily=Helvetica;fontColor=#1E40AF;" parent="1" vertex="1"><mxGeometry x="1524" y="344" width="38" height="16" as="geometry"/></mxCell>
+<mxCell id="rel_afecta" value="afecta" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Helvetica;fontColor=#334155;" parent="1" vertex="1"><mxGeometry x="1185" y="282" width="62" height="18" as="geometry"/></mxCell>
+<mxCell id="card_g_f_1" value="1..*" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontFamily=Helvetica;fontColor=#1E40AF;" parent="1" vertex="1"><mxGeometry x="1048" y="708" width="38" height="16" as="geometry"/></mxCell>
+<mxCell id="card_g_f_2" value="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontFamily=Helvetica;fontColor=#1E40AF;" parent="1" vertex="1"><mxGeometry x="1228" y="708" width="26" height="16" as="geometry"/></mxCell>
+<mxCell id="rel_evidencia" value="evidencia calculada · sin FK" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;fontFamily=Helvetica;fontColor=#64748B;" parent="1" vertex="1"><mxGeometry x="1048" y="672" width="196" height="18" as="geometry"/></mxCell>
+<mxCell id="card_u_a_1" value="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontFamily=Helvetica;fontColor=#1E40AF;" parent="1" vertex="1"><mxGeometry x="358" y="680" width="26" height="16" as="geometry"/></mxCell>
+<mxCell id="card_u_a_n" value="0..*" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontFamily=Helvetica;fontColor=#1E40AF;" parent="1" vertex="1"><mxGeometry x="1218" y="963" width="38" height="16" as="geometry"/></mxCell>
+<mxCell id="rel_recibe" value="recibe" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Helvetica;fontColor=#334155;" parent="1" vertex="1"><mxGeometry x="600" y="963" width="64" height="18" as="geometry"/></mxCell>
+<mxCell id="card_f_a_1" value="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontFamily=Helvetica;fontColor=#1E40AF;" parent="1" vertex="1"><mxGeometry x="1488" y="782" width="26" height="16" as="geometry"/></mxCell>
+<mxCell id="card_f_a_n" value="0..*" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontFamily=Helvetica;fontColor=#1E40AF;" parent="1" vertex="1"><mxGeometry x="1488" y="870" width="38" height="16" as="geometry"/></mxCell>
+<mxCell id="rel_origina" value="origina" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontFamily=Helvetica;fontColor=#334155;" parent="1" vertex="1"><mxGeometry x="1492" y="824" width="64" height="18" as="geometry"/></mxCell>
+<mxCell id="nota_alcance" value="&lt;b style=&quot;font-size:11px;color:#0F172A;&quot;&gt;ALCANCE Y DECISIONES&lt;/b&gt;&lt;br&gt;&lt;b&gt;Meta no se modela:&lt;/b&gt; HU-28/HU-29 (RF-028/RF-029) están en Won&#x27;t Have y D-08 sigue pendiente (tipo, periodo, monto, moneda, fuente y gastos incluidos).&lt;br&gt;&lt;b&gt;ReglaFuga y DiccionarioGasto&lt;/b&gt; son conceptos de dominio versionados; no hay colecciones definidas para ellos.&lt;br&gt;&lt;b&gt;Evidencia Gasto ↔ Posible Fuga:&lt;/b&gt; se calcula en consulta; no se almacena una FK ni una lista de gastos.&lt;br&gt;No se modelan sesiones, tokens, credenciales, notificaciones push ni servicios externos." style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=8;fontSize=10;fontFamily=Helvetica;fontColor=#334155;" parent="1" vertex="1"><mxGeometry x="80" y="1180" width="760" height="180" as="geometry"/></mxCell>
+<mxCell id="leyenda" value="&lt;b style=&quot;font-size:11px;color:#0F172A;&quot;&gt;LEYENDA&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#15803D&quot;&gt;&lt;b&gt;■&lt;/b&gt;&lt;/font&gt; Entidad verificada — 0: el repositorio no contiene implementación de FUGA+.&lt;br&gt;&lt;font color=&quot;#1E40AF&quot;&gt;&lt;b&gt;■&lt;/b&gt;&lt;/font&gt; Entidad propuesta — 5: documentada, sin implementación.&lt;br&gt;&lt;font color=&quot;#B45309&quot;&gt;&lt;b&gt;■&lt;/b&gt;&lt;/font&gt; Propuesta opcional — Alerta (RF-025, Could Have; fuera del MVP).&lt;br&gt;&lt;font color=&quot;#6D28D9&quot;&gt;&lt;b&gt;usuarioId · categoriaId · fugaId&lt;/b&gt;&lt;/font&gt; — referencia lógica entre documentos; MongoDB no usa FK física.&lt;br&gt;&lt;font color=&quot;#B91C1C&quot;&gt;&lt;b&gt;_id (PK)&lt;/b&gt;&lt;/font&gt; — identificador del documento.&lt;br&gt;&lt;font color=&quot;#64748B&quot;&gt;&lt;b&gt;- - -&lt;/b&gt;&lt;/font&gt; Evidencia Gasto ↔ Posible Fuga: relación derivada, sin FK almacenada. Cardinalidad: 1 · 0..* · 1..*." style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E1;strokeWidth=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=8;fontSize=10;fontFamily=Helvetica;fontColor=#334155;" parent="1" vertex="1"><mxGeometry x="880" y="1180" width="840" height="180" as="geometry"/></mxCell>
+</root>
+</mxGraphModel>
+</diagram>
 </mxfile>

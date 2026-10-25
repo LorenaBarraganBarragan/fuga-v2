@@ -1,559 +1,141 @@
-Act as a senior Requirements Analyst and Product Manager specialized in software requirements engineering, MVP definition, and MoSCoW prioritization.
+# PROMPT: Create the Prioritized Requirements Document for FUGA+
 
-Your task is to analyze the FUGA+ project context and generate the complete prioritized requirements document from scratch.
+Act as a software requirements analyst. Review the existing prioritized FUGA+ user stories and convert them into a clear, consistent, and testable prioritized requirements document.
 
-IMPORTANT:
-- Do not use or depend on any previous "prioritized requirements" response.
-- Generate the requirements based only on the project context provided below.
-- The final document must be written in Spanish.
-- The document must be concise, clear, consistent, and suitable for a university software engineering project.
-- Do not generate code.
-- Do not generate UML, Mermaid, Draw.io, database schemas, or architecture diagrams.
+**IMPORTANT: Although this prompt is written in English, all generated documentation and your final response MUST be written in Spanish.**
 
-==================================================
-PROJECT: FUGA+
-==================================================
+## 1. Source review
 
-FUGA+ is a mobile application designed for young people and students to identify "money leaks" caused mainly by small and repetitive expenses.
+Inspect the existing repository documentation and locate the latest improved and prioritized FUGA+ user stories.
 
-The main idea is:
+Use those stories as the primary source. Do not invent requirements or change agreed project decisions. If the source stories are missing or contain unresolved issues, report them instead of fabricating information.
 
-"Descubre por dónde se va tu plata."
+## 2. Project constraints
 
-The application allows an authenticated user to register an expense using natural language.
+FUGA+ is a mobile expense-tracking application with a 12-week development period, supported by AI tools.
 
-Example:
+Agreed technologies:
 
-"Hoy gasté $8.000 en un taxi"
+- React Native and TypeScript.
+- Python and FastAPI.
+- MongoDB Atlas.
+- JWT and Google sign-in.
+- Custom dictionary and deterministic rules for expense text processing, without an external AI API.
+- Android voice input using Kotlin and `SpeechRecognizer`.
+- Cloudinary for profile images.
+- Expo Notifications.
 
-The system should interpret the text and identify:
+Important rules:
 
-- Amount
-- Category
-- Description
+- Users can access only their own expenses.
+- Privacy must be enforced by the backend.
+- Administrators can view aggregated usage statistics but not individual private expenses.
+- Users must review and correct interpreted expenses before saving.
+- Editing and deleting expenses must update relevant summaries and analyses.
+- Potential money leaks are identified using deterministic rules.
+- Do not invent money-leak thresholds, numerical performance targets, or undefined business rules.
+- Consider dependencies, integration, testing, security, and realistic MVP scope.
 
-Example result:
+## 3. Required document content
 
-Amount: $8.000
-Category: Transporte
-Description: Taxi
+Create one concise Markdown document containing only these sections:
 
-After the interpretation, the user can confirm the expense and the system stores it.
+### A. Requerimientos funcionales priorizados
 
-The application should then allow the user to:
+Identify what the application must do based on the user stories.
 
-- View their expense history.
-- View a simple dashboard.
-- Consult their expenses.
-- Correct an incorrect category.
-- Identify possible money leaks.
+Assign unique identifiers: `RF-001`, `RF-002`, and so on.
 
-Possible money leaks are identified using predefined rules and patterns, mainly involving small and repetitive expenses.
+For each requirement, include:
 
-IMPORTANT:
-The identification of possible money leaks is NOT an AI prediction.
-It must be treated as a rule-based analysis performed by the application.
+- Identificador.
+- Nombre.
+- Descripción clara y verificable.
+- Prioridad MoSCoW: Must Have, Should Have, Could Have, or Won't Have (por ahora).
+- Justificación breve de la prioridad.
+- Historia de usuario de origen.
+- Criterios de aceptación verificables.
+- Dependencias, cuando existan.
+- Inclusión en el MVP: sí, no o pendiente de validación.
 
-==================================================
-PROJECT SCOPE
-==================================================
+### B. Requerimientos no funcionales priorizados
 
-The project is developed by ONE person.
+Identify relevant quality requirements, including security, privacy, usability, maintainability, reliability, data integrity, compatibility, and performance where applicable.
 
-Development time: 12 weeks.
+Assign unique identifiers: `RNF-001`, `RNF-002`, and so on.
 
-The MVP must be demonstrable in approximately 3 minutes.
+For each requirement, include:
 
-The main demonstration flow should be:
+- Identificador.
+- Nombre.
+- Descripción verificable.
+- Prioridad MoSCoW.
+- Justificación breve.
+- Criterio de aceptación o método de validación.
+- Estado: confirmado o pendiente de definición.
 
-1. Access FUGA+.
-2. Register or log in.
-3. Enter an expense using natural language.
-4. Interpret the expense.
-5. Confirm and store the expense.
-6. View the expense history.
-7. View the dashboard.
-8. Show a possible money leak detected by predefined rules.
+Do not invent numerical thresholds when the project has not defined them. Mark them as pending decisions when necessary.
 
-The project should remain realistic for one developer and a 12-week development period.
+### C. Matriz de trazabilidad
 
-==================================================
-ACTORS
-==================================================
-
-The system must consider exactly these three actors:
-
-### Visitante
-
-A person who accesses FUGA+ without being authenticated.
-
-The visitor can:
-
-- Learn what FUGA+ is.
-- View basic information about how the application works.
-- View the main functionalities.
-- Access the registration option.
-- Access the login option.
-
-The visitor cannot access personal expenses.
-
-### Usuario
-
-An authenticated person with a FUGA+ account.
-
-The user can:
-
-- Register and log in.
-- Register expenses using natural language text.
-- Review the interpretation of an expense.
-- Confirm and store expenses.
-- View their expense history.
-- View their dashboard.
-- Identify possible money leaks.
-- Perform basic expense queries.
-- Correct an incorrectly assigned category.
-
-A user must only access their own personal information and expenses.
-
-### Administrador
-
-An authenticated user with administrative permissions.
-
-The administrator can:
-
-- View general and aggregated application statistics.
-- View registered users.
-- Activate or deactivate user accounts.
-
-The administrator must not automatically have access to the private financial details of individual users.
-
-Do not invent additional actors.
-
-==================================================
-FUNCTIONAL REQUIREMENTS TO IDENTIFY
-==================================================
-
-Based on the project context, identify and formulate the functional requirements necessary for the MVP.
-
-The expected core functionality should include:
-
-1. Public access to information about FUGA+.
-2. Registration and login.
-3. Expense registration using natural language text.
-4. AI-based interpretation of the expense.
-5. Expense storage.
-6. Expense history.
-7. Dashboard.
-8. Identification of possible money leaks using predefined rules.
-9. Basic expense queries.
-10. Correction of an AI-assigned category.
-11. Administrative dashboard.
-12. User management.
-13. Optional alerts about possible money leaks.
-14. Optional voice-based expense registration.
-15. Optional comparison between expense periods.
-
-Use these as the functional scope to analyze and formulate the requirements.
-
-Do not create unnecessary additional functional requirements.
-
-==================================================
-NON-FUNCTIONAL REQUIREMENTS
-==================================================
-
-Identify the non-functional requirements necessary to guarantee the project's feasibility and quality.
-
-At minimum, consider:
-
-1. Development time and feasibility for one developer during 12 weeks.
-2. Demonstration of the MVP in approximately 3 minutes.
-3. Limitation of AI scope to expense interpretation and classification.
-4. Security and role-based access.
-5. Privacy of user expense data.
-
-Do not create unnecessary additional non-functional requirements.
-
-==================================================
-MOSCOW PRIORITIZATION
-==================================================
-
-Prioritize the identified requirements using MoSCoW:
-
-- Must: Essential for the MVP.
-- Should: Important but the MVP can operate without it.
-- Could: Optional and can be implemented if time remains.
-- Won't: Explicitly outside the MVP scope.
-
-Use this expected prioritization as guidance:
-
-### MUST
-
-The following core requirements should be Must:
-
-- Public access.
-- Registration and login.
-- Expense registration by text.
-- AI interpretation.
-- Expense storage.
-- Expense history.
-- Dashboard.
-- Identification of possible money leaks.
-- Development feasibility.
-- 3-minute demonstration.
-- AI scope.
-- Security and roles.
-- Privacy.
-
-### SHOULD
-
-The following should normally be Should:
-
-- Basic expense queries.
-- Correction of category.
-- Administrative dashboard.
-- User management.
-
-### COULD
-
-The following should normally be Could:
-
-- Alerts about possible money leaks.
-- Voice registration.
-- Comparison between periods.
-
-### WON'T
-
-The following are explicitly outside the MVP:
-
-- Bank connections.
-- Payments.
-- Transfers.
-- Credit/debit card management.
-- Credit lines.
-- Loans.
-- Investments.
-- Professional financial advice.
-- Training a proprietary AI model.
-- Market prediction.
-- Real third-party banking data.
-- Advanced push notifications.
-- Advanced receipt scanning.
-- External banking integrations.
-- Advanced administrative functions.
-- Multiple administrator levels.
-
-Do not move these features into the MVP unless the project context explicitly changes.
-
-==================================================
-REQUIREMENT FORMAT
-==================================================
-
-For every functional requirement, use this format:
-
-## RF-XX — Priority
-
-**\*\*Nombre del requisito:\*\*** Description of the requirement.
-
-**\*\*Criterio de aceptación:\*\*** A concrete and verifiable acceptance criterion.
-
-Use sequential numbering starting with RF-01.
-
-For every non-functional requirement, use:
-
-## RNF-XX — Priority
-
-**\*\*Nombre del requisito:\*\*** Description of the requirement.
-
-**\*\*Criterio de aceptación:\*\*** A concrete and verifiable acceptance criterion.
-
-Use sequential numbering starting with RNF-01.
-
-==================================================
-EXPECTED FUNCTIONAL REQUIREMENT CONTENT
-==================================================
-
-The generated requirements should cover the following concepts:
-
-RF-01:
-Public access so a visitor can learn about FUGA+ without registering.
-
-RF-02:
-Registration and login so a user can access personal functionality.
-
-RF-03:
-Natural-language expense registration.
-
-RF-04:
-AI interpretation that extracts amount, category, and description.
-
-RF-05:
-Persistent storage of confirmed expenses.
-
-RF-06:
-Chronological expense history.
-
-RF-07:
-Simple dashboard with expense summaries.
-
-RF-08:
-Rule-based identification of possible money leaks.
-
-RF-09:
-Basic expense queries or filters.
-
-RF-10:
-Correction of an incorrectly assigned category.
-
-RF-11:
-Administrative dashboard with general and aggregated statistics.
-
-RF-12:
-User management by the administrator.
-
-RF-13:
-Optional in-app alerts about possible money leaks.
-
-RF-14:
-Optional voice expense registration.
-
-RF-15:
-Optional comparison between different expense periods.
-
-The wording may be improved for clarity, but do not change the intended scope.
-
-==================================================
-EXPECTED NON-FUNCTIONAL REQUIREMENT CONTENT
-==================================================
-
-The generated requirements should cover:
-
-RNF-01:
-Feasibility for one developer in 12 weeks.
-
-RNF-02:
-MVP demonstration in approximately 3 minutes.
-
-RNF-03:
-AI limited to expense interpretation and classification.
-
-RNF-04:
-Security and role-based access.
-
-RNF-05:
-Privacy and isolation of user expense data.
-
-==================================================
-WON'T SECTION
-==================================================
-
-Create a section titled exactly:
-
-## Won't — Explícitamente fuera de alcance del MVP
-
-Use a bullet list containing:
-
-- Conexiones bancarias
-- Pagos
-- Transferencias
-- Tarjetas
-- Líneas de crédito
-- Préstamos
-- Inversiones
-- Asesoría financiera profesional
-- Entrenamiento de un modelo de IA propio
-- Predicción de mercado
-- Datos bancarios reales de terceros
-- Notificaciones push avanzadas
-- Escaneo avanzado de recibos
-- Integraciones bancarias externas
-- Funciones administrativas avanzadas
-- Gestión de múltiples niveles de administrador
-
-==================================================
-JUSTIFICATION
-==================================================
-
-After the requirements, create:
-
-## Justificación de la priorización
-
-Explain the prioritization clearly.
-
-The justification should explain:
-
-- Why public access and registration/login are Must.
-- Why expense registration, AI interpretation, storage, history, dashboard, and money-leak detection form the central value chain and therefore are Must.
-- Why queries and category correction are Should.
-- Why administrative dashboard and user management are Should.
-- Why alerts, voice registration, and period comparison are Could.
-- Why the non-functional requirements are Must because they establish feasibility, demonstration, AI scope, security, roles, and privacy.
-
-Do not use subjective rankings or scores.
-
-==================================================
-DEMONSTRATION
-==================================================
-
-Create:
-
-## Requisitos esenciales para la demostración
+Create a table linking requirements to their original user stories.
 
 Include:
 
-- RF-01 — Acceso público
-- RF-02 — Registro e inicio de sesión
-- RF-03 — Registro por texto
-- RF-04 — Interpretación por IA
-- RF-05 — Almacenamiento
-- RF-06 — Historial
-- RF-07 — Dashboard
-- RF-08 — Detección de posibles fugas
-- RNF-02 — Restricción de tiempo de la demostración
+- Identificador del requerimiento.
+- Tipo de requerimiento.
+- Historia de usuario relacionada.
+- Prioridad.
+- Inclusión en el MVP.
 
-Explain that the administrative panel can be shown briefly as part of the general system but is not the main 3-minute flow.
+Ensure that all relevant user stories are represented. If one story produces multiple requirements, include all relevant relationships.
 
-==================================================
-DEPENDENCIES
-==================================================
+### D. Alcance priorizado del MVP
 
-Create:
+Summarize:
 
-## Dependencias
+- Essential requirements for the MVP.
+- Important requirements that may be included if time permits.
+- Requirements postponed to later versions.
+- A realistic implementation order for the 12-week project.
 
-Describe the logical dependencies between the requirements.
+Consider AI-assisted development without ignoring testing, integration, and debugging. Security and privacy requirements necessary to protect user data must not be postponed.
 
-At minimum, use this dependency chain:
+### E. Dependencias y decisiones pendientes
 
-RF-02 depends on RF-01.
+List only the most relevant dependencies and unresolved decisions that could affect implementation or prioritization.
 
-RF-03 depends on RF-02.
+Clearly distinguish confirmed decisions from assumptions and pending definitions.
 
-RF-04 depends on RF-03.
+## 4. Output and file management
 
-RF-05 depends on RF-04.
+Save the document at this exact repository-relative path:
 
-RF-06 depends on RF-05.
+`docs/respuestas-ia/salida-requerimientos-priorizados/requerimientos_priorizados_fuga.md`
 
-RF-07 depends on RF-05.
+Before creating or editing files:
 
-RF-08 depends on RF-05 and sufficient historical expenses.
+1. Inspect the repository and identify the existing user-story documentation.
+2. Reuse the existing documentation as the source of truth.
+3. Create the specified output directory only if it does not exist.
+4. If the target file already exists, review and update it instead of creating a duplicate.
 
-RF-09 depends on RF-05.
+Do not create one file per requirement. Do not create unnecessary documents. Do not modify application code, dependencies, configuration files, or diagrams. Do not delete existing files.
 
-RF-10 depends on RF-04 and RF-05.
+## 5. Validation
 
-RF-11 depends on users and stored system data.
+Before finishing, verify that:
 
-RF-12 depends on RF-02 and role/permission management.
+- The entire document is written in Spanish.
+- Requirements have unique identifiers.
+- Requirements are clear, non-duplicative, and testable.
+- Priorities are justified.
+- Requirements are traceable to the user stories.
+- The MVP scope is realistic for 12 weeks.
+- Security and privacy are appropriately addressed.
+- Undefined decisions are clearly identified.
+- The file exists at the exact requested path.
 
-RF-13 depends on RF-08.
+Execute the task; do not stop after presenting a plan.
 
-RF-14 depends on RF-03 and RF-04.
-
-RF-15 depends on RF-05 and RF-07.
-
-RNF-02 depends on RF-02 through RF-08 working together.
-
-==================================================
-RISKS
-==================================================
-
-Create:
-
-## Riesgos clave
-
-Include these four key risks:
-
-1. RF-04 — Interpretación basada en IA:
-Technical risk related to correctly extracting amount, category, and description from informal natural language.
-
-2. RF-08 — Identificación de fugas:
-Design and validation risk related to defining rules that generate credible results and avoid excessive false positives.
-
-3. RNF-04 — Seguridad y roles:
-Risk related to authentication, authorization, role separation, and protection of user data.
-
-4. RNF-02 — Demostración de 3 minutos:
-Integration and testing risk caused by having to demonstrate the main flow in a short period as a solo developer.
-
-==================================================
-FINAL DOCUMENT STRUCTURE
-==================================================
-
-The final generated document MUST follow this exact order:
-
-# Priorización de Requisitos (MoSCoW) — FUGA+
-
-## RF-01 — Must
-...
-## RF-02 — Must
-...
-Continue through RF-15.
-
----
-
-## RNF-01 — Must
-...
-Continue through RNF-05.
-
----
-
-## Won't — Explícitamente fuera de alcance del MVP
-
-...
-
----
-
-## Justificación de la priorización
-
-...
-
----
-
-## Requisitos esenciales para la demostración
-
-...
-
----
-
-## Dependencias
-
-...
-
----
-
-## Riesgos clave
-
-...
-
-==================================================
-OUTPUT FILE
-==================================================
-
-IMPORTANT:
-
-Do not only display the result in the chat.
-
-Physically create the final Markdown document inside the project filesystem.
-
-The exact file to create is:
-
-docs/respuestas-ia/salida-requerimientos-priorizados.md
-
-If the file already exists, replace its contents with the newly generated document.
-
-Do not create another file with a different name.
-
-Do not create another folder.
-
-After generating the document:
-
-1. Verify that the file exists.
-2. Verify that it is not empty.
-3. Verify that it contains the complete requirements document.
-4. Verify that the document is written in Spanish.
-5. Verify that RF-01 through RF-15 are present.
-6. Verify that RNF-01 through RNF-05 are present.
-7. Verify that the Won't, Justificación, Requisitos esenciales para la demostración, Dependencias, and Riesgos clave sections are present.
-
-Do not generate any other files.
+Finally, respond in Spanish with the exact file path, the number of functional and non-functional requirements created, the priority breakdown, and any important pending decisions.

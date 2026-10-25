@@ -1,208 +1,502 @@
-<mxfile host="65bd71144e">
-    <diagram id="fuga-diagrama-historias-usuario" name="Diagrama de Historias de Usuario - FUGA+">
-        <mxGraphModel dx="1119" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0">
-            <root>
-                <mxCell id="0"/>
-                <mxCell id="1" parent="0"/>
-                <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;" value="Diagrama de Historias de Usuario — FUGA+" vertex="1">
-                    <mxGeometry height="30" width="520" x="700" y="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" value="Funcionalidades principales de la aplicación móvil" vertex="1">
-                    <mxGeometry height="20" width="520" x="700" y="50" as="geometry"/>
-                </mxCell>
-                <mxCell id="legend_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#f9f9f9;" value="" vertex="1">
-                    <mxGeometry height="90" width="280" x="1600" y="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="legend_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;" value="Leyenda" vertex="1">
-                    <mxGeometry height="20" width="280" x="1600" y="25" as="geometry"/>
-                </mxCell>
-                <mxCell id="legend_must" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" value="Must = Obligatorio" vertex="1">
-                    <mxGeometry height="15" width="260" x="1610" y="50" as="geometry"/>
-                </mxCell>
-                <mxCell id="legend_should" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" value="Should = Importante" vertex="1">
-                    <mxGeometry height="15" width="260" x="1610" y="65" as="geometry"/>
-                </mxCell>
-                <mxCell id="legend_could" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" value="Could = Opcional" vertex="1">
-                    <mxGeometry height="15" width="260" x="1610" y="80" as="geometry"/>
-                </mxCell>
-                <mxCell id="visitante" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=12;" value="Visitante" vertex="1">
-                    <mxGeometry height="60" width="30" x="60" y="200" as="geometry"/>
-                </mxCell>
-                <mxCell id="usuario" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=12;" value="Usuario" vertex="1">
-                    <mxGeometry height="60" width="30" x="60" y="550" as="geometry"/>
-                </mxCell>
-                <mxCell id="administrador" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=12;" value="Administrador" vertex="1">
-                    <mxGeometry height="60" width="30" x="60" y="900" as="geometry"/>
-                </mxCell>
-                <mxCell id="must_container" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#d79b00;fillColor=#fff2cc;dashed=1;labelPosition=center;verticalLabelPosition=top;align=center;verticalAlign=bottom;fontSize=12;fontStyle=1;" value="MUST — OBLIGATORIO" vertex="1">
-                    <mxGeometry height="280" width="1420" x="150" y="120" as="geometry"/>
-                </mxCell>
-                <mxCell id="must_label" parent="1" style="text;html=1;strokeColor=none;fillColor=#fff2cc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;" value="Autenticación y acceso / Gestión de gastos / Análisis financiero" vertex="1">
-                    <mxGeometry height="15" width="420" x="650" y="125" as="geometry"/>
-                </mxCell>
-                <mxCell id="hu01" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d79b00;fillColor=#ffedcc;fontSize=10;align=center;" value="HU-01&#xa;Conocer FUGA+" vertex="1">
-                    <mxGeometry height="50" width="160" x="200" y="160" as="geometry"/>
-                </mxCell>
-                <mxCell id="hu02" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d79b00;fillColor=#ffedcc;fontSize=10;align=center;" value="HU-02&#xa;Registrarse e iniciar sesión" vertex="1">
-                    <mxGeometry height="50" width="160" x="380" y="160" as="geometry"/>
-                </mxCell>
-                <mxCell id="hu03" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d79b00;fillColor=#ffedcc;fontSize=10;align=center;" value="HU-03&#xa;Registrar gasto en lenguaje natural" vertex="1">
-                    <mxGeometry height="50" width="160" x="580" y="160" as="geometry"/>
-                </mxCell>
-                <mxCell id="hu04" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d79b00;fillColor=#ffedcc;fontSize=10;align=center;" value="HU-04&#xa;Interpretar gasto con IA" vertex="1">
-                    <mxGeometry height="50" width="160" x="760" y="160" as="geometry"/>
-                </mxCell>
-                <mxCell id="hu05" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d79b00;fillColor=#ffedcc;fontSize=10;align=center;" value="HU-05&#xa;Consultar historial de gastos" vertex="1">
-                    <mxGeometry height="50" width="160" x="940" y="160" as="geometry"/>
-                </mxCell>
-                <mxCell id="hu06" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d79b00;fillColor=#ffedcc;fontSize=10;align=center;" value="HU-06&#xa;Consultar dashboard personal" vertex="1">
-                    <mxGeometry height="50" width="160" x="1120" y="160" as="geometry"/>
-                </mxCell>
-                <mxCell id="hu07" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#d79b00;fillColor=#ffedcc;fontSize=10;align=center;" value="HU-07&#xa;Detectar posibles fugas de dinero" vertex="1">
-                    <mxGeometry height="50" width="160" x="1300" y="160" as="geometry"/>
-                </mxCell>
-                <mxCell id="should_container" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;dashed=1;labelPosition=center;verticalLabelPosition=top;align=center;verticalAlign=bottom;fontSize=12;fontStyle=1;" value="SHOULD — IMPORTANTE" vertex="1">
-                    <mxGeometry height="200" width="1420" x="150" y="450" as="geometry"/>
-                </mxCell>
-                <mxCell id="should_label" parent="1" style="text;html=1;strokeColor=none;fillColor=#dae8fc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;" value="Gestión de gastos / Administración" vertex="1">
-                    <mxGeometry height="15" width="220" x="750" y="455" as="geometry"/>
-                </mxCell>
-                <mxCell id="hu08" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#e6f0ff;fontSize=10;align=center;" value="HU-08&#xa;Filtrar historial" vertex="1">
-                    <mxGeometry height="50" width="160" x="200" y="490" as="geometry"/>
-                </mxCell>
-                <mxCell id="hu09" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#e6f0ff;fontSize=10;align=center;" value="HU-09&#xa;Corregir categoría de un gasto" vertex="1">
-                    <mxGeometry height="50" width="160" x="380" y="490" as="geometry"/>
-                </mxCell>
-                <mxCell id="hu10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#e6f0ff;fontSize=10;align=center;" value="HU-10&#xa;Consultar estadísticas generales" vertex="1">
-                    <mxGeometry height="50" width="160" x="560" y="490" as="geometry"/>
-                </mxCell>
-                <mxCell id="hu11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#e6f0ff;fontSize=10;align=center;" value="HU-11&#xa;Gestionar usuarios" vertex="1">
-                    <mxGeometry height="50" width="160" x="740" y="490" as="geometry"/>
-                </mxCell>
-                <mxCell id="could_container" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#82b366;fillColor=#d5e8d4;dashed=1;labelPosition=center;verticalLabelPosition=top;align=center;verticalAlign=bottom;fontSize=12;fontStyle=1;" value="COULD — OPCIONAL" vertex="1">
-                    <mxGeometry height="200" width="1420" x="150" y="700" as="geometry"/>
-                </mxCell>
-                <mxCell id="could_label" parent="1" style="text;html=1;strokeColor=none;fillColor=#d5e8d4;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;" value="Funcionalidades opcionales" vertex="1">
-                    <mxGeometry height="15" width="160" x="780" y="705" as="geometry"/>
-                </mxCell>
-                <mxCell id="hu12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#82b366;fillColor=#e8f5e9;fontSize=10;align=center;" value="HU-12&#xa;Recibir alertas de posibles fugas" vertex="1">
-                    <mxGeometry height="50" width="160" x="200" y="740" as="geometry"/>
-                </mxCell>
-                <mxCell id="hu13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#82b366;fillColor=#e8f5e9;fontSize=10;align=center;" value="HU-13&#xa;Registrar gasto por voz" vertex="1">
-                    <mxGeometry height="50" width="160" x="380" y="740" as="geometry"/>
-                </mxCell>
-                <mxCell id="hu14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#82b366;fillColor=#e8f5e9;fontSize=10;align=center;" value="HU-14&#xa;Comparar periodos" vertex="1">
-                    <mxGeometry height="50" width="160" x="560" y="740" as="geometry"/>
-                </mxCell>
-                <mxCell id="edge1" edge="1" parent="1" source="visitante" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hu01">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="edge2" edge="1" parent="1" source="visitante" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hu02">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="150" y="230"/>
-                            <mxPoint x="150" y="230"/>
-                            <mxPoint x="150" y="185"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="edge3" edge="1" parent="1" source="usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hu03">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="140" y="580"/>
-                            <mxPoint x="140" y="185"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="edge4" edge="1" parent="1" source="usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hu04">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="140" y="580"/>
-                            <mxPoint x="140" y="185"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="edge5" edge="1" parent="1" source="usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hu05">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="140" y="580"/>
-                            <mxPoint x="140" y="185"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="edge6" edge="1" parent="1" source="usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hu06">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="140" y="580"/>
-                            <mxPoint x="140" y="185"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="edge7" edge="1" parent="1" source="usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hu07">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="140" y="580"/>
-                            <mxPoint x="140" y="185"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="edge8" edge="1" parent="1" source="usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hu08">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="140" y="580"/>
-                            <mxPoint x="140" y="515"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="edge9" edge="1" parent="1" source="usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hu09">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="140" y="580"/>
-                            <mxPoint x="140" y="515"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="edge12" edge="1" parent="1" source="usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hu12">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="140" y="580"/>
-                            <mxPoint x="140" y="765"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="edge13" edge="1" parent="1" source="usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hu13">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="140" y="580"/>
-                            <mxPoint x="140" y="765"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="edge14" edge="1" parent="1" source="usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hu14">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="140" y="580"/>
-                            <mxPoint x="140" y="765"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="edge10" edge="1" parent="1" source="administrador" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hu10">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="130" y="930"/>
-                            <mxPoint x="130" y="515"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="edge11" edge="1" parent="1" source="administrador" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="hu11">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="130" y="930"/>
-                            <mxPoint x="130" y="515"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-            </root>
-        </mxGraphModel>
-    </diagram>
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-10-25T00:00:00.000Z" agent="opencode" version="24.7.17" type="device">
+  <diagram id="p1" name="Vista general">
+    <mxGraphModel dx="1800" dy="1240" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1240" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p1_title" value="FUGA+ — Diagrama de Historias de Usuario" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=28;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="26" width="1250" height="44" />
+        </mxCell>
+        <mxCell id="p1_subtitle" value="33 historias · 8 módulos · 3 actores · 0 implementadas" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11.5;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="72" y="72" width="1220" height="24" />
+        </mxCell>
+        <mxCell id="p1_badge" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#E2E8F0;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1358" y="32" width="372" height="32" />
+        </mxCell>
+        <mxCell id="p1_badge_text" value="&lt;b&gt;Vista general · 1 de 5&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=9.5;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1358" y="32" width="372" height="32" />
+        </mxCell>
+        <mxCell id="p1_rule" style="rounded=1;arcSize=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#E2E8F0;strokeWidth=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="108" width="1660" height="2" />
+        </mxCell>
+        <mxCell id="p1_actor_visitante" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=#F0FDF4;strokeColor=#86EFAC;strokeWidth=1.2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="130" width="540" height="115" />
+        </mxCell>
+        <mxCell id="p1_actor_visitante_text" value="&lt;span style=&quot;font-size:9px;color:#64748B;&quot;&gt;&lt;b&gt;ACTOR&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:16px;color:#166534;&quot;&gt;&lt;b&gt;Visitante&lt;/b&gt;&lt;/span&gt;&lt;span style=&quot;font-size:20px;color:#166534;&quot;&gt;&lt;b&gt;  2&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9px;color:#475569;&quot;&gt;HU-01–HU-02 · Acceso público, registro e inicio de sesión&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="88" y="140" width="504" height="95" />
+        </mxCell>
+        <mxCell id="p1_actor_usuario" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#93C5FD;strokeWidth=1.2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="630" y="130" width="540" height="115" />
+        </mxCell>
+        <mxCell id="p1_actor_usuario_text" value="&lt;span style=&quot;font-size:9px;color:#64748B;&quot;&gt;&lt;b&gt;ACTOR&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:16px;color:#1D4ED8;&quot;&gt;&lt;b&gt;Usuario&lt;/b&gt;&lt;/span&gt;&lt;span style=&quot;font-size:20px;color:#1D4ED8;&quot;&gt;&lt;b&gt;  28&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9px;color:#475569;&quot;&gt;HU-03–HU-29, HU-33 · Operación financiera, privacidad y consulta&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="648" y="140" width="504" height="95" />
+        </mxCell>
+        <mxCell id="p1_actor_administrador" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=#F5F3FF;strokeColor=#C4B5FD;strokeWidth=1.2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1190" y="130" width="540" height="115" />
+        </mxCell>
+        <mxCell id="p1_actor_administrador_text" value="&lt;span style=&quot;font-size:9px;color:#64748B;&quot;&gt;&lt;b&gt;ACTOR&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:16px;color:#6D28D9;&quot;&gt;&lt;b&gt;Administrador&lt;/b&gt;&lt;/span&gt;&lt;span style=&quot;font-size:20px;color:#6D28D9;&quot;&gt;&lt;b&gt;  3&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9px;color:#475569;&quot;&gt;HU-30–HU-32 · Estadísticas agregadas y control de cuentas&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1208" y="140" width="504" height="95" />
+        </mxCell>
+        <mxCell id="p1_stat_total_hu" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="270" width="316" height="88" />
+        </mxCell>
+        <mxCell id="p1_stat_total_hu_text" value="&lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;&lt;b&gt;TOTAL HU&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:24px;color:#0F172A;&quot;&gt;&lt;b&gt;33&lt;/b&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="86" y="280" width="284" height="68" />
+        </mxCell>
+        <mxCell id="p1_stat_pendientes" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#CBD5E1;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="406" y="270" width="316" height="88" />
+        </mxCell>
+        <mxCell id="p1_stat_pendientes_text" value="&lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;&lt;b&gt;PENDIENTES&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:24px;color:#334155;&quot;&gt;&lt;b&gt;31&lt;/b&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="422" y="280" width="284" height="68" />
+        </mxCell>
+        <mxCell id="p1_stat_en_desarrollo" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#93C5FD;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="742" y="270" width="316" height="88" />
+        </mxCell>
+        <mxCell id="p1_stat_en_desarrollo_text" value="&lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;&lt;b&gt;EN DESARROLLO&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:24px;color:#1D4ED8;&quot;&gt;&lt;b&gt;0&lt;/b&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="758" y="280" width="284" height="68" />
+        </mxCell>
+        <mxCell id="p1_stat_implementadas" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=#F0FDF4;strokeColor=#86EFAC;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1078" y="270" width="316" height="88" />
+        </mxCell>
+        <mxCell id="p1_stat_implementadas_text" value="&lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;&lt;b&gt;IMPLEMENTADAS&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:24px;color:#166534;&quot;&gt;&lt;b&gt;0&lt;/b&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1094" y="280" width="284" height="68" />
+        </mxCell>
+        <mxCell id="p1_stat_postergadas" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#FCD34D;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1414" y="270" width="316" height="88" />
+        </mxCell>
+        <mxCell id="p1_stat_postergadas_text" value="&lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;&lt;b&gt;POSTERGADAS&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:24px;color:#92400E;&quot;&gt;&lt;b&gt;2&lt;/b&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1430" y="280" width="284" height="68" />
+        </mxCell>
+        <mxCell id="p1_modules_label" value="&lt;span style=&quot;font-size:11px;color:#475569;&quot;&gt;&lt;b&gt;MÓDULOS Y ALCANCE&lt;/b&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="382" width="700" height="22" />
+        </mxCell>
+        <mxCell id="p1_mod1" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1D4ED8;strokeWidth=1.4;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="415" width="400" height="165" />
+        </mxCell>
+        <mxCell id="p1_mod1_text" value="&lt;span style=&quot;font-size:9px;color:#1D4ED8;&quot;&gt;&lt;b&gt;M1&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;HU-01–HU-06 · 6 historias&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:12.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Acceso, autenticación y cuentas&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#475569;&quot;&gt;3 Must · 2 Should · 1 Could&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;6 pendientes · 0 implementadas&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="86" y="429" width="368" height="140" />
+        </mxCell>
+        <mxCell id="p1_mod2" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0F766E;strokeWidth=1.4;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="490" y="415" width="400" height="165" />
+        </mxCell>
+        <mxCell id="p1_mod2_text" value="&lt;span style=&quot;font-size:9px;color:#0F766E;&quot;&gt;&lt;b&gt;M2&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;HU-07–HU-09 · 3 historias&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:12.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Perfil del usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#475569;&quot;&gt;2 Should · 1 Could&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;3 pendientes · 0 implementadas&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="506" y="429" width="368" height="140" />
+        </mxCell>
+        <mxCell id="p1_mod3" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#7C3AED;strokeWidth=1.4;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="910" y="415" width="400" height="165" />
+        </mxCell>
+        <mxCell id="p1_mod3_text" value="&lt;span style=&quot;font-size:9px;color:#7C3AED;&quot;&gt;&lt;b&gt;M3&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;HU-10–HU-16 · 7 historias&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:12.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Registro y gestión de gastos&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#475569;&quot;&gt;5 Must · 2 Should&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;7 pendientes · 0 implementadas&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="926" y="429" width="368" height="140" />
+        </mxCell>
+        <mxCell id="p1_mod4" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B45309;strokeWidth=1.4;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1330" y="415" width="400" height="165" />
+        </mxCell>
+        <mxCell id="p1_mod4_text" value="&lt;span style=&quot;font-size:9px;color:#B45309;&quot;&gt;&lt;b&gt;M4&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;HU-17–HU-19 · 3 historias&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:12.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Registro por voz&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#475569;&quot;&gt;3 Could&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;3 pendientes · 0 implementadas&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1346" y="429" width="368" height="140" />
+        </mxCell>
+        <mxCell id="p1_mod5" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0369A1;strokeWidth=1.4;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="600" width="400" height="165" />
+        </mxCell>
+        <mxCell id="p1_mod5_text" value="&lt;span style=&quot;font-size:9px;color:#0369A1;&quot;&gt;&lt;b&gt;M5&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;HU-20–HU-22 · 3 historias&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:12.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Dashboard y estadísticas&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#475569;&quot;&gt;2 Must · 1 Could&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;3 pendientes · 0 implementadas&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="86" y="614" width="368" height="140" />
+        </mxCell>
+        <mxCell id="p1_mod6" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#BE123C;strokeWidth=1.4;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="490" y="600" width="400" height="165" />
+        </mxCell>
+        <mxCell id="p1_mod6_text" value="&lt;span style=&quot;font-size:9px;color:#BE123C;&quot;&gt;&lt;b&gt;M6&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;HU-23–HU-24 · 2 historias&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:12.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Detección de fugas de dinero&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#475569;&quot;&gt;2 Must&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;2 pendientes · 0 implementadas&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="506" y="614" width="368" height="140" />
+        </mxCell>
+        <mxCell id="p1_mod7" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6D28D9;strokeWidth=1.4;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="910" y="600" width="400" height="165" />
+        </mxCell>
+        <mxCell id="p1_mod7_text" value="&lt;span style=&quot;font-size:9px;color:#6D28D9;&quot;&gt;&lt;b&gt;M7&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;HU-25–HU-29 · 5 historias&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:12.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Alertas, recomendaciones y metas&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#475569;&quot;&gt;3 Could · 2 Won't&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;3 pendientes · 2 postergadas · 0 implementadas&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="926" y="614" width="368" height="140" />
+        </mxCell>
+        <mxCell id="p1_mod8" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#475569;strokeWidth=1.4;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1330" y="600" width="400" height="165" />
+        </mxCell>
+        <mxCell id="p1_mod8_text" value="&lt;span style=&quot;font-size:9px;color:#475569;&quot;&gt;&lt;b&gt;M8&lt;/b&gt;&lt;/span&gt; &lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;HU-30–HU-33 · 4 historias&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:12.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Administración y privacidad&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#475569;&quot;&gt;1 Must · 3 Should&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;4 pendientes · 0 implementadas&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1346" y="614" width="368" height="140" />
+        </mxCell>
+        <mxCell id="p1_notes_label" value="&lt;span style=&quot;font-size:11px;color:#475569;&quot;&gt;&lt;b&gt;DEPENDENCIAS Y TRAZABILIDAD&lt;/b&gt;&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="792" width="800" height="22" />
+        </mxCell>
+        <mxCell id="p1_deps_box" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E2E8F0;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="825" width="810" height="170" />
+        </mxCell>
+        <mxCell id="p1_deps_text" value="&lt;b style=&quot;font-size:11px;color:#0F172A;&quot;&gt;Dependencias documentadas&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.3px;color:#334155;&quot;&gt;M1 habilita M2, M3 y M8 · M3 habilita M4, M5, M6 y M7 · M6 habilita M7. M8 también se apoya en M3.&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.3px;color:#334155;&quot;&gt;Las tarjetas muestran los vínculos HU documentados (prerrequisitos y habilitaciones). Las flechas de las páginas de módulo solo resaltan flujos secuenciales simples para evitar cruces.&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;No se dibujan flechas entre páginas; los vínculos cruzados quedan escritos en cada tarjeta.&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="88" y="840" width="774" height="140" />
+        </mxCell>
+        <mxCell id="p1_trace_box" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E2E8F0;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="920" y="825" width="810" height="170" />
+        </mxCell>
+        <mxCell id="p1_trace_text" value="&lt;b style=&quot;font-size:11px;color:#0F172A;&quot;&gt;Alcance, estado y discrepancia&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.2px;color:#334155;&quot;&gt;33 HU documentadas; 0 implementadas y 0 en desarrollo. 31 pendientes; 2 postergadas (HU-28–HU-29, Won't Have; D-08 pendiente).&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.2px;color:#334155;&quot;&gt;El README de tecnologías menciona OpenAI API y Redis. HU-11 y RF-011 exigen diccionario propio y reglas deterministas, sin API externa de IA; se conserva la HU aprobada como referencia. La arquitectura sigue en fase de diseño y documentación.&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Fuente: docs/respuestas-ia/salida-historias-usuario.md&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="938" y="840" width="774" height="140" />
+        </mxCell>
+        <mxCell id="p1_legend_box" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#E2E8F0;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="1030" width="1660" height="170" />
+        </mxCell>
+        <mxCell id="p1_legend_text" value="&lt;b style=&quot;font-size:11px;color:#0F172A;&quot;&gt;Leyenda y lectura&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.2px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#166534;&quot;&gt;■ Implementada 0&lt;/b&gt; · &lt;b style=&quot;color:#1D4ED8;&quot;&gt;■ En desarrollo 0&lt;/b&gt; · &lt;b style=&quot;color:#334155;&quot;&gt;■ Pendiente 31&lt;/b&gt; · &lt;b style=&quot;color:#92400E;&quot;&gt;■ Postergada 2&lt;/b&gt; · &lt;b style=&quot;color:#64748B;&quot;&gt;■ Propuesta 0&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.2px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;■ Must 13&lt;/b&gt; · &lt;b style=&quot;color:#1E40AF;&quot;&gt;■ Should 9&lt;/b&gt; · &lt;b style=&quot;color:#166534;&quot;&gt;■ Could 9&lt;/b&gt; · &lt;b style=&quot;color:#374151;&quot;&gt;■ Won't 2&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.2px;color:#475569;&quot;&gt;Actor: &lt;b style=&quot;color:#166534;&quot;&gt;■ Visitante 2&lt;/b&gt; · &lt;b style=&quot;color:#1D4ED8;&quot;&gt;■ Usuario 28&lt;/b&gt; · &lt;b style=&quot;color:#6D28D9;&quot;&gt;■ Administrador 3&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.5px;color:#64748B;&quot;&gt;Vínculos = relaciones HU documentadas (prerrequisitos y habilitaciones). No se marca ninguna HU como implementada porque no hay código FUGA+ verificable. Fuente: docs/respuestas-ia/salida-historias-usuario.md.&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="88" y="1040" width="1624" height="150" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p2" name="M1–M2 · Acceso y perfil">
+    <mxGraphModel dx="1800" dy="1240" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1240" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p2_title" value="FUGA+ — Diagrama de Historias de Usuario" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=28;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="26" width="1250" height="44" />
+        </mxCell>
+        <mxCell id="p2_subtitle" value="M1–M2 · Acceso, cuentas y perfil · 9 historias" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11.5;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="72" y="72" width="1220" height="24" />
+        </mxCell>
+        <mxCell id="p2_badge" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#E2E8F0;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1358" y="32" width="372" height="32" />
+        </mxCell>
+        <mxCell id="p2_badge_text" value="&lt;b&gt;Página 2 de 5&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=9.5;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1358" y="32" width="372" height="32" />
+        </mxCell>
+        <mxCell id="p2_rule" style="rounded=1;arcSize=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#E2E8F0;strokeWidth=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="108" width="1660" height="2" />
+        </mxCell>
+        <mxCell id="p2_m1_panel" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#E2E8F0;strokeWidth=1.2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="130" width="1680" height="560" />
+        </mxCell>
+        <mxCell id="p2_m1_head" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#1D4ED8;strokeColor=#1D4ED8;strokeWidth=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="61" y="131" width="1678" height="52" />
+        </mxCell>
+        <mxCell id="p2_m1_head_text" value="&lt;b&gt;M1 · Acceso, autenticación y cuentas&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#E2E8F0;&quot;&gt;HU-01 – HU-06 · 6 historias · 3 Must · 2 Should · 1 Could&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="78" y="133" width="980" height="48" />
+        </mxCell>
+        <mxCell id="p2_m1_note" value="&lt;span style=&quot;font-size:9px;color:#E2E8F0;&quot;&gt;Habilita M2, M3 y M8.&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=9;fontColor=#E2E8F0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1180" y="133" width="540" height="48" />
+        </mxCell>
+        <mxCell id="p2_m2_panel" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#E2E8F0;strokeWidth=1.2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="720" width="1680" height="330" />
+        </mxCell>
+        <mxCell id="p2_m2_head" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#0F766E;strokeColor=#0F766E;strokeWidth=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="61" y="721" width="1678" height="52" />
+        </mxCell>
+        <mxCell id="p2_m2_head_text" value="&lt;b&gt;M2 · Perfil del usuario&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#E2E8F0;&quot;&gt;HU-07 – HU-09 · 3 historias · 2 Should · 1 Could&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="78" y="723" width="980" height="48" />
+        </mxCell>
+        <mxCell id="p2_m2_note" value="&lt;span style=&quot;font-size:9px;color:#E2E8F0;&quot;&gt;Depende de M1 · HU-02.&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=9;fontColor=#E2E8F0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1180" y="723" width="540" height="48" />
+        </mxCell>
+        <mxCell id="p2_hu01" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-01&lt;/b&gt; · M1&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#166534;&quot;&gt;&lt;b&gt;■ Visitante&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Consultar información pública de FUGA+ y acceder a registro o inicio de sesión&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;Must Have&lt;/b&gt; · MVP: Sí&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-02 · HU-04&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#1D4ED8;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="90" y="200" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p2_hu02" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-02&lt;/b&gt; · M1&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#166534;&quot;&gt;&lt;b&gt;■ Visitante&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Registrarse e iniciar sesión con correo y contraseña&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;Must Have&lt;/b&gt; · MVP: Sí&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-01 · HU-03 · HU-04 · HU-05 · HU-06 · HU-07 · HU-10 · HU-30 · HU-31 · HU-32 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#1D4ED8;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="620" y="200" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p2_hu03" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-03&lt;/b&gt; · M1&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Iniciar sesión con una cuenta de Google&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#1E40AF;&quot;&gt;Should Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-02 · HU-09 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#1D4ED8;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1150" y="200" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p2_hu04" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-04&lt;/b&gt; · M1&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Cerrar sesión de forma segura&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;Must Have&lt;/b&gt; · MVP: Sí&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-02 · HU-03 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#1D4ED8;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="90" y="420" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p2_hu05" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-05&lt;/b&gt; · M1&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Recuperar el acceso mediante restablecimiento de contraseña&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#1E40AF;&quot;&gt;Should Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-02 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#1D4ED8;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="620" y="420" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p2_hu06" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-06&lt;/b&gt; · M1&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Desactivar la propia cuenta de usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#166534;&quot;&gt;Could Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-02 · HU-04 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#1D4ED8;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1150" y="420" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p2_hu07" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-07&lt;/b&gt; · M2&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Consultar y editar nombres y teléfono del perfil&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#1E40AF;&quot;&gt;Should Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-02 · HU-08 · HU-09 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#0F766E;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="90" y="790" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p2_hu08" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-08&lt;/b&gt; · M2&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Cambiar la foto de perfil&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#1E40AF;&quot;&gt;Should Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-07 · HU-09 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#0F766E;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="620" y="790" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p2_hu09" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-09&lt;/b&gt; · M2&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario · Google&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Usar la foto de perfil de Google cuando esté disponible&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#166534;&quot;&gt;Could Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-03 · HU-07 · HU-08&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#0F766E;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1150" y="790" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p2_e_hu01_hu02" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p2_hu01" target="p2_hu02" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p2_e_hu02_hu03" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p2_hu02" target="p2_hu03" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p2_e_hu07_hu08" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p2_hu07" target="p2_hu08" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p2_e_hu08_hu09" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p2_hu08" target="p2_hu09" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p2_legend_box" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#E2E8F0;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="1110" width="1660" height="100" />
+        </mxCell>
+        <mxCell id="p2_legend_text" value="&lt;b style=&quot;font-size:10px;color:#0F172A;&quot;&gt;Leyenda&lt;/b&gt; &amp;nbsp; &lt;span style=&quot;font-size:8.4px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#166534;&quot;&gt;■ Implementada 0&lt;/b&gt; · &lt;b style=&quot;color:#1D4ED8;&quot;&gt;■ En desarrollo 0&lt;/b&gt; · &lt;b style=&quot;color:#334155;&quot;&gt;■ Pendiente 31&lt;/b&gt; · &lt;b style=&quot;color:#92400E;&quot;&gt;■ Postergada 2&lt;/b&gt;&lt;/span&gt; &amp;nbsp; &lt;span style=&quot;font-size:8.4px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;■ Must 13&lt;/b&gt; · &lt;b style=&quot;color:#1E40AF;&quot;&gt;■ Should 9&lt;/b&gt; · &lt;b style=&quot;color:#166534;&quot;&gt;■ Could 9&lt;/b&gt; · &lt;b style=&quot;color:#374151;&quot;&gt;■ Won't 2&lt;/b&gt;&lt;/span&gt; &amp;nbsp; &lt;span style=&quot;font-size:8.4px;color:#475569;&quot;&gt;Actor: &lt;b style=&quot;color:#166534;&quot;&gt;■ Visitante 2&lt;/b&gt; · &lt;b style=&quot;color:#1D4ED8;&quot;&gt;■ Usuario 28&lt;/b&gt; · &lt;b style=&quot;color:#6D28D9;&quot;&gt;■ Administrador 3&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.2px;color:#64748B;&quot;&gt;Vínculos = relaciones HU documentadas (prerrequisitos y habilitaciones); las flechas solo representan flujos secuenciales simples. Fuente: docs/respuestas-ia/salida-historias-usuario.md.&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="88" y="1120" width="1624" height="80" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p3" name="M3–M4 · Gastos y voz">
+    <mxGraphModel dx="1800" dy="1240" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1240" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p3_title" value="FUGA+ — Diagrama de Historias de Usuario" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=28;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="26" width="1250" height="44" />
+        </mxCell>
+        <mxCell id="p3_subtitle" value="M3–M4 · Registro y gestión de gastos + voz · 10 historias" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11.5;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="72" y="72" width="1220" height="24" />
+        </mxCell>
+        <mxCell id="p3_badge" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#E2E8F0;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1358" y="32" width="372" height="32" />
+        </mxCell>
+        <mxCell id="p3_badge_text" value="&lt;b&gt;Página 3 de 5&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=9.5;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1358" y="32" width="372" height="32" />
+        </mxCell>
+        <mxCell id="p3_rule" style="rounded=1;arcSize=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#E2E8F0;strokeWidth=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="108" width="1660" height="2" />
+        </mxCell>
+        <mxCell id="p3_m3_panel" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#E2E8F0;strokeWidth=1.2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="130" width="1680" height="590" />
+        </mxCell>
+        <mxCell id="p3_m3_head" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#7C3AED;strokeColor=#7C3AED;strokeWidth=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="61" y="131" width="1678" height="52" />
+        </mxCell>
+        <mxCell id="p3_m3_head_text" value="&lt;b&gt;M3 · Registro y gestión de gastos&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#E2E8F0;&quot;&gt;HU-10 – HU-16 · 7 historias · 5 Must · 2 Should&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="78" y="133" width="980" height="48" />
+        </mxCell>
+        <mxCell id="p3_m3_note" value="&lt;span style=&quot;font-size:9px;color:#E2E8F0;&quot;&gt;Depende de M1 · habilita M4–M7.&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=9;fontColor=#E2E8F0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1180" y="133" width="540" height="48" />
+        </mxCell>
+        <mxCell id="p3_m4_panel" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#E2E8F0;strokeWidth=1.2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="750" width="1680" height="310" />
+        </mxCell>
+        <mxCell id="p3_m4_head" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#B45309;strokeColor=#B45309;strokeWidth=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="61" y="751" width="1678" height="52" />
+        </mxCell>
+        <mxCell id="p3_m4_head_text" value="&lt;b&gt;M4 · Registro por voz&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#E2E8F0;&quot;&gt;HU-17 – HU-19 · 3 historias · 3 Could&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="78" y="753" width="980" height="48" />
+        </mxCell>
+        <mxCell id="p3_m4_note" value="&lt;span style=&quot;font-size:9px;color:#E2E8F0;&quot;&gt;Depende de M3 · HU-10–13.&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=9;fontColor=#E2E8F0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1180" y="753" width="540" height="48" />
+        </mxCell>
+        <mxCell id="p3_hu10" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-10&lt;/b&gt; · M3&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Registrar un gasto escrito en lenguaje natural&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;Must Have&lt;/b&gt; · MVP: Sí&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-02 · HU-11 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#7C3AED;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="90" y="200" width="385" height="190" />
+        </mxCell>
+        <mxCell id="p3_hu11" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-11&lt;/b&gt; · M3&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Procesar el gasto con «Procesar con IA» y reglas deterministas&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;Must Have&lt;/b&gt; · MVP: Sí&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-10 · HU-12 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#7C3AED;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="500" y="200" width="385" height="190" />
+        </mxCell>
+        <mxCell id="p3_hu12" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-12&lt;/b&gt; · M3&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Revisar y corregir los campos interpretados antes de guardar&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;Must Have&lt;/b&gt; · MVP: Sí&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-11 · HU-13 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#7C3AED;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="910" y="200" width="385" height="190" />
+        </mxCell>
+        <mxCell id="p3_hu13" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-13&lt;/b&gt; · M3&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Guardar el gasto bajo la cuenta del propietario y aislarlo de otros usuarios&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;Must Have&lt;/b&gt; · MVP: Sí&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-02 · HU-12 · HU-14 · HU-16 · HU-20 · HU-21 · HU-23 · HU-28 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#7C3AED;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1320" y="200" width="385" height="190" />
+        </mxCell>
+        <mxCell id="p3_hu14" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-14&lt;/b&gt; · M3&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Consultar el historial de gastos del más reciente al más antiguo&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;Must Have&lt;/b&gt; · MVP: Sí&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-13 · HU-15 · HU-16 · HU-24 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#7C3AED;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="420" width="385" height="190" />
+        </mxCell>
+        <mxCell id="p3_hu15" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-15&lt;/b&gt; · M3&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Filtrar el historial por fecha y categoría&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#1E40AF;&quot;&gt;Should Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-14 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#7C3AED;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="710" y="420" width="385" height="190" />
+        </mxCell>
+        <mxCell id="p3_hu16" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-16&lt;/b&gt; · M3&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Editar y eliminar gastos guardados, actualizando análisis y resúmenes&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#1E40AF;&quot;&gt;Should Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-13 · HU-14 · HU-20 · HU-21 · HU-23 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#7C3AED;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1120" y="420" width="385" height="190" />
+        </mxCell>
+        <mxCell id="p3_hu17" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-17&lt;/b&gt; · M4&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario · Android&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Iniciar la grabación de voz para un gasto en Android&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#166534;&quot;&gt;Could Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-02 · HU-10 · HU-18&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#B45309;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="90" y="820" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p3_hu18" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-18&lt;/b&gt; · M4&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario · Android&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Convertir la voz en texto con Kotlin y SpeechRecognizer&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#166534;&quot;&gt;Could Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-17 · HU-19&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#B45309;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="620" y="820" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p3_hu19" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-19&lt;/b&gt; · M4&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario · Android&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Revisar la transcripción y los campos antes de guardar un gasto por voz&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#166534;&quot;&gt;Could Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-10 · HU-11 · HU-12 · HU-13 · HU-17 · HU-18&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#B45309;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1150" y="820" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p3_e_hu10_hu11" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p3_hu10" target="p3_hu11" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p3_e_hu11_hu12" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p3_hu11" target="p3_hu12" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p3_e_hu12_hu13" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p3_hu12" target="p3_hu13" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p3_e_hu17_hu18" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p3_hu17" target="p3_hu18" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p3_e_hu18_hu19" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p3_hu18" target="p3_hu19" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p3_legend_box" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#E2E8F0;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="1110" width="1660" height="100" />
+        </mxCell>
+        <mxCell id="p3_legend_text" value="&lt;b style=&quot;font-size:10px;color:#0F172A;&quot;&gt;Leyenda&lt;/b&gt; &amp;nbsp; &lt;span style=&quot;font-size:8.4px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#166534;&quot;&gt;■ Implementada 0&lt;/b&gt; · &lt;b style=&quot;color:#1D4ED8;&quot;&gt;■ En desarrollo 0&lt;/b&gt; · &lt;b style=&quot;color:#334155;&quot;&gt;■ Pendiente 31&lt;/b&gt; · &lt;b style=&quot;color:#92400E;&quot;&gt;■ Postergada 2&lt;/b&gt;&lt;/span&gt; &amp;nbsp; &lt;span style=&quot;font-size:8.4px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;■ Must 13&lt;/b&gt; · &lt;b style=&quot;color:#1E40AF;&quot;&gt;■ Should 9&lt;/b&gt; · &lt;b style=&quot;color:#166534;&quot;&gt;■ Could 9&lt;/b&gt; · &lt;b style=&quot;color:#374151;&quot;&gt;■ Won't 2&lt;/b&gt;&lt;/span&gt; &amp;nbsp; &lt;span style=&quot;font-size:8.4px;color:#475569;&quot;&gt;Actor: &lt;b style=&quot;color:#166534;&quot;&gt;■ Visitante 2&lt;/b&gt; · &lt;b style=&quot;color:#1D4ED8;&quot;&gt;■ Usuario 28&lt;/b&gt; · &lt;b style=&quot;color:#6D28D9;&quot;&gt;■ Administrador 3&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.2px;color:#64748B;&quot;&gt;Vínculos = relaciones HU documentadas (prerrequisitos y habilitaciones); las flechas solo representan flujos secuenciales simples. Fuente: docs/respuestas-ia/salida-historias-usuario.md.&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="88" y="1120" width="1624" height="80" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p4" name="M5–M6 · Dashboard y fugas">
+    <mxGraphModel dx="1800" dy="1240" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1240" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p4_title" value="FUGA+ — Diagrama de Historias de Usuario" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=28;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="26" width="1250" height="44" />
+        </mxCell>
+        <mxCell id="p4_subtitle" value="M5–M6 · Dashboard, estadísticas y fugas · 5 historias" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11.5;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="72" y="72" width="1220" height="24" />
+        </mxCell>
+        <mxCell id="p4_badge" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#E2E8F0;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1358" y="32" width="372" height="32" />
+        </mxCell>
+        <mxCell id="p4_badge_text" value="&lt;b&gt;Página 4 de 5&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=9.5;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1358" y="32" width="372" height="32" />
+        </mxCell>
+        <mxCell id="p4_rule" style="rounded=1;arcSize=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#E2E8F0;strokeWidth=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="108" width="1660" height="2" />
+        </mxCell>
+        <mxCell id="p4_m5_panel" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#E2E8F0;strokeWidth=1.2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="130" width="1680" height="450" />
+        </mxCell>
+        <mxCell id="p4_m5_head" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#0369A1;strokeColor=#0369A1;strokeWidth=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="61" y="131" width="1678" height="52" />
+        </mxCell>
+        <mxCell id="p4_m5_head_text" value="&lt;b&gt;M5 · Dashboard y estadísticas&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#E2E8F0;&quot;&gt;HU-20 – HU-22 · 3 historias · 2 Must · 1 Could&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="78" y="133" width="980" height="48" />
+        </mxCell>
+        <mxCell id="p4_m5_note" value="&lt;span style=&quot;font-size:9px;color:#E2E8F0;&quot;&gt;Depende de M3 · HU-13, HU-16.&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=9;fontColor=#E2E8F0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1180" y="133" width="540" height="48" />
+        </mxCell>
+        <mxCell id="p4_m6_panel" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#E2E8F0;strokeWidth=1.2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="610" width="1680" height="450" />
+        </mxCell>
+        <mxCell id="p4_m6_head" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#BE123C;strokeColor=#BE123C;strokeWidth=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="61" y="611" width="1678" height="52" />
+        </mxCell>
+        <mxCell id="p4_m6_head_text" value="&lt;b&gt;M6 · Detección de fugas de dinero&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#E2E8F0;&quot;&gt;HU-23 – HU-24 · 2 historias · 2 Must&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="78" y="613" width="980" height="48" />
+        </mxCell>
+        <mxCell id="p4_m6_note" value="&lt;span style=&quot;font-size:9px;color:#E2E8F0;&quot;&gt;Depende de M3 · HU-13; apoya en HU-16.&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=9;fontColor=#E2E8F0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1180" y="613" width="540" height="48" />
+        </mxCell>
+        <mxCell id="p4_hu20" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-20&lt;/b&gt; · M5&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Consultar total, cantidad y promedio de gasto por periodo&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;Must Have&lt;/b&gt; · MVP: Sí&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-13 · HU-16 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#0369A1;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="110" y="205" width="500" height="210" />
+        </mxCell>
+        <mxCell id="p4_hu21" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-21&lt;/b&gt; · M5&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Consultar el gasto por categoría e identificar la categoría de mayor gasto&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;Must Have&lt;/b&gt; · MVP: Sí&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-13 · HU-16 · HU-20&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#0369A1;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="650" y="205" width="500" height="210" />
+        </mxCell>
+        <mxCell id="p4_hu22" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-22&lt;/b&gt; · M5&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Comparar el gasto entre periodos&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#166534;&quot;&gt;Could Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-16 · HU-20 · HU-21&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#0369A1;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1190" y="205" width="500" height="210" />
+        </mxCell>
+        <mxCell id="p4_hu23" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-23&lt;/b&gt; · M6&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Detectar posibles fugas de dinero con reglas deterministas&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;Must Have&lt;/b&gt; · MVP: Sí&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-13 · HU-16 · HU-24 · HU-25 · HU-26 · HU-27 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#BE123C;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="685" width="600" height="210" />
+        </mxCell>
+        <mxCell id="p4_hu24" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-24&lt;/b&gt; · M6&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Consultar la evidencia de una posible fuga de dinero&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;Must Have&lt;/b&gt; · MVP: Sí&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-14 · HU-16 · HU-23 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#BE123C;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="920" y="685" width="600" height="210" />
+        </mxCell>
+        <mxCell id="p4_e_hu20_hu21" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p4_hu20" target="p4_hu21" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p4_e_hu21_hu22" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p4_hu21" target="p4_hu22" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p4_e_hu23_hu24" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p4_hu23" target="p4_hu24" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p4_legend_box" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#E2E8F0;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="1110" width="1660" height="100" />
+        </mxCell>
+        <mxCell id="p4_legend_text" value="&lt;b style=&quot;font-size:10px;color:#0F172A;&quot;&gt;Leyenda&lt;/b&gt; &amp;nbsp; &lt;span style=&quot;font-size:8.4px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#166534;&quot;&gt;■ Implementada 0&lt;/b&gt; · &lt;b style=&quot;color:#1D4ED8;&quot;&gt;■ En desarrollo 0&lt;/b&gt; · &lt;b style=&quot;color:#334155;&quot;&gt;■ Pendiente 31&lt;/b&gt; · &lt;b style=&quot;color:#92400E;&quot;&gt;■ Postergada 2&lt;/b&gt;&lt;/span&gt; &amp;nbsp; &lt;span style=&quot;font-size:8.4px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;■ Must 13&lt;/b&gt; · &lt;b style=&quot;color:#1E40AF;&quot;&gt;■ Should 9&lt;/b&gt; · &lt;b style=&quot;color:#166534;&quot;&gt;■ Could 9&lt;/b&gt; · &lt;b style=&quot;color:#374151;&quot;&gt;■ Won't 2&lt;/b&gt;&lt;/span&gt; &amp;nbsp; &lt;span style=&quot;font-size:8.4px;color:#475569;&quot;&gt;Actor: &lt;b style=&quot;color:#166534;&quot;&gt;■ Visitante 2&lt;/b&gt; · &lt;b style=&quot;color:#1D4ED8;&quot;&gt;■ Usuario 28&lt;/b&gt; · &lt;b style=&quot;color:#6D28D9;&quot;&gt;■ Administrador 3&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.2px;color:#64748B;&quot;&gt;Vínculos = relaciones HU documentadas (prerrequisitos y habilitaciones); las flechas solo representan flujos secuenciales simples. Fuente: docs/respuestas-ia/salida-historias-usuario.md.&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="88" y="1120" width="1624" height="80" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p5" name="M7–M8 · Alertas y administración">
+    <mxGraphModel dx="1800" dy="1240" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1240" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p5_title" value="FUGA+ — Diagrama de Historias de Usuario" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=28;fontColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="26" width="1250" height="44" />
+        </mxCell>
+        <mxCell id="p5_subtitle" value="M7–M8 · Alertas, metas, administración y privacidad · 9 historias" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11.5;fontColor=#475569;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="72" y="72" width="1220" height="24" />
+        </mxCell>
+        <mxCell id="p5_badge" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#E2E8F0;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1358" y="32" width="372" height="32" />
+        </mxCell>
+        <mxCell id="p5_badge_text" value="&lt;b&gt;Página 5 de 5&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=9.5;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1358" y="32" width="372" height="32" />
+        </mxCell>
+        <mxCell id="p5_rule" style="rounded=1;arcSize=0;whiteSpace=wrap;html=1;fillColor=#E2E8F0;strokeColor=#E2E8F0;strokeWidth=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="108" width="1660" height="2" />
+        </mxCell>
+        <mxCell id="p5_m7_panel" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#E2E8F0;strokeWidth=1.2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="130" width="1680" height="610" />
+        </mxCell>
+        <mxCell id="p5_m7_head" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#6D28D9;strokeColor=#6D28D9;strokeWidth=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="61" y="131" width="1678" height="52" />
+        </mxCell>
+        <mxCell id="p5_m7_head_text" value="&lt;b&gt;M7 · Alertas, recomendaciones y metas&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#E2E8F0;&quot;&gt;HU-25 – HU-29 · 5 historias · 3 Could · 2 Won't&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="78" y="133" width="980" height="48" />
+        </mxCell>
+        <mxCell id="p5_m7_note" value="&lt;span style=&quot;font-size:9px;color:#E2E8F0;&quot;&gt;Depende de M6 · HU-28–29 postergadas.&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=9;fontColor=#E2E8F0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1180" y="133" width="540" height="48" />
+        </mxCell>
+        <mxCell id="p5_m8_panel" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#E2E8F0;strokeWidth=1.2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="780" width="1680" height="290" />
+        </mxCell>
+        <mxCell id="p5_m8_head" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#475569;strokeColor=#475569;strokeWidth=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="61" y="781" width="1678" height="52" />
+        </mxCell>
+        <mxCell id="p5_m8_head_text" value="&lt;b&gt;M8 · Administración y privacidad&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#E2E8F0;&quot;&gt;HU-30 – HU-33 · 4 historias · 1 Must · 3 Should&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="78" y="783" width="980" height="48" />
+        </mxCell>
+        <mxCell id="p5_m8_note" value="&lt;span style=&quot;font-size:9px;color:#E2E8F0;&quot;&gt;Depende de M1/M3 · HU-33 transversal.&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=9;fontColor=#E2E8F0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1180" y="783" width="540" height="48" />
+        </mxCell>
+        <mxCell id="p5_hu25" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-25&lt;/b&gt; · M7&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Recibir alertas sobre posibles fugas de dinero&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#166534;&quot;&gt;Could Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-23 · HU-24 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#6D28D9;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="90" y="200" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p5_hu26" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-26&lt;/b&gt; · M7&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Consultar sugerencias prácticas sobre posibles fugas&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#166534;&quot;&gt;Could Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-23 · HU-24 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#6D28D9;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="620" y="200" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p5_hu27" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-27&lt;/b&gt; · M7&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Consultar el resumen mensual de posibles fugas&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#166534;&quot;&gt;Could Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-16 · HU-23 · HU-24&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#6D28D9;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1150" y="200" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p5_hu28" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-28&lt;/b&gt; · M7&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Definir una meta mensual de gasto o ahorro con alcance explícito&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#374151;&quot;&gt;Won't Have (for now)&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#92400E;&quot;&gt;Postergada&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-02 · HU-13 · HU-20 · HU-21&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#6D28D9;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="380" y="420" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p5_hu29" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-29&lt;/b&gt; · M7&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Consultar el avance hacia la meta definida&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#374151;&quot;&gt;Won't Have (for now)&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#92400E;&quot;&gt;Postergada&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-16 · HU-20 · HU-21 · HU-28&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#6D28D9;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="910" y="420" width="500" height="190" />
+        </mxCell>
+        <mxCell id="p5_hu30" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-30&lt;/b&gt; · M8&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#6D28D9;&quot;&gt;&lt;b&gt;■ Administrador&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Consultar estadísticas agregadas de uso sin acceder a gastos individuales&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#1E40AF;&quot;&gt;Should Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-02 · HU-13 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#475569;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="90" y="850" width="385" height="190" />
+        </mxCell>
+        <mxCell id="p5_hu31" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-31&lt;/b&gt; · M8&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#6D28D9;&quot;&gt;&lt;b&gt;■ Administrador&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Consultar usuarios registrados y la información administrativa necesaria&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#1E40AF;&quot;&gt;Should Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-02 · HU-30 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#475569;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="500" y="850" width="385" height="190" />
+        </mxCell>
+        <mxCell id="p5_hu32" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-32&lt;/b&gt; · M8&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#6D28D9;&quot;&gt;&lt;b&gt;■ Administrador&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Activar o desactivar cuentas de usuario desde funciones administrativas autorizadas&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#1E40AF;&quot;&gt;Should Have&lt;/b&gt; · MVP: No&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-02 · HU-31 · HU-33&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#475569;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="910" y="850" width="385" height="190" />
+        </mxCell>
+        <mxCell id="p5_hu33" value="&lt;span style=&quot;font-size:10px;color:#64748B;&quot;&gt;&lt;b&gt;HU-33&lt;/b&gt; · M8&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;font-size:10px;color:#1D4ED8;&quot;&gt;&lt;b&gt;■ Usuario&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:13.5px;color:#0F172A;&quot;&gt;&lt;b&gt;Proteger la privacidad de los gastos y garantizar el aislamiento entre usuarios&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;Must Have&lt;/b&gt; · MVP: Sí&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:9.5px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#334155;&quot;&gt;Pendiente&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.8px;color:#64748B;&quot;&gt;Vínculos: HU-02 · HU-13 · HU-30 · HU-32&lt;/span&gt;" style="rounded=1;arcSize=3;whiteSpace=wrap;html=1;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;spacingBottom=8;shadow=0;glass=0;strokeColor=#475569;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1320" y="850" width="385" height="190" />
+        </mxCell>
+        <mxCell id="p5_e_hu28_hu29" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p5_hu28" target="p5_hu29" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p5_e_hu30_hu31" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p5_hu30" target="p5_hu31" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p5_e_hu31_hu32" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94A3B8;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="p5_hu31" target="p5_hu32" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="p5_legend_box" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#E2E8F0;strokeWidth=1;shadow=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="1110" width="1660" height="100" />
+        </mxCell>
+        <mxCell id="p5_legend_text" value="&lt;b style=&quot;font-size:10px;color:#0F172A;&quot;&gt;Leyenda&lt;/b&gt; &amp;nbsp; &lt;span style=&quot;font-size:8.4px;color:#475569;&quot;&gt;Estado: &lt;b style=&quot;color:#166534;&quot;&gt;■ Implementada 0&lt;/b&gt; · &lt;b style=&quot;color:#1D4ED8;&quot;&gt;■ En desarrollo 0&lt;/b&gt; · &lt;b style=&quot;color:#334155;&quot;&gt;■ Pendiente 31&lt;/b&gt; · &lt;b style=&quot;color:#92400E;&quot;&gt;■ Postergada 2&lt;/b&gt;&lt;/span&gt; &amp;nbsp; &lt;span style=&quot;font-size:8.4px;color:#475569;&quot;&gt;Prioridad: &lt;b style=&quot;color:#991B1B;&quot;&gt;■ Must 13&lt;/b&gt; · &lt;b style=&quot;color:#1E40AF;&quot;&gt;■ Should 9&lt;/b&gt; · &lt;b style=&quot;color:#166534;&quot;&gt;■ Could 9&lt;/b&gt; · &lt;b style=&quot;color:#374151;&quot;&gt;■ Won't 2&lt;/b&gt;&lt;/span&gt; &amp;nbsp; &lt;span style=&quot;font-size:8.4px;color:#475569;&quot;&gt;Actor: &lt;b style=&quot;color:#166534;&quot;&gt;■ Visitante 2&lt;/b&gt; · &lt;b style=&quot;color:#1D4ED8;&quot;&gt;■ Usuario 28&lt;/b&gt; · &lt;b style=&quot;color:#6D28D9;&quot;&gt;■ Administrador 3&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size:8.2px;color:#64748B;&quot;&gt;Vínculos = relaciones HU documentadas (prerrequisitos y habilitaciones); las flechas solo representan flujos secuenciales simples. Fuente: docs/respuestas-ia/salida-historias-usuario.md.&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="88" y="1120" width="1624" height="80" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
 </mxfile>

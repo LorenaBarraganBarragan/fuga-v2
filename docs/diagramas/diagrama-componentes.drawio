@@ -1,273 +1,678 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mxfile host="app.diagrams.net" agent="opencode" version="24.7.17" type="device">
-  <diagram id="fuga-componentes" name="Diagrama de Componentes">
-    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="2000" math="0" shadow="0">
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="page-vista-general" name="Vista general">
+    <mxGraphModel dx="2320" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2320" pageHeight="1500" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-
-        <mxCell id="titulo" value="Diagrama de Componentes — FUGA+" style="text;html=1;align=left;verticalAlign=middle;fontSize=28;fontStyle=1;fontColor=#1A1A1A;" vertex="1" parent="1">
-          <mxGeometry x="40" y="20" width="1200" height="40" as="geometry" />
+        <mxCell id="p1_title" value="FUGA+ — Diagrama UML de componentes" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=24;fontColor=#0F172A;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="22" width="900" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="subtitulo" value="Arquitectura tecnológica de la aplicación móvil" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontColor=#555555;" vertex="1" parent="1">
-          <mxGeometry x="40" y="62" width="1200" height="26" as="geometry" />
+        <mxCell id="p1_subtitle" value="Arquitectura tecnológica de FUGA+ · Vista general" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=12;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="58" width="1100" height="22" as="geometry" />
         </mxCell>
-
-        <mxCell id="capaPresentacion" value="A. PRESENTACIÓN" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontSize=17;fontStyle=1;fillColor=none;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="1">
-          <mxGeometry x="40" y="110" width="1000" height="430" as="geometry" />
+        <mxCell id="p1_pageinfo" value="Página 1 de 2 · Componentes y comunicaciones" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=10;fontColor=#64748B;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="84" width="900" height="20" as="geometry" />
         </mxCell>
-
-        <mxCell id="visitante" value="&lt;b&gt;«actor» Visitante&lt;/b&gt;&lt;br&gt;&lt;br&gt;Sin cuenta.&lt;br&gt;Accede solo a la información general." style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=11;fillColor=#F5F5F5;strokeColor=#666666;strokeWidth=2;fontColor=#333333;" vertex="1" parent="capaPresentacion">
-          <mxGeometry x="20" y="45" width="220" height="70" as="geometry" />
+        <mxCell id="p1_legend" value="Leyenda de estado" style="swimlane;startSize=30;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#FFFFFF;swimlaneFillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1.5;fontStyle=1;fontSize=14;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=14;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="20" width="480" height="170" as="geometry" />
         </mxCell>
-        <mxCell id="usuario" value="&lt;b&gt;«actor» Usuario&lt;/b&gt;&lt;br&gt;&lt;br&gt;Registrado. Gestiona sus gastos, historial y dashboard." style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=11;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaPresentacion">
-          <mxGeometry x="260" y="45" width="220" height="70" as="geometry" />
+        <mxCell id="p1_sw_green" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;strokeWidth=1.4;" vertex="1" parent="p1_legend">
+          <mxGeometry x="18" y="48" width="22" height="16" as="geometry" />
         </mxCell>
-        <mxCell id="admin" value="&lt;b&gt;«actor» Administrador&lt;/b&gt;&lt;br&gt;&lt;br&gt;Gestiona cuentas y consulta estadísticas agregadas." style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=11;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaPresentacion">
-          <mxGeometry x="500" y="45" width="220" height="70" as="geometry" />
+        <mxCell id="p1_sw_green_t" value="Implementado y verificado — 0 componentes de FUGA+" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="p1_legend">
+          <mxGeometry x="50" y="46" width="410" height="22" as="geometry" />
         </mxCell>
-
-        <mxCell id="app" value="&lt;b&gt;«component»&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Aplicación móvil FUGA+&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: React Native + TypeScript&lt;/b&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Interfaz de FUGA+ para visitantes y usuarios.&lt;br&gt;&lt;br&gt;• Registro de gastos en lenguaje natural&lt;br&gt;• Historial de gastos y categorías&lt;br&gt;• Dashboard personal y posibles fugas&lt;br&gt;• Comparación de periodos&lt;br&gt;• Alertas dentro de la aplicación&lt;br&gt;• Conserva el token JWT y lo envía en cada solicitud" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=16;spacingTop=6;spacingRight=10;fontSize=11;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaPresentacion">
-          <mxGeometry x="20" y="160" width="700" height="250" as="geometry" />
+        <mxCell id="p1_sw_blue" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.4;" vertex="1" parent="p1_legend">
+          <mxGeometry x="18" y="78" width="22" height="16" as="geometry" />
         </mxCell>
-        <mxCell id="app_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;" vertex="1" parent="capaPresentacion">
-          <mxGeometry x="6" y="190" width="14" height="40" as="geometry" />
+        <mxCell id="p1_sw_blue_t" value="Planificado y aprobado — diseño acordado, no implementado" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="p1_legend">
+          <mxGeometry x="50" y="76" width="410" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="app_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;" vertex="1" parent="capaPresentacion">
-          <mxGeometry x="6" y="280" width="14" height="40" as="geometry" />
+        <mxCell id="p1_sw_gray" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=1.4;" vertex="1" parent="p1_legend">
+          <mxGeometry x="18" y="108" width="22" height="16" as="geometry" />
         </mxCell>
-
-        <mxCell id="leyenda" value="&lt;b&gt;Convenciones&lt;/b&gt;&lt;br&gt;&lt;br&gt;• Caja con dos pestañas: componente UML.&lt;br&gt;• «actor»: rol que usa la aplicación.&lt;br&gt;• Flecha con etiqueta: tecnología o propósito del vínculo.&lt;br&gt;• Línea punteada: componente opcional o de desarrollo.&lt;br&gt;&lt;br&gt;&lt;b&gt;Flujo principal&lt;/b&gt;&lt;br&gt;React Native + TypeScript&lt;br&gt;↓ HTTPS / JSON&lt;br&gt;Python + FastAPI&lt;br&gt;↓ Persistencia&lt;br&gt;MongoDB&lt;br&gt;&lt;br&gt;El backend también invoca OpenAI API (interpretación), JWT (autenticación), Redis (caché) y MongoDB Aggregation (estadísticas)." style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;spacingRight=8;fontSize=9;fillColor=#FFFFFF;strokeColor=#999999;dashed=1;fontColor=#333333;" vertex="1" parent="capaPresentacion">
-          <mxGeometry x="740" y="160" width="240" height="250" as="geometry" />
+        <mxCell id="p1_sw_gray_t" value="Pendiente de decisión o fuera del alcance actual" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="p1_legend">
+          <mxGeometry x="50" y="106" width="410" height="22" as="geometry" />
         </mxCell>
-
-        <mxCell id="capaBackend" value="B. BACKEND" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontSize=17;fontStyle=1;fillColor=none;strokeColor=#82B366;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="1">
-          <mxGeometry x="40" y="580" width="1000" height="320" as="geometry" />
+        <mxCell id="p1_legend_note" value="No se encontró implementación de FUGA+ en el repositorio: todo componente de ejecución es planificado." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontSize=9;fontColor=#334155;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p1_legend">
+          <mxGeometry x="18" y="132" width="444" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="fastapi" value="&lt;b&gt;«component»&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;API / Backend&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: Python + FastAPI&lt;/b&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; API, lógica del sistema, autenticación y conexión entre componentes.&lt;br&gt;&lt;br&gt;• Endpoints REST con especificación OpenAPI&lt;br&gt;• Validación de datos y reglas de negocio&lt;br&gt;• Gestión de usuarios, gastos y categorías&lt;br&gt;• Coordinación de la interpretación con IA&lt;br&gt;• Orquestación de la detección de posibles fugas&lt;br&gt;• Consulta de estadísticas para el dashboard" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=16;spacingTop=6;spacingRight=10;fontSize=11;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaBackend">
-          <mxGeometry x="40" y="45" width="660" height="240" as="geometry" />
+        <mxCell id="p1_tools" value="&lt;b&gt;Herramientas de desarrollo&lt;/b&gt; (no son componentes de ejecución)&lt;br&gt;&lt;br&gt;Visual Studio Code · Git/GitHub · Android Studio + SDK/emulador · Postman · OpenCode&lt;br&gt;&lt;br&gt;No se conectan a los flujos de negocio." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontSize=9;fontColor=#334155;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="1870" y="20" width="410" height="170" as="geometry" />
         </mxCell>
-        <mxCell id="fastapi_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;" vertex="1" parent="capaBackend">
-          <mxGeometry x="26" y="75" width="14" height="38" as="geometry" />
+        <mxCell id="p1_app" value="Aplicación móvil" style="swimlane;startSize=52;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#FFFFFF;swimlaneFillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1.5;fontStyle=1;fontSize=14;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=14;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="210" width="560" height="820" as="geometry" />
         </mxCell>
-        <mxCell id="fastapi_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;" vertex="1" parent="capaBackend">
-          <mxGeometry x="26" y="170" width="14" height="38" as="geometry" />
+        <mxCell id="p1_app_sub" value="React Native + TypeScript · «planificado»" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=10;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="p1_app">
+          <mxGeometry x="18" y="34" width="520" height="18" as="geometry" />
         </mxCell>
-
-        <mxCell id="jwt" value="&lt;b&gt;«service»&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Autenticación&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: JWT&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Identificar usuarios y diferenciar Usuario/Administrador.&lt;br&gt;&lt;br&gt;• Inicio de sesión&lt;br&gt;• Generación de token&lt;br&gt;• Validación de token&lt;br&gt;• Autorización por rol&lt;br&gt;• Protección de endpoints" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaBackend">
-          <mxGeometry x="720" y="60" width="240" height="200" as="geometry" />
+        <mxCell id="p1_ui" value="«planificado»&lt;br&gt;&lt;b&gt;Interfaz de usuario&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;registro de gasto, historial, dashboard, perfil y fugas&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="20" y="64" width="250" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="jwt_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;" vertex="1" parent="capaBackend">
-          <mxGeometry x="706" y="88" width="14" height="36" as="geometry" />
+        <mxCell id="p1_login" value="«planificado»&lt;br&gt;&lt;b&gt;Registro e inicio de sesión&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;correo y contraseña · flujo del MVP&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="290" y="64" width="250" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="jwt_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;" vertex="1" parent="capaBackend">
-          <mxGeometry x="706" y="180" width="14" height="36" as="geometry" />
+        <mxCell id="p1_session" value="«planificado»&lt;br&gt;&lt;b&gt;Gestión de sesión y JWT&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;almacenamiento seguro y envío del token&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="20" y="156" width="250" height="72" as="geometry" />
         </mxCell>
-
-        <mxCell id="capaInfra" value="E. INFRAESTRUCTURA" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontSize=17;fontStyle=1;fillColor=none;strokeColor=#9673A6;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="1">
-          <mxGeometry x="1160" y="470" width="560" height="420" as="geometry" />
+        <mxCell id="p1_google" value="«planificado»&lt;br&gt;&lt;b&gt;Inicio de sesión con Google&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Google Identity Services · ID token&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="290" y="156" width="250" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="docker" value="&lt;b&gt;«node» Contenedores&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: Docker + Docker Compose&lt;/b&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Ejecutar backend, MongoDB y Redis de forma organizada.&lt;br&gt;&lt;br&gt;&lt;i&gt;Contiene y ejecuta los siguientes servicios:&lt;/i&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaInfra">
-          <mxGeometry x="40" y="50" width="480" height="340" as="geometry" />
+        <mxCell id="p1_profile" value="«planificado»&lt;br&gt;&lt;b&gt;Perfil del usuario&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;consulta y edición de datos&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="20" y="248" width="250" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="docker_fastapi" value="&lt;b&gt;API&lt;/b&gt;&lt;br&gt;Python + FastAPI" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=10;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1A1A1A;" vertex="1" parent="docker">
-          <mxGeometry x="25" y="95" width="205" height="65" as="geometry" />
+        <mxCell id="p1_gastos" value="«planificado»&lt;br&gt;&lt;b&gt;Gestión de gastos&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;entrada por texto y borrador&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="290" y="248" width="250" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="docker_mongo" value="&lt;b&gt;Base de datos&lt;/b&gt;&lt;br&gt;MongoDB" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=10;fillColor=#D0E0E3;strokeColor=#6C8EBF;fontColor=#1A1A1A;" vertex="1" parent="docker">
-          <mxGeometry x="250" y="95" width="205" height="65" as="geometry" />
+        <mxCell id="p1_revision" value="«planificado»&lt;br&gt;&lt;b&gt;Revisión y corrección&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;monto, categoría y descripción antes de confirmar&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="20" y="340" width="250" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="docker_redis" value="&lt;b&gt;Caché&lt;/b&gt; — Redis" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=10;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1A1A1A;" vertex="1" parent="docker">
-          <mxGeometry x="25" y="185" width="430" height="55" as="geometry" />
+        <mxCell id="p1_history" value="«planificado»&lt;br&gt;&lt;b&gt;Historial de gastos&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;consulta del más reciente al más antiguo&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="290" y="340" width="250" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="docker_nota" value="&lt;i&gt;docker-compose.yml coordina el inicio conjunto de la API, la base de datos y la caché.&lt;/i&gt;" style="text;html=1;align=left;verticalAlign=top;fontSize=9;fontColor=#555555;" vertex="1" parent="docker">
-          <mxGeometry x="25" y="255" width="430" height="60" as="geometry" />
+        <mxCell id="p1_dashboard" value="«planificado»&lt;br&gt;&lt;b&gt;Dashboard y estadísticas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;total, cantidad, promedio y categorías&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="20" y="432" width="250" height="72" as="geometry" />
         </mxCell>
-
-        <mxCell id="de1" value="contiene" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;dashed=1;dashPattern=6 6;strokeWidth=1;strokeColor=#9673A6;fontSize=9;fontColor=#9673A6;labelBackgroundColor=#FFFFFF;exitX=0.12;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="docker" target="docker_fastapi">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="p1_fugas" value="«planificado»&lt;br&gt;&lt;b&gt;Visualización de posibles fugas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;evidencia y regla aplicada&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="290" y="432" width="250" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="de2" value="contiene" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;dashed=1;dashPattern=6 6;strokeWidth=1;strokeColor=#9673A6;fontSize=9;fontColor=#9673A6;labelBackgroundColor=#FFFFFF;exitX=0.45;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="docker" target="docker_mongo">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="p1_client" value="«planificado»&lt;br&gt;&lt;b&gt;Cliente HTTP para FastAPI&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;HTTPS/REST · JSON · JWT&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="20" y="524" width="250" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="de3" value="contiene" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;dashed=1;dashPattern=6 6;strokeWidth=1;strokeColor=#9673A6;fontSize=9;fontColor=#9673A6;labelBackgroundColor=#FFFFFF;exitX=0.85;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="docker" target="docker_redis">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="p1_notif" value="«planificado»&lt;br&gt;&lt;b&gt;Notificaciones y recordatorios&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Expo Notifications · locales; push postergado&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="290" y="524" width="250" height="72" as="geometry" />
         </mxCell>
-
-        <mxCell id="capaDatos" value="D. DATOS" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontSize=17;fontStyle=1;fillColor=none;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="1">
-          <mxGeometry x="40" y="920" width="1000" height="480" as="geometry" />
+        <mxCell id="p1_images" value="«pendiente»&lt;br&gt;&lt;b&gt;Imágenes de perfil&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Cloudinary · mecanismo de carga pendiente (D-13)&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="20" y="626" width="250" height="72" as="geometry" />
         </mxCell>
-
-        <mxCell id="streams" value="&lt;b&gt;«module» (opcional)&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Cambios en tiempo real&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología:&lt;/b&gt; MongoDB Change Streams&lt;br&gt;&lt;b&gt;(opcional)&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Actualizar la información cuando cambien los datos.&lt;br&gt;&lt;br&gt;• Escucha cambios en las colecciones&lt;br&gt;• Avisa al backend para refrescar la vista&lt;br&gt;• Componente opcional del proyecto" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#FFFFFF;strokeColor=#B85450;dashed=1;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaDatos">
-          <mxGeometry x="40" y="55" width="280" height="250" as="geometry" />
+        <mxCell id="p1_metas" value="«pendiente»&lt;br&gt;&lt;b&gt;Metas mensuales y avance&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;D-08 · Won't Have por ahora&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="290" y="626" width="250" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="streams_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B85450;dashed=1;strokeWidth=2;" vertex="1" parent="capaDatos">
-          <mxGeometry x="26" y="85" width="14" height="36" as="geometry" />
+        <mxCell id="p1_recovery" value="«pendiente»&lt;br&gt;&lt;b&gt;Recuperación de contraseña&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;mecanismo y proveedor pendientes (D-09)&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_app">
+          <mxGeometry x="20" y="718" width="250" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="streams_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B85450;dashed=1;strokeWidth=2;" vertex="1" parent="capaDatos">
-          <mxGeometry x="26" y="185" width="14" height="36" as="geometry" />
+        <mxCell id="p1_app_note" value="La app nunca se conecta directamente a MongoDB Atlas. Toda persistencia pasa por FastAPI." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontSize=9;fontColor=#334155;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p1_app">
+          <mxGeometry x="290" y="718" width="250" height="72" as="geometry" />
         </mxCell>
-
-        <mxCell id="mongo" value="&lt;b&gt;«database»&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Base de datos&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: MongoDB&lt;/b&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Usuarios, gastos, categorías, historial y estadísticas.&lt;br&gt;&lt;br&gt;&lt;b&gt;Datos lógicos almacenados:&lt;/b&gt;&lt;br&gt;• &lt;b&gt;Usuarios&lt;/b&gt; — credenciales, rol y estado de la cuenta&lt;br&gt;• &lt;b&gt;Gastos&lt;/b&gt; — monto, moneda, categoría, descripción, fecha y propietario&lt;br&gt;• &lt;b&gt;Categorías&lt;/b&gt; — categorías predefinidas del sistema&lt;br&gt;• &lt;b&gt;Historial&lt;/b&gt; — gastos confirmados del usuario&lt;br&gt;• &lt;b&gt;Estadísticas&lt;/b&gt; — totales, promedios y comparaciones de periodos&lt;br&gt;&lt;br&gt;Cada gasto pertenece a exactamente un usuario." style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=16;spacingTop=6;spacingRight=10;fontSize=11;fillColor=#D0E0E3;strokeColor=#6C8EBF;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaDatos">
-          <mxGeometry x="340" y="55" width="620" height="250" as="geometry" />
+        <mxCell id="p1_voice" value="Registro por voz — Android (planificado)" style="swimlane;startSize=28;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#F8FAFC;swimlaneFillColor=#FFFFFF;strokeColor=#CBD5E1;strokeWidth=1.2;fontStyle=1;fontSize=12;fontColor=#334155;align=left;verticalAlign=top;spacingLeft=12;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="630" y="210" width="330" height="430" as="geometry" />
         </mxCell>
-        <mxCell id="mongo_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#D0E0E3;strokeColor=#6C8EBF;strokeWidth=2;" vertex="1" parent="capaDatos">
-          <mxGeometry x="326" y="88" width="14" height="38" as="geometry" />
+        <mxCell id="p1_kotlin" value="«planificado»&lt;br&gt;&lt;b&gt;Módulo nativo Kotlin&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;captura y control del reconocimiento&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_voice">
+          <mxGeometry x="18" y="42" width="294" height="62" as="geometry" />
         </mxCell>
-        <mxCell id="mongo_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#D0E0E3;strokeColor=#6C8EBF;strokeWidth=2;" vertex="1" parent="capaDatos">
-          <mxGeometry x="326" y="195" width="14" height="38" as="geometry" />
+        <mxCell id="p1_bridge" value="«planificado»&lt;br&gt;&lt;b&gt;Puente React Native ↔ Kotlin&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;interfaz nativa (módulo Android)&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_voice">
+          <mxGeometry x="18" y="118" width="294" height="62" as="geometry" />
         </mxCell>
-
-        <mxCell id="redis" value="&lt;b&gt;«database» Caché&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: Redis&lt;/b&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Caché, sesiones/datos temporales y consultas frecuentes.&lt;br&gt;• Resultados de consultas repetidas&lt;br&gt;• Datos temporales de sesión" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;spacingRight=8;fontSize=9;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaDatos">
-          <mxGeometry x="340" y="335" width="300" height="120" as="geometry" />
+        <mxCell id="p1_speech" value="«planificado»&lt;br&gt;&lt;b&gt;Android SpeechRecognizer&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;convierte voz en texto&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_voice">
+          <mxGeometry x="18" y="194" width="294" height="62" as="geometry" />
         </mxCell>
-        <mxCell id="redis_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;" vertex="1" parent="capaDatos">
-          <mxGeometry x="326" y="358" width="14" height="32" as="geometry" />
+        <mxCell id="p1_transcript" value="«planificado»&lt;br&gt;&lt;b&gt;Transcripción editable&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;el usuario revisa antes de continuar&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_voice">
+          <mxGeometry x="18" y="270" width="294" height="62" as="geometry" />
         </mxCell>
-        <mxCell id="redis_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;" vertex="1" parent="capaDatos">
-          <mxGeometry x="326" y="415" width="14" height="32" as="geometry" />
+        <mxCell id="p1_voice_note" value="SpeechRecognizer solo devuelve texto: no registra ni persiste el gasto. La transcripción sigue el flujo normal de interpretación, revisión y confirmación." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#78350F;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p1_voice">
+          <mxGeometry x="18" y="346" width="294" height="66" as="geometry" />
         </mxCell>
-
-        <mxCell id="aggregation" value="&lt;b&gt;«module» Consultas y estadísticas&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología:&lt;/b&gt; MongoDB Aggregation&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Totales por categoría, estadísticas y análisis del dashboard.&lt;br&gt;• Totales y acumulados por categoría&lt;br&gt;• Promedios de gasto&lt;br&gt;• Comparación de periodos" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;spacingRight=8;fontSize=9;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaDatos">
-          <mxGeometry x="660" y="335" width="300" height="120" as="geometry" />
+        <mxCell id="p1_backend" value="Backend" style="swimlane;startSize=52;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#FFFFFF;swimlaneFillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1.5;fontStyle=1;fontSize=14;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=14;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="990" y="210" width="820" height="820" as="geometry" />
         </mxCell>
-        <mxCell id="aggregation_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;" vertex="1" parent="capaDatos">
-          <mxGeometry x="646" y="358" width="14" height="32" as="geometry" />
+        <mxCell id="p1_backend_sub" value="Python + FastAPI · «planificado»" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=10;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="p1_backend">
+          <mxGeometry x="18" y="34" width="780" height="18" as="geometry" />
         </mxCell>
-        <mxCell id="aggregation_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;" vertex="1" parent="capaDatos">
-          <mxGeometry x="646" y="415" width="14" height="32" as="geometry" />
+        <mxCell id="p1_api" value="«planificado»&lt;br&gt;&lt;b&gt;API REST — FastAPI&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;routers, validación de solicitudes y respuestas JSON&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_backend">
+          <mxGeometry x="20" y="64" width="380" height="72" as="geometry" />
         </mxCell>
-
-        <mxCell id="capaIA" value="C. SERVICIOS DE IA" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontSize=17;fontStyle=1;fillColor=none;strokeColor=#9673A6;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="1">
-          <mxGeometry x="1160" y="920" width="560" height="480" as="geometry" />
+        <mxCell id="p1_users" value="«planificado»&lt;br&gt;&lt;b&gt;Gestión de usuarios&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;registro, consulta y estado de la cuenta&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_backend">
+          <mxGeometry x="420" y="64" width="380" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="openai" value="&lt;b&gt;«service»&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Servicio de IA&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: OpenAI API&lt;/b&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Extraer monto, categoría y descripción de los gastos.&lt;br&gt;&lt;br&gt;&lt;b&gt;Ejemplo de interpretación&lt;/b&gt;&lt;br&gt;Texto: &amp;quot;Hoy gasté $8.000 en un taxi&amp;quot;&lt;br&gt;Resultado:&lt;br&gt;  monto: 8000&lt;br&gt;  categoría: Transporte&lt;br&gt;  descripción: Taxi&lt;br&gt;&lt;br&gt;&lt;b&gt;Límites del componente&lt;/b&gt;&lt;br&gt;• No detecta fugas de dinero.&lt;br&gt;• No predice fugas de dinero.&lt;br&gt;• No da asesoría financiera.&lt;br&gt;• No predice mercados." style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=16;spacingTop=6;spacingRight=10;fontSize=11;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaIA">
-          <mxGeometry x="60" y="70" width="440" height="360" as="geometry" />
+        <mxCell id="p1_auth" value="«planificado»&lt;br&gt;&lt;b&gt;Autenticación y autorización JWT&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;emisión/validación del token y control de rol/propietario&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_backend">
+          <mxGeometry x="20" y="150" width="380" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="openai_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;" vertex="1" parent="capaIA">
-          <mxGeometry x="46" y="100" width="14" height="38" as="geometry" />
+        <mxCell id="p1_googlev" value="«planificado»&lt;br&gt;&lt;b&gt;Validación de identidad de Google&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;verifica el ID token; no emite el JWT de FUGA+&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_backend">
+          <mxGeometry x="420" y="150" width="380" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="openai_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;" vertex="1" parent="capaIA">
-          <mxGeometry x="46" y="290" width="14" height="38" as="geometry" />
+        <mxCell id="p1_bprofile" value="«planificado»&lt;br&gt;&lt;b&gt;Gestión del perfil&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;datos del usuario autenticado&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_backend">
+          <mxGeometry x="20" y="236" width="380" height="72" as="geometry" />
         </mxCell>
-
-        <mxCell id="capaDesarrollo" value="F. DESARROLLO Y DOCUMENTACIÓN" style="rounded=1;arcSize=2;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontSize=17;fontStyle=1;fillColor=none;strokeColor=#999999;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="1">
-          <mxGeometry x="1160" y="1460" width="560" height="420" as="geometry" />
+        <mxCell id="p1_bgastos" value="«planificado»&lt;br&gt;&lt;b&gt;Gestión de gastos&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;confirmación, edición y eliminación (Should)&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_backend">
+          <mxGeometry x="420" y="236" width="380" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="git" value="&lt;b&gt;«component»&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Control de versiones&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología: Git + GitHub&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Código y seguimiento del proyecto." style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaDesarrollo">
-          <mxGeometry x="40" y="50" width="230" height="150" as="geometry" />
+        <mxCell id="p1_processing" value="«planificado»&lt;br&gt;&lt;b&gt;Procesamiento del texto del gasto&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;diccionario propio + reglas deterministas versionadas&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_backend">
+          <mxGeometry x="20" y="322" width="380" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="git_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;" vertex="1" parent="capaDesarrollo">
-          <mxGeometry x="26" y="78" width="14" height="34" as="geometry" />
+        <mxCell id="p1_categories" value="«planificado»&lt;br&gt;&lt;b&gt;Gestión de categorías&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;catálogo y validación&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_backend">
+          <mxGeometry x="420" y="322" width="380" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="git_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;" vertex="1" parent="capaDesarrollo">
-          <mxGeometry x="26" y="140" width="14" height="34" as="geometry" />
+        <mxCell id="p1_bhistory" value="«planificado»&lt;br&gt;&lt;b&gt;Historial y consultas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;paginación, filtros y lectura por propietario&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_backend">
+          <mxGeometry x="20" y="408" width="380" height="72" as="geometry" />
         </mxCell>
-
-        <mxCell id="proyecto" value="&lt;b&gt;«component»&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Proyecto FUGA+&lt;/b&gt;&lt;br&gt;&lt;br&gt;Código fuente del proyecto:&lt;br&gt;• Aplicación móvil (React Native + TypeScript)&lt;br&gt;• Backend (Python + FastAPI)&lt;br&gt;• Documentación de la API" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#F5F5F5;strokeColor=#82B366;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaDesarrollo">
-          <mxGeometry x="290" y="50" width="230" height="150" as="geometry" />
+        <mxCell id="p1_leaks" value="«planificado»&lt;br&gt;&lt;b&gt;Detección de posibles fugas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;motor de reglas deterministas y evidencia&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_backend">
+          <mxGeometry x="420" y="408" width="380" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="proyecto_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#82B366;strokeWidth=2;" vertex="1" parent="capaDesarrollo">
-          <mxGeometry x="276" y="78" width="14" height="34" as="geometry" />
+        <mxCell id="p1_alerts" value="«planificado»&lt;br&gt;&lt;b&gt;Gestión de alertas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;alertas en la app; push remoto no definido&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_backend">
+          <mxGeometry x="20" y="494" width="380" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="proyecto_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#82B366;strokeWidth=2;" vertex="1" parent="capaDesarrollo">
-          <mxGeometry x="276" y="140" width="14" height="34" as="geometry" />
+        <mxCell id="p1_data" value="«planificado»&lt;br&gt;&lt;b&gt;Acceso a datos y repositorios&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;toda operación filtra por el usuario de la sesión&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_backend">
+          <mxGeometry x="420" y="494" width="380" height="72" as="geometry" />
         </mxCell>
-
-        <mxCell id="swagger" value="&lt;b&gt;«component» Documentación y pruebas de la API&lt;/b&gt;&lt;br&gt;&lt;b&gt;Tecnología:&lt;/b&gt; OpenAPI/Swagger mediante FastAPI&lt;br&gt;&lt;b&gt;Propósito:&lt;/b&gt; Probar y documentar los endpoints.&lt;br&gt;• Especificación OpenAPI generada por FastAPI&lt;br&gt;• Prueba interactiva de cada endpoint&lt;br&gt;• Contrato de la API para el equipo" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;spacingRight=8;fontSize=10;fillColor=#FFFFFF;strokeColor=#9673A6;dashed=1;strokeWidth=2;fontColor=#1A1A1A;" vertex="1" parent="capaDesarrollo">
-          <mxGeometry x="40" y="230" width="480" height="150" as="geometry" />
+        <mxCell id="p1_bcloud" value="«pendiente»&lt;br&gt;&lt;b&gt;Integración con Cloudinary&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;mecanismo de carga pendiente (D-13)&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_backend">
+          <mxGeometry x="20" y="580" width="380" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="swagger_tab1" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9673A6;dashed=1;strokeWidth=2;" vertex="1" parent="capaDesarrollo">
-          <mxGeometry x="26" y="258" width="14" height="34" as="geometry" />
+        <mxCell id="p1_bmetas" value="«pendiente»&lt;br&gt;&lt;b&gt;Gestión de metas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;D-08 · alcance pendiente&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_backend">
+          <mxGeometry x="420" y="580" width="380" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="swagger_tab2" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9673A6;dashed=1;strokeWidth=2;" vertex="1" parent="capaDesarrollo">
-          <mxGeometry x="26" y="320" width="14" height="34" as="geometry" />
+        <mxCell id="p1_backend_note1" value="«Procesar con IA» es la etiqueta de interfaz: el procesamiento es un diccionario propio y reglas deterministas. No se usa una API externa de IA." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#78350F;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p1_backend">
+          <mxGeometry x="20" y="676" width="780" height="48" as="geometry" />
         </mxCell>
-
-        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#6C8EBF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.157;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="visitante" target="app">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="p1_backend_note2" value="JWT y Google Identity Services tienen funciones distintas: Google autentica la cuenta; el backend valida el ID token y emite/valida su JWT. La app no accede directamente a MongoDB Atlas." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#78350F;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p1_backend">
+          <mxGeometry x="20" y="736" width="780" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#6C8EBF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="usuario" target="app">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="p1_persist" value="Persistencia" style="swimlane;startSize=52;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#FFFFFF;swimlaneFillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1.5;fontStyle=1;fontSize=14;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=14;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1830" y="210" width="450" height="620" as="geometry" />
         </mxCell>
-        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#D79B00;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.843;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="admin" target="app">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="p1_persist_sub" value="MongoDB Atlas · «planificado»" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=10;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="p1_persist">
+          <mxGeometry x="18" y="34" width="410" height="18" as="geometry" />
         </mxCell>
-
-        <mxCell id="e4" value="HTTPS / JSON" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=3;strokeColor=#333333;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="app" target="fastapi">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="p1_atlas" value="«planificado»&lt;br&gt;&lt;b&gt;MongoDB Atlas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;servicio de base de datos en la nube · no local&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_persist">
+          <mxGeometry x="20" y="64" width="410" height="76" as="geometry" />
         </mxCell>
-
-        <mxCell id="e5" value="Autenticación" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#D79B00;fontSize=11;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fastapi" target="jwt">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="p1_collections" value="Colecciones definidas" style="swimlane;startSize=28;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#F8FAFC;swimlaneFillColor=#FFFFFF;strokeColor=#CBD5E1;strokeWidth=1.2;fontStyle=1;fontSize=12;fontColor=#334155;align=left;verticalAlign=top;spacingLeft=12;spacingTop=5;" vertex="1" parent="p1_persist">
+          <mxGeometry x="20" y="160" width="410" height="340" as="geometry" />
         </mxCell>
-
-        <mxCell id="e6" value="Interpretación de gastos" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#9673A6;fontSize=11;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0.9;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.167;entryDx=0;entryDy=0;" edge="1" parent="1" source="fastapi" target="openai">
+        <mxCell id="p1_c_usuarios" value="usuarios" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontColor=#0F172A;" vertex="1" parent="p1_collections">
+          <mxGeometry x="18" y="42" width="374" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_c_gastos" value="gastos" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontColor=#0F172A;" vertex="1" parent="p1_collections">
+          <mxGeometry x="18" y="96" width="374" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_c_categorias" value="categorias" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontColor=#0F172A;" vertex="1" parent="p1_collections">
+          <mxGeometry x="18" y="150" width="374" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_c_fugas" value="posibles_fugas" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontColor=#0F172A;" vertex="1" parent="p1_collections">
+          <mxGeometry x="18" y="204" width="374" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_c_alertas" value="alertas" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontColor=#0F172A;" vertex="1" parent="p1_collections">
+          <mxGeometry x="18" y="258" width="374" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_persist_note" value="Metas: sin colección definida (D-08). Nombres de colecciones según el diagrama entidad-relación." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#78350F;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p1_persist">
+          <mxGeometry x="20" y="518" width="410" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_external" value="Servicios externos" style="swimlane;startSize=52;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#FFFFFF;swimlaneFillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1.5;fontStyle=1;fontSize=14;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=14;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1830" y="870" width="450" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_ext_google" value="«planificado»&lt;br&gt;&lt;b&gt;Google Identity Services&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;autenticación con cuenta de Google · ID token&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_external">
+          <mxGeometry x="20" y="64" width="410" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_ext_cloud" value="«pendiente»&lt;br&gt;&lt;b&gt;Cloudinary&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;imágenes de perfil · integración pendiente (D-13)&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_external">
+          <mxGeometry x="20" y="154" width="410" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_ext_note1" value="Cloudinary: las credenciales privadas permanecen en el backend; la app móvil nunca las recibe." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#78350F;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p1_external">
+          <mxGeometry x="20" y="244" width="410" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_ext_note2" value="Expo Notifications es una responsabilidad de la app; no se define servidor de notificaciones ni cola. El push remoto está postergado." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#78350F;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p1_external">
+          <mxGeometry x="20" y="302" width="410" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_planned" value="Componentes planificados" style="swimlane;startSize=38;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#FFFFFF;swimlaneFillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1.5;fontStyle=1;fontSize=14;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=14;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1070" width="1700" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_plan_sub" value="Aprobados o pendientes según la evidencia del proyecto · ninguno se presenta como verificado" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#64748B;whiteSpace=wrap;" vertex="1" parent="p1_planned">
+          <mxGeometry x="16" y="42" width="1660" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_plan_cloud" value="«pendiente»&lt;br&gt;&lt;b&gt;Carga de imágenes de perfil&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Cloudinary · mecanismo pendiente (D-13)&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_planned">
+          <mxGeometry x="20" y="78" width="380" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_plan_push" value="«pendiente»&lt;br&gt;&lt;b&gt;Notificaciones push remotas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;postergadas · backend de envío no definido&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_planned">
+          <mxGeometry x="440" y="78" width="380" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_plan_reminders" value="«pendiente»&lt;br&gt;&lt;b&gt;Recordatorios y preferencias&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;D-11 · sin servidor de notificaciones&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_planned">
+          <mxGeometry x="860" y="78" width="380" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_plan_edit" value="«planificado»&lt;br&gt;&lt;b&gt;Edición y eliminación de gastos&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Should · recálculo de resúmenes y fugas&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_planned">
+          <mxGeometry x="1280" y="78" width="380" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_plan_admin" value="«planificado»&lt;br&gt;&lt;b&gt;Funciones administrativas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Should · agregados y gestión de cuentas&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_planned">
+          <mxGeometry x="20" y="200" width="380" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_plan_filters" value="«planificado»&lt;br&gt;&lt;b&gt;Filtros de historial&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Should · fecha y categoría&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p1_planned">
+          <mxGeometry x="440" y="200" width="380" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_plan_note" value="Los componentes grises dependen de decisiones pendientes o están fuera del alcance actual. Los azules están aprobados pero no implementados. Ninguno se presenta como verificado. Solo se representan tecnologías aprobadas por el proyecto." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#78350F;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p1_planned">
+          <mxGeometry x="860" y="190" width="800" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_e1_main" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2.4;strokeColor=#0F172A;fontSize=9;fontColor=#0F172A;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;startArrow=block;startFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p1_client" target="p1_api">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="674" y="560" />
-              <mxPoint x="1140" y="560" />
-              <mxPoint x="1140" y="1050" />
+              <mxPoint x="50" y="770" />
+              <mxPoint x="50" y="1020" />
+              <mxPoint x="610" y="1020" />
+              <mxPoint x="610" y="770" />
+              <mxPoint x="1005" y="770" />
+              <mxPoint x="1005" y="310" />
+              <mxPoint x="1010" y="310" />
             </Array>
           </mxGeometry>
         </mxCell>
-
-        <mxCell id="e7" value="Persistencia" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=3;strokeColor=#333333;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.048;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="fastapi" target="mongo">
+        <mxCell id="p1_e2_google" value="OAuth" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.8;strokeColor=#2563EB;fontSize=9;fontColor=#2563EB;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="p1_google" target="p1_ext_google">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="610" y="402" />
+              <mxPoint x="610" y="1060" />
+              <mxPoint x="1200" y="1060" />
+              <mxPoint x="1500" y="1060" />
+              <mxPoint x="1840" y="1060" />
+              <mxPoint x="1840" y="934" />
+              <mxPoint x="2055" y="934" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_e3_cloud" value="Cloudinary" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.4;strokeColor=#64748B;fontSize=8;fontColor=#64748B;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;dashed=1;dashPattern=6 4;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p1_bcloud" target="p1_ext_cloud">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1005" y="827" />
+              <mxPoint x="1005" y="1020" />
+              <mxPoint x="1818" y="1020" />
+              <mxPoint x="1818" y="1061" />
+              <mxPoint x="1850" y="1061" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_e4_atlas" value="Atlas" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2.1;strokeColor=#0F172A;fontSize=9;fontColor=#0F172A;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p1_data" target="p1_atlas">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1818" y="740" />
+              <mxPoint x="1818" y="312" />
+              <mxPoint x="1850" y="312" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page-detalle-backend" name="Detalle del backend">
+    <mxGraphModel dx="2000" dy="1300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1300" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p2_title" value="FUGA+ — Detalle de flujos y backend" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=22;fontColor=#0F172A;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1000" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_subtitle" value="Página 2 de 2 · Autenticación, registro de gastos y detección de fugas" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="54" width="1000" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_edge_note" value="Flechas sin etiqueta = invocaciones internas del backend; azules = identidad externa; discontinuas = resultados o integraciones pendientes." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="76" width="1200" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_legend" value="Leyenda" style="swimlane;startSize=28;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#FFFFFF;swimlaneFillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1.5;fontStyle=1;fontSize=14;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=14;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1500" y="20" width="460" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_sw_green" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#16A34A;strokeWidth=1.4;" vertex="1" parent="p2_legend">
+          <mxGeometry x="16" y="44" width="22" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_sw_green_t" value="Implementado y verificado — 0" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="p2_legend">
+          <mxGeometry x="48" y="42" width="390" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_sw_blue" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.4;" vertex="1" parent="p2_legend">
+          <mxGeometry x="16" y="74" width="22" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_sw_blue_t" value="Planificado y aprobado" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="p2_legend">
+          <mxGeometry x="48" y="72" width="390" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_sw_gray" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=1.4;" vertex="1" parent="p2_legend">
+          <mxGeometry x="16" y="104" width="22" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_sw_gray_t" value="Pendiente o fuera de alcance" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="p2_legend">
+          <mxGeometry x="48" y="102" width="390" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_app" value="App móvil" style="swimlane;startSize=52;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#FFFFFF;swimlaneFillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1.5;fontStyle=1;fontSize=14;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=14;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="220" width="300" height="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_app_sub" value="React Native + TypeScript" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="p2_app">
+          <mxGeometry x="16" y="34" width="270" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_ui_auth" value="«planificado»&lt;br&gt;&lt;b&gt;UI de autenticación&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;correo/contraseña y Google&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_app">
+          <mxGeometry x="20" y="60" width="260" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_session" value="«planificado»&lt;br&gt;&lt;b&gt;Gestión de sesión y JWT&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;token para las solicitudes&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_app">
+          <mxGeometry x="20" y="130" width="260" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_ui_reg" value="«planificado»&lt;br&gt;&lt;b&gt;UI de registro de gasto&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;texto o voz&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_app">
+          <mxGeometry x="20" y="200" width="260" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_ui_review" value="«planificado»&lt;br&gt;&lt;b&gt;UI de revisión&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;propuesta editable&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_app">
+          <mxGeometry x="20" y="265" width="260" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_ui_history" value="«planificado»&lt;br&gt;&lt;b&gt;UI de historial&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;consulta del usuario&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_app">
+          <mxGeometry x="20" y="330" width="260" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_ui_leaks" value="«planificado»&lt;br&gt;&lt;b&gt;UI de posibles fugas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;evidencia y regla&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_app">
+          <mxGeometry x="20" y="395" width="260" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_google_client" value="«planificado»&lt;br&gt;&lt;b&gt;Cliente de Google&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;ID token de Google&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_app">
+          <mxGeometry x="20" y="460" width="260" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_notif" value="«planificado»&lt;br&gt;&lt;b&gt;Expo Notifications&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;notificaciones locales&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_app">
+          <mxGeometry x="20" y="525" width="260" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_images" value="«pendiente»&lt;br&gt;&lt;b&gt;Imágenes de perfil&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Cloudinary · D-13&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_app">
+          <mxGeometry x="20" y="590" width="260" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_voice" value="«planificado»&lt;br&gt;&lt;b&gt;Módulo de voz Android&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Kotlin + puente RN + SpeechRecognizer; solo transcripción editable&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_app">
+          <mxGeometry x="20" y="660" width="260" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_app_note" value="La app nunca accede a MongoDB Atlas ni almacena credenciales de Cloudinary. La transcripción de voz no crea el gasto: se revisa y confirma como cualquier texto." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontSize=9;fontColor=#334155;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p2_app">
+          <mxGeometry x="20" y="775" width="260" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_backend" value="Backend FastAPI" style="swimlane;startSize=52;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#FFFFFF;swimlaneFillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1.5;fontStyle=1;fontSize=14;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=14;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="380" y="220" width="800" height="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_backend_sub" value="Python + FastAPI · servicios y reglas deterministas" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="p2_backend">
+          <mxGeometry x="16" y="34" width="760" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_auth" value="Autenticación e identidad" style="swimlane;startSize=28;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#F8FAFC;swimlaneFillColor=#FFFFFF;strokeColor=#CBD5E1;strokeWidth=1.2;fontStyle=1;fontSize=12;fontColor=#334155;align=left;verticalAlign=top;spacingLeft=12;spacingTop=5;" vertex="1" parent="p2_backend">
+          <mxGeometry x="20" y="60" width="600" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_api_auth" value="«planificado»&lt;br&gt;&lt;b&gt;API de autenticación&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;registro, login y sesión&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_auth">
+          <mxGeometry x="20" y="40" width="270" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_google_validator" value="«planificado»&lt;br&gt;&lt;b&gt;Validador de Google&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;verifica el ID token&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_auth">
+          <mxGeometry x="310" y="40" width="270" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_jwt" value="«planificado»&lt;br&gt;&lt;b&gt;Servicio JWT&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;emite y valida el token&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_auth">
+          <mxGeometry x="20" y="110" width="270" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_users" value="«planificado»&lt;br&gt;&lt;b&gt;Servicio de usuarios&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;registro y cuenta&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_auth">
+          <mxGeometry x="310" y="110" width="270" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_profile" value="«planificado»&lt;br&gt;&lt;b&gt;Servicio de perfil&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;datos del usuario&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_auth">
+          <mxGeometry x="20" y="180" width="270" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_authorization" value="«planificado»&lt;br&gt;&lt;b&gt;Autorización&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;rol y propietario&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_auth">
+          <mxGeometry x="310" y="180" width="270" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_expense" value="Registro de gastos" style="swimlane;startSize=28;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#F8FAFC;swimlaneFillColor=#FFFFFF;strokeColor=#CBD5E1;strokeWidth=1.2;fontStyle=1;fontSize=12;fontColor=#334155;align=left;verticalAlign=top;spacingLeft=12;spacingTop=5;" vertex="1" parent="p2_backend">
+          <mxGeometry x="20" y="360" width="600" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_api_expense" value="«planificado»&lt;br&gt;&lt;b&gt;API REST de gastos&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;solicitudes autenticadas&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_expense">
+          <mxGeometry x="20" y="40" width="270" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_expense_service" value="«planificado»&lt;br&gt;&lt;b&gt;Servicio de gastos&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;validación y confirmación&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_expense">
+          <mxGeometry x="310" y="40" width="270" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_processing" value="«planificado»&lt;br&gt;&lt;b&gt;Procesamiento del texto&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;interpretación de monto, categoría y descripción&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_expense">
+          <mxGeometry x="20" y="110" width="270" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_dictionary" value="«planificado»&lt;br&gt;&lt;b&gt;Diccionario y reglas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;deterministas y versionadas&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_expense">
+          <mxGeometry x="310" y="110" width="270" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_bhistory" value="«planificado»&lt;br&gt;&lt;b&gt;Consulta de historial&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;paginación y filtros&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_expense">
+          <mxGeometry x="20" y="205" width="270" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_confirm" value="«planificado»&lt;br&gt;&lt;b&gt;Confirmación de gasto&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;solo tras revisión&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_expense">
+          <mxGeometry x="310" y="205" width="270" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_expense_note" value="«Procesar con IA» = diccionario propio + reglas deterministas; sin API externa de IA. La propuesta vuelve a la app y solo se persiste tras la confirmación del usuario." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontSize=9;fontColor=#334155;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p2_expense">
+          <mxGeometry x="20" y="278" width="560" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_leaks" value="Detección de fugas" style="swimlane;startSize=28;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#F8FAFC;swimlaneFillColor=#FFFFFF;strokeColor=#CBD5E1;strokeWidth=1.2;fontStyle=1;fontSize=12;fontColor=#334155;align=left;verticalAlign=top;spacingLeft=12;spacingTop=5;" vertex="1" parent="p2_backend">
+          <mxGeometry x="20" y="750" width="600" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_api_analysis" value="«planificado»&lt;br&gt;&lt;b&gt;API de análisis&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;solicita el análisis&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_leaks">
+          <mxGeometry x="20" y="40" width="270" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_rule_engine" value="«planificado»&lt;br&gt;&lt;b&gt;Motor de reglas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;posibles patrones de fuga&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_leaks">
+          <mxGeometry x="310" y="40" width="270" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_query" value="«planificado»&lt;br&gt;&lt;b&gt;Consulta de gastos&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;datos del propietario&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_leaks">
+          <mxGeometry x="20" y="115" width="270" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_evidence" value="«planificado»&lt;br&gt;&lt;b&gt;Evidencia y resultados&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;regla aplicada&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_leaks">
+          <mxGeometry x="310" y="115" width="270" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_leaks_note" value="Reglas deterministas y versionadas; resultados como posibles patrones, no predicciones." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontSize=9;fontColor=#334155;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p2_leaks">
+          <mxGeometry x="20" y="182" width="560" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_data_access" value="«planificado»&lt;br&gt;&lt;b&gt;Acceso a datos&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;CRUD y consultas por propietario&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_backend">
+          <mxGeometry x="640" y="330" width="140" height="530" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_persist" value="MongoDB Atlas" style="swimlane;startSize=52;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#FFFFFF;swimlaneFillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1.5;fontStyle=1;fontSize=14;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=14;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="220" width="340" height="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_persist_sub" value="persistencia en la nube · «planificado»" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=9;fontColor=#475569;whiteSpace=wrap;" vertex="1" parent="p2_persist">
+          <mxGeometry x="16" y="34" width="300" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_atlas" value="«planificado»&lt;br&gt;&lt;b&gt;MongoDB Atlas&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;servicio gestionado en la nube&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_persist">
+          <mxGeometry x="20" y="64" width="300" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_collections" value="Colecciones" style="swimlane;startSize=28;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#F8FAFC;swimlaneFillColor=#FFFFFF;strokeColor=#CBD5E1;strokeWidth=1.2;fontStyle=1;fontSize=12;fontColor=#334155;align=left;verticalAlign=top;spacingLeft=12;spacingTop=5;" vertex="1" parent="p2_persist">
+          <mxGeometry x="20" y="176" width="300" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_c_usuarios" value="usuarios" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontColor=#0F172A;" vertex="1" parent="p2_collections">
+          <mxGeometry x="16" y="40" width="268" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_c_gastos" value="gastos" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontColor=#0F172A;" vertex="1" parent="p2_collections">
+          <mxGeometry x="16" y="94" width="268" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_c_categorias" value="categorias" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontColor=#0F172A;" vertex="1" parent="p2_collections">
+          <mxGeometry x="16" y="148" width="268" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_c_fugas" value="posibles_fugas" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontColor=#0F172A;" vertex="1" parent="p2_collections">
+          <mxGeometry x="16" y="202" width="268" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_c_alertas" value="alertas" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#E0F2FE;strokeColor=#0284C7;fontSize=10;fontColor=#0F172A;" vertex="1" parent="p2_collections">
+          <mxGeometry x="16" y="256" width="268" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_persist_note" value="Toda escritura/lectura pasa por el backend. Colecciones según el diagrama entidad-relación. Metas no tiene colección definida (D-08)." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontSize=9;fontColor=#334155;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p2_persist">
+          <mxGeometry x="20" y="530" width="300" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_external" value="Servicios externos" style="swimlane;startSize=52;html=1;whiteSpace=wrap;rounded=0;arcSize=2;fillColor=#FFFFFF;swimlaneFillColor=#F8FAFC;strokeColor=#CBD5E1;strokeWidth=1.5;fontStyle=1;fontSize=14;fontColor=#0F172A;align=left;verticalAlign=top;spacingLeft=14;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1620" y="220" width="340" height="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_ext_google" value="«planificado»&lt;br&gt;&lt;b&gt;Google Identity Services&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;autenticación de cuenta · devuelve ID token&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_external">
+          <mxGeometry x="20" y="64" width="300" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_ext_cloud" value="«pendiente»&lt;br&gt;&lt;b&gt;Cloudinary&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;imágenes de perfil · integración pendiente (D-13)&lt;/font&gt;" style="shape=component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingRight=8;spacingTop=7;fontSize=11;fontColor=#0F172A;fillColor=#F1F5F9;strokeColor=#64748B;strokeWidth=1.6;swimlaneFillColor=none;" vertex="1" parent="p2_external">
+          <mxGeometry x="20" y="220" width="300" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_ext_note_google" value="Google autentica la cuenta y entrega un ID token. El backend lo valida y emite su JWT. Son tecnologías distintas." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#78350F;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p2_external">
+          <mxGeometry x="20" y="392" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_ext_note_cloud" value="Mecanismo de carga de imágenes pendiente (D-13). Las credenciales privadas permanecen en el backend." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#78350F;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p2_external">
+          <mxGeometry x="20" y="506" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_ext_note_push" value="Expo Notifications: notificaciones locales en la app. Push remoto postergado; no se define servidor ni cola de mensajes." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#F8FAFC;strokeColor=#CBD5E1;fontSize=9;fontColor=#334155;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p2_external">
+          <mxGeometry x="20" y="630" width="300" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_ext_note_scope" value="Solo se representan tecnologías aprobadas por el proyecto. La IA del texto es un diccionario y reglas del proyecto, no un servicio externo." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFBEB;strokeColor=#D97706;fontSize=9;fontColor=#78350F;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;" vertex="1" parent="p2_external">
+          <mxGeometry x="20" y="780" width="300" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e1_auth" value="autenticación" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2.0;strokeColor=#0F172A;fontSize=9;fontColor=#0F172A;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_ui_auth" target="p2_api_auth">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="370" y="307.5" />
+              <mxPoint x="370" y="347.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e2_google" value="OAuth · ID token" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.8;strokeColor=#2563EB;fontSize=8;fontColor=#2563EB;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_google_client" target="p2_ext_google">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="25" y="707.5" />
+              <mxPoint x="25" y="205" />
+              <mxPoint x="1600" y="205" />
+              <mxPoint x="1600" y="344" />
+              <mxPoint x="1640" y="344" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e3_google_validate" value="validación del ID token" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.8;strokeColor=#2563EB;fontSize=8;fontColor=#2563EB;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_ext_google" target="p2_google_validator">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1790" y="284" />
+              <mxPoint x="1790" y="170" />
+              <mxPoint x="1000" y="170" />
+              <mxPoint x="1000" y="347.5" />
+              <mxPoint x="980" y="347.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e4_api_google" value="ID" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_api_auth" target="p2_google_validator">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="e8" value="Caché" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#D79B00;fontSize=11;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.65;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fastapi" target="redis">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="20" y="781" />
-              <mxPoint x="20" y="1315" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-
-        <mxCell id="e9" value="Consultas y estadísticas" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#D6B656;fontSize=11;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.94;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fastapi" target="aggregation">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1070" y="851" />
-              <mxPoint x="1070" y="1315" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-
-        <mxCell id="e10" value="Agregaciones" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#D6B656;fontSize=11;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="aggregation" target="mongo">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="690" y="1315" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-
-        <mxCell id="e11" value="Cambios en datos" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;dashed=1;dashPattern=6 6;strokeWidth=2;strokeColor=#B85450;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="streams" target="mongo">
+        <mxCell id="p2_e5_api_jwt" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.6;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_api_auth" target="p2_jwt">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="e12" value="Actualización en tiempo real" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;dashed=1;dashPattern=6 6;strokeWidth=2;strokeColor=#B85450;fontSize=10;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.333;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="streams" target="fastapi">
+        <mxCell id="p2_e6_api_users" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.6;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_api_auth" target="p2_users">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="220" y="890" />
-              <mxPoint x="300" y="890" />
+              <mxPoint x="695" y="358.5" />
+              <mxPoint x="695" y="428.5" />
             </Array>
           </mxGeometry>
         </mxCell>
-
-        <mxCell id="e13" value="Documentación y pruebas" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;dashed=1;dashPattern=6 6;strokeWidth=2;strokeColor=#9673A6;fontSize=11;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.727;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="swagger" target="fastapi">
+        <mxCell id="p2_e7_jwt_authz" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.6;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_jwt" target="p2_authorization">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1100" y="1765" />
-              <mxPoint x="1100" y="570" />
-              <mxPoint x="560" y="570" />
+              <mxPoint x="705" y="417.5" />
+              <mxPoint x="705" y="485" />
             </Array>
           </mxGeometry>
         </mxCell>
-
-        <mxCell id="e14" value="Control de versiones" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#82B366;fontSize=10;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="git" target="proyecto">
+        <mxCell id="p2_e8_users_data" value="CRUD" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.32;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_users" target="p2_data_access">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="417.5" />
+              <mxPoint x="1000" y="719.6" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e9_data_atlas" value="persistencia" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2.0;strokeColor=#0F172A;fontSize=8;fontColor=#0F172A;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.6;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_data_access" target="p2_atlas">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1200" y="868" />
+              <mxPoint x="1200" y="327" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e10_client_api" value="JWT" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2.2;strokeColor=#0F172A;fontSize=8;fontColor=#0F172A;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_session" target="p2_api_expense">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="370" y="377.5" />
+              <mxPoint x="370" y="647.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e11_reg_api" value="texto" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.6;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_ui_reg" target="p2_api_expense">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="447.5" />
+              <mxPoint x="340" y="658.5" />
+              <mxPoint x="420" y="658.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e12_api_processing" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.6;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_api_expense" target="p2_processing">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
+        <mxCell id="p2_e13_processing_dict" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.6;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_processing" target="p2_dictionary">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e14_proposal" value="propuesta" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.4;strokeColor=#64748B;fontSize=8;fontColor=#64748B;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;dashed=1;dashPattern=6 4;exitX=0;exitY=0.15;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_api_expense" target="p2_ui_review">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="628.25" />
+              <mxPoint x="390" y="512.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e15_confirm" value="confirmado" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.6;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.6;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_ui_review" target="p2_api_expense">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="350" y="518" />
+              <mxPoint x="350" y="631" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e16_api_expense" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.8;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_api_expense" target="p2_expense_service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e17_confirm_save" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.6;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_expense_service" target="p2_confirm">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1005" y="647.5" />
+              <mxPoint x="1005" y="812.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e18_history" value="historial" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=0;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_api_expense" target="p2_bhistory">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="405" y="636.5" />
+              <mxPoint x="405" y="700" />
+              <mxPoint x="405" y="770" />
+              <mxPoint x="405" y="812.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e19_confirm_data" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.8;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.8;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_confirm" target="p2_data_access">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1015" y="812.5" />
+              <mxPoint x="1015" y="974" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e20_history_data" value="lee" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_bhistory" target="p2_data_access">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="812.5" />
+              <mxPoint x="700" y="770" />
+              <mxPoint x="1010" y="770" />
+              <mxPoint x="1010" y="921" />
+              <mxPoint x="1020" y="921" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e21_ui_analysis" value="análisis" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2.0;strokeColor=#0F172A;fontSize=8;fontColor=#0F172A;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_ui_leaks" target="p2_api_analysis">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="345" y="642.5" />
+              <mxPoint x="345" y="1037.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e22_api_rules" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.6;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_api_analysis" target="p2_rule_engine">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e23_rules_query" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.6;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_rule_engine" target="p2_query">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="845" y="1080" />
+              <mxPoint x="555" y="1080" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e24_query_data" value="gastos del propietario" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.5;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.85;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_query" target="p2_data_access">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="1112.5" />
+              <mxPoint x="410" y="1210" />
+              <mxPoint x="1190" y="1210" />
+              <mxPoint x="1190" y="1000" />
+              <mxPoint x="1160" y="1000" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2_e25_rules_evidence" value="genera" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.6;strokeColor=#334155;fontSize=8;fontColor=#334155;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;exitX=0.3;exitY=1;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_rule_engine" target="p2_evidence">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_e26_analysis_ui" value="API" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=1.4;strokeColor=#64748B;fontSize=8;fontColor=#64748B;labelBackgroundColor=#FFFFFF;jumpStyle=arc;jumpSize=6;dashed=1;dashPattern=6 4;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2_api_analysis" target="p2_ui_leaks">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="1037.5" />
+              <mxPoint x="330" y="642.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
