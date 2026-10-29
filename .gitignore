@@ -1,0 +1,15 @@
+# Environment
+.env
+*.env
+backend/.env
+mobile/.env
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Logs
+*.log

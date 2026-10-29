@@ -88,17 +88,6 @@ FUGA+ está dirigida a jóvenes y estudiantes. Permite registrar gastos en lengu
 
 `SpeechRecognizer` es una API nativa de Android. Un módulo Kotlin personalizado no funciona en Expo Go; requiere una compilación de desarrollo o un flujo de prebuild/EAS con el módulo nativo incluido. Esta es una dependencia de integración de HU-17 a HU-19 y un riesgo del plan, no un cambio de arquitectura.
 
-### 3.5 Inconsistencias detectadas en la documentación existente
-
-Estas inconsistencias se documentan para que se resuelvan en una tarea posterior; no se modificaron en este trabajo.
-
-1. `README.md` y `docs/respuestas-ia/salida-requerimientos-priorizados.md` mencionan OpenAI API o «IA» para interpretar gastos. La decisión acordada actual es diccionario propio y reglas deterministas, sin API externa de IA. Este documento aplica la decisión actual.
-2. `docs/diagramas/diagrama-historias-usuario.drawio` y su prompt usan identificadores HU-01 a HU-14 con significados distintos de las 33 historias originales. Por ejemplo, el diagrama usa HU-03 para «Registrar gasto en lenguaje natural», mientras que en este documento HU-03 es «Iniciar sesión con Google». Existe una colisión de identificadores que debe corregirse en el diagrama; aquí se conservan HU-01 a HU-33.
-3. `README.md` enlaza a `docs/requisitos.md`, que no está presente en el árbol de trabajo actual (aparece eliminado en el estado de Git). No fue eliminado por este trabajo.
-4. `docs/architecture.md` y `docs/manifest_schema.md` son marcadores de posición muy breves y no describen la arquitectura real de FUGA+.
-5. La etiqueta «Procesar con IA» puede generar expectativas de un modelo de IA externo. Se conserva por decisión, pero requiere una decisión de comunicación transparente en la interfaz y en la documentación.
-6. El alcance de las metas de gasto o ahorro no está definido; por eso HU-28 y HU-29 se postergan y no se incluyen en el MVP.
-
 ---
 
 ## 4. Criterios usados para mejorar y priorizar las historias
