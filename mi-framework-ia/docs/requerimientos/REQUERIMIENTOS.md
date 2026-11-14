@@ -1,10 +1,29 @@
-# Requerimientos funcionales y no funcionales priorizados de FUGA+
+# FUGA+ — Requerimientos funcionales y no funcionales priorizados
 
-## A. Requerimientos funcionales priorizados
+**Versión:** 3.0 — línea base definitiva de especificación · **Fecha:** 2026-11-13
 
-**Fuente principal:** `docs/respuestas-ia/salida-historias-usuario.md` (33 historias revisadas y priorizadas). Se mantiene una relación uno a uno entre historia y requerimiento funcional para evitar duplicidad y conservar la trazabilidad. Las historias HU-16 y HU-25 agrupan más de una operación, pero se mantienen en un solo requerimiento porque comparten objetivo, prioridad y alcance.
+**Estado:** ESPECIFICACIÓN DOCUMENTAL DEFINITIVA. Decisiones D-01 a D-15 cerradas y aplicables según el alcance de cada prioridad; la implementación y sus pruebas se realizan posteriormente.
 
-**Convenciones:** los umbrales, montos, frecuencias, ventanas, monedas, categorías y políticas no definidas se remiten a las decisiones D-xx de la sección E. No se inventan valores numéricos ni reglas de negocio.
+**Tecnologías vigentes para conciliación:** Supabase Auth, PostgreSQL en Supabase, FastAPI, React Native/TypeScript. Toda referencia heredada a JWT emitido por backend, MongoDB o servicios sustituidos requiere corrección y no constituye decisión vigente.
+
+## Control de línea base definitiva (versión 3.0)
+
+- Este documento es la especificación final de producto y aceptación; se conserva la numeración y priorización original.
+- Las decisiones de diseño D-01 a D-15 se fijan en el apartado **Especificación definitiva de decisiones de producto y arquitectura** de este mismo archivo.
+- Stack: React Native/TypeScript, FastAPI/Python, Supabase PostgreSQL y Supabase Auth. Sin MongoDB, JWT propio, Redis, Docker ni IA generativa externa como dependencia del MVP.
+- Must Have define el MVP; Should/Could son ampliaciones especificadas; Won’t no se implementa en esta versión.
+- Una especificación completa no constituye evidencia de que la aplicación esté implementada o de que un proveedor externo esté configurado.
+
+## Matriz de prioridades
+
+| Prioridad | RF | MVP |
+|---|---|---|
+| Must Have | RF-001, RF-002, RF-004, RF-010, RF-011, RF-012, RF-013, RF-014, RF-020, RF-021, RF-023, RF-024, RF-033 | Sí |
+| Should Have | RF-003, RF-005, RF-007, RF-008, RF-015, RF-016, RF-030, RF-031, RF-032 | No |
+| Could Have | RF-006, RF-009, RF-017, RF-018, RF-019, RF-022, RF-025, RF-026, RF-027 | No |
+| Won't Have (for now) | RF-028, RF-029 | No |
+
+## Requerimientos funcionales
 
 ### RF-001 — Consultar información pública y acceder al registro o al inicio de sesión
 
@@ -25,14 +44,14 @@
 
 **Identificador:** RF-002 · **Historia de origen:** HU-02 · **Prioridad:** Must Have · **MVP:** Sí
 
-**Descripción:** Un Visitante puede crear una cuenta con correo y contraseña e iniciar sesión; el backend valida las credenciales, aplica la política de contraseñas aprobada y emite una sesión JWT con el rol correspondiente.
+**Descripción:** Un Visitante puede crear una cuenta con correo y contraseña e iniciar sesión; Supabase Auth gestiona la autenticación y la sesión. FastAPI verifica los tokens de acceso y aplica las autorizaciones correspondientes según el rol del usuario.
 
 **Justificación:** La identidad es la base de la propiedad de los gastos, la autorización y la privacidad. Sin registro e inicio de sesión no existe cuenta a la que asociar datos.
 
 **Criterios de aceptación:**
 - Un registro con datos válidos crea una cuenta con rol **Usuario** y nunca con rol **Administrador** por defecto.
 - Un correo ya registrado, un dato inválido o una contraseña que no cumple la política aprobada se rechazan con un mensaje claro y sin detalles internos.
-- Un inicio de sesión válido devuelve un JWT utilizable; credenciales incorrectas o una cuenta inactiva se rechazan con un mensaje que no revela si el correo existe.
+- Un inicio de sesión válido establece una sesión gestionada por Supabase Auth; credenciales incorrectas o una cuenta inactiva se rechazan con un mensaje que no revela si el correo existe.
 - La contraseña no se almacena en texto plano ni se devuelve en ninguna respuesta.
 
 **Dependencias:** RF-001; decisión D-09 (política de contraseñas y sesión).
@@ -41,13 +60,13 @@
 
 **Identificador:** RF-003 · **Historia de origen:** HU-03 · **Prioridad:** Should Have · **MVP:** No
 
-**Descripción:** Un Visitante puede iniciar sesión con una cuenta de Google; el backend verifica el token de identidad y crea o vincula la cuenta según la regla aprobada, sin aceptar datos de identidad enviados sin verificar.
+**Descripción:** Un Visitante puede iniciar sesión con una cuenta de Google; Supabase Auth gestiona el flujo OAuth con Google y crea o vincula la identidad según la regla aprobada; FastAPI verifica el token de acceso emitido por Supabase Auth y aplica la autorización por rol, sin confiar en datos de identidad suministrados por el cliente.
 
 **Justificación:** Es un canal de acceso cómodo, pero el MVP puede operar con correo y contraseña. Depende de configuración OAuth y de una regla segura de vinculación.
 
 **Criterios de aceptación:**
-- Un token de Google válido permite crear o vincular la cuenta y devuelve una sesión JWT.
-- Un token inválido, vencido o de otro cliente se rechaza sin crear ni vincular cuentas.
+- Un flujo OAuth válido gestionado por Supabase Auth permite crear o vincular la cuenta conforme a D-10 y establece una sesión de Supabase Auth.
+- Un flujo OAuth o token de acceso inválido, vencido o destinado a otro cliente se rechaza; FastAPI no acepta tokens de Google como sustituto del token de acceso de Supabase Auth.
 - Un correo que ya pertenece a una cuenta local se trata según D-10 y no permite tomar el control de la cuenta sin verificación.
 - La cuenta creada por Google recibe el rol **Usuario**, salvo provisión administrativa explícita.
 
@@ -354,7 +373,7 @@
 
 **Criterios de aceptación:**
 - El desglose incluye únicamente los gastos del propietario y usa el catálogo aprobado en D-02.
-- El total de las categorías coincide con el total del periodo, salvo la categoría «Otros» si el catálogo la define.
+- La suma de todas las categorías, incluida «Otros» cuando exista, coincide con el total del periodo; ningún gasto se omite ni se cuenta dos veces.
 - La categoría de mayor gasto se identifica correctamente; en caso de empate se aplica la regla D-02.
 - Los porcentajes se calculan con el redondeo aprobado y no se generan porcentajes inválidos cuando el total es cero.
 - Se muestra un estado sin datos cuando no hay gastos en el periodo.
@@ -422,7 +441,7 @@
 
 **Identificador:** RF-025 · **Historia de origen:** HU-25 · **Prioridad:** Could Have · **MVP:** No
 
-**Descripción:** Un Usuario autenticado puede recibir alertas dentro de la aplicación y, como máximo, notificaciones locales cuando se detecte una posible fuga nueva; las notificaciones push remotas quedan postergadas y no forman parte de este requerimiento.
+**Descripción:** Un Usuario autenticado puede recibir alertas dentro de la aplicación y notificaciones del dispositivo mediante Expo Notifications cuando se detecte una posible fuga nueva. Las notificaciones locales se contemplan en el alcance opcional; el envío push remoto requiere verificar costos, credenciales, infraestructura, consentimiento y viabilidad antes de activarlo (D-11).
 
 **Justificación:** Las alertas añaden comodidad, pero la posible fuga ya puede consultarse en la aplicación. El push requiere infraestructura, credenciales y decisiones de privacidad adicionales.
 
@@ -433,7 +452,7 @@
 - Una misma fuga no se repite de forma indiscriminada; el criterio de novedad y recordatorio se define en D-11.
 - Abrir la alerta lleva a la evidencia de RF-024 del propio Usuario.
 - El contenido en pantalla bloqueada no expone montos, descripciones ni otros datos financieros sensibles.
-- No se envían notificaciones push remotas en el alcance actual.
+- No se habilita el envío push remoto hasta aprobar D-11 y comprobar su viabilidad técnica y económica; Expo Notifications como biblioteca no implica que el envío remoto esté implementado.
 
 **Dependencias:** RF-023, RF-024; decisión D-11.
 
@@ -472,111 +491,164 @@
 
 **Dependencias:** RF-023, RF-024; decisiones D-01 y D-04.
 
-### RF-028 — Definir una meta mensual de gasto o ahorro con alcance explícito
+### RF-028 — Definir un límite mensual global de gasto
 
-**Identificador:** RF-028 · **Historia de origen:** HU-28 · **Prioridad:** Won't Have (por ahora) · **MVP:** No
+**Historia:** HU-28 · **Prioridad:** Won't Have (for now) · **MVP:** No
 
-**Descripción:** Un Usuario autenticado podría definir una meta mensual de gasto o de ahorro, siempre que el tipo, el periodo, los gastos incluidos y la fuente de datos para medir el avance estén definidos y aprobados.
+**Descripción:** El sistema deberá definir un límite mensual global de gasto conforme a las reglas aprobadas de HU-28.
 
-**Justificación:** El alcance de la meta aún es ambiguo y una meta de ahorro requiere ingresos o una base de cálculo que el producto no tiene definida. Se posterga para no inventar una regla de negocio.
+**Especificación funcional:**
 
-**Criterios de aceptación:**
-- Una meta solo se guarda si el tipo —gasto o ahorro—, el periodo y los gastos incluidos están definidos según D-08.
-- Si se elige una meta de ahorro y no existe una fuente de datos aprobada, el sistema no permite guardarla y explica el motivo.
-- Una meta de gasto se valida contra los límites y la moneda aprobados en D-03.
-- Solo el propietario puede crear, consultar o modificar su meta.
-- No se generan metas automáticas ni valores por defecto no aprobados.
+- Un único límite vigente por usuario y mes.
+- El límite es global, sin separación por categorías ni metas de ahorro.
+- Crear límites para el mes actual o futuros, nunca meses finalizados.
+- Monto entero positivo en COP dentro del rango técnico.
+- Modificar límites durante meses habilitados.
+- Eliminar lógicamente con confirmación, sin afectar gastos.
+- Conservar historial de cambios de monto.
+- Considerar todos los gastos confirmados y no eliminados del mes, incluso anteriores al límite.
+- Advertir si los gastos existentes exceden el monto, sin bloquear la operación.
+- Validar y confirmar antes de guardar.
+- Impedir límites vigentes duplicados; ofrecer modificar el existente.
+- Permitir recreación después de eliminación lógica durante un mes habilitado.
+- Usar tabla de límites y tabla de historial en PostgreSQL; verificar Supabase Auth desde FastAPI.
+- Proteger propiedad, errores y reintentos sin duplicación.
+- Cerrar automáticamente al finalizar el mes, preservando monto e historial.
 
-**Dependencias:** RF-002, RF-013; decisión D-08.
+**Verificación:** consultar CA-28.01 a CA-28.14 en `historias-usuario.md`.
 
-### RF-029 — Consultar el avance hacia la meta definida
+### RF-029 — Consultar el avance del límite mensual de gasto
 
-**Identificador:** RF-029 · **Historia de origen:** HU-29 · **Prioridad:** Won't Have (por ahora) · **MVP:** No
+**Historia:** HU-29 · **Prioridad:** Won't Have (for now) · **MVP:** No
 
-**Descripción:** Un Usuario autenticado podría consultar el avance de su meta mensual a partir de los gastos vigentes y de la fuente de datos definida para la meta, sin generar recomendaciones ni predicciones.
+**Descripción:** El sistema deberá consultar el avance del límite mensual de gasto conforme a las reglas aprobadas de HU-29.
 
-**Justificación:** Depende de RF-028 y de una definición completa de la meta. No se incluye hasta que esa definición exista.
+**Especificación funcional:**
 
-**Criterios de aceptación:**
-- El avance se calcula con la meta y el periodo definidos, usando gastos vigentes del propietario.
-- Si el denominador es cero o la meta no es calculable, no se muestra un porcentaje inválido; se explica la situación.
-- La vista muestra el valor actual y el objetivo sin afirmar que el Usuario podrá cumplirlo.
-- El avance se actualiza al crear un gasto y, cuando RF-016 esté implementada, al editar o eliminar.
-- Solo el propietario puede consultar su avance.
-- No se emiten recomendaciones, predicciones ni juicios sobre la capacidad de ahorro.
+- Mostrar seguimiento si existe límite no eliminado.
+- Consultar mes actual y meses anteriores con límite.
+- Mostrar límite, gastos, porcentaje y diferencia COP.
+- Contar gastos confirmados no eliminados del mes.
+- Calcular (total gastado / límite) × 100.
+- Diferenciar dentro, alcanzado y superado.
+- Mostrar porcentaje real superior a 100 %; barra visual limitada a 100 %.
+- Actualizar al crear, editar o eliminar gastos.
+- Actualizar tras modificación del límite.
+- Mostrar estado vacío y acceso a configuración.
+- Conservar límite histórico al cerrar mes.
+- Mensajes neutrales sin juicios financieros.
+- Solo datos del usuario autenticado.
+- Calcular en FastAPI con PostgreSQL.
+- Sin notificaciones automáticas.
 
-**Dependencias:** RF-028, RF-020, RF-021; RF-016 para actualización; decisión D-08.
+**Verificación:** consultar CA-29.01 a CA-29.14 en `historias-usuario.md`.
 
 ### RF-030 — Consultar estadísticas agregadas de uso sin acceder a gastos individuales
 
-**Identificador:** RF-030 · **Historia de origen:** HU-30 · **Prioridad:** Should Have · **MVP:** No
+**Historia:** HU-30 · **Prioridad:** Should Have · **MVP:** No
 
-**Descripción:** Un Administrador autenticado puede consultar estadísticas agregadas de uso, definidas y aprobadas, sin acceder a gastos, descripciones, montos individuales ni datos que permitan identificar a un Usuario.
+**Descripción:** El sistema deberá consultar estadísticas agregadas de uso sin acceder a gastos individuales conforme a las reglas aprobadas de HU-30.
 
-**Justificación:** La administración necesita una visión operativa, pero no es parte del flujo de valor del MVP. La privacidad impide exponer datos individuales.
+**Especificación funcional:**
 
-**Criterios de aceptación:**
-- Solo un Administrador autenticado accede a las estadísticas agregadas.
-- Las métricas mostradas corresponden al conjunto aprobado en D-07 y no incluyen gastos individuales ni descripciones.
-- No se muestran grupos por debajo del umbral mínimo de agregación aprobado; si el umbral no está definido, la función no se expone como terminada.
-- El Administrador no puede navegar desde un agregado al detalle de un gasto ni identificar a un Usuario a partir de grupos pequeños.
-- Un Usuario sin rol administrativo recibe 403 y no obtiene datos agregados reservados.
-- Las cifras se actualizan según la frecuencia aprobada en D-07.
+- Acceso exclusivo de administradores autorizados.
+- Mostrar total de usuarios registrados.
+- Mostrar cuentas activas e inactivas.
+- Mostrar conteo global de gastos confirmados no eliminados.
+- Mostrar usuarios con actividad mensual.
+- Mostrar evolución mensual de usuarios con actividad.
+- Consultar mes actual y anteriores.
+- No mostrar gastos, descripciones, categorías ni importes personales.
+- No permitir navegar a finanzas individuales.
+- Aplicar agregación mínima según D-07.
+- Consultas agregadas en FastAPI y PostgreSQL.
+- Estados vacíos y errores seguros.
+- Sin IA generativa ni analítica externa.
+- Fuera del MVP inicial.
 
-**Dependencias:** RF-002, RF-013, RF-033; decisión D-07.
+**Verificación:** consultar CA-30.01 a CA-30.14 en `historias-usuario.md`.
 
-### RF-031 — Consultar usuarios registrados y la información administrativa necesaria
+### RF-031 — Consultar usuarios registrados e información administrativa
 
-**Identificador:** RF-031 · **Historia de origen:** HU-31 · **Prioridad:** Should Have · **MVP:** No
+**Historia:** HU-31 · **Prioridad:** Should Have · **MVP:** No
 
-**Descripción:** Un Administrador autenticado puede consultar una lista paginada de usuarios con los campos administrativos mínimos aprobados, sin acceso a sus gastos, descripciones, montos ni credenciales.
+**Descripción:** El sistema deberá consultar usuarios registrados e información administrativa conforme a las reglas aprobadas de HU-31.
 
-**Justificación:** Facilita la operación y la gestión de cuentas, pero no es necesaria para el flujo principal y requiere definir los campos y permisos exactos.
+**Especificación funcional:**
 
-**Criterios de aceptación:**
-- Solo un Administrador autenticado puede consultar la lista de usuarios.
-- La lista muestra únicamente los campos aprobados en D-14 y no incluye gastos, descripciones, montos, contraseñas ni tokens.
-- La búsqueda, el filtrado y la paginación se limitan a los campos y criterios aprobados en D-14.
-- Un Usuario sin rol administrativo recibe 403.
-- La consulta no permite inferir datos financieros individuales ni acceder al detalle de una cuenta.
-- Los datos se presentan de forma consistente con la política de minimización.
+- Acceso exclusivo de administradores autorizados.
+- Listado paginado.
+- Buscar por nombre o correo.
+- Filtrar por estado activo/inactivo.
+- Mostrar ID, nombre disponible, correo, rol, estado y fecha de registro.
+- Vista de detalle con los mismos campos.
+- No mostrar contraseñas, tokens ni credenciales.
+- No mostrar datos financieros individuales.
+- Solo consulta, sin modificación.
+- FastAPI verifica identidad y rol.
+- Paginación y límites de resultados.
+- Estados vacíos y búsquedas sin coincidencia.
+- Errores y denegaciones seguros.
+- Sincronización con Supabase Auth y perfiles administrativos.
 
-**Dependencias:** RF-030, RF-033; decisiones D-07, D-14 y D-16.
+**Verificación:** consultar CA-31.01 a CA-31.14 en `historias-usuario.md`.
 
-### RF-032 — Activar o desactivar cuentas de usuario desde funciones administrativas autorizadas
+### RF-032 — Activar o desactivar cuentas de usuario
 
-**Identificador:** RF-032 · **Historia de origen:** HU-32 · **Prioridad:** Should Have · **MVP:** No
+**Historia:** HU-32 · **Prioridad:** Should Have · **MVP:** No
 
-**Descripción:** Un Administrador autorizado puede activar o desactivar una cuenta de Usuario; la desactivación impide el inicio de sesión, invalida sus sesiones según la política aprobada y queda registrada para auditoría.
+**Descripción:** El sistema deberá activar o desactivar cuentas de usuario conforme a las reglas aprobadas de HU-32.
 
-**Justificación:** Es necesaria para la operación una vez existe el panel administrativo, pero no forma parte del MVP y depende de reglas de auditoría y protección del último administrador.
+**Especificación funcional:**
 
-**Criterios de aceptación:**
-- Solo un Administrador autenticado y autorizado puede activar o desactivar cuentas.
-- La desactivación impide nuevos inicios de sesión y revoca o invalida las sesiones activas según D-09.
-- Un Administrador no puede desactivar su propia cuenta ni dejar el sistema sin un administrador activo, según D-14/D-16.
-- La operación queda registrada con actor, fecha, cuenta afectada y motivo cuando D-14 lo exija.
-- La activación restaura la posibilidad de iniciar sesión, sin cambiar el rol ni los datos del Usuario.
-- El Administrador no obtiene acceso a los gastos de la cuenta afectada.
+- Solo administradores autorizados.
+- Gestionar desde detalle de HU-31.
+- Mostrar estado actual.
+- Confirmar antes de cambiar.
+- Desactivar sin borrar datos.
+- Restringir acceso a funciones protegidas.
+- FastAPI verifica estado en cada solicitud protegida.
+- Bloquear sesiones previas y verificar revocación de Supabase Auth.
+- Reactivar sujeto a autenticación.
+- Impedir autodesactivación del administrador.
+- Proteger cuentas administrativas con política específica.
+- Auditar actor, cuenta, acción y fecha.
+- Evitar duplicados y conflictos concurrentes.
+- Mensajes claros.
+- Sincronizar estado con Supabase Auth y FastAPI.
+- No permitir acceso a gastos individuales.
 
-**Dependencias:** RF-031, RF-033; decisiones D-09, D-14 y D-16.
+**Verificación:** consultar CA-32.01 a CA-32.16 en `historias-usuario.md`.
 
 ### RF-033 — Proteger la privacidad de los gastos y garantizar el aislamiento entre usuarios
 
-**Identificador:** RF-033 · **Historia de origen:** HU-33 · **Prioridad:** Must Have · **MVP:** Sí
+**Historia:** HU-33 · **Prioridad:** Must Have · **MVP:** Sí
 
-**Descripción:** Toda operación sobre gastos, análisis o evidencia se autoriza en el backend con la identidad de la sesión y el propietario del recurso; ningún Usuario puede acceder a datos de otra cuenta y ningún Administrador puede acceder a gastos individuales.
+**Descripción:** El sistema deberá proteger la privacidad de los gastos y garantizar el aislamiento entre usuarios conforme a las reglas aprobadas de HU-33.
 
-**Justificación:** Es una restricción transversal de seguridad y privacidad. Sin ella, el producto no es confiable y los demás requisitos no pueden considerarse terminados.
+**Especificación funcional:**
 
-**Criterios de aceptación:**
-- El backend deriva el propietario de la sesión y no confía en un identificador de propietario enviado por el cliente.
-- Un Usuario que intenta leer, editar o eliminar un gasto ajeno recibe 403 o 404 sin datos del recurso.
-- Un Administrador solo accede a estadísticas agregadas y recibe rechazo en rutas de gastos, fugas y evidencia individual.
-- La autorización se aplica en cada operación de lectura o escritura, no solo en la pantalla que muestra el dato.
-- La ocultación de información en la interfaz no sustituye la validación en el backend.
+- Autenticación para datos financieros.
+- FastAPI valida firma, vigencia y validez del token de Supabase Auth.
+- Identidad derivada del token, no de un ID enviado por cliente.
+- Cada recurso privado tiene propietario.
+- Consultas limitadas al propietario.
+- Prohibir editar/eliminar recursos ajenos.
+- Aislamiento en categorías, estadísticas, fugas, recomendaciones y límites cuando existan.
+- Administrador sin acceso a gastos individuales.
+- Autorización en backend, no solo interfaz.
+- Rechazar tokens inválidos, ausentes o vencidos.
+- Restringir cuentas desactivadas cuando HU-32 exista.
+- HTTPS y protección de secretos.
+- Controles de PostgreSQL y RLS según arquitectura de conexión.
+- Errores/logs sin secretos ni datos financieros.
+- Limpiar datos privados al cerrar sesión o cambiar cuenta.
+- Validar propiedad en operaciones individuales y masivas.
+- Pruebas automatizadas de aislamiento.
+- Protección transversal desde MVP.
 
-**Dependencias:** RF-002; se verifica con RF-013, RF-014, RF-016 y RF-030 a RF-032.
+**Verificación:** consultar CA-33.01 a CA-33.18 en `historias-usuario.md`.
+
 
 ## B. Requerimientos no funcionales priorizados
 
@@ -602,7 +674,7 @@ Los requerimientos no funcionales se derivan de las reglas de privacidad, seguri
 
 **Identificador:** RNF-002 · **Prioridad:** Must Have · **Estado:** Confirmado
 
-**Descripción:** El sistema recopila y devuelve solo los datos necesarios para la función solicitada; los gastos y su detalle se muestran únicamente a su propietario y el Administrador solo recibe agregados que no permitan identificar a una persona.
+**Descripción:** El sistema recopila y devuelve solo los datos necesarios para la función solicitada. Los gastos y su detalle se muestran únicamente a su propietario. El Administrador puede consultar estadísticas agregadas no identificables (RF-030) y datos administrativos mínimos de cuentas (RF-031), pero nunca gastos financieros individuales.
 
 **Justificación:** El producto maneja información financiera personal. La minimización reduce la exposición y el impacto de un incidente.
 
@@ -660,7 +732,7 @@ Los requerimientos no funcionales se derivan de las reglas de privacidad, seguri
 - Un fallo durante el guardado no deja un gasto parcial.
 - Dos solicitudes con la misma clave de idempotencia producen un solo gasto.
 - Las pruebas cubren reintentos simultáneos y fallos de base de datos.
-- Las operaciones que afectan varios documentos mantienen una única fuente de verdad o un mecanismo de compensación probado.
+- Las operaciones que afectan varias tablas o filas de PostgreSQL preservan la integridad mediante transacciones y restricciones apropiadas; cualquier operación externa no transaccional requiere una estrategia de recuperación probada.
 
 **Historias relacionadas:** HU-13, HU-16.
 
@@ -847,200 +919,141 @@ Los requerimientos no funcionales se derivan de las reglas de privacidad, seguri
 
 **Historias relacionadas:** HU-06, HU-13, HU-16, HU-29, HU-32, HU-33.
 
-## C. Matriz de trazabilidad
 
-Las 33 historias de usuario están representadas por al menos un requerimiento funcional. Las historias HU-16 y HU-25 conservan un solo RF porque agrupan operaciones con el mismo objetivo y prioridad. Los requerimientos no funcionales se vinculan a las historias donde se verifican.
+## Trazabilidad y coherencia de la línea base
 
-| Identificador | Tipo | Historia de usuario relacionada | Prioridad | Inclusión en el MVP |
-|---|---|---|---|---|
-| RF-001 | Funcional | HU-01 | Must Have | Sí |
-| RF-002 | Funcional | HU-02 | Must Have | Sí |
-| RF-003 | Funcional | HU-03 | Should Have | No |
-| RF-004 | Funcional | HU-04 | Must Have | Sí |
-| RF-005 | Funcional | HU-05 | Should Have | No |
-| RF-006 | Funcional | HU-06 | Could Have | No |
-| RF-007 | Funcional | HU-07 | Should Have | No |
-| RF-008 | Funcional | HU-08 | Should Have | No |
-| RF-009 | Funcional | HU-09 | Could Have | No |
-| RF-010 | Funcional | HU-10 | Must Have | Sí |
-| RF-011 | Funcional | HU-11 | Must Have | Sí |
-| RF-012 | Funcional | HU-12 | Must Have | Sí |
-| RF-013 | Funcional | HU-13 | Must Have | Sí |
-| RF-014 | Funcional | HU-14 | Must Have | Sí |
-| RF-015 | Funcional | HU-15 | Should Have | No |
-| RF-016 | Funcional | HU-16 | Should Have | No |
-| RF-017 | Funcional | HU-17 | Could Have | No |
-| RF-018 | Funcional | HU-18 | Could Have | No |
-| RF-019 | Funcional | HU-19 | Could Have | No |
-| RF-020 | Funcional | HU-20 | Must Have | Sí |
-| RF-021 | Funcional | HU-21 | Must Have | Sí |
-| RF-022 | Funcional | HU-22 | Could Have | No |
-| RF-023 | Funcional | HU-23 | Must Have | Sí |
-| RF-024 | Funcional | HU-24 | Must Have | Sí |
-| RF-025 | Funcional | HU-25 | Could Have | No |
-| RF-026 | Funcional | HU-26 | Could Have | No |
-| RF-027 | Funcional | HU-27 | Could Have | No |
-| RF-028 | Funcional | HU-28 | Won't Have (por ahora) | No |
-| RF-029 | Funcional | HU-29 | Won't Have (por ahora) | No |
-| RF-030 | Funcional | HU-30 | Should Have | No |
-| RF-031 | Funcional | HU-31 | Should Have | No |
-| RF-032 | Funcional | HU-32 | Should Have | No |
-| RF-033 | Funcional | HU-33 | Must Have | Sí |
-| RNF-001 | No funcional | HU-02, HU-13, HU-14, HU-16, HU-23, HU-24, HU-30 a HU-33 | Must Have | Sí |
-| RNF-002 | No funcional | HU-08, HU-09, HU-13, HU-16, HU-24, HU-25, HU-30, HU-31, HU-33 | Must Have | Sí |
-| RNF-003 | No funcional | HU-02, HU-03, HU-04, HU-05, HU-06, HU-32, HU-33 | Must Have | Sí |
-| RNF-004 | No funcional | HU-02, HU-10, HU-11, HU-12, HU-13, HU-14, HU-15, HU-16, HU-18 | Must Have | Sí |
-| RNF-005 | No funcional | HU-13, HU-16 | Must Have | Sí |
-| RNF-006 | No funcional | HU-16, HU-20, HU-21, HU-22, HU-23, HU-24, HU-27, HU-29 | Should Have | No |
-| RNF-007 | No funcional | HU-02, HU-13, HU-32, HU-33 | Must Have | Sí |
-| RNF-008 | No funcional | HU-02, HU-03, HU-08, HU-33 | Must Have | Sí |
-| RNF-009 | No funcional | HU-01, HU-02, HU-10, HU-11, HU-12, HU-14, HU-20, HU-21, HU-23, HU-24 | Must Have | Sí |
-| RNF-010 | No funcional | HU-01, HU-11, HU-33 | Must Have | Sí |
-| RNF-011 | No funcional | HU-01, HU-08, HU-10, HU-17, HU-18, HU-19, HU-25 | Must Have | Sí |
-| RNF-012 | No funcional | HU-10, HU-11, HU-12, HU-13, HU-14, HU-18, HU-19 | Must Have | Sí |
-| RNF-013 | No funcional | HU-11, HU-14, HU-20, HU-21, HU-23, HU-30 | Should Have | No |
-| RNF-014 | No funcional | HU-11, HU-23, HU-24, HU-33; todas las historias | Must Have | Sí |
-| RNF-015 | No funcional | HU-31, HU-32, HU-33 | Should Have | No |
-| RNF-016 | No funcional | HU-06, HU-13, HU-16, HU-29, HU-32, HU-33 | Must Have | Sí |
+- Cada RF-XXX corresponde a HU-XX y conserva su prioridad y alcance.
+- Las RNF se aplican transversalmente a las historias afectadas.
+- Los parámetros de producto, autenticación, privacidad, fechas, fugas y notificaciones se encuentran **cerrados** en D-01 a D-15.
+- La validación de proveedores y las pruebas funcionales se ejecutarán durante implementación; no son decisiones de producto abiertas.
 
-**Conteo de la matriz:** 33 requerimientos funcionales y 16 no funcionales. No hay historias sin representación; las RNF transversales no sustituyen los RF, sino que definen cómo se verifican.
 
-## D. Alcance priorizado del MVP
+## Especificación definitiva de decisiones de producto y arquitectura
 
-### D.1 Requerimientos esenciales del MVP
+**Estado:** decisiones D-01 a D-15 cerradas para la línea base documental 3.0. Son decisiones de diseño del proyecto, no afirmaciones de que los servicios externos estén configurados ni de que las funciones estén implementadas.
 
-El MVP se define por **13 requerimientos funcionales Must** y **13 no funcionales Must**. El flujo esencial es: información pública → registro o inicio de sesión → gasto por texto → procesamiento determinista → revisión → guardado → historial → panel de estadísticas → posible fuga con evidencia → cierre de sesión.
+### D-01 — Detección de posibles fugas
+- **Regla FUGA-01, versión 1.0:** analizar los últimos **30 días calendario**, incluido el día de consulta, usando la zona horaria `America/Bogota`. Agrupar por **categoría y descripción normalizada** (minúsculas, espacios compactados, sin tildes, equivalencias explícitas del diccionario). No agrupar únicamente por categoría, para evitar falsos positivos.
+- Generar un candidato si existen **al menos 3 gastos** del mismo grupo en **3 fechas distintas** de la ventana, cada uno de valor **entre COP 1.000 y COP 30.000**, y la suma del grupo es **al menos COP 15.000**. La categoría «Otros» se admite cuando la descripción normalizada es informativa; las descripciones vacías o genéricas («gasto», «compra», «otro») no activan esta regla.
+- Cada resultado expone regla y versión, categoría, descripción normalizada, número de gastos, fechas, total exacto y los identificadores de gastos que sustentan la evidencia. No se presentan predicciones, culpabilidad, ahorros garantizados ni resultados sin evidencia.
+- Calcular **bajo demanda** al consultar fugas y después de confirmar un gasto si la pantalla de fugas está abierta; no se requieren trabajos programados. Sin gastos: estado vacío; con menos de tres ocurrencias elegibles: «datos insuficientes para identificar patrones». El mismo conjunto de datos produce el mismo resultado.
+- Los umbrales son **parámetros configurables versionados**, pero estos valores constituyen la configuración inicial obligatoria; cualquier cambio futuro requiere nueva versión de regla y pruebas de regresión.
 
-| Grupo | Requerimientos | Resultado esperado |
-|---|---|---|
-| Acceso y sesión | RF-001, RF-002, RF-004 | Entrada pública, identidad y cierre de sesión seguro. |
-| Registro y consulta de gastos | RF-010, RF-011, RF-012, RF-013, RF-014 | Texto, interpretación, revisión, persistencia e historial. |
-| Panel de estadísticas | RF-020, RF-021 | Total, cantidad, promedio y desglose por categoría. |
-| Fugas | RF-023, RF-024 | Detección determinista y evidencia explicable. |
-| Privacidad | RF-033 | Aislamiento entre usuarios y límites del Administrador. |
-| Seguridad y calidad | RNF-001, RNF-002, RNF-003, RNF-004, RNF-005, RNF-007, RNF-008, RNF-009, RNF-010, RNF-011, RNF-012, RNF-014, RNF-016 | Autorización, privacidad, integridad, confiabilidad y pruebas. |
+### D-02 — Categorías y clasificación
+- Catálogo inicial cerrado: **Alimentación, Transporte, Vivienda, Servicios, Educación, Salud, Entretenimiento, Compras y Otros**. «Otros» es categoría válida y **siempre se incluye** en totales, estadísticas y filtros.
+- El diccionario determinista propone categoría cuando hay coincidencia inequívoca; ante ausencia de coincidencia asigna «Otros» y permite corrección manual antes de confirmar. Si dos reglas tienen igual precedencia, prevalece la coincidencia de frase más larga y, si persiste el empate, «Otros» con revisión manual.
+- Para categorías empatadas en el máximo, mostrar **todas las categorías empatadas** ordenadas alfabéticamente; nunca escoger una sin indicarlo.
 
-**Condiciones de borde del MVP:**
-- No incluye Google, recuperación de contraseña, perfil editable, foto, filtros, edición/eliminación posterior, voz, alertas, sugerencias, resumen mensual ni metas.
-- No incluye panel administrativo. El rol **Administrador** existe y se prueba con cuentas de prueba para verificar que no accede a gastos individuales.
-- No incluye notificaciones push. Las alertas locales quedan fuera del MVP junto con RF-025.
-- RNF-010 y RNF-016 están pendientes de D-15 y D-06 respectivamente. Son Must porque afectan transparencia y privacidad, pero no se consideran cerrados hasta resolver esas decisiones.
-- RNF-006 es Should porque RF-016 no está en el MVP. Si RF-016 se adelanta, RNF-006 se vuelve obligatorio y no puede quedar fuera de la entrega.
+### D-03 — Moneda, montos y cálculos
+- El MVP maneja **únicamente pesos colombianos (COP)**, sin conversión de divisas. Montos **enteros positivos** desde **COP 1** hasta **COP 100.000.000** por gasto. El separador de miles es visual y no se almacena; se rechazan centavos, valores negativos, cero y monedas diferentes.
+- Persistir montos como entero (`BIGINT` o tipo equivalente con restricción); sumar enteros en backend/base de datos, sin punto flotante. Mostrar formato local `es-CO`, con símbolo `$` y aclaración COP cuando sea necesario.
+- Porcentajes comparativos: calcular con valores exactos, mostrar **un decimal** y redondeo convencional; si el periodo base es cero, mostrar «sin base de comparación», no infinito.
 
-### D.2 Requerimientos importantes si hay tiempo
+### D-04 — Fechas, periodos y zona horaria
+- Zona horaria funcional **`America/Bogota`**. Fecha del gasto en formato ISO `YYYY-MM-DD`, sin hora obligatoria. Si no se reconoce una fecha en el texto, proponer la fecha actual local y permitir corrección antes de guardar.
+- Admitir fechas desde **2020-01-01** hasta **la fecha actual local**; no registrar gastos futuros. El historial ordena por `fecha_gasto DESC, created_at DESC, id DESC`, para desempate estable.
+- Dashboard inicial: **mes calendario actual**, del primer al último día local; permitir elegir otros meses desde enero de 2020. Comparación opcional: mes seleccionado frente al mes inmediatamente anterior. Rangos inclusivos en fechas y consultas SQL con límites temporales explícitos.
+- Una fuga se atribuye a la ventana móvil de 30 días en la que se calcula; para resúmenes mensuales opcionales se contabilizan **solo los gastos cuya fecha cae dentro del mes**, sin duplicar gastos entre categorías.
 
-Estos requerimientos son Should y se abordan después de estabilizar el MVP. No sustituyen ni retrasan la seguridad ni la privacidad.
+### D-05 — Procesamiento, límites e idempotencia
+- «**Procesar con IA**» es el **nombre de interfaz**, acompañado de la explicación visible «Interpretación automática mediante reglas; no utiliza IA generativa». No se invoca una API externa de IA.
+- Entrada de texto: **1 a 280 caracteres** tras recortar espacios. Diccionario versionado, reglas con prioridad fija y pruebas de frases de ejemplo; extraer monto, fecha, descripción y categoría propuesta. Si faltan monto o datos esenciales, exigir corrección; **jamás guardar sin confirmación explícita**.
+- La descripción final tiene **1 a 120 caracteres**; el usuario puede modificar todos los campos interpretados. No persistir borradores incompletos en el servidor; el borrador se mantiene solo en memoria de la pantalla y se descarta al abandonarla.
+- Confirmación de gasto con clave de idempotencia UUID por intento; conservarla **24 horas**. Misma clave y mismo contenido devuelven el mismo resultado; misma clave con contenido distinto produce **409 Conflict**.
 
-| Requerimiento | Función | Condición para incluirlo |
-|---|---|---|
-| RF-003 | Inicio de sesión con Google | OAuth configurado y prueba de vinculación segura (D-10). |
-| RF-005 | Recuperación de contraseña | Proveedor de correo y política de tokens (D-09). |
-| RF-007, RF-008 | Perfil editable y foto con Cloudinary | Cloudinary configurado y reglas de imagen (D-13). |
-| RF-015 | Filtros de historial | Historial estable y catálogo/categorías definidos (D-02, D-04). |
-| RF-016 | Edición y eliminación | RNF-006 implementado y probado. |
-| RF-030, RF-031, RF-032 | Panel administrativo agregado y gestión de cuentas | D-07, D-14 y D-16 resueltas; pruebas de privacidad. |
-| RNF-006 | Coherencia de agregados tras cambios | Obligatorio si se implementa RF-016. |
-| RNF-013 | Rendimiento y capacidad | Umbrales aprobados y conjunto de prueba representativo. |
-| RNF-015 | Auditoría administrativa | Política D-14 aprobada. |
+### D-06 — Eliminación, desactivación y conservación
+- En el MVP no se ofrece eliminar la cuenta ni gastos (HU-06 y HU-16 no son Must). Cuando se implementen, la eliminación de gastos será **lógica**, con `deleted_at`, y excluirá de inmediato esos registros de historial, dashboard y fugas.
+- Desactivar una cuenta: marcar `disabled_at`, impedir operaciones privadas mediante validación en backend y solicitar revocación de sesiones al proveedor cuando esté disponible. La denegación por estado de cuenta **no depende únicamente de que expire el token**.
+- Los datos de una cuenta desactivada se conservan durante **30 días** para recuperación administrativa y después se programan para supresión conforme a las obligaciones legales aplicables; no prometer borrado irreversible de copias de seguridad antes de sus ciclos de retención. Para un prototipo académico sin usuarios reales, emplear datos de prueba.
+- No conservar transcripciones de voz ni texto original del gasto más allá de los campos confirmados, salvo que el usuario lo incorpore voluntariamente a la descripción final.
 
-### D.3 Requerimientos postergados
+### D-07 — Privacidad de estadísticas administrativas
+- Administrador: puede consultar **metadatos mínimos de cuentas** necesarios para HU-31/HU-32, pero **no gastos individuales, descripciones, evidencias de fugas ni totales identificables por persona**.
+- Los agregados financieros administrativos solo se muestran cuando el grupo contiene **al menos 10 usuarios distintos**; grupos menores se suprimen. No permitir filtros combinables que revelen grupos pequeños ni exponer identificadores en la respuesta.
 
-- **Could Have:** RF-006 (desactivación propia), RF-009 (foto de Google), RF-017 a RF-019 (voz Android), RF-022 (comparación de periodos), RF-025 (alertas), RF-026 (sugerencias) y RF-027 (resumen mensual).
-- **Won't Have (por ahora):** RF-028 y RF-029 (metas y avance), porque su alcance no está definido y una meta de ahorro carece de fuente de datos.
-- **Push remoto:** no forma parte de RF-025 ni del MVP. Requiere proyecto Expo/EAS, credenciales, tokens, consentimiento y backend de envío.
-- **Funciones avanzadas:** exportaciones masivas, múltiples niveles administrativos, auditoría avanzada, conexiones bancarias, pagos, inversiones y asesoría financiera.
-- **Modelos de IA:** no se entrena un modelo propio ni se usa una API externa de IA para interpretar gastos.
+### D-08 — Roles y autorización
+- Roles **Visitante, Usuario y Administrador**. La identidad la verifica Supabase Auth; FastAPI valida firma, emisor, audiencia, expiración y estado de cuenta, y aplica autorización por rol y propietario **en cada solicitud protegida**.
+- El rol administrativo se asigna **solo por un mecanismo de aprovisionamiento seguro**, nunca por un campo editable del registro. Un Administrador no obtiene acceso a gastos de usuarios aunque conozca su identificador.
+- Para acceso directo a Supabase desde el cliente, activar y probar **Row Level Security (RLS)**; si el backend usa credenciales privilegiadas, filtrar explícitamente por el usuario autenticado y no exponer dichas credenciales al móvil.
 
-### D.4 Orden de implementación realista para 12 semanas
+### D-09 — Registro, contraseñas, sesiones y recuperación
+- Autenticación administrada por **Supabase Auth**, sin emitir JWT propios en FastAPI. Registro con correo válido y contraseña de **mínimo 8 caracteres**; confirmación de correo activada cuando el proveedor de correo del proyecto esté configurado.
+- Sesión gestionada por SDK de Supabase con renovación segura de tokens; el backend rechaza tokens inválidos o expirados. Al cerrar sesión se elimina la sesión local y se solicita cierre en Supabase. No prometer revocación instantánea de tokens de acceso ya emitidos; el backend consulta el estado deshabilitado de la cuenta para bloquear solicitudes.
+- Recuperación mediante **enlace de restablecimiento enviado por Supabase Auth**, con caducidad y un solo uso conforme a la configuración real del proveedor; no inventar una duración independiente ni construir un sistema de tokens propio. Si el correo saliente no está configurado, mostrar una indisponibilidad explícita en vez de simular un envío.
 
-El orden prioriza el flujo Must, la seguridad desde la primera semana y una integración temprana. La IA puede acelerar el andamiaje y las pruebas, pero no elimina la revisión, la integración ni la depuración.
+### D-10 — Google OAuth
+- Inicio con Google mediante **proveedor OAuth de Supabase Auth**, solo cuando credenciales, URI de redirección y consentimiento estén configurados. Nunca unir dos cuentas basándose exclusivamente en coincidencia de correo: exigir la vinculación autenticada/verificada que soporte el proveedor.
+- Google es **Should Have**, no dependencia del registro por correo del MVP. Si falla OAuth, conservar el acceso por correo y mostrar error recuperable.
 
-| Semana | Requerimientos | Entregable y verificación |
-|---|---|---|
-| 1 | RF-001; inicio de RF-002; RNF-001, RNF-003, RNF-007, RNF-008, RNF-014 | Entorno reproducible, pantalla pública, modelo de usuario, contrato de autenticación y primer arnés de seguridad. |
-| 2 | RF-002, RF-004; RNF-002, RNF-004, RNF-005 | Registro, inicio y cierre de sesión; validaciones; pruebas de acceso cruzado y de sesión. |
-| 3 | RF-010, RF-011; RNF-009, RNF-010 | Entrada de texto, diccionario y reglas versionadas, etiqueta «Procesar con IA» y textos de ayuda. Resolver D-02 a D-05. |
-| 4 | RF-012, RF-013; RNF-012 | Revisión, validaciones en backend, guardado atómico e idempotente; pruebas de fallo y reintento. |
-| 5 | RF-014, RF-020, RF-021 | Historial paginado, panel de estadísticas y desglose por categoría con datos de prueba. |
-| 6 | RF-023, RF-024; RNF-016 | Motor de reglas con D-01 aprobada, evidencia y estados de datos insuficientes; política de retención D-06. |
-| 7 | Todas las Must; RNF-001 a RNF-005, RNF-007 a RNF-012, RNF-014, RNF-016 | Integración de extremo a extremo, suite de seguridad, regresión, rendimiento preliminar, demostración cronometrada y congelación del MVP. No se agrega alcance nuevo. |
-| 8 | RF-003, RF-005, RF-007, RF-008 | Integraciones Should. Si una dependencia externa no está lista, se priorizan las demás y no se compromete el MVP. |
-| 9 | RF-015, RF-016; inicio de RF-030; RNF-006 | Filtros, edición/eliminación con recálculo, primeras métricas administrativas y pruebas de coherencia. |
-| 10 | RF-030, RF-031, RF-032; RNF-015 | Panel administrativo agregado, lista de usuarios, activación/desactivación y auditoría. |
-| 11 | RF-022, RF-025, RF-027 o una parte estable de voz; RNF-013 | Could Have seleccionadas y medición de rendimiento. La voz completa no se promete; la semana también sirve de colchón. |
-| 12 | Sin requerimientos nuevos | Regresión completa, pruebas de seguridad, documentación, datos de demostración, ensayo y corrección de defectos críticos. |
+### D-11 — Alertas y notificaciones
+- HU-25 es **Could Have**. La aplicación puede mostrar alertas **internas** basadas en FUGA-01; **Expo Notifications** se adopta para notificaciones **locales** opcionales con permiso del sistema operativo.
+- **No se incluye push remoto en la línea base**: no se requiere servidor de envío, token push ni servicio de terceros para cumplir HU-25. La decisión evita asumir precios o cuotas no verificados. Cualquier ampliación a push remoto será cambio de alcance documentado.
+- Máximo **una alerta local por candidato y versión de regla en 7 días**, sin notificaciones entre **21:00 y 08:00** hora local. Texto genérico: «FUGA+ encontró un patrón de gastos para revisar»; sin importes ni descripciones en pantalla bloqueada. Si se deniega el permiso, la alerta interna sigue disponible.
 
-**Ruta crítica:** RF-001 → RF-002 → RF-010 → RF-011 → RF-012 → RF-013 → RF-014 → RF-020/RF-021 → RF-023 → RF-024. RF-033 se verifica de forma transversal y RF-004 cierra el ciclo de sesión.
+### D-12 — Voz
+- Captura de voz opcional para Android mediante **Kotlin `SpeechRecognizer`**, idioma preferido `es-CO`, con alternativa `es` cuando esté disponible. Máximo **30 segundos** por captura y **280 caracteres** de transcripción editable.
+- Solicitar permiso de micrófono en contexto; nunca grabar ni guardar archivos de audio en FUGA+. Mostrar aviso de que el servicio de reconocimiento del dispositivo **puede procesar audio mediante servicios externos** según su configuración. Si el permiso o el reconocimiento no están disponibles, ofrecer entrada por texto sin bloquear el flujo.
 
-**Regla de recorte:** si el cronograma se retrasa, se cancelan primero las Could, luego las Should con dependencias externas y, por último, se reduce la profundidad de una Must sin eliminar la privacidad ni la seguridad. RF-033 y los RNF de seguridad y privacidad no se recortan.
+### D-13 — Perfil e imágenes
+- Nombres: **2 a 80 caracteres**; teléfono colombiano opcional de **10 dígitos**, sin tratarlo como identificador de autenticación.
+- Foto de perfil opcional: JPEG/PNG/WebP, máximo **5 MB**, subida a **Cloudinary** mediante firma o endpoint controlado por backend; nunca exponer secretos de Cloudinary en el cliente. La foto de Google puede utilizarse como sugerencia inicial si el usuario lo permite, y una foto cargada manualmente tiene precedencia.
 
-## E. Dependencias y decisiones pendientes
+### D-14 — Auditoría
+- Registrar eventos administrativos de **consulta de listado, cambio de estado de cuenta y fallo de autorización** con fecha UTC, actor, acción, resultado y cuenta objetivo cuando proceda; **sin gastos, contraseñas, tokens ni contenido financiero**. Retener registros de auditoría **90 días** en el prototipo y restringir acceso a responsables autorizados.
+- No exigir auditoría avanzada de edición de gastos en el MVP; cuando HU-16 exista, registrar identificador, actor y fecha del cambio sin duplicar descripciones sensibles.
 
-### E.1 Decisiones confirmadas
+### D-15 — Transparencia y lenguaje
+- Mantener literalmente el botón **«Procesar con IA»** por decisión de producto, pero añadir junto al flujo la aclaración «Interpretación mediante reglas automáticas; no utiliza IA generativa ni envía tu gasto a una IA externa».
+- Usar «**posible fuga**», «patrón detectado» y «revisar»; evitar «derroche», «error financiero», promesas de ahorro o diagnósticos personales.
+- Las explicaciones de fugas deben mostrar regla, intervalo, número de ocurrencias y gastos de soporte; el usuario decide cómo interpretar el hallazgo.
 
-- **Tecnologías:** React Native + TypeScript, Python + FastAPI, MongoDB Atlas, JWT, Google sign-in, Cloudinary y Expo Notifications.
-- **Procesamiento:** diccionario propio y reglas deterministas, sin API externa de IA. Se conserva la etiqueta «Procesar con IA» con explicación transparente.
-- **Privacidad:** el backend aplica la autorización y el aislamiento; el Usuario solo accede a sus gastos; el Administrador solo accede a agregados y nunca a gastos individuales.
-- **Revisión:** el Usuario revisa y corrige los campos antes de guardar; no hay guardado automático.
-- **Coherencia:** si se implementa edición o eliminación, los resúmenes y análisis afectados deben actualizarse.
-- **Fugas:** son posibles patrones detectados por reglas deterministas, no predicciones ni diagnósticos.
-- **Voz:** solo Android, con Kotlin y `SpeechRecognizer`; no se promete en Expo Go.
-- **Alcance:** 12 semanas, MVP de 13 RF Must y 13 RNF Must; push remoto, metas y voz se postergan.
-- **Prioridades:** se conservan las prioridades de las 33 historias: 13 Must, 9 Should, 9 Could y 2 Won't para los RF.
+### Política de cambios
+Esta línea base define **qué debe construirse**. Las historias Should/Could y las Won't quedan documentadas para evolución, pero **no son obligaciones del MVP**. Cambios de umbrales, proveedores, costos, reglas de privacidad o alcance requieren nueva versión documental y actualización simultánea de RF/HU. Las pruebas de aceptación y las verificaciones de configuración externa son actividades de implementación, no decisiones documentales pendientes.
 
-### E.2 Dependencias y decisiones pendientes más relevantes
+## Matriz explícita de trazabilidad HU ↔ RF
 
-| ID | Tipo | Dependencia o decisión | Requerimientos afectados | Efecto si no se resuelve |
-|---|---|---|---|---|
-| D-01 | Pendiente | Umbrales, monto mínimo, frecuencia, ventana, agrupación y condición mínima de datos para fugas. | RF-023, RF-024, RF-027 | No se puede implementar ni probar la detección; no se deben inventar valores. |
-| D-02 | Pendiente | Catálogo de categorías, tratamiento de «Otros» y desempate de la categoría principal. | RF-011, RF-012, RF-015, RF-021, RF-026 | La interpretación y el panel de estadísticas quedan indefinidos. |
-| D-03 | Pendiente | Moneda, configuración regional, decimales, separadores, límites y redondeo. | RF-011 a RF-013, RF-020 a RF-022, RF-028, RF-029 | Los cálculos y formatos pueden requerir migración. |
-| D-04 | Pendiente | Zona horaria, formatos de fecha, periodos, meses parciales y fechas futuras. | RF-011, RF-012, RF-014, RF-015, RF-020 a RF-022, RF-027 | El orden, los filtros y las comparaciones pueden ser incorrectos. |
-| D-05 | Pendiente | Límites del parser, formatos, varias frases, longitud de descripción y tamaño de página. | RF-010 a RF-012, RF-014, RF-019 | No hay criterios de borde para el diccionario ni la paginación. |
-| D-06 | Pendiente | Retención, desactivación, eliminación, reactivación y respaldos. | RF-006, RF-013, RF-016, RF-029, RF-032; RNF-016 | No se deben exponer borrados irreversibles ni definir retención por suposición. |
-| D-07 | Pendiente | Métricas administrativas, umbral mínimo de agregación y frecuencia de actualización. | RF-030, RF-031; RNF-002 | Los agregados podrían reidentificar a un Usuario. |
-| D-08 | Pendiente | Alcance de la meta: gasto o ahorro, fuente de ingresos, gastos incluidos y avance. | RF-028, RF-029 | Las metas siguen postergadas y no pueden implementarse sin una regla. |
-| D-09 | Pendiente | Política de contraseñas, verificación de correo, vigencia, renovación, revocación, límites de intentos y proveedor de correo. | RF-002, RF-004, RF-005, RF-006, RF-032; RNF-003 | La seguridad de sesión y recuperación queda incompleta. |
-| D-10 | Pendiente | Vinculación entre cuentas de Google y cuentas locales, correos coincidentes y cuentas solo con Google. | RF-003, RF-009 | Existe riesgo de toma de control de cuenta. |
-| D-11 | Pendiente | Notificaciones locales, contenido, frecuencia, recordatorios, pantalla bloqueada y preferencias. | RF-025; RNF-002 | Las alertas no tienen un alcance de privacidad cerrado. |
-| D-12 | Pendiente | Versión mínima de Android, idioma, duración, audio, transcripción y funcionamiento sin conexión. | RF-017 a RF-019 | La voz no se puede implementar ni probar de forma consistente. |
-| D-13 | Pendiente | Campos y formatos de perfil, límites de imagen, recorte, precedencia Google/carga y borrado en Cloudinary. | RF-007 a RF-009 | El perfil y la foto quedan indefinidos. |
-| D-14 | Pendiente | Campos visibles, búsqueda, motivo de desactivación, auditoría y protección del último administrador. | RF-031, RF-032; RNF-015 | La administración puede ser insegura o quedar sin trazabilidad. |
-| D-15 | Pendiente | Texto público y explicación de la etiqueta «Procesar con IA» y del procesamiento determinista. | RF-001, RF-011; RNF-010 | La interfaz puede generar expectativas engañosas. |
-| D-16 | Pendiente | Provisión de administradores y prevención del registro público de administradores. | RF-030 a RF-032 | No existe una vía segura para operar el rol administrativo. |
+La correspondencia por identificador y alcance constituye la trazabilidad definitiva de la especificación; la implementación se valida mediante pruebas. Las RNF son transversales y se relacionan en sus apartados.
 
-### E.3 Dependencias externas
+| Historia | Requerimiento | Prioridad | MVP |
+|---|---|---|---|
+| HU-01 | RF-001 | Must Have | Sí |
+| HU-02 | RF-002 | Must Have | Sí |
+| HU-03 | RF-003 | Should Have | No |
+| HU-04 | RF-004 | Must Have | Sí |
+| HU-05 | RF-005 | Should Have | No |
+| HU-06 | RF-006 | Could Have | No |
+| HU-07 | RF-007 | Should Have | No |
+| HU-08 | RF-008 | Should Have | No |
+| HU-09 | RF-009 | Could Have | No |
+| HU-10 | RF-010 | Must Have | Sí |
+| HU-11 | RF-011 | Must Have | Sí |
+| HU-12 | RF-012 | Must Have | Sí |
+| HU-13 | RF-013 | Must Have | Sí |
+| HU-14 | RF-014 | Must Have | Sí |
+| HU-15 | RF-015 | Should Have | No |
+| HU-16 | RF-016 | Should Have | No |
+| HU-17 | RF-017 | Could Have | No |
+| HU-18 | RF-018 | Could Have | No |
+| HU-19 | RF-019 | Could Have | No |
+| HU-20 | RF-020 | Must Have | Sí |
+| HU-21 | RF-021 | Must Have | Sí |
+| HU-22 | RF-022 | Could Have | No |
+| HU-23 | RF-023 | Must Have | Sí |
+| HU-24 | RF-024 | Must Have | Sí |
+| HU-25 | RF-025 | Could Have | No |
+| HU-26 | RF-026 | Could Have | No |
+| HU-27 | RF-027 | Could Have | No |
+| HU-28 | RF-028 | Won't Have (for now) | No |
+| HU-29 | RF-029 | Won't Have (for now) | No |
+| HU-30 | RF-030 | Should Have | No |
+| HU-31 | RF-031 | Should Have | No |
+| HU-32 | RF-032 | Should Have | No |
+| HU-33 | RF-033 | Must Have | Sí |
 
-- **Google OAuth:** requerido por RF-003 y RF-009; no bloquea el MVP.
-- **Proveedor de correo transaccional:** requerido por RF-005; no bloquea el MVP.
-- **Cloudinary:** requerido por RF-008 y RF-009; no bloquea el MVP.
-- **Expo/EAS, FCM/APNs y backend de envío:** requeridos solo si se implementa push remoto, que está postergado.
-- **Compilación Android con módulo Kotlin y dispositivo o emulador compatible:** requerido por RF-017 a RF-019; no bloquea el MVP.
-- **MongoDB Atlas, hospedaje del backend y HTTPS:** requeridos por todas las historias; deben estar disponibles desde la semana 1.
-- **Herramientas de IA:** apoyan escritura y pruebas, pero no son una dependencia de ejecución del producto ni sustituyen la revisión humana.
+## Verificaciones de implementación posteriores a la especificación
 
-### E.4 Supuestos
-
-- **S-01:** el proyecto lo desarrolla una persona durante 12 semanas con apoyo de IA.
-- **S-02:** React Native, FastAPI, MongoDB Atlas y el entorno de despliegue están disponibles.
-- **S-03:** el MVP puede usar correo y contraseña; Google se incorpora después.
-- **S-04:** existe una vía segura para provisionar la primera cuenta administradora.
-- **S-05:** el procesamiento determinista se ejecuta en el backend y no llama a una API externa de IA.
-- **S-06:** la voz es solo para Android y el texto es la alternativa en iOS.
-- **S-07:** las notificaciones del alcance actual son locales o dentro de la aplicación; el push es futuro.
-- **S-08:** los datos de demostración son sintéticos y no contienen información financiera real.
-- **S-09:** la moneda y la configuración regional se definirán en D-03; no se asume una moneda por los ejemplos del documento fuente.
-- **S-10:** las decisiones pendientes se resolverán antes de las semanas indicadas; si no, las historias afectadas se postergarán.
-- **S-11:** el MVP puede demostrarse sin panel administrativo, sin voz y sin push.
-- **S-12:** las dependencias externas pueden usarse en el contexto académico sin costos o infraestructura no previstos.
-
-### E.5 Orden recomendado para resolver lo pendiente
-
-1. **Antes de la semana 3:** D-02, D-03, D-04 y D-05, porque bloquean la interpretación, la persistencia y el panel de estadísticas.
-2. **Antes de la semana 6:** D-01, porque bloquea la detección verificable de fugas.
-3. **Antes de la semana 8:** D-09, D-10, D-13 y D-15, por seguridad, integraciones y transparencia.
-4. **Antes de la semana 10:** D-07, D-14 y D-16, por el panel administrativo y la auditoría.
-5. **Antes de implementar la función correspondiente:** D-06 para retención y borrado; D-08 para metas; D-11 para alertas; D-12 para voz.
-6. **Antes de cerrar el MVP:** resolver RNF-010 y RNF-016, que son Must pero dependen de D-15 y D-06. Si no se resuelven, el MVP no puede declararse cerrado aunque el flujo funcione.
-
-**Criterio de cierre:** el documento está completo para planificación, pero la implementación no debe comenzar las historias afectadas por decisiones pendientes sin aprobación explícita. La seguridad y la privacidad no se postergan; las funciones que dependen de una decisión no aprobada se retrasan antes que inventar una regla.
+1. Verificar mediante pruebas los parámetros ya fijados en D-01, D-02, D-03, D-04 y D-09.
+2. Probar autorización por propietario y rol con Supabase Auth, FastAPI y políticas de acceso PostgreSQL; no asumir que la documentación demuestra aislamiento efectivo.
+3. Probar las notificaciones locales definidas en D-11; el push remoto está excluido de esta línea base.
+4. Verificar el cumplimiento de las políticas cerradas D-06, D-07, D-10, D-14 y D-15 cuando se implementen sus historias.
+5. Ejecutar las pruebas de aceptación de cada HU y registrar evidencia; no confundir revisión documental con validación funcional.
