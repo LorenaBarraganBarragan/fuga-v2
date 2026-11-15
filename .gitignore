@@ -1,0 +1,79 @@
+# ============================================================
+# FUGA+ — .gitignore raíz
+# Generado en F0 · Plan Maestro v1.1.1
+# ============================================================
+
+# Dependencias
+node_modules/
+.pnp
+.pnp.js
+
+# Expo / React Native
+.expo/
+dist/
+web-build/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# Android generado por prebuild (no versionar; regenerar con expo prebuild)
+mobile/android/
+mobile/ios/
+
+# Logs
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# Variables de entorno (NUNCA en git)
+.env
+.env.local
+.env.test
+.env.prod
+.env.production
+.env.development
+# Excepto los ejemplos (sin valores reales)
+!.env.example
+!backend/.env.example
+!mobile/.env.example
+
+# Python
+backend/.venv/
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+*.whl
+
+# IDEs y sistema operativo
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+*.swp
+
+# Supabase local (si se usa supabase local dev)
+supabase/.branches/
+supabase/.temp/
+
+# Certificados y claves
+*.keystore
+*.jks
+*.p12
+*.cer
+
+# Artefactos de build
+*.apk
+*.aab
+*.ipa
+
+# Cache de herramientas
+.cache/
