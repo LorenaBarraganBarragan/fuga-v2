@@ -5,22 +5,35 @@ import { supabase } from './supabase';
 import { Leak } from './types';
 import * as Crypto from 'expo-crypto';
 import { mayNotify } from './validation';
+import { createReminderDispatcher } from './reminders';
 
 export async function enableNotifications(){
  if(Platform.OS==='web')return false;
  if(Platform.OS==='android')await Notifications.setNotificationChannelAsync('patterns',{name:'Posibles fugas',importance:Notifications.AndroidImportance.DEFAULT});
  const result=await Notifications.requestPermissionsAsync();
- return result.granted;
+ if(!result.granted)return false;
+ if(Platform.OS==='android'&&(await Notifications.getNotificationChannelAsync('patterns'))?.importance===Notifications.AndroidImportance.NONE)return false;
+ return true;
 }
-export async function notifyCandidate(leak:Leak){
- if(Platform.OS==='web')return;
- const permission=await Notifications.getPermissionsAsync();
- if(!permission.granted)return;
- const {data:{session}}=await supabase.auth.getSession();if(!session)return;
- const group=await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256,leak.categoria_nombre+'|'+leak.descripcion_normalizada+'|'+leak.regla_version);
- const name='alert.'+session.user.id+'.'+group;
- const last=Number(await SecureStore.getItemAsync(name)||0);
- if(!mayNotify(last,new Date()))return;
- await Notifications.scheduleNotificationAsync({content:{title:'FUGA+',body:'FUGA+ encontró un patrón de gastos para revisar',data:{fuga_id:leak.id,user_id:session.user.id}},trigger:null});
- await SecureStore.setItemAsync(name,String(Date.now()));
-}
+const dispatch=createReminderDispatcher({
+ supported:()=>Platform.OS!=='web',
+ permission:async()=>{
+  if(!(await Notifications.getPermissionsAsync()).granted)return false;
+  if(Platform.OS==='android'){
+   await Notifications.setNotificationChannelAsync('patterns',{name:'Posibles fugas',importance:Notifications.AndroidImportance.DEFAULT});
+   const channel=await Notifications.getNotificationChannelAsync('patterns');
+   if(channel?.importance===Notifications.AndroidImportance.NONE)return false;
+  }
+  return true;
+ },
+ user:async()=>{const {data:{session}}=await supabase.auth.getSession();return session?.user.id||null;},
+ digest:value=>Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256,value),
+ last:SecureStore.getItemAsync,
+ save:SecureStore.setItemAsync,
+ allowed:mayNotify,
+ now:()=>new Date(),
+ deliver:async(leak,userId,identifier)=>{
+  await Notifications.scheduleNotificationAsync({identifier,content:{title:'FUGA+',body:'FUGA+ encontró un patrón de gastos para revisar',data:{fuga_id:leak.id,user_id:userId}},trigger:Platform.OS==='android'?{channelId:'patterns'}:null});
+ },
+});
+export function notifyCandidate(leak:Leak){return dispatch(leak);}

@@ -1,0 +1,267 @@
+{
+  "captured_at_bogota": "2026-11-18T15:36:34.056458-05:00",
+  "scope": "HU-08 implemented; main Android flow confirmed by user with two authorized synthetic Cloudinary assets and local PostgreSQL profile",
+  "configuration": {
+    "backend_dotenv_fields_present": true,
+    "initial_cloudinary_readonly_ping_http": 401,
+    "corrected_cloudinary_readonly_ping_http": 200,
+    "credential_values_displayed": false,
+    "dotenv_modified_by_agent": false
+  },
+  "automated_tests": {
+    "backend_passed": 325,
+    "backend_sql_included": 31,
+    "backend_skipped": 0,
+    "frontend_passed": 97,
+    "frontend_skipped": 0,
+    "new_backend_tests": 24,
+    "new_frontend_tests": 11,
+    "typescript": "passed",
+    "ruff_minimum": "passed",
+    "mypy_domain": "passed",
+    "python_app_line_percent_rounded": 90,
+    "photo_service_line_percent_rounded": 94,
+    "node_measured_line_percent": 93.33,
+    "node_photo_helper_line_percent": 100,
+    "upstream_warnings": [
+      "Starlette/httpx deprecation",
+      "react-test-renderer deprecation"
+    ]
+  },
+  "android_bundle": {
+    "http_status": 200,
+    "qa_api_inlined": true,
+    "confirmation_controls_present": true,
+    "current_cloudinary_secret_found": false,
+    "private_variable_name_found": false,
+    "bundle_saved": false,
+    "apk_rebuilt_this_session": false,
+    "requires_metro": true,
+    "bytes": 5567860
+  },
+  "migration": {
+    "path": "supabase/migrations/0010_fotografias_perfil.sql",
+    "apply_after": "0009_seguridad_integridad.sql",
+    "tested_on_local_postgres": true,
+    "applied_to_supabase": false,
+    "existing_profile_urls_changed": false,
+    "registry_rls_enabled": true,
+    "client_grants_revoked": true
+  },
+  "cleanup": {
+    "mode_default": "dry-run",
+    "minimum_age_seconds": 7200,
+    "batch_default": 50,
+    "batch_maximum": 100,
+    "registered_owned_assets_only": true,
+    "active_or_referenced_assets_excluded": true,
+    "cloudinary_deletion_executed": false,
+    "automatic_scheduler_installed": false
+  },
+  "local_qa_observation": {
+    "18000": {
+      "scope": "local-disposable",
+      "jwks_preflight": true,
+      "fictitious_account_bound": true,
+      "expense_count": 6,
+      "total_cop": 28000
+    },
+    "18001": {
+      "scope": "local-disposable",
+      "jwks_preflight": true,
+      "fictitious_account_bound": true,
+      "expense_count": 0,
+      "total_cop": 0
+    }
+  },
+  "fixtures": [
+    {
+      "path": "mobile/tests/fixtures/profile-qa-a.png",
+      "bytes": 385,
+      "sha256": "c82bbe5e96dae5f4a74198a211d0e62d771f0facad29d5bbbde4ab7a15147588",
+      "synthetic_no_personal_data": true
+    },
+    {
+      "path": "mobile/tests/fixtures/profile-qa-b.png",
+      "bytes": 384,
+      "sha256": "f7f1daf4d32bf9a817187c3e1a661f22c1099a1fa8fbb41fb48cf1f286e6a8f6",
+      "synthetic_no_personal_data": true
+    }
+  ],
+  "manual_device": {
+    "usb_connected_at_preparation_check": null,
+    "selection_preview_cancel": "confirmed by user on Android",
+    "real_cloudinary_upload": "two synthetic PNGs confirmed by user; provider metadata and local profile verified",
+    "logout_login_persistence": "confirmed by user on same fictitious account",
+    "replacement_and_network_errors": "initial serialization failure corrected; cancel/replacement confirmed by user",
+    "remote_cleanup": "not executed; requires separate approval and grace period",
+    "usb_preparation_note": "initial sandbox ADB process failed; elevated read-only verification found one authorized device",
+    "usb_connected_after_adb_retry": true,
+    "synthetic_files_copied_to_downloads": true,
+    "debug_package_verified": true,
+    "photo_api_usb_reverse_prepared": true,
+    "photo_metro_usb_reverse_prepared": true,
+    "initial_provider_asset_lookups_http": [
+      404,
+      404
+    ],
+    "provider_clock_offset_seconds": 1,
+    "phone_clock_offset_seconds": -1
+  },
+  "restrictions": {
+    "cloudinary_uploads_performed": 2,
+    "cloudinary_deletions_performed": 0,
+    "supabase_data_writes": false,
+    "new_remote_users": false,
+    "remote_migrations": false,
+    "commits_pushes_deployments": false
+  },
+  "activity_files": [
+    "backend/app/api/v1/me.py",
+    "backend/app/core/logging.py",
+    "backend/app/services/profile_photos.py",
+    "backend/scripts/cleanup_profile_photos.py",
+    "backend/scripts/qa_android.py",
+    "backend/tests/integration/test_android_qa.py",
+    "backend/tests/integration/test_profile_photos_hu08.py",
+    "backend/tests/unit/api/test_profile_photos_hu08.py",
+    "mobile/src/screens/Profile.tsx",
+    "mobile/src/lib/profilePhoto.ts",
+    "mobile/scripts/android-qa.cjs",
+    "mobile/tests/android-qa.test.cjs",
+    "mobile/tests/profile-photo.test.cjs",
+    "mobile/tests/fixtures/profile-qa-a.png",
+    "mobile/tests/fixtures/profile-qa-b.png",
+    "supabase/migrations/0010_fotografias_perfil.sql",
+    "supabase/docs/CONEXION_SUPABASE.md",
+    "README.md",
+    "mi-framework-ia/docs/planificacion/PROGRESO_BUILD.md",
+    "mi-framework-ia/docs/auditoria/ejecucion-plan-mejora-fugaplus.md",
+    "mi-framework-ia/docs/auditoria/hu08-fotografia-perfil.md",
+    "mi-framework-ia/docs/auditoria/evidencia-hu08-fotografia.json",
+    "mi-framework-ia/docs/auditoria/inventario-candidato.json",
+    "mobile/package.json",
+    "mobile/package-lock.json"
+  ],
+  "implementation_sha256": {
+    "backend/app/api/v1/me.py": "a5b336c81b20f2df1f39a86faabbc90e4aa3fa9d43b03a66059cdba8691a18cf",
+    "backend/app/core/logging.py": "1b700d2f9b1c537b82788844d2d7f668877384af86393e7da07601ff42618efc",
+    "backend/app/services/profile_photos.py": "e66845d61be75bd53708e0b5dde28688b8525a4e2f3bcbb156ebfa40ae707800",
+    "backend/scripts/cleanup_profile_photos.py": "ff0d4d6ffaecbcde59bf704d3bd99717c7ba9f6d7688b9ac2e59a79fac5769bb",
+    "backend/scripts/qa_android.py": "426395887d284b0d22d071e14e98666200261d6156028d25e1f553c188511961",
+    "backend/tests/integration/test_android_qa.py": "15ef4294a9c2cd164cd9b64a965f47405741c4f72f0052201c2b8bdc0ef18149",
+    "backend/tests/integration/test_profile_photos_hu08.py": "c3fc343d42a77bfb1896dadb1dfd393f8377df9b70e225689c8016e53acebef5",
+    "backend/tests/unit/api/test_profile_photos_hu08.py": "c218b8f6ab182f3a2e71ef20e61ab26c639de11db117ee831aa7fec6eccf8201",
+    "mobile/src/screens/Profile.tsx": "cb372bf17129e7845f56ce68e452fe1cf03ea0772057fbf8a514bd1139f36508",
+    "mobile/src/lib/profilePhoto.ts": "a7ff0bf39fea75cb5dc41e2af86061ca2ea1981bc4d7c08969f250f2ff9d219b",
+    "mobile/scripts/android-qa.cjs": "a60a58eb716859be299b6a8acddbbf3b9cfa3f8b5362e780ff17245070ce9f84",
+    "mobile/tests/android-qa.test.cjs": "4160cbce2126de3decd8dea36a8425d94add83ba270b644db0eb66efd1e60350",
+    "mobile/tests/profile-photo.test.cjs": "e109dcfb8b90cd9a059e764d7e876bf544a4217760715ec9dbff1bc547ac9e0d",
+    "mobile/tests/fixtures/profile-qa-a.png": "c82bbe5e96dae5f4a74198a211d0e62d771f0facad29d5bbbde4ab7a15147588",
+    "mobile/tests/fixtures/profile-qa-b.png": "f7f1daf4d32bf9a817187c3e1a661f22c1099a1fa8fbb41fb48cf1f286e6a8f6",
+    "supabase/migrations/0010_fotografias_perfil.sql": "380111e8b75168aae728d22a4980439a2ca88bebfda91fe74b49df448a2f1ed9",
+    "mobile/package.json": "b50c106c979fbaf59567004d67a34bc2c892bbfa97da4e6609d38c4bf792bacd",
+    "mobile/package-lock.json": "3617ee9b6fc697feb45286c390c5a9c61d4ed0642d6893f38af76219268b50a4"
+  },
+  "authorization": {
+    "existing_fictitious_auth_logout_login": true,
+    "two_synthetic_png_cloudinary_uploads": true,
+    "profile_urls_local_only": true,
+    "supabase_schema_or_profile_writes": false,
+    "cloudinary_deletion": false
+  },
+  "native_upload_compatibility": {
+    "expo_sdk": 58,
+    "existing_file_system_version": "58.0.13",
+    "installed_sdk_serializer_rejects_legacy_uri_object": true,
+    "new_file_part_verified_with_actual_installed_serializer": true,
+    "file_system_already_in_apk": true,
+    "native_rebuild_required": false,
+    "dependencies_installed_this_session": false
+  },
+  "physical_final_readonly_verification": {
+    "local_attempt_state_counts": [
+      [
+        "activa",
+        1
+      ],
+      [
+        "cancelada",
+        1
+      ],
+      [
+        "pendiente",
+        2
+      ],
+      [
+        "retirada",
+        1
+      ]
+    ],
+    "profiles_with_verified_active_photo": 1,
+    "registered_provider_observations_without_identifiers": [
+      {
+        "local_state": "cancelada",
+        "cloud_metadata_http": 404
+      },
+      {
+        "local_state": "pendiente",
+        "cloud_metadata_http": 404
+      },
+      {
+        "local_state": "pendiente",
+        "cloud_metadata_http": 404
+      },
+      {
+        "local_state": "retirada",
+        "cloud_metadata_http": 200,
+        "public_id_matches_registered": true,
+        "format": "png",
+        "bytes": 385,
+        "width": 128,
+        "height": 128,
+        "url_matches_local": true,
+        "cdn_http": 200,
+        "cdn_bytes_match_synthetic_fixture": true
+      },
+      {
+        "local_state": "activa",
+        "cloud_metadata_http": 200,
+        "public_id_matches_registered": true,
+        "format": "png",
+        "bytes": 384,
+        "width": 128,
+        "height": 128,
+        "url_matches_local": true,
+        "cdn_http": 200,
+        "cdn_bytes_match_synthetic_fixture": true
+      }
+    ],
+    "prior_financial_qa_unchanged": true,
+    "photo_requests_without_personal_data": {
+      "GET other 200": 5,
+      "GET me 200": 9,
+      "GET analytics 200": 10,
+      "POST me 200": 8
+    }
+  },
+  "pre_upload_safety_checks": {
+    "current_cloudinary_secret_in_reused_apk": false,
+    "dotenv_files_in_reused_apk": 0,
+    "local_registry_rls": true,
+    "local_registry_client_select": false,
+    "local_photo_attempts": 0,
+    "diff_check_passed": true,
+    "staged_files": 0
+  },
+  "final_safety_checks": {
+    "current_cloudinary_secret_in_bundle": false,
+    "current_cloudinary_secret_in_reused_apk": false,
+    "dotenv_files_in_reused_apk": 0,
+    "remote_profile_or_schema_writes": false,
+    "cloudinary_deletions_performed": 0,
+    "real_cloudinary_assets": 2,
+    "active_local_photo_records": 1,
+    "retired_local_photo_records": 1
+  }
+}

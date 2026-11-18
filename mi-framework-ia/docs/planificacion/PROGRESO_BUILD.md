@@ -1,5 +1,29 @@
 # PROGRESO BUILD — FUGA+
 
+## Estado vigente — plan de mejora autorizado 2026-11-18
+
+Seguimiento HU-08: 325 pruebas backend/31 SQL y 97 frontend aprobadas. Interfaz de
+vista previa/confirmación, firma de servidor y limpieza conservadora implementadas.
+GET Cloudinary /ping 200 tras corrección manual de credenciales. Dos PNG sintéticos
+subidos bajo autorización; propietaria confirmó vista previa/cancelación, persistencia
+tras login/logout y sustitución. Corregida serialización de archivos en fetch de Expo 58.
+URL verificada solo en PostgreSQL QA local; migración 0010 y limpieza remotas no ejecutadas.
+[Informe HU-08](../auditoria/hu08-fotografia-perfil.md).
+
+La fuente de resultados actuales es [Ejecución ACT-01 a ACT-15](../auditoria/ejecucion-plan-mejora-fugaplus.md).
+Se parte del respaldo `ce24348`, no del árbol sin seguimiento de la auditoría histórica.
+Hay pruebas SQL nuevas en PostgreSQL local separado y medición de cobertura; no se
+modifican Supabase remoto, claves o archivos .env.local. Voz Android es prioridad adicional.
+Seguimiento QA previo a HU-08: 301 pruebas backend/22 SQL y 86 frontend aprobadas.
+Debug QA con configuración pública por USB y datos financieros locales: propietaria
+confirmó login real con cuenta ficticia existente, texto/dashboard, dictado y aviso
+local/toque/sin duplicado. Registros locales: seis gastos/COP 28.000 y fuga cafe/COP 25.000.
+El release inicial sin Metro acredita navegación pública; el debug funcional requiere Metro.
+Pendientes: casos físicos adicionales de ciclo de vida/denegación, callbacks de correo,
+release con backend HTTPS, CI y Render remotos. Ver evidencia-qa-android.json en auditoria.
+Los apartados siguientes son bitácora histórica: sus bloqueos, conteos y referencias a
+sessionStorage o Supabase sin configurar no describen automáticamente el estado actual.
+
 ## Revisión SQL para `fuga-plus` — 2026-11-16
 - Proyecto remoto creado por la propietaria, plan gratuito; no se accedió a él ni se pidieron secretos.
 - Revisadas y corregidas 0001–0008; añadida 0009_seguridad_integridad.sql.

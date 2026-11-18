@@ -3,8 +3,10 @@ import { Image, Platform, Text, View } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import { supabase, authConfigured } from '../lib/supabase';
 import { useAuth } from '../auth/AuthProvider';
+import { Welcome } from '../components/Welcome';
+import { PublicFormPage } from '../components/PublicFormPage';
 import { exchangeAuthUrl, getAuthRedirectUrl } from '../auth/links';
-import { Button, Card, ErrorText, Field, Page, Title, styles } from '../components/ui';
+import { Button, ErrorText, Field, Page, Title, styles } from '../components/ui';
 
 export function Access() {
  const auth=useAuth();
@@ -51,15 +53,15 @@ export function Access() {
   }catch(e){setError((e as Error).message);}finally{setBusy(false);}
  }
  function change(next:typeof mode){setMode(next);setError('');setMessage('');setPassword('');setConfirm('');}
- return <Page><Image source={require('../../assets/branding/logo.png')} style={{width:112,height:112,alignSelf:'center'}} accessibilityLabel="Logo FUGA+"/><Title>{mode==='welcome'?'Descubre por dónde se va tu plata.':mode==='login'?'Qué bueno verte':mode==='register'?'Crea tu cuenta':'Recupera tu acceso'}</Title>
- {mode==='welcome'?<><Text style={styles.text}>Registra tus gastos con tus propias palabras, revisa los datos y descubre posibles patrones en tus gastos cotidianos.</Text><Card><Text style={styles.heading}>Escribe. Revisa. Confirma.</Text><Text style={styles.text}>Tú decides qué guardar. Tus gastos y su evidencia son privados.</Text><Text style={styles.muted}>Interpretación mediante reglas automáticas; no utiliza IA generativa ni envía tu gasto a una IA externa.</Text></Card><Button title="Registrarse" onPress={()=>change('register')}/><Button secondary title="Iniciar sesión" onPress={()=>change('login')}/></>:<>
+ if(mode==='welcome')return <Welcome onCreateAccount={()=>change('register')} onLogin={()=>change('login')} error={error||auth.error}/>;
+ return <PublicFormPage feedback={error||auth.error||message}><Image source={require('../../assets/branding/logo.png')} style={{width:112,height:112,alignSelf:'center'}} accessibilityLabel="Logo FUGA+"/><Title>{mode==='login'?'Qué bueno verte':mode==='register'?'Crea tu cuenta':'Recupera tu acceso'}</Title>
  <Field label="Correo electrónico" value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" autoComplete="email"/>
  {mode!=='reset'&&<Field label="Contraseña (mínimo 8 caracteres)" value={password} onChangeText={setPassword} secureTextEntry autoCapitalize="none" autoComplete={mode==='register'?'new-password':'current-password'}/>}
  {mode==='register'&&<Field label="Confirmar contraseña" value={confirm} onChangeText={setConfirm} secureTextEntry/>}
  <Button disabled={busy} title={busy?'Conectando…':mode==='login'?'Iniciar sesión':mode==='register'?'Registrarse':'Enviar enlace'} onPress={()=>void submit()}/>
  {mode==='login'&&<><Button secondary title="Continuar con Google" disabled={busy} onPress={()=>void google()}/><Button secondary title="Olvidé mi contraseña" onPress={()=>change('reset')}/></>}
- <Button secondary title="Volver al inicio" onPress={()=>change('welcome')}/></>}
- <ErrorText message={error||auth.error}/>{!!message&&<Text accessibilityRole="alert" style={styles.text}>{message}</Text>}</Page>;
+ <Button secondary title="Volver al inicio" onPress={()=>change('welcome')}/>
+ <ErrorText message={error||auth.error}/>{!!message&&<Text accessibilityRole="alert" style={styles.text}>{message}</Text>}</PublicFormPage>;
 }
 
 export function ResetPassword(){

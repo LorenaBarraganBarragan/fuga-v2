@@ -1,0 +1,90 @@
+{
+  "scope": "Historical initial plan execution, before explicit permission for Android functional QA",
+  "subsequent_android_qa_evidence": "evidencia-qa-android.json",
+  "date": "2026-11-18",
+  "baseline_commit": "ce24348",
+  "candidate": "local working tree, no commit or push",
+  "backend_windows": {
+    "python": "3.12.6",
+    "passed": 294,
+    "skipped": 0,
+    "sql_tests_included": 20,
+    "database": "disposable loopback PostgreSQL 16.10",
+    "line_coverage_rounded_percent": 89,
+    "upstream_warnings": 1
+  },
+  "backend_linux": {
+    "python": "3.12.16",
+    "passed": 274,
+    "sql_tests_skipped": 20,
+    "upstream_warnings": 1
+  },
+  "frontend": {
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "passed": 83,
+    "skipped": 0,
+    "typecheck": "passed",
+    "coverage_scope": "seven directly executed modules and build guard, excludes transformed TSX and notification adapter",
+    "line_percent": 99.39,
+    "branch_percent": 88.8,
+    "function_percent": 97.3,
+    "web_export": "passed, no dotenv or deployment"
+  },
+  "static_checks": {
+    "ruff_minimum_global": "passed",
+    "mypy_domain_files": 13,
+    "mypy": "passed",
+    "full_ruff_existing_fixture_remaining": "three E501, not minimum gate failures",
+    "intentional_failure_propagates_exit_1": true
+  },
+  "production_launcher_smoke": {
+    "platforms": ["Windows", "Linux"],
+    "synthetic_config_only": true,
+    "health": 200,
+    "ready_without_database": 503,
+    "docs": 404,
+    "unauthenticated_expenses": 401
+  },
+  "regression_evidence": {
+    "four_coffees_cop": 20000,
+    "unchanged_snapshot_writes_before": 2,
+    "unchanged_snapshot_writes_after": 0,
+    "protected_files_unchanged": 15
+  },
+  "android": {
+    "device_api": 36,
+    "abi": "arm64-v8a",
+    "debug_build": "passed",
+    "debug_installed": true,
+    "release_build": "passed, R8 enabled",
+    "release_installed": true,
+    "release_bytes": 23244408,
+    "release_sha256": "129c4a394f1948953eb6ccac554b5a4659e45c4a80733342edc5577974ba3103",
+    "release_signature_verified": true,
+    "release_debuggable": false,
+    "embedded_js_bytes": 2059352,
+    "dotenv_entries": 0,
+    "secret_pattern_entry_matches": 0,
+    "record_audio_declared": true,
+    "post_notifications_declared": true,
+    "camera_declared": false,
+    "fresh_release_welcome_without_metro": "verified visually on device",
+    "public_navigation": "passed, user confirmed login/recovery/registration/back on release without Metro; no forms submitted; OS blocks input automation",
+    "authenticated_flows_voice_notifications": "pending authorized test environment and physical acceptance",
+    "signing_scope": "local template debug certificate, not production distribution signing"
+  },
+  "dependencies": {
+    "python_advisories": 0,
+    "npm_raw_high_alerts": 25,
+    "npm_root_advisory": "GHSA-fc5q-39xc-vjpf, withdrawn at primary source on 2026-11-18",
+    "forced_downgrade_performed": false
+  },
+  "restrictions": {
+    "real_dotenv_local_read_or_modified": false,
+    "real_provider_operations": false,
+    "remote_supabase_changes": false,
+    "commits_pushes_deployments": false,
+    "rule_parameters_or_migrations_changed": false
+  }
+}

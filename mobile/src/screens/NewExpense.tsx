@@ -6,11 +6,14 @@ import { Category, Draft, Expense, ExpenseInput } from '../lib/types';
 import { Button, Card, Confirmation, ErrorText, Field, Page, Title, styles } from '../components/ui';
 import { ExpenseForm } from '../components/ExpenseForm';
 import { VoiceInput } from '../voice/VoiceInput';
+import { createExpenseAttempt } from '../lib/expenseAttempt';
+import { useAuth } from '../auth/AuthProvider';
 
 export function NewExpense({onDirty}:{onDirty:(dirty:boolean)=>void}){
  const [text,setText]=useState(''),[draft,setDraft]=useState<Draft|null>(null),[categories,setCategories]=useState<Category[]>([]);
  const [busy,setBusy]=useState(false),[error,setError]=useState(''),[saved,setSaved]=useState<Expense|null>(null),[discard,setDiscard]=useState(false);
- const attempt=useRef({payload:'',key:''});
+ const auth=useAuth();
+ const attempt=useRef(createExpenseAttempt(Crypto.randomUUID));
  async function load(){try{setCategories(await api<Category[]>('/categories'));setError('');}catch(e){setError((e as Error).message);}}
  useEffect(()=>{void load();return()=>onDirty(false);},[]);
  async function process(){
@@ -20,12 +23,11 @@ export function NewExpense({onDirty}:{onDirty:(dirty:boolean)=>void}){
   catch(e){setError((e as Error).message);}finally{setBusy(false);}
  }
  async function save(body:ExpenseInput){
-  const fingerprint=JSON.stringify(body);
-  if(attempt.current.payload!==fingerprint)attempt.current={payload:fingerprint,key:Crypto.randomUUID()};
+  const key=attempt.current.prepare(auth.session?.user.id||'',body);
   setBusy(true);setError('');
   try{
-   const result=await api<Expense>('/expenses',{method:'POST',body,key:attempt.current.key});
-   setSaved(result);setDraft(null);setText('');onDirty(false);attempt.current={payload:'',key:''};
+   const result=await api<Expense>('/expenses',{method:'POST',body,key});
+   setSaved(result);setDraft(null);setText('');onDirty(false);attempt.current.clear();
   }catch(e){setError((e as Error).message);}finally{setBusy(false);}
  }
  return <Page><Title>{draft?'Revisa tu gasto':'Un gasto, en tus palabras'}</Title>
@@ -38,6 +40,6 @@ export function NewExpense({onDirty}:{onDirty:(dirty:boolean)=>void}){
  <ExpenseForm categories={categories} initial={{...draft.draft,monto_cop:draft.draft.monto_cop??undefined,categoria_id:draft.draft.categoria_id??undefined,diccionario_version:draft.diccionario_version,reglas_version:draft.reglas_version}} busy={busy} onSubmit={body=>void save(body)}/>
  <Button secondary title="Descartar borrador" disabled={busy} onPress={()=>setDiscard(true)}/></>}
  <ErrorText message={error}/>{!categories.length&&<Button secondary title="Reintentar cargar categorías" onPress={()=>void load()}/>}
- <Confirmation visible={discard} title="Descartar borrador" message="Los datos sin confirmar se perderán." onCancel={()=>setDiscard(false)} onConfirm={()=>{setDiscard(false);setDraft(null);setText('');onDirty(false);}}/>
+ <Confirmation visible={discard} title="Descartar borrador" message="Los datos sin confirmar se perderán." onCancel={()=>setDiscard(false)} onConfirm={()=>{setDiscard(false);setDraft(null);setText('');attempt.current.clear();onDirty(false);}}/>
  </Page>;
 }

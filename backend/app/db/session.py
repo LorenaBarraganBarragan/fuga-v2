@@ -2,7 +2,7 @@
 session.py — Conexión a base de datos PostgreSQL con SQLAlchemy 2.0
 """
 
-from typing import Generator
+from collections.abc import Generator
 
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
@@ -19,14 +19,23 @@ _SessionFactory = None
 
 def get_engine():
     global _engine, _SessionFactory
-    if _engine is None and settings.DATABASE_URL:
+    if _engine is None and settings.database_url:
         # pool_pre_ping=True verifica la conexión antes de entregarla
         _engine = create_engine(
-            settings.DATABASE_URL,
+            settings.database_url,
             pool_pre_ping=True,
             hide_parameters=True,
-            pool_size=5,
-            max_overflow=10,
+            pool_size=settings.DB_POOL_SIZE,
+            max_overflow=settings.DB_MAX_OVERFLOW,
+            pool_timeout=10,
+            pool_recycle=1800,
+            connect_args={
+                "connect_timeout": settings.DB_CONNECT_TIMEOUT,
+                "options": (
+                    f"-c statement_timeout={settings.DB_STATEMENT_TIMEOUT_MS} "
+                    f"-c lock_timeout={settings.DB_LOCK_TIMEOUT_MS}"
+                ),
+            },
         )
         _SessionFactory = sessionmaker(
             autocommit=False,

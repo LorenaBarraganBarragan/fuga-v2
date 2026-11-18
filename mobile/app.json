@@ -27,8 +27,7 @@
         "expo-image-picker",
         {
           "photosPermission": "Permite elegir tu fotografía de perfil.",
-          "cameraPermission": false,
-          "microphonePermission": false
+          "cameraPermission": false
         }
       ],
       "expo-notifications",

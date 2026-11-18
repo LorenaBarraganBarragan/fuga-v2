@@ -20,7 +20,7 @@ def postgres_engine():
     if not dsn:
         pytest.skip("FUGA_TEST_DATABASE_URL no configurada; requiere PostgreSQL local desechable.")
     info = psycopg.conninfo.conninfo_to_dict(dsn)
-    if info.get("host") not in {"127.0.0.1", "localhost", "::1"}:
+    if info.get("host") not in {"127.0.0.1", "localhost", "::1"} or info.get("hostaddr"):
         pytest.fail("Las pruebas solo admiten PostgreSQL local; nunca Supabase remoto.")
     name = "fuga_test_" + uuid4().hex
     admin = psycopg.connect(dsn, autocommit=True)

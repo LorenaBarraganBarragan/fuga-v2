@@ -2,7 +2,12 @@
 
 Revisión local: 2026-11-16, America/Bogota. No se ejecutó SQL remoto ni se solicitaron secretos.
 
-## Resultado
+Seguimiento HU-08, 2026-11-18: se añade `0010_fotografias_perfil.sql`, probado solo
+en PostgreSQL local. Registra cargas y su propietario para limpiar fotografías
+abandonadas sin tocar imágenes ajenas. No cambia URLs existentes. Aplicación remota
+pendiente de autorización; ver [ensayo y evidencia HU-08](../../mi-framework-ia/docs/auditoria/hu08-fotografia-perfil.md).
+
+## Resultado histórico de la revisión inicial
 
 Las nueve migraciones se ejecutaron sobre PostgreSQL 16 local con una representación mínima de
 `auth.users`, `auth.uid()` y roles del proveedor, y con privilegios iniciales permisivos como los de Supabase.
@@ -37,6 +42,7 @@ Para la primera aplicación al proyecto nuevo, usar los archivos locales revisad
 | 7 | `0007_grants.sql` | Permisos mínimos y revocaciones |
 | 8 | `0008_integracion.sql` | Huellas/respuesta de idempotencia, auditoría, actividad y retención |
 | 9 | `0009_seguridad_integridad.sql` | Refuerzo de integridad, fechas, propietario, versiones y permisos |
+| 10 | `0010_fotografias_perfil.sql` | HU-08: registro privado de cargas, propietario, estados, índices y RLS sin acceso del cliente |
 
 `supabase/seed.sql` es opcional: 0002 ya crea las nueve categorías y FUGA-01 1.0.
 El seed no crea usuarios ni gastos ficticios. Reejecutarlo no duplica los datos iniciales.
@@ -51,7 +57,7 @@ El seed no crea usuarios ni gastos ficticios. Reejecutarlo no duplica los datos 
 3. En **SQL Editor**, ejecutar cada archivo completo, respetando el orden. Para una primera aplicación por
    SQL Editor, se puede envolver el contenido de cada archivo con `BEGIN;` y `COMMIT;` para confirmar su conjunto
    de forma atómica. Detenerse ante el primer error y revisar; no borrar datos para forzar el avance.
-4. Completar 0001–0009 antes de habilitar el cliente. No pegar únicamente fragmentos de permisos o funciones.
+4. Completar 0001–0009 para el núcleo y 0010 antes de habilitar fotografías. Si las primeras nueve ya están aplicadas, revisar y aplicar solo 0010 bajo autorización; no reejecutarlas automáticamente. No pegar únicamente fragmentos de permisos o funciones.
 5. Ejecutar `verificar_esquema.sql`; se espera una fila `OK: esquema, catálogo, permisos y denegación financiera directa`.
 6. Después, verificar registro y sesión reales con dos cuentas propias de prueba desde la aplicación.
 
@@ -61,7 +67,7 @@ Los triggers y políticas se reemplazan por nombre para hacer repetible su defin
 
 Si se prefiere Supabase CLI, usar un único historial de migraciones y revisar el plan antes de aplicar.
 No mezclar una aplicación manual sin historial con `db push` suponiendo que CLI conoce esos cambios.
-Los números 0001–0009 identifican el orden actual; no renumerar archivos después de aplicarlos.
+Los números 0001–0010 identifican el orden actual; no renumerar archivos después de aplicarlos.
 No usar `db reset` sobre bases con datos que se quieran conservar.
 
 ## RLS: comportamiento esperado
@@ -72,6 +78,7 @@ No usar `db reset` sobre bases con datos que se quieran conservar.
 | Perfil | Sin acceso | Solo propio y activo; edición limitada a nombres/apellido/teléfono |
 | Gastos, fugas y evidencia | Sin acceso | Cero filas por lectura directa; escritura denegada |
 | Auditoría, actividad y retención | Sin acceso | Sin acceso directo |
+| Registro de cargas de fotografías (0010) | Sin acceso | Sin acceso directo; solo FastAPI |
 
 Los datos financieros se acceden exclusivamente por FastAPI, como exige DA-01.
 El backend usa una conexión privilegiada: los filtros por propietario y las comprobaciones de rol/estado
@@ -88,7 +95,9 @@ No hay purga automática de datos reales ni se certifica la retención efectiva 
 1. Copiar `backend/.env.example` a `backend/.env.local` y editarlo únicamente en la máquina local.
 2. En **Connect**, copiar la cadena **Session pooler**, puerto 5432, si la red del computador es IPv4.
    El host depende del proyecto: no inventarlo a partir del nombre o la región.
-3. Adaptar el prefijo a `postgresql+psycopg://`, conservar el usuario/host de Supabase y añadir `sslmode=require`.
+3. Adaptar el prefijo a `postgresql+psycopg://`, conservar los componentes de conexión y añadir `sslmode=verify-full`.
+   Configurar `DATABASE_SSL_ROOT_CERT=certs/prod-ca-2021.crt` con la CA pública oficial.
+   La ruta se resuelve desde backend, también en Linux; no compartir la contraseña ni degradar SSL.
    Codificar caracteres reservados de la contraseña en la URI (por ejemplo, `@` como `%40`).
 4. Completar `SUPABASE_URL` con la URL real del proyecto. `fuga-plus` es el nombre visible, no el project ref.
    Issuer y JWKS se derivan de esa URL; eliminar/reemplazar los placeholders si se copió todo el ejemplo.
@@ -101,7 +110,8 @@ Ejemplo de estructura, sin valores privados:
 ```dotenv
 SUPABASE_URL=https://<project-ref>.supabase.co
 SUPABASE_JWT_AUDIENCE=authenticated
-DATABASE_URL=postgresql+psycopg://postgres.<project-ref>:<password-url-encoded>@<session-pooler-host>:5432/postgres?sslmode=require
+DATABASE_URL=postgresql+psycopg://postgres.<project-ref>:<password-url-encoded>@<session-pooler-host>:5432/postgres?sslmode=verify-full
+DATABASE_SSL_ROOT_CERT=certs/prod-ca-2021.crt
 ```
 
 Reiniciar FastAPI tras cambiar su entorno. `/health` comprueba el proceso y `/ready` debe responder 200 cuando

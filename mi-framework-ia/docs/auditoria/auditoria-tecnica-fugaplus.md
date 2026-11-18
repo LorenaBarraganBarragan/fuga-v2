@@ -5,6 +5,10 @@
 **Base Git observada:** rama `develop`, HEAD `dd41fcb`, con cambios previos y numerosos archivos sin seguimiento.  
 **Documento complementario:** [Plan de mejora](plan-mejora-fugaplus.md).
 
+Este informe conserva el diagnóstico previo. Los cambios autorizados posteriormente
+se registran en [Ejecución del plan](ejecucion-plan-mejora-fugaplus.md); sus resultados
+actualizan el estado de los hallazgos sin reescribir la evidencia histórica.
+
 ## 1. Resumen ejecutivo
 
 FUGA+ dispone de una arquitectura adecuada para su alcance académico: aplicación React Native/Expo/TypeScript, monolito modular FastAPI, PostgreSQL en Supabase y autenticación delegada en Supabase Auth. Conviene conservarla. No se justifica incorporar microservicios, Redis, Kubernetes, Docker como requisito del MVP ni servicios de IA generativa.

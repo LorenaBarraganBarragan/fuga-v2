@@ -1,0 +1,106 @@
+{
+  "captured_at_bogota": "2026-11-18T13:52:20.786430-05:00",
+  "scope": "Android debug QA, real Auth session explicitly authorized, financial data exclusively local",
+  "configuration": {
+    "mobile_env_read": true,
+    "mobile_env_modified": false,
+    "backend_env_read": false,
+    "client_key_kind": "publishable",
+    "public_auth_settings_status": 200,
+    "jwks_status": 200,
+    "source_api_ip_matches_current_pc": false,
+    "original_backend_loopback_health": 200,
+    "qa_api": "http://127.0.0.1:18000",
+    "no_private_values_in_report": true,
+    "bundle_public_url_key_api_verified_in_memory": true
+  },
+  "artifact": {
+    "sha256": "986b86c487a0c96a9be11ef96f1ab13597db4394afeedfca7056722d473fb724",
+    "bytes": 49511283,
+    "private_key_pattern_matches": 0,
+    "dotenv_entries": 0,
+    "requires_metro": true,
+    "api_transport": "USB loopback"
+  },
+  "automated_tests": {
+    "backend_passed": 301,
+    "sql_included": 22,
+    "backend_skipped": 0,
+    "frontend_passed": 86,
+    "frontend_skipped": 0,
+    "typescript": "passed",
+    "ruff_minimum": "passed",
+    "mypy_domain": "passed",
+    "backend_app_line_percent_rounded": 89,
+    "node_measured_line_percent": 92.91,
+    "node_coverage_scope": "eight measured modules including the QA launcher, excludes transformed UI/adapter"
+  },
+  "manual_device_results": {
+    "existing_fictitious_account_login": "confirmed by user and authenticated /me 200",
+    "text_history_dashboard": "confirmed by user; additional fictitious entry preserved",
+    "voice_buseta_3000": "confirmed by user with Transporte and total 28000",
+    "local_notification_delivery_tap_deduplication": "confirmed by user",
+    "permission_denial_background_closed_app_email_callbacks": "not physically verified in this session"
+  },
+  "backend_observation": {
+    "scope": "local-disposable",
+    "auth": "original Supabase JWKS validation",
+    "jwks_preflight": true,
+    "fictitious_account_bound": true,
+    "expense_count": 6,
+    "total_cop": 28000,
+    "current_leaks": 1,
+    "requests_without_personal_data": {
+      "GET other 200": 5,
+      "GET me 200": 1,
+      "GET analytics 200": 6,
+      "GET categories 200": 5,
+      "POST expenses 200": 7,
+      "POST expenses 201": 7,
+      "GET expenses 200": 4,
+      "DELETE expenses 204": 1,
+      "GET leaks 200": 4
+    }
+  },
+  "local_category_totals": [
+    {
+      "category": "Alimentaci\u00f3n",
+      "count": 5,
+      "total_cop": 25000
+    },
+    {
+      "category": "Transporte",
+      "count": 1,
+      "total_cop": 3000
+    }
+  ],
+  "local_current_leaks": [
+    {
+      "concept": "cafe",
+      "occurrences": 5,
+      "amount_cop": 25000
+    }
+  ],
+  "four_coffee_date_cohort": {
+    "count": 4,
+    "total_cop": 20000
+  },
+  "device_permissions": {
+    "RECORD_AUDIO": true,
+    "POST_NOTIFICATIONS": true
+  },
+  "restrictions": {
+    "remote_financial_writes": false,
+    "remote_migrations_or_seeds": false,
+    "new_remote_accounts": false,
+    "private_keys_loaded_into_mobile": false,
+    "commits_pushes_deployments": false,
+    "production_https_guard_changed": false
+  },
+  "environment_left_running": {
+    "qa_backend_port": 18000,
+    "metro_port": 8083,
+    "local_postgres_port": 55440,
+    "usb_required": true
+  }
+}

@@ -3,10 +3,11 @@ import { createClient, processLock } from '@supabase/supabase-js';
 import { AppState, Platform } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import { createWebAuthStorage } from '../auth/callback';
+import { isPublicSupabaseKey, isSupabaseRoot } from './publicConfig';
 
 const url = process.env.EXPO_PUBLIC_SUPABASE_URL || '';
 const key = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || '';
-export const authConfigured = /^https:\/\//.test(url) && !url.includes('<') && !!key && !key.includes('<');
+export const authConfigured = isSupabaseRoot(url) && isPublicSupabaseKey(key);
 // Chunk sessions: native SecureStore has per-item size limits on some devices.
 const webStorage = createWebAuthStorage(() => typeof localStorage !== 'undefined' ? localStorage : null);
 const storage = {

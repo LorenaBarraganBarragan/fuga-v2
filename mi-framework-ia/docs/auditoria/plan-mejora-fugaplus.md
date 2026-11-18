@@ -3,6 +3,9 @@
 **Fecha:** 2026-11-18, America/Bogota.  
 **Versión:** 1.0. Propuesta para revisión y aprobación; ninguna actividad de implementación se ejecuta con este documento.  
 **Fuente:** [Auditoría técnica](auditoria-tecnica-fugaplus.md), hallazgos AUD-01 a AUD-14.  
+**Ejecución autorizada:** solicitud expresa posterior del 2026-11-18 para ACT-01 a ACT-15;
+ver [resultados y aceptación pendiente](ejecucion-plan-mejora-fugaplus.md). La aprobación
+no incluye commits, pushes, despliegues ni modificaciones en Supabase remoto.
 **Restricciones:** Android prioritario, presupuesto cero, conservar Expo/React Native/TypeScript, FastAPI, PostgreSQL/Supabase Auth y procesamiento determinista. Sin migraciones remotas, datos reales, commits, pushes o despliegues por efecto de este plan.
 
 ## 1. Objetivos y alcance de entrega

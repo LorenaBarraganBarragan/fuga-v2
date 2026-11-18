@@ -39,8 +39,10 @@ class AnalyticsService:
         return [
             dict(r)
             for r in db.execute(
-                text("""SELECT categoria_id,monto_cop FROM gasto
-          WHERE usuario_id=:uid AND fecha_gasto>=:start AND fecha_gasto<:end AND deleted_at IS NULL"""),
+                text("""SELECT categoria_id,SUM(monto_cop) AS monto_cop,COUNT(*) AS cantidad
+          FROM gasto
+          WHERE usuario_id=:uid AND fecha_gasto>=:start AND fecha_gasto<:end AND deleted_at IS NULL
+          GROUP BY categoria_id"""),
                 {"uid": str(usuario_id), "start": start, "end": end},
             )
             .mappings()

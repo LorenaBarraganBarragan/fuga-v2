@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react';
-import { BackHandler,Image,Pressable,SafeAreaView,StatusBar,Text,View } from 'react-native';
+import { BackHandler,Image,Platform,Pressable,SafeAreaView,StatusBar,Text,View } from 'react-native';
 import { useFonts, PlusJakartaSans_400Regular, PlusJakartaSans_700Bold } from '@expo-google-fonts/plus-jakarta-sans';
 import * as Notifications from 'expo-notifications';
 import { AuthProvider,useAuth } from './src/auth/AuthProvider';
@@ -11,11 +11,15 @@ import { Leaks } from './src/screens/Leaks';
 import { Profile } from './src/screens/Profile';
 import { Admin } from './src/screens/Admin';
 import { Busy,Button,Confirmation,ErrorText,Page,Title,styles,colors } from './src/components/ui';
+import { cancelPendingReads,subscribeApiWaiting } from './src/lib/api';
+import { PublicSafeArea } from './src/components/PublicSafeArea';
 
 type Tab='dashboard'|'new'|'history'|'leaks'|'profile'|'admin';
 function Shell(){
  const auth=useAuth(),[tab,setTab]=useState<Tab>('dashboard'),[dirty,setDirty]=useState(false),[next,setNext]=useState<Tab|null>(null);
  const [leakId,setLeakId]=useState<string|undefined>();
+ const [waiting,setWaiting]=useState(false);
+ useEffect(()=>subscribeApiWaiting(setWaiting),[]);
  useEffect(()=>{setTab('dashboard');setDirty(false);setNext(null);setLeakId(undefined);},[auth.session?.user.id]);
  function navigate(target:Tab){if(target===tab)return;if(dirty)setNext(target);else setTab(target);}
  useEffect(()=>{
@@ -24,6 +28,7 @@ function Shell(){
   });return()=>listener.remove();
  },[tab,dirty,auth.profile?.rol]);
  useEffect(()=>{
+  if(Platform.OS==='web')return;
   let alive=true;
   const handle=(response:Notifications.NotificationResponse)=>{
    if(!alive)return;
@@ -42,14 +47,15 @@ function Shell(){
  const tabs:{id:Tab;label:string}[]=admin?[{id:'admin',label:'Cuentas'},{id:'profile',label:'Sesión'}]:[
   {id:'dashboard',label:'Resumen'},{id:'new',label:'Registrar'},{id:'history',label:'Historial'},{id:'leaks',label:'Fugas'},{id:'profile',label:'Perfil'}];
  const active=admin&&tab!=='profile'?'admin':tab;
- return <View key={auth.profile.id} style={{flex:1}}>
+ return <PublicSafeArea key={auth.profile.id}>
  <View style={{flexDirection:'row',alignItems:'center',paddingHorizontal:20,paddingVertical:6,backgroundColor:'#fff',borderBottomWidth:1,borderColor:colors.border}}>
  <Image source={require('./assets/branding/logo.png')} accessibilityLabel="FUGA+" style={{width:52,height:52}}/><Text style={[styles.heading,{marginLeft:10}]}>FUGA+</Text><Text style={[styles.muted,{marginLeft:'auto'}]}>{admin?'Administración':'Tu espacio'}</Text></View>
  <View style={{flex:1}}>{active==='new'?<NewExpense onDirty={setDirty}/>:active==='history'?<History onDirty={setDirty}/>:active==='leaks'?<Leaks initialId={leakId}/>:active==='profile'?<Profile/>:active==='admin'?<Admin/>:<Dashboard/>}</View>
+ {waiting&&<View style={{padding:12,backgroundColor:colors.bg}}><Text style={styles.muted}>El servidor está tardando en responder. Espera un momento o vuelve a intentar.</Text><Button secondary title="Cancelar consultas" onPress={cancelPendingReads}/></View>}
  <View style={{flexDirection:'row',paddingBottom:8,paddingTop:8,borderTopWidth:1,borderColor:colors.border,backgroundColor:'#fff'}}>
  {tabs.map(item=><Pressable key={item.id} accessibilityRole="button" accessibilityState={{selected:active===item.id}} onPress={()=>navigate(item.id)} style={{flex:1,minHeight:52,alignItems:'center',justifyContent:'center',backgroundColor:active===item.id?'#D8F6EC':'#fff',borderRadius:12}}><Text style={{fontSize:12,color:colors.primary,fontWeight:active===item.id?'700':'400'}}>{item.label}</Text></Pressable>)}</View>
  <Confirmation visible={next!==null} title="¿Descartar el borrador?" message="Los datos sin confirmar se perderán al salir." onCancel={()=>{setNext(null);setLeakId(undefined);}} onConfirm={()=>{if(next)setTab(next);setNext(null);setDirty(false);}}/>
- </View>;
+ </PublicSafeArea>;
 }
 export default function App(){
  useFonts({PlusJakartaSans_400Regular,PlusJakartaSans_700Bold});

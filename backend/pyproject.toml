@@ -36,6 +36,7 @@ dev = [
     # Pruebas
     "pytest>=9.0.3,<10.0.0",
     "pytest-asyncio>=1.0.0,<2.0.0",
+    "coverage>=7.10,<8.0",
     "httpx>=0.28.0,<1.0.0",
     # Calidad
     "ruff>=0.3.0,<0.4.0",

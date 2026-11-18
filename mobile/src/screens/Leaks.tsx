@@ -12,7 +12,7 @@ export function Leaks({initialId}:{initialId?:string}){
  async function summary(){setBusy(true);setError('');setMonthly(null);try{setMonthly(await api('/leaks/monthly-summary?periodo='+encodeURIComponent(month)));}catch(e){setError((e as Error).message);}finally{setBusy(false);}}
  async function load(){
   setBusy(true);setError('');setDetail(null);
-  try{const result=await api<List>('/leaks');setList(result);for(const item of result.items)void notifyCandidate(item).catch(()=>{});}
+  try{const result=await api<List>('/leaks');setList(result);for(const item of result.items)void notifyCandidate(item).catch(()=>setError('No se pudo mostrar el recordatorio local. El análisis sigue disponible.'));}
   catch(e){setList(null);setError((e as Error).message);}finally{setBusy(false);}
  }
  useEffect(()=>{if(initialId)void open(initialId);else void load();},[initialId]);

@@ -16,6 +16,12 @@
 
 ## Matriz de prioridades
 
+**Decisión de entrega 2026-11-18:** la propietaria autorizó ejecutar ACT-01 a ACT-15.
+Android y voz HU-17/18/19 son prioridad adicional de esta entrega. No se reclasifica
+la matriz MoSCoW 3.0 ni se cambian D-01/D-12: se reutiliza SpeechRecognizer, se
+mantiene alternativa escrita y la aceptación nativa requiere una compilación propia.
+El estado de aceptación está en `docs/auditoria/ejecucion-plan-mejora-fugaplus.md`.
+
 | Prioridad | RF | MVP |
 |---|---|---|
 | Must Have | RF-001, RF-002, RF-004, RF-010, RF-011, RF-012, RF-013, RF-014, RF-020, RF-021, RF-023, RF-024, RF-033 | Sí |

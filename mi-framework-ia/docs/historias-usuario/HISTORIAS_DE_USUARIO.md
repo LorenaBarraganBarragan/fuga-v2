@@ -18,6 +18,12 @@
 
 ## Índice de prioridad
 
+**Decisión de entrega 2026-11-18:** se autoriza implementar el plan ACT-01 a ACT-15,
+priorizando Android y la voz existente HU-17/18/19. Esta decisión de entrega no cambia
+la clasificación MoSCoW 3.0 ni permite declarar voz aceptada por existir un bundle.
+Permisos, Kotlin y flujo editable deben validarse en una compilación propia; el texto
+continúa disponible como alternativa. Ver `docs/auditoria/ejecucion-plan-mejora-fugaplus.md`.
+
 | Historia | Nombre | Prioridad | MVP |
 |---|---|---|---|
 | HU-01 | Consultar información pública de FUGA+ y acceder a registro o inicio de sesión | Must Have | Sí |

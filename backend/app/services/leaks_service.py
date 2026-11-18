@@ -21,7 +21,10 @@ from app.schemas.leaks import (
     LeaksListResponse,
 )
 
-MESSAGE = "Se identificaron posibles patrones repetidos. Revisa la evidencia para decidir si representan una fuga de dinero."
+MESSAGE = (
+    "Se identificaron posibles patrones repetidos. "
+    "Revisa la evidencia para decidir si representan una fuga de dinero."
+)
 
 
 def empty_state(expenses, parameters):
@@ -72,7 +75,8 @@ class LeaksService:
             dict(r)
             for r in db.execute(
                 text("""SELECT id,categoria_id,monto_cop,descripcion,fecha_gasto,deleted_at
-          FROM gasto WHERE usuario_id=:uid AND deleted_at IS NULL AND fecha_gasto BETWEEN :start AND :end
+          FROM gasto WHERE usuario_id=:uid AND deleted_at IS NULL
+          AND fecha_gasto BETWEEN :start AND :end
           ORDER BY fecha_gasto,id"""),
                 {"uid": str(usuario_id), "start": start, "end": today},
             )
@@ -82,13 +86,19 @@ class LeaksService:
         candidates = evaluar_fuga_01(
             expenses, parametros=rule["parametros"], fecha_referencia=today
         )
-        db.execute(
-            text("UPDATE fuga SET vigente=FALSE WHERE usuario_id=:uid AND vigente=TRUE"),
-            {"uid": str(usuario_id)},
-        )
-        items = []
+        current_ids = {
+            str(value)
+            for value in db.execute(
+                text("SELECT id FROM fuga WHERE usuario_id=:uid AND vigente=TRUE"),
+                {"uid": str(usuario_id)},
+            )
+            .scalars()
+            .all()
+        }
+        expense_by_id = {str(g["id"]): g for g in expenses}
+        prepared = []
         for candidate in candidates:
-            evidence = [g for g in expenses if str(g["id"]) in candidate.evidencia_gasto_ids]
+            evidence = [expense_by_id[gid] for gid in candidate.evidencia_gasto_ids]
             digest = hashlib.sha256(
                 json.dumps(
                     {"normalizacion_version": NORMALIZACION_VERSION, "gastos": evidence},
@@ -104,21 +114,46 @@ class LeaksService:
                 "hash": digest,
             }
             prior = db.execute(
-                text("""SELECT id FROM fuga WHERE usuario_id=:uid AND regla_version_id=:rv
+                text("""SELECT id,vigente FROM fuga WHERE usuario_id=:uid AND regla_version_id=:rv
               AND categoria_id=:cat AND descripcion_normalizada=:desc AND evidencia_hash=:hash
               ORDER BY detectada_en DESC LIMIT 1"""),
                 params,
             ).first()
-            if prior:
-                fid = str(prior[0])
+            fid = str(prior[0]) if prior else str(uuid4())
+            prepared.append((candidate, params, prior, fid))
+
+        retained_ids = {fid for _, _, _, fid in prepared}
+        stale_ids = current_ids - retained_ids
+        if stale_ids:
+            db.execute(
+                text("""UPDATE fuga SET vigente=FALSE,actualizada_en=now()
+                  WHERE usuario_id=:uid AND vigente=TRUE AND id=ANY(CAST(:ids AS uuid[]))"""),
+                {"uid": str(usuario_id), "ids": sorted(stale_ids)},
+            )
+        category_ids = sorted({c.categoria_id for c in candidates})
+        names = (
+            dict(
                 db.execute(
-                    text(
-                        "UPDATE fuga SET vigente=TRUE,actualizada_en=now() WHERE id=:id AND usuario_id=:uid"
-                    ),
-                    {"id": fid, "uid": str(usuario_id)},
-                )
+                    text("SELECT id,nombre FROM categoria WHERE id=ANY(CAST(:ids AS uuid[]))"),
+                    {"ids": category_ids},
+                ).all()
+            )
+            if category_ids
+            else {}
+        )
+        names = {str(key): value for key, value in names.items()}
+        items = []
+        for candidate, params, prior, fid in prepared:
+            if prior:
+                if not prior[1]:
+                    db.execute(
+                        text(
+                            "UPDATE fuga SET vigente=TRUE,actualizada_en=now() "
+                            "WHERE id=:id AND usuario_id=:uid"
+                        ),
+                        {"id": fid, "uid": str(usuario_id)},
+                    )
             else:
-                fid = str(uuid4())
                 params.update(
                     id=fid,
                     count=candidate.ocurrencias,
@@ -133,20 +168,17 @@ class LeaksService:
                   VALUES (:id,:uid,:rv,:cat,:desc,:count,:amount,:start,:end,:hash)"""),
                     params,
                 )
-                for gid in candidate.evidencia_gasto_ids:
-                    db.execute(
-                        text("""INSERT INTO fuga_evidencia (fuga_id,gasto_id)
-                      SELECT :fid,id FROM gasto WHERE id=:gid AND usuario_id=:uid AND deleted_at IS NULL"""),
-                        {"fid": fid, "gid": gid, "uid": str(usuario_id)},
-                    )
-            name = db.execute(
-                text("SELECT nombre FROM categoria WHERE id=:id"), {"id": candidate.categoria_id}
-            ).scalar_one()
+                db.execute(
+                    text("""INSERT INTO fuga_evidencia (fuga_id,gasto_id)
+                      SELECT :fid,id FROM gasto WHERE usuario_id=:uid AND deleted_at IS NULL
+                      AND id=ANY(CAST(:gids AS uuid[]))"""),
+                    {"fid": fid, "gids": candidate.evidencia_gasto_ids, "uid": str(usuario_id)},
+                )
             items.append(
                 LeakItemResponse(
                     id=UUID(fid),
                     categoria_id=UUID(candidate.categoria_id),
-                    categoria_nombre=name,
+                    categoria_nombre=names[candidate.categoria_id],
                     descripcion_normalizada=candidate.descripcion_normalizada,
                     ocurrencias=candidate.ocurrencias,
                     monto_acumulado_cop=candidate.monto_acumulado_cop,
@@ -172,7 +204,8 @@ class LeaksService:
             db.execute(
                 text("""SELECT g.id,g.fecha_gasto,g.monto_cop,g.descripcion
           FROM fuga_evidencia e JOIN fuga f ON f.id=e.fuga_id JOIN gasto g ON g.id=e.gasto_id
-          WHERE f.id=:id AND f.usuario_id=:uid AND g.usuario_id=:uid AND f.vigente=TRUE AND g.deleted_at IS NULL
+          WHERE f.id=:id AND f.usuario_id=:uid AND g.usuario_id=:uid
+          AND f.vigente=TRUE AND g.deleted_at IS NULL
           ORDER BY g.fecha_gasto,g.id"""),
                 {"id": str(fuga_id), "uid": str(usuario_id)},
             )

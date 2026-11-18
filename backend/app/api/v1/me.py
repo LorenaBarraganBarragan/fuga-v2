@@ -1,19 +1,14 @@
 """Perfil propio y carga de imágenes controlada por backend."""
 
-import hashlib
-import time
 from typing import Literal
 from urllib.parse import urlparse
-from uuid import uuid4
 
-import httpx
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel, Field
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
-from app.core.config import settings
-from app.core.errors import ForbiddenException, UpstreamException, ValidationException
+from app.core.errors import ForbiddenException, ValidationException
 from app.core.security import CurrentUser, get_current_user, get_token_claims, require_user
 from app.db.session import get_db
 from app.repositories.profiles import ProfilesRepository
@@ -109,63 +104,33 @@ def update_profile(
     return ProfilesRepository(user.user_id).get_profile(db)
 
 
-def cloud_config():
-    if not all(
-        (
-            settings.CLOUDINARY_CLOUD_NAME,
-            settings.CLOUDINARY_API_KEY,
-            settings.CLOUDINARY_API_SECRET,
-        )
-    ):
-        raise UpstreamException("Fotografías no disponibles: Cloudinary no está configurado.")
+class PhotoComplete(BaseModel):
+    public_id: str = Field(max_length=180)
 
 
 @router.post("/photo/signature")
-def photo_signature(user: CurrentUser = Depends(require_user)):
-    cloud_config()
-    params = {"timestamp": int(time.time()), "public_id": f"fuga/{user.user_id}/{uuid4()}"}
-    source = "&".join(f"{k}={params[k]}" for k in sorted(params)) + settings.CLOUDINARY_API_SECRET
-    return {
-        **params,
-        "signature": hashlib.sha1(source.encode()).hexdigest(),
-        "api_key": settings.CLOUDINARY_API_KEY,
-        "cloud_name": settings.CLOUDINARY_CLOUD_NAME,
-        "upload_url": f"https://api.cloudinary.com/v1_1/{settings.CLOUDINARY_CLOUD_NAME}/image/upload",
-    }
+def photo_signature(
+    user: CurrentUser = Depends(require_user), db: Session = Depends(get_db)
+):
+    from app.services.profile_photos import issue_upload
 
-
-class PhotoComplete(BaseModel):
-    public_id: str = Field(max_length=180)
+    return issue_upload(db, user.user_id)
 
 
 @router.post("/photo/complete", response_model=ProfileResponse)
 def photo_complete(
     body: PhotoComplete, user: CurrentUser = Depends(require_user), db: Session = Depends(get_db)
 ):
-    cloud_config()
-    if not body.public_id.startswith(f"fuga/{user.user_id}/") or ".." in body.public_id:
-        raise ValidationException("Fotografía no válida.")
-    try:
-        with httpx.Client(timeout=10) as client:
-            response = client.get(
-                f"https://api.cloudinary.com/v1_1/{settings.CLOUDINARY_CLOUD_NAME}/resources/image/upload/{body.public_id}",
-                auth=(settings.CLOUDINARY_API_KEY, settings.CLOUDINARY_API_SECRET),
-            )
-            response.raise_for_status()
-            asset = response.json()
-    except (httpx.HTTPError, ValueError):
-        raise UpstreamException("No se pudo verificar la fotografía.") from None
-    if (
-        asset.get("format") not in {"jpeg", "jpg", "png", "webp"}
-        or asset.get("bytes", 5_000_001) > 5_000_000
-    ):
-        raise ValidationException("La imagen debe ser JPEG, PNG o WebP y tener máximo 5 MB.")
-    url = asset.get("secure_url", "")
-    if not url.startswith("https://res.cloudinary.com/"):
-        raise ValidationException("URL de imagen no válida.")
-    db.execute(
-        text("UPDATE perfil SET foto_url=:url WHERE id=:uid"),
-        {"url": url, "uid": str(user.user_id)},
-    )
-    db.commit()
+    from app.services.profile_photos import complete_upload
+
+    complete_upload(db, user.user_id, body.public_id)
     return ProfilesRepository(user.user_id).get_profile(db)
+
+
+@router.post("/photo/cancel")
+def photo_cancel(
+    body: PhotoComplete, user: CurrentUser = Depends(require_user), db: Session = Depends(get_db)
+):
+    from app.services.profile_photos import cancel_upload
+
+    return cancel_upload(db, user.user_id, body.public_id)

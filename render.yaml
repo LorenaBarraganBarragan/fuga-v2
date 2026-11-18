@@ -1,0 +1,34 @@
+# Preparation only: no service is created by this file. Apply manually after approval.
+services:
+  - type: web
+    name: fuga-plus-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    autoDeployTrigger: 'off'
+    buildCommand: pip install -r requirements.lock
+    startCommand: python scripts/start.py
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.16
+      - key: APP_ENV
+        value: prod
+      - key: LOG_LEVEL
+        value: INFO
+      - key: CORS_ORIGINS
+        value: '[]'
+      - key: SUPABASE_JWT_AUDIENCE
+        value: authenticated
+      - key: DATABASE_SSL_ROOT_CERT
+        value: certs/prod-ca-2021.crt
+      - key: DB_POOL_SIZE
+        value: '3'
+      - key: DB_MAX_OVERFLOW
+        value: '2'
+      - key: SUPABASE_URL
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false

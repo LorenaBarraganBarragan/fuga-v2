@@ -49,6 +49,10 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.coverage
+coverage/
+backend/docs/coverage.json
+mobile/docs/coverage/
 *.egg-info/
 dist/
 build/
@@ -81,3 +85,6 @@ supabase/.temp/
 .test-postgres/
 .browser-smoke/
 mobile/.verification/
+
+# Evidencias y archivos temporales de verificacion local
+.verification/

@@ -5,14 +5,34 @@ Aplicación React Native/Expo/TypeScript y API FastAPI con PostgreSQL en Supabas
 La interpretación usa reglas propias; no envía gastos a una IA generativa.
 
 ## Estado de esta entrega
+
+El 2026-11-18 se autorizó ejecutar ACT-01 a ACT-15 desde el respaldo `ce24348`.
+El [informe de ejecución](mi-framework-ia/docs/auditoria/ejecucion-plan-mejora-fugaplus.md)
+contiene resultados actuales, archivos y límites; la auditoría es una fotografía anterior.
+Se conserva el núcleo 3.0 y se prioriza además voz Android. No se cambian umbrales de FUGA-01.
 Código integrado de acceso, gastos, historial, edición/borrado lógico, estadísticas,
 fugas y evidencia, perfil y administración. También hay código de voz Android,
 alertas locales, comparación mensual y resumen de fugas.
 
-**No es una certificación de MVP terminado:** Supabase, correo, Google, Cloudinary y dispositivos
-reales no se han verificado. Las migraciones se probaron en PostgreSQL local el 2026-11-16;
-su aplicación y verificación en Supabase remoto siguen pendientes.
-No se aplicaron migraciones remotas ni se hicieron commits o despliegues.
+Verificación actual: 325 pruebas backend (31 SQL locales), 97 frontend y controles
+mínimos de tipos/análisis aprobados. El release inicial abre sin Metro. En el posterior
+debug QA por USB se comprobaron acceso con cuenta ficticia, texto/dashboard, dictado y
+aviso local/toque/sin duplicado. La configuración pública se carga explícitamente en
+memoria; los gastos se guardan en PostgreSQL local, sin escribir finanzas en Supabase.
+Consulta [QA Android funcional](mobile/docs/QA_ANDROID_FUNCIONAL.md) para ejecutar ese
+entorno. El debug funcional requiere Metro; no sustituye un release configurado con API HTTPS.
+
+HU-08 incorpora vista previa/confirmación de fotografía y gestión segura de cargas.
+Cloudinary responde a GET /ping; dos PNG sintéticos autorizados se cargaron desde Android,
+con cancelación, sustitución y persistencia tras login/logout confirmadas en QA local.
+Ver [ensayo HU-08](mi-framework-ia/docs/auditoria/hu08-fotografia-perfil.md).
+La migración nueva 0010 se probó localmente y no se aplicó en Supabase.
+
+**No es una certificación de MVP terminado:** distinguir pruebas locales, teléfono y proveedores.
+Este plan prueba SQL en PostgreSQL local desechable; no recertifica el Supabase real ya
+validado anteriormente por la propietaria. Correo, Google, Cloudinary y flujos completos
+de dispositivo requieren su propia evidencia. No se aplican migraciones remotas ni se
+hacen commits, pushes o despliegues durante la ejecución del plan.
 
 - [Progreso y siguiente tarea](mi-framework-ia/docs/planificacion/PROGRESO_BUILD.md)
 - [Arquitectura y límites de seguridad](docs/ARQUITECTURA_FUGA_PLUS.md)
@@ -33,11 +53,13 @@ backend/.venv/Scripts/python -m pip install --no-deps -e backend
 ```
 
 Copiar backend/.env.example a backend/.env.local y completar los valores reales, sin versionarlos.
-DATABASE_URL debe usar postgresql+psycopg:// y un rol servidor autorizado.
+DATABASE_URL debe usar postgresql+psycopg://, un rol servidor autorizado y sslmode=verify-full.
+DATABASE_SSL_ROOT_CERT resuelve la CA pública desde backend, también en Linux, sin
+reescribir la cadena guardada. Settings valida prod sin mostrar entradas sensibles.
 CORS_ORIGINS es una lista JSON. La configuración se encuentra desde backend/ sin depender
 del directorio desde el que se lanza el proceso.
 
-Las migraciones 0001…0009 deben revisarse antes de aplicarlas: **la aplicación no migra automáticamente**.
+Las migraciones 0001…0010 deben revisarse antes de aplicarlas: **la aplicación no migra automáticamente**.
 No ejecutar scripts sobre Supabase remoto sin aprobación.
 El catálogo real proviene de PostgreSQL; la API no sustituye fallas por datos ficticios.
 
@@ -104,21 +126,38 @@ la compilación iOS requiere un entorno macOS/Xcode. Generar un bundle JS no equ
 ## Pruebas
 Sin PostgreSQL:
 ```powershell
-backend/.venv/Scripts/python -m pytest backend/tests --ignore=backend/tests/integration -q -p no:cacheprovider
+backend/.venv/Scripts/python -B backend/scripts/test_safe.py --coverage
 backend/.venv/Scripts/ruff check backend/app backend/tests --select F,E9,I
 backend/.venv/Scripts/mypy backend/app/domain --no-incremental
 cd mobile
-npm test
+npm run test:coverage
 npm run typecheck
 npx expo install --check
 npx expo export --platform all
 ```
 
-Pruebas PostgreSQL: autorizadas nuevamente el 2026-11-16 para una base local desechable;
-la ronda completa pasa 165 pruebas, incluidas 14 de integración. Supabase remoto sigue sin verificar.
+Pruebas PostgreSQL: autorizadas para una base local desechable; los totales actuales
+y cobertura están en el informe de ejecución, sin confundirlos con Supabase remoto.
 El fixture requiere FUGA_TEST_DATABASE_URL y rechaza hosts remotos. Crea y retira únicamente
 su propia base con prefijo fuga_test_; el esquema auth de esas pruebas es un sustituto local del proveedor,
-no una verificación de Supabase Auth real.
+no una verificación de Supabase Auth real. El lanzador elimina dotenv y HTTP externo.
+
+Para un clúster local ya preparado y autorizado:
+```powershell
+$env:FUGA_TEST_DATABASE_URL='postgresql://fuga_test@127.0.0.1:55440/postgres'
+backend/.venv/Scripts/python -B backend/scripts/test_safe.py --integration --coverage
+```
+
+[Android local y validación](mobile/docs/ANDROID_LOCAL.md) describe el script
+`mobile/scripts/android-local.ps1`, SDK, manifiesto y diferencia entre APK y Expo Go.
+app.config.js bloquea claves privadas antes de empaquetar. La compilación automatizada
+de esta sesión no carga .env.local. Un APK sin configuración pública no certifica finanzas.
+
+[Retención operativa](docs/RETENCION_OPERATIVA.md) define revisión, FK y límites de supresión.
+`render.yaml` y `.github/workflows/validate.yml` preparan alojamiento y validación;
+no crean servicios, despliegan ni acceden a datos reales. El launcher usa PORT y un proceso.
+Las lecturas del cliente tienen hasta dos intentos cancelables de 45 s; mutaciones no
+se reenvían automáticamente. Una respuesta de una sesión anterior se descarta.
 
 Smoke público con Chrome existente, sin credenciales y perfil temporal:
 1. Exportar web con npx expo export --platform web desde mobile/.

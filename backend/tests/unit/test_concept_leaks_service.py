@@ -49,13 +49,15 @@ def test_service_reads_legacy_descriptions_and_uses_new_snapshot_fingerprint(mon
         if "SELECT id,categoria_id,monto_cop,descripcion,fecha_gasto,deleted_at" in sql:
             return SimpleNamespace(mappings=lambda: SimpleNamespace(all=lambda: expenses))
         if "SELECT id FROM fuga" in sql:
+            return SimpleNamespace(scalars=lambda: SimpleNamespace(all=lambda: []))
+        if "SELECT id,vigente FROM fuga" in sql:
             return SimpleNamespace(first=lambda: None)
         if "INSERT INTO fuga\n" in sql:
             snapshots.append(dict(parameters))
         if "INSERT INTO fuga_evidencia" in sql:
-            evidence_ids.append(parameters["gid"])
-        if "SELECT nombre FROM categoria" in sql:
-            return SimpleNamespace(scalar_one=lambda: "Alimentación")
+            evidence_ids.extend(parameters["gids"])
+        if "SELECT id,nombre FROM categoria" in sql:
+            return SimpleNamespace(all=lambda: [(category, "Alimentación")])
         return None
 
     monkeypatch.setattr("app.services.leaks_service.datetime", FrozenDateTime)
