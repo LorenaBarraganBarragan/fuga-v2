@@ -1,31 +1,20 @@
-"""
-test_analytics.py — Pruebas de endpoints de analítica y agregados (HU-20, HU-21, F7)
-"""
+import pytest
 
-import uuid
-from app.api.v1.analytics import get_analytics_summary, get_analytics_by_category
-from app.core.security import CurrentUser
+from app.core.errors import ValidationException
+from app.services.analytics_service import AnalyticsService, month_bounds
 
 
-def test_get_analytics_summary():
-    uid = uuid.uuid4()
-    user = CurrentUser(user_id=uid, email="test@fuga.plus", rol="usuario")
-    res = get_analytics_summary(periodo="2026-11", user=user)
-
-    assert res.periodo == "2026-11"
-    assert res.monto_total_cop >= 0
-    assert res.cantidad_gastos >= 0
-    assert res.promedio_gasto_cop >= 0
+@pytest.mark.parametrize("period", ["2026-13", "2026-00", "2019-12", "bad", "2999-01"])
+def test_period_validation(period):
+    with pytest.raises(ValidationException):
+        month_bounds(period)
 
 
-def test_get_analytics_by_category():
-    uid = uuid.uuid4()
-    user = CurrentUser(user_id=uid, email="test@fuga.plus", rol="usuario")
-    res = get_analytics_by_category(periodo="2026-11", user=user)
-
-    assert res.periodo == "2026-11"
-    assert len(res.items) == 9
-    cat_nombres = [item.categoria_nombre for item in res.items]
-    assert "Alimentación" in cat_nombres
-    assert "Transporte" in cat_nombres
-    assert "Otros" in cat_nombres
+def test_http_summary(private_client, monkeypatch):
+    monkeypatch.setattr(
+        AnalyticsService, "rows", lambda uid, p, db: [{"monto_cop": 100}, {"monto_cop": 101}]
+    )
+    res = private_client.get("/api/v1/analytics/summary?periodo=2026-01")
+    assert res.status_code == 200
+    assert res.json()["monto_total_cop"] == 201
+    assert res.json()["promedio_gasto_cop"] == 101

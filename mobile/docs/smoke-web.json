@@ -1,0 +1,10 @@
+{
+  "url": "http://localhost:8081",
+  "passed": [
+    "Bienvenida pública renderizada a 390×844 sin desbordamiento",
+    "Registro muestra indisponibilidad explícita sin configuración, sin simular cuenta",
+    "Navegación real a login y recuperación",
+    "Regreso a pantalla pública"
+  ],
+  "scope": "Solo pantalla pública y ausencia de configuración; sin Supabase real."
+}

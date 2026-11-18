@@ -1,17 +1,19 @@
-"""
-test_leaks.py — Pruebas de endpoints de detección de fugas (HU-23, HU-24, F8)
-"""
-
-import uuid
-from app.api.v1.leaks import get_leaks
-from app.core.security import CurrentUser
+from app.schemas.leaks import LeaksListResponse
+from app.services.leaks_service import LeaksService
 
 
-def test_get_leaks_sin_gastos():
-    uid = uuid.uuid4()
-    user = CurrentUser(user_id=uid, email="test@fuga.plus", rol="usuario")
-    res = get_leaks(user=user)
+def test_leaks_http(private_client, monkeypatch):
+    monkeypatch.setattr(
+        LeaksService,
+        "detect_leaks",
+        lambda usuario_id, db: LeaksListResponse(
+            items=[], total=0, estado="sin_gastos", mensaje_d15="Aún no tienes gastos"
+        ),
+    )
+    res = private_client.get("/api/v1/leaks")
+    assert res.status_code == 200
+    assert res.json()["estado"] == "sin_gastos"
 
-    assert res.estado == "sin_gastos"
-    assert res.total == 0
-    assert "aún no tienes gastos" in res.mensaje_d15.lower()
+
+def test_leaks_requires_auth(client):
+    assert client.get("/api/v1/leaks").status_code == 401

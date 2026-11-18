@@ -1,12 +1,15 @@
 -- 0007_grants.sql — Permisos mínimos y revocaciones de seguridad
 
--- Revocar cualquier intento de mutación directa en tablas financieras por parte del móvil
-REVOKE INSERT, UPDATE, DELETE ON gasto FROM anon, authenticated;
-REVOKE INSERT, UPDATE, DELETE ON fuga FROM anon, authenticated;
-REVOKE INSERT, UPDATE, DELETE ON fuga_evidencia FROM anon, authenticated;
+-- Supabase puede conceder privilegios por defecto: partir de cero, incluidos TRUNCATE/TRIGGER.
+REVOKE ALL ON public.perfil, public.gasto, public.fuga, public.fuga_evidencia,
+  public.categoria, public.regla_fuga, public.regla_fuga_version FROM PUBLIC, anon, authenticated;
 
 -- Prohibir la escalación de privilegios modificando rol o estado de habilitación directamente
-REVOKE UPDATE (rol, disabled_at) ON perfil FROM anon, authenticated;
+REVOKE UPDATE (id, nombres, apellido, telefono, foto_url, foto_google_url, rol, disabled_at, created_at, updated_at)
+  ON public.perfil FROM PUBLIC, anon, authenticated;
 
 -- Permitir lectura de catálogos a usuarios autenticados
-GRANT SELECT ON categoria, regla_fuga, regla_fuga_version TO authenticated;
+GRANT SELECT ON public.categoria, public.regla_fuga, public.regla_fuga_version TO authenticated;
+GRANT SELECT ON public.perfil, public.gasto, public.fuga, public.fuga_evidencia TO authenticated;
+-- Las tablas financieras conservan cero políticas de acceso del cliente, incluso de lectura.
+REVOKE ALL ON FUNCTION public.handle_new_user() FROM PUBLIC, anon, authenticated;

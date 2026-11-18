@@ -3,10 +3,12 @@ test_ownership.py — Pruebas de scoping estricto y autorización por propietari
 """
 
 import uuid
+
 import pytest
-from app.repositories.base import ScopedRepository
-from app.repositories.categories import CategoriesRepository
+
 from app.core.errors import ForbiddenException, ValidationException
+from app.repositories.base import ScopedRepository
+from app.repositories.categories import CATALOGO_ESTATICO
 
 
 def test_scoped_repository_exige_uuid():
@@ -31,8 +33,7 @@ def test_scoped_repository_asegura_propietario():
 
 
 def test_catalogo_categorias_retorna_9():
-    repo = CategoriesRepository()
-    cats = repo.list_all()
+    cats = CATALOGO_ESTATICO
     assert len(cats) == 9
     assert [c["orden"] for c in cats] == list(range(1, 10))
     nombres = [c["nombre"] for c in cats]

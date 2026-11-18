@@ -4,10 +4,9 @@ categories.py — Repositorio del catálogo cerrado de categorías (D-02)
 
 from typing import List, Optional
 from uuid import UUID
-from sqlalchemy.orm import Session
-from sqlalchemy import text
 
-from app.domain.expenses.diccionario_v1 import CATEGORIAS
+from sqlalchemy import text
+from sqlalchemy.orm import Session
 
 # UUIDs canónicos para modo local/offline si la BD no está conectada
 CATALOGO_ESTATICO = [
@@ -72,22 +71,18 @@ class CategoriesRepository:
     """Acceso al catálogo de categorías."""
 
     def list_all(self, db: Optional[Session] = None) -> List[dict]:
-        if db is not None and isinstance(db, Session):
-            try:
-                result = db.execute(
-                    text("SELECT id, nombre, orden, activa FROM categoria WHERE activa = TRUE ORDER BY orden ASC")
-                )
-                rows = result.fetchall()
-                if rows:
-                    return [
-                        {"id": str(r[0]), "nombre": r[1], "orden": r[2], "activa": r[3]}
-                        for r in rows
-                    ]
-            except Exception:
-                pass
+        from app.core.errors import UpstreamException
 
-        # Fallback a catálogo canónico estático
-        return sorted(CATALOGO_ESTATICO, key=lambda c: c["orden"])
+        if db is None:
+            raise UpstreamException("El catálogo requiere una conexión a PostgreSQL.")
+        rows = db.execute(
+            text("SELECT id,nombre,orden,activa FROM categoria WHERE activa=TRUE ORDER BY orden")
+        ).fetchall()
+        if len(rows) != 9:
+            raise UpstreamException(
+                "Catálogo incompleto; revisa las migraciones y los datos iniciales."
+            )
+        return [{"id": str(r[0]), "nombre": r[1], "orden": r[2], "activa": r[3]} for r in rows]
 
     def get_by_id(self, category_id: UUID, db: Optional[Session] = None) -> Optional[dict]:
         all_cats = self.list_all(db)

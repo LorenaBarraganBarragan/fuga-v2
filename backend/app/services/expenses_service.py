@@ -4,9 +4,10 @@ expenses_service.py — Servicio de lógica de negocio para gastos personales (F
 
 from typing import List, Optional, Tuple
 from uuid import UUID
+
 from sqlalchemy.orm import Session
 
-from app.core.errors import NotFoundException, ValidationException
+from app.core.errors import ValidationException
 from app.repositories.categories import CategoriesRepository
 from app.repositories.expenses import ExpensesRepository
 from app.schemas.expenses import ExpenseCreate, ExpenseResponse
@@ -50,6 +51,8 @@ class ExpensesService:
         db: Session = None,
     ) -> Tuple[List[ExpenseResponse], Optional[str], bool]:
         if db is None:
-            return [], None, False
+            from app.core.errors import UpstreamException
+
+            raise UpstreamException("El historial requiere una conexión a PostgreSQL.")
         repo = ExpensesRepository(usuario_id=usuario_id)
         return repo.list_paginated(db, limit=limit, cursor=cursor)

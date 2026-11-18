@@ -3,6 +3,7 @@ health.py — Endpoints de salud y disponibilidad (/health y /ready)
 """
 
 from fastapi import APIRouter
+
 from app.core.errors import UpstreamException
 from app.db.session import check_db_health
 

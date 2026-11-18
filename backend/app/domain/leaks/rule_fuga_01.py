@@ -61,10 +61,11 @@ def evaluar_fuga_01(
 
     if fecha_referencia is None:
         from datetime import datetime
+
         zona = ZoneInfo(params.get("zona", "America/Bogota"))
         fecha_referencia = datetime.now(tz=zona).date()
 
-    fecha_limite_inferior = fecha_referencia - timedelta(days=ventana_dias)
+    fecha_limite_inferior = fecha_referencia - timedelta(days=ventana_dias - 1)
 
     # 1. Filtrar gastos elegibles para la regla
     elegibles: List[Dict[str, Any]] = []

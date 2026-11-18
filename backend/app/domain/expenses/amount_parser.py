@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
+from decimal import ROUND_HALF_UP, Decimal
 from typing import Optional
 
 
@@ -43,9 +44,7 @@ _CON_K = r"\b(\d+(?:[.,]\d+)?)\s*[kK]\b"
 _DECIMAL_COMA = r"\d+,\d{1,2}\b"
 _DECIMAL_PUNTO = r"\d+\.\d{1,2}\b"  # 8.5 o 8.50 (punto seguido de 1-2 dígitos)
 
-PATRON_MONTO = re.compile(
-    rf"{_PREFIX}{_ENTERO}{_SUFFIX}", re.IGNORECASE
-)
+PATRON_MONTO = re.compile(rf"{_PREFIX}{_ENTERO}{_SUFFIX}", re.IGNORECASE)
 PATRON_K = re.compile(rf"{_PREFIX}{_CON_K}", re.IGNORECASE)
 PATRON_DECIMAL_COMA = re.compile(rf"\b{_DECIMAL_COMA}")
 PATRON_DECIMAL_PUNTO = re.compile(
@@ -89,6 +88,8 @@ def extraer_monto(texto: str) -> MontoResultado:
     """
     avisos: list[str] = []
     texto_norm = texto.strip()
+    if re.search(r"\b(?:USD|EUR|GBP|dolares|dólares|euros)\b|[€£]", texto_norm, re.IGNORECASE):
+        return MontoResultado(None, "invalido", ["Solo se aceptan pesos colombianos (COP)."], False)
 
     # 1. Detectar negativos explícitos → rechazo inmediato
     if PATRON_NEGATIVO.search(texto_norm):
@@ -126,7 +127,7 @@ def extraer_monto(texto: str) -> MontoResultado:
     for m in PATRON_K.finditer(texto_norm):
         raw = m.group(1).replace(",", ".")
         try:
-            val = round(float(raw) * 1000)
+            val = int((Decimal(raw) * 1000).quantize(Decimal("1"), rounding=ROUND_HALF_UP))
             if MONTO_MIN <= val <= MONTO_MAX:
                 montos_k.append(val)
         except ValueError:
@@ -140,12 +141,15 @@ def extraer_monto(texto: str) -> MontoResultado:
         " ",
         texto_sin_k,
     )
+    texto_sin_fechas = re.sub(
+        r"\b\d{1,2}\s+de\s+[a-záéíóú]+\b", " ", texto_sin_fechas, flags=re.IGNORECASE
+    )
 
     montos_enteros: list[int] = []
     for m in PATRON_MONTO.finditer(texto_sin_fechas):
-        val = _limpiar_monto_str(m.group(1))
-        if val is not None:
-            montos_enteros.append(val)
+        parsed_value = _limpiar_monto_str(m.group(1))
+        if parsed_value is not None:
+            montos_enteros.append(parsed_value)
 
     todos_montos = montos_k + montos_enteros
 
@@ -174,9 +178,7 @@ def extraer_monto(texto: str) -> MontoResultado:
     monto = unicos[0]
 
     # Confianza alta si tiene prefijo explícito ($, COP) o sufijo "pesos"
-    patron_explicito = re.compile(
-        rf"(?:\$\s*|COP\s*){_ENTERO}|{_ENTERO}\s*pesos?", re.IGNORECASE
-    )
+    patron_explicito = re.compile(rf"(?:\$\s*|COP\s*){_ENTERO}|{_ENTERO}\s*pesos?", re.IGNORECASE)
     confianza = "alta" if patron_explicito.search(texto_sin_fechas) else "media"
 
     return MontoResultado(

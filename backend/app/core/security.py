@@ -1,93 +1,107 @@
-"""
-security.py — Verificación de identidad y tokens JWT para FUGA+
-FastAPI no emite tokens (D-09); verifica los emitidos por Supabase Auth.
-"""
-
-from __future__ import annotations
+"""Supabase identity: cryptographic verification and authoritative account state."""
 
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Any, Optional
+from functools import lru_cache
+from typing import Any
 from uuid import UUID
+from zoneinfo import ZoneInfo
 
 import jwt
-from fastapi import Header, Request
+from fastapi import Depends, Header
+from sqlalchemy import text
+from sqlalchemy.orm import Session
 
 from app.core.config import settings
-from app.core.errors import AccountDisabledException, UnauthenticatedException
+from app.core.errors import (
+    AccountDisabledException,
+    ForbiddenException,
+    UnauthenticatedException,
+    UpstreamException,
+)
+from app.db.session import get_db
 
 
 @dataclass
 class CurrentUser:
-    """Usuario autenticado en el contexto de la solicitud."""
     user_id: UUID
-    email: Optional[str] = None
+    email: str | None = None
     rol: str = "usuario"
-    disabled_at: Optional[datetime] = None
+    disabled_at: datetime | None = None
+
+
+@lru_cache(maxsize=4)
+def jwks_client(url: str) -> jwt.PyJWKClient:
+    return jwt.PyJWKClient(url, cache_jwk_set=True, lifespan=300, timeout=5)
 
 
 def decode_token(token: str) -> dict[str, Any]:
-    """
-    Decodifica y valida un token JWT.
-    En entorno local/test admite decodificación sin verificación estricta de firma
-    si las credenciales de Supabase no están configuradas, pero siempre valida expiración y claims.
-    """
     try:
-        # En producción o si se dispone de secreto o jwks se valida
-        # Para tokens no firmados o en tests se usa options con verify_signature=False cuando no hay clave
-        unverified = jwt.decode(
+        header = jwt.get_unverified_header(token)
+        if header.get("alg") not in {"RS256", "ES256"} or not header.get("kid"):
+            raise UnauthenticatedException()
+        key = jwks_client(settings.jwks_url).get_signing_key_from_jwt(token)
+        payload = jwt.decode(
             token,
-            options={"verify_signature": False, "verify_aud": False},
+            key.key,
+            algorithms=["RS256", "ES256"],
+            issuer=settings.jwt_issuer,
+            audience=settings.SUPABASE_JWT_AUDIENCE,
+            options={"require": ["exp", "iat", "iss", "aud", "sub"]},
         )
-        return unverified
-    except jwt.ExpiredSignatureError:
-        raise UnauthenticatedException(message="El token ha expirado.")
-    except jwt.InvalidTokenError as e:
-        raise UnauthenticatedException(message=f"Token inválido: {str(e)}")
+        UUID(payload["sub"])
+        return payload
+    except jwt.PyJWKClientConnectionError:
+        raise UpstreamException("No se pudo verificar la identidad con Supabase.") from None
+    except (jwt.PyJWTError, ValueError, TypeError, KeyError):
+        raise UnauthenticatedException() from None
+
+
+def get_token_claims(authorization: str | None = Header(None)) -> dict[str, Any]:
+    parts = (authorization or "").split()
+    if len(parts) != 2 or parts[0].lower() != "bearer":
+        raise UnauthenticatedException()
+    return decode_token(parts[1])
 
 
 def get_current_user(
-    request: Request = None,
-    authorization: Optional[str] = Header(None),
+    claims: dict = Depends(get_token_claims),
+    db: Session = Depends(get_db),
 ) -> CurrentUser:
-    """
-    Dependencia FastAPI que extrae el usuario autenticado del encabezado Authorization.
-    """
-    if not authorization:
-        raise UnauthenticatedException(message="Encabezado Authorization requerido.")
+    from app.repositories.profiles import ProfilesRepository
 
-    parts = authorization.split()
-    if len(parts) != 2 or parts[0].lower() != "bearer":
-        raise UnauthenticatedException(message="Formato de token inválido. Use 'Bearer <token>'.")
-
-    token = parts[1]
-    payload = decode_token(token)
-
-    sub = payload.get("sub")
-    if not sub:
-        raise UnauthenticatedException(message="Token sin claim 'sub' (identificador de usuario).")
-
-    try:
-        user_uuid = UUID(sub)
-    except ValueError:
-        raise UnauthenticatedException(message="El claim 'sub' no es un UUID válido.")
-
-    email = payload.get("email")
-    rol = payload.get("user_metadata", {}).get("rol", "usuario")
-    disabled_at_raw = payload.get("disabled_at")
-    disabled_at = None
-    if disabled_at_raw:
-        try:
-            disabled_at = datetime.fromisoformat(disabled_at_raw)
-        except ValueError:
-            pass
-
-    if disabled_at is not None:
+    profile = ProfilesRepository(UUID(claims["sub"])).ensure_profile(db)
+    if profile.disabled_at is not None:
         raise AccountDisabledException()
-
-    return CurrentUser(
-        user_id=user_uuid,
-        email=email,
-        rol=rol,
-        disabled_at=disabled_at,
+    db.execute(
+        text(
+            "INSERT INTO actividad_mensual(usuario_id,periodo) VALUES (:id,:periodo) ON CONFLICT DO NOTHING"
+        ),
+        {
+            "id": str(profile.id),
+            "periodo": datetime.now(ZoneInfo("America/Bogota")).date().replace(day=1),
+        },
     )
+    db.commit()
+    return CurrentUser(profile.id, claims.get("email"), profile.rol, profile.disabled_at)
+
+
+def require_user(user: CurrentUser = Depends(get_current_user)) -> CurrentUser:
+    if user.rol != "usuario":
+        raise ForbiddenException("Las cuentas administrativas no acceden a finanzas individuales.")
+    return user
+
+
+def require_admin(
+    user: CurrentUser = Depends(get_current_user), db: Session = Depends(get_db)
+) -> CurrentUser:
+    if user.rol != "administrador":
+        db.execute(
+            text(
+                "INSERT INTO auditoria(actor_id,accion,resultado) VALUES (:id,'fallo_autorizacion','denegado')"
+            ),
+            {"id": str(user.user_id)},
+        )
+        db.commit()
+        raise ForbiddenException()
+    return user

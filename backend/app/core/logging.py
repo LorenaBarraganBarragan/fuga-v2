@@ -22,7 +22,14 @@ CLAVES_SENSIBLES = {
     "secret",
     "service_role",
     "api_key",
+    "apikey",
+    "supabase_service_role_key",
     "jwt",
+    "email",
+    "telefono",
+    "descripcion",
+    "texto",
+    "texto_original",
 }
 
 
@@ -49,7 +56,7 @@ def sanitizar_datos(dato: Any) -> Any:
                 "[REDACTED_JWT]",
                 dato,
             )
-        return dato
+        return re.sub(r"sb_secret_[A-Za-z0-9_-]+", "[REDACTED_SECRET]", dato)
     return dato
 
 
@@ -57,13 +64,28 @@ class SensitiveFilter(logging.Filter):
     """Filtro de logging para eliminar valores sensibles de los mensajes."""
 
     def filter(self, record: logging.LogRecord) -> bool:
-        if isinstance(record.msg, str):
-            record.msg = sanitizar_datos(record.msg)
+        if (
+            record.name == "uvicorn.access"
+            and isinstance(record.args, tuple)
+            and len(record.args) == 5
+        ):
+            values = list(record.args)
+            values[2] = str(values[2]).split("?", 1)[0]
+            record.args = tuple(values)
+        # Includes extra fields attached by log callers. Never render exception SQL/parameters.
+        for name, value in list(record.__dict__.items()):
+            if name.lower() in CLAVES_SENSIBLES:
+                record.__dict__[name] = "[REDACTED]"
+            elif isinstance(value, str | dict | list | tuple) and name not in {"args", "exc_info"}:
+                record.__dict__[name] = sanitizar_datos(value)
         if record.args:
             if isinstance(record.args, dict):
                 record.args = sanitizar_datos(record.args)
             elif isinstance(record.args, (list, tuple)):
                 record.args = tuple(sanitizar_datos(a) for a in record.args)
+        if record.exc_info:
+            record.exc_info = None
+            record.exc_text = None
         return True
 
 
@@ -86,6 +108,11 @@ def setup_logging(level: str = "INFO") -> None:
     console_handler.setFormatter(formatter)
     console_handler.addFilter(SensitiveFilter())
     logger.addHandler(console_handler)
+    # Uvicorn may have non-propagating handlers of its own.
+    for name in ("uvicorn.access", "uvicorn.error"):
+        target = logging.getLogger(name)
+        if not any(isinstance(item, SensitiveFilter) for item in target.filters):
+            target.addFilter(SensitiveFilter())
 
 
 logger = logging.getLogger("fuga_plus")

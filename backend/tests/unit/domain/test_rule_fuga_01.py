@@ -2,8 +2,8 @@
 test_rule_fuga_01.py — Matriz completa de pruebas para la regla FUGA-01 v1.0 (§22.6 del Plan Maestro)
 """
 
-from datetime import date, timedelta
 import uuid
+from datetime import date, timedelta
 
 from app.domain.leaks.rule_fuga_01 import evaluar_fuga_01
 

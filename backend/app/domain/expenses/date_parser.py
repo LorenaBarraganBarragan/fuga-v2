@@ -16,19 +16,36 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 from datetime import date, timedelta
-from typing import Optional
 from zoneinfo import ZoneInfo
 
 ZONA = ZoneInfo("America/Bogota")
 FECHA_MINIMA = date(2020, 1, 1)
 
 MESES_ES: dict[str, int] = {
-    "enero": 1, "febrero": 2, "marzo": 3, "abril": 4,
-    "mayo": 5, "junio": 6, "julio": 7, "agosto": 8,
-    "septiembre": 9, "octubre": 10, "noviembre": 11, "diciembre": 12,
-    "ene": 1, "feb": 2, "mar": 3, "abr": 4,
-    "may": 5, "jun": 6, "jul": 7, "ago": 8,
-    "sep": 9, "oct": 10, "nov": 11, "dic": 12,
+    "enero": 1,
+    "febrero": 2,
+    "marzo": 3,
+    "abril": 4,
+    "mayo": 5,
+    "junio": 6,
+    "julio": 7,
+    "agosto": 8,
+    "septiembre": 9,
+    "octubre": 10,
+    "noviembre": 11,
+    "diciembre": 12,
+    "ene": 1,
+    "feb": 2,
+    "mar": 3,
+    "abr": 4,
+    "may": 5,
+    "jun": 6,
+    "jul": 7,
+    "ago": 8,
+    "sep": 9,
+    "oct": 10,
+    "nov": 11,
+    "dic": 12,
 }
 
 
@@ -42,6 +59,7 @@ class FechaResultado:
 def _hoy_bogota() -> date:
     """Retorna la fecha actual en la zona America/Bogota."""
     from datetime import datetime
+
     return datetime.now(tz=ZONA).date()
 
 
@@ -129,9 +147,7 @@ def extraer_fecha(texto: str) -> FechaResultado:
 
     # 6. "DD de <mes>" / "el DD de <mes>"
     patron_mes = "|".join(MESES_ES.keys())
-    m = re.search(
-        rf"\b(\d{{1,2}})\s+de\s+({patron_mes})\b", texto_low
-    )
+    m = re.search(rf"\b(\d{{1,2}})\s+de\s+({patron_mes})\b", texto_low)
     if m:
         try:
             dia = int(m.group(1))
@@ -151,7 +167,5 @@ def extraer_fecha(texto: str) -> FechaResultado:
     return FechaResultado(
         fecha=hoy,
         confianza="baja",
-        avisos=[
-            "No se detectó una fecha en el texto. Se usó la fecha de hoy por defecto."
-        ],
+        avisos=["No se detectó una fecha en el texto. Se usó la fecha de hoy por defecto."],
     )

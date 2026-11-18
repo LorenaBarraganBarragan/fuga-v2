@@ -1,54 +1,33 @@
-"""
-test_security_deps.py — Pruebas de seguridad transversal y dependencia de token (F2)
-"""
+from datetime import datetime, timezone
+from types import SimpleNamespace
+from uuid import uuid4
 
-import uuid
 import pytest
-import jwt
 
-from app.core.security import get_current_user
-from app.core.errors import UnauthenticatedException, AccountDisabledException
-
-
-def test_sin_token_devuelve_401():
-    with pytest.raises(UnauthenticatedException) as exc_info:
-        get_current_user(authorization=None)
-    assert exc_info.value.code == "UNAUTHENTICATED"
+from app.core.errors import AccountDisabledException, ForbiddenException, UnauthenticatedException
+from app.core.security import CurrentUser, get_current_user, get_token_claims, require_user
 
 
-def test_formato_invalido_devuelve_401():
-    with pytest.raises(UnauthenticatedException) as exc_info:
-        get_current_user(authorization="Basic 123456")
-    assert exc_info.value.code == "UNAUTHENTICATED"
+@pytest.mark.parametrize("authorization", [None, "Basic a", "Bearer", "Bearer a b"])
+def test_sin_token_valido(authorization):
+    with pytest.raises(UnauthenticatedException):
+        get_token_claims(authorization)
 
 
-def test_token_sin_sub_devuelve_401():
-    token = jwt.encode({"email": "test@fuga.plus"}, "secret", algorithm="HS256")
-    with pytest.raises(UnauthenticatedException) as exc_info:
-        get_current_user(authorization=f"Bearer {token}")
-    assert exc_info.value.code == "UNAUTHENTICATED"
-
-
-def test_usuario_deshabilitado_devuelve_403():
-    uid = str(uuid.uuid4())
-    token = jwt.encode(
-        {"sub": uid, "disabled_at": "2026-11-15T00:00:00Z"},
-        "secret",
-        algorithm="HS256",
+def test_estado_y_rol_persistidos(monkeypatch):
+    uid = uuid4()
+    profile = SimpleNamespace(id=uid, rol="usuario", disabled_at=None)
+    monkeypatch.setattr(
+        "app.repositories.profiles.ProfilesRepository.ensure_profile", lambda self, db: profile
     )
-    with pytest.raises(AccountDisabledException) as exc_info:
-        get_current_user(authorization=f"Bearer {token}")
-    assert exc_info.value.code == "ACCOUNT_DISABLED"
-
-
-def test_token_valido_obtiene_usuario():
-    uid = str(uuid.uuid4())
-    token = jwt.encode(
-        {"sub": uid, "email": "test@fuga.plus", "user_metadata": {"rol": "usuario"}},
-        "secret",
-        algorithm="HS256",
-    )
-    user = get_current_user(authorization=f"Bearer {token}")
-    assert str(user.user_id) == uid
-    assert user.email == "test@fuga.plus"
+    db = SimpleNamespace(execute=lambda *a: None, commit=lambda: None)
+    user = get_current_user({"sub": str(uid), "user_metadata": {"rol": "administrador"}}, db)
     assert user.rol == "usuario"
+    profile.disabled_at = datetime.now(timezone.utc)
+    with pytest.raises(AccountDisabledException):
+        get_current_user({"sub": str(uid)}, db)
+
+
+def test_admin_no_lee_finanzas():
+    with pytest.raises(ForbiddenException):
+        require_user(CurrentUser(uuid4(), rol="administrador"))

@@ -2,8 +2,8 @@
 classifier.py — Clasificador determinista de categorías para FUGA+
 
 Reglas (RN-INT-06 / RN-INT-07 / D-02):
-  - Diccionario con prioridad fija (orden del catálogo)
-  - Coincidencia más larga gana dentro de la misma categoría
+  - Las reglas del JSON v1 tienen igual precedencia; el orden del catálogo es visual.
+  - Coincidencia de frase más larga gana; el empate residual requiere revisión.
   - Empate entre categorías → "Otros" + aviso de revisión manual
   - Sin coincidencia → "Otros"
   - Las 9 categorías son cerradas; nunca se inventa una nueva
@@ -18,8 +18,8 @@ import re
 from dataclasses import dataclass
 from typing import Optional
 
-from app.domain.expenses.normalizer import normalizar
 from app.domain.expenses.diccionario_v1 import CATEGORIAS, GENERICAS
+from app.domain.expenses.normalizer import normalizar_descripcion
 
 
 @dataclass(frozen=True)
@@ -33,22 +33,9 @@ class ClasificacionResultado:
     keyword_encontrada: Optional[str]
 
 
-# Palabras a eliminar antes de clasificar (muletillas, artículos, etc.)
-MULETILLAS = re.compile(
-    r"\b(hoy|ayer|gaste|pagué|pague|compre|compré|en|un|una|unos|unas|"
-    r"de|del|al|los|las|el|la|por|para|con|como|mi|mis)\b",
-    re.IGNORECASE,
-)
-
-
 def _limpiar_texto_para_clasificar(texto: str) -> str:
-    """Elimina muletillas y normaliza para buscar keywords."""
-    t = normalizar(texto)
-    t = MULETILLAS.sub(" ", t)
-    # Eliminar signos de pesos y números (ya se extrajo el monto)
-    t = re.sub(r"\$|\d+", " ", t)
-    t = re.sub(r"\s+", " ", t).strip()
-    return t
+    """Utiliza el mismo concepto conservador que el intérprete y FUGA-01."""
+    return normalizar_descripcion(texto)
 
 
 def clasificar(
@@ -87,7 +74,9 @@ def clasificar(
         mejor_len = 0
         mejor_kw = ""
         for kw in info["keywords"]:
-            kw_norm = normalizar(kw)
+            kw_norm = normalizar_descripcion(kw)
+            if not kw_norm:
+                continue
             # Búsqueda de coincidencia completa de palabra
             patron = re.compile(rf"\b{re.escape(kw_norm)}\b")
             if patron.search(texto_limpio):
@@ -101,7 +90,7 @@ def clasificar(
     # Verificar si el texto contiene términos genéricos
     coincide_generica = False
     for gen in GENERICAS:
-        patron_gen = re.compile(rf"\b{re.escape(normalizar(gen))}\b")
+        patron_gen = re.compile(rf"\b{re.escape(normalizar_descripcion(gen))}\b")
         if patron_gen.search(texto_limpio):
             coincide_generica = True
             break

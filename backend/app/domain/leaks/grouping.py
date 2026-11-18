@@ -3,6 +3,7 @@ grouping.py — Agrupación de gastos elegibles para detección de fugas (D-01, 
 """
 
 from typing import Any, Dict, List, Tuple
+
 from app.domain.expenses.diccionario_v1 import GENERICAS
 from app.domain.expenses.normalizer import normalizar_descripcion
 
@@ -10,7 +11,7 @@ from app.domain.expenses.normalizer import normalizar_descripcion
 def es_descripcion_generica(desc_normalizada: str) -> bool:
     """Verifica si la descripción normalizada coincide con un término genérico."""
     d = desc_normalizada.strip()
-    return d in GENERICAS or d in {"gasto", "gastos", "compra", "compras", "cosa", "cosas", "algo"}
+    return not d or d in GENERICAS
 
 
 def agrupar_gastos(
@@ -28,7 +29,7 @@ def agrupar_gastos(
             continue
 
         raw_desc = g.get("descripcion", "")
-        desc_norm = normalizar_descripcion(raw_desc)
+        desc_norm = normalizar_descripcion(raw_desc, int(g["monto_cop"]))
 
         if es_descripcion_generica(desc_norm):
             continue

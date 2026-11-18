@@ -1,0 +1,9 @@
+export type Category = { id: string; nombre: string; orden: number; activa: boolean };
+export type Profile = { id: string; nombres: string | null; apellido: string | null; telefono: string | null; foto_url: string | null; rol: 'usuario' | 'administrador'; disabled_at: string | null };
+export type Expense = { id: string; categoria_id: string; categoria_nombre: string; monto_cop: number; descripcion: string; fecha_gasto: string };
+export type ExpenseInput = { categoria_id: string; monto_cop: number; descripcion: string; fecha_gasto: string; moneda: 'COP'; diccionario_version: string; reglas_version: string };
+export type Draft = { draft: { monto_cop: number | null; categoria_id: string | null; descripcion: string; fecha_gasto: string }; avisos: string[]; ambiguedades: string[]; diccionario_version: string; reglas_version: string };
+export type Leak = { id: string; categoria_nombre: string; descripcion_normalizada: string; ocurrencias: number; monto_acumulado_cop: number; fecha_desde: string; fecha_hasta: string; regla_codigo: string; regla_version: string };
+export type LeakDetail = { fuga: Leak; evidencias: {id:string; fecha_gasto:string; monto_cop:number; descripcion:string}[]; total_evidencias:number };
+export type Summary = { periodo:string; monto_total_cop:number; cantidad_gastos:number; promedio_gasto_cop:number };
+export type Breakdown = { items: {categoria_id:string; categoria_nombre:string; monto_cop:number; cantidad:number; porcentaje:number}[]; categorias_mayor_gasto:string[] };

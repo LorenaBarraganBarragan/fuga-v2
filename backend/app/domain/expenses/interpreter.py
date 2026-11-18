@@ -12,7 +12,6 @@ Reglas (D-05, RN-INT-01…08):
 
 from __future__ import annotations
 
-import re
 from dataclasses import dataclass, field
 from datetime import date
 from typing import Optional
@@ -21,39 +20,20 @@ from app.domain.expenses.amount_parser import extraer_monto
 from app.domain.expenses.classifier import clasificar
 from app.domain.expenses.date_parser import extraer_fecha
 from app.domain.expenses.diccionario_v1 import DICCIONARIO_VERSION, REGLAS_VERSION
-from app.domain.expenses.normalizer import normalizar, normalizar_descripcion
+from app.domain.expenses.normalizer import normalizar_descripcion
 
 TEXTO_MIN = 1
 TEXTO_MAX = 280
 
-# Muletillas que se eliminan para extraer la descripción limpia
-_MULETILLAS_DESC = re.compile(
-    r"\b(hoy|ayer|ma[ñn]ana|gaste|pagué|pague|compre|compré|"
-    r"en un|en una|en|un|una|de|del|al)\b",
-    re.IGNORECASE,
-)
-_MONTOS_PATTERN = re.compile(
-    r"(?:\$\s*|\bCOP\s*)?\d[\d.]*(?:\s*pesos?)?"
-    r"|\d+\s*[kK]\b",
-    re.IGNORECASE,
-)
-_FECHAS_PATTERN = re.compile(
-    r"\b\d{4}-\d{2}-\d{2}\b"
-    r"|\b\d{1,2}/\d{1,2}(?:/\d{2,4})?\b"
-    r"|\b\d{1,2}\s+de\s+(?:enero|febrero|marzo|abril|mayo|junio|"
-    r"julio|agosto|septiembre|octubre|noviembre|diciembre)\b",
-    re.IGNORECASE,
-)
-
-
 @dataclass
 class Draft:
     """Borrador estructurado producido por el intérprete."""
+
     # Campos de negocio
-    texto_entrada: str           # Input original (no se persiste en MVP)
+    texto_entrada: str  # Input original (no se persiste en MVP)
     monto_cop: Optional[int]
     fecha_gasto: date
-    descripcion: str             # Núcleo semántico extraído, editable
+    descripcion: str  # Núcleo semántico extraído, editable
     categoria_nombre: str
     categoria_id: Optional[str]
     moneda: str = "COP"
@@ -88,33 +68,15 @@ class Draft:
 
 class ValidacionError(Exception):
     """El texto no cumple las restricciones básicas (vacío, muy largo, etc.)."""
+
     def __init__(self, mensaje: str, campo: str = "texto"):
         super().__init__(mensaje)
         self.campo = campo
         self.mensaje = mensaje
 
 
-def _extraer_descripcion(texto: str, monto_str: Optional[str] = None) -> str:
-    """
-    Extrae el núcleo semántico: elimina muletillas, montos y fechas,
-    y recorta a 120 caracteres.
-    """
-    t = texto.strip()
-    # Eliminar montos
-    t = _MONTOS_PATTERN.sub(" ", t)
-    # Eliminar fechas
-    t = _FECHAS_PATTERN.sub(" ", t)
-    # Eliminar muletillas
-    t = _MULETILLAS_DESC.sub(" ", t)
-    # Normalizar y limpiar espacios
-    t = normalizar(t)
-    t = re.sub(r"\s+", " ", t).strip()
-
-    # Si queda vacío, usar el texto completo normalizado truncado
-    if not t:
-        t = normalizar(texto)[:120]
-
-    return t[:120] if t else "sin descripcion"
+def _extraer_descripcion(texto: str, monto_cop: int | None = None) -> str:
+    return normalizar_descripcion(texto, monto_cop) or "sin descripcion"
 
 
 def interpretar(
@@ -144,6 +106,7 @@ def interpretar(
     if not isinstance(texto, str) or not texto.strip():
         raise ValidacionError("El texto no puede estar vacío.", campo="texto")
 
+    texto = texto.strip()
     if len(texto) > TEXTO_MAX:
         raise ValidacionError(
             f"El texto supera los {TEXTO_MAX} caracteres ({len(texto)}).",
@@ -174,10 +137,9 @@ def interpretar(
         avisos.extend(res_cat.avisos)
 
     # --- Extracción de descripción ---
-    descripcion = _extraer_descripcion(texto)
+    descripcion = _extraer_descripcion(texto, res_monto.monto)
 
     # --- Confianza general ---
-    niveles_num = {"alta": 3, "media": 2, "baja": 1, "invalido": 0}
     confianza_dict = {
         "monto": res_monto.confianza if res_monto.monto is not None else "baja",
         "fecha": res_fecha.confianza,

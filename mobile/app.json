@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "FUGA+",
+    "slug": "fuga-plus",
+    "scheme": "fugaplus",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "icon": "./assets/branding/logo.png",
+    "splash": {
+      "image": "./assets/branding/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F4F7F9"
+    },
+    "android": {
+      "package": "co.edu.fugaplus.app",
+      "permissions": []
+    },
+    "ios": {
+      "bundleIdentifier": "co.edu.fugaplus.app",
+      "supportsTablet": true
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-web-browser",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Permite elegir tu fotografía de perfil.",
+          "cameraPermission": false,
+          "microphonePermission": false
+        }
+      ],
+      "expo-notifications",
+      "expo-font"
+    ]
+  }
+}

@@ -3,6 +3,7 @@ analytics.py — Esquemas de respuesta para estadísticas y agregados (HU-20, HU
 """
 
 from typing import List
+
 from pydantic import BaseModel
 
 
@@ -24,3 +25,4 @@ class CategoryBreakdownItemResponse(BaseModel):
 class AnalyticsByCategoryResponse(BaseModel):
     periodo: str
     items: List[CategoryBreakdownItemResponse]
+    categorias_mayor_gasto: List[str] = []

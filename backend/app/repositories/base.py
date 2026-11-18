@@ -3,6 +3,7 @@ base.py — Clase base para repositorios privados con scoping estricto por usuar
 """
 
 from uuid import UUID
+
 from app.core.errors import ForbiddenException, ValidationException
 
 
@@ -14,7 +15,9 @@ class ScopedRepository:
 
     def __init__(self, usuario_id: UUID):
         if not usuario_id:
-            raise ValidationException("Se requiere un usuario_id válido para inicializar el repositorio.")
+            raise ValidationException(
+                "Se requiere un usuario_id válido para inicializar el repositorio."
+            )
         if not isinstance(usuario_id, UUID):
             try:
                 usuario_id = UUID(str(usuario_id))

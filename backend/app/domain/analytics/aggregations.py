@@ -5,8 +5,8 @@ aggregations.py — Cálculos analíticos deterministas y agregaciones (HU-20, H
 from __future__ import annotations
 
 from dataclasses import dataclass
+from decimal import ROUND_HALF_UP, Decimal
 from typing import Any, Dict, List, Optional
-from uuid import UUID
 
 from app.repositories.categories import CATALOGO_ESTATICO
 
@@ -47,7 +47,7 @@ def calcular_resumen(
     total = sum(int(g["monto_cop"]) for g in gastos)
     cantidad = len(gastos)
     # Redondeo entero estándar del promedio
-    promedio = round(total / cantidad)
+    promedio = int((Decimal(total) / cantidad).quantize(Decimal("1"), rounding=ROUND_HALF_UP))
 
     return ResumenEstadistico(
         periodo=periodo,
@@ -75,7 +75,6 @@ def calcular_desglose_categorias(
     acumulado_cant: Dict[str, int] = {str(c["id"]): 0 for c in cats}
 
     # Mapa ID a info
-    mapa_cats = {str(c["id"]): c for c in cats}
 
     for g in gastos:
         cid = str(g["categoria_id"])
@@ -96,7 +95,15 @@ def calcular_desglose_categorias(
         cid = str(c["id"])
         monto = acumulado_monto.get(cid, 0)
         cant = acumulado_cant.get(cid, 0)
-        porcentaje = round((monto * 100.0) / total_general, 1) if total_general > 0 else 0.0
+        porcentaje = (
+            float(
+                (Decimal(monto) * 100 / total_general).quantize(
+                    Decimal("0.1"), rounding=ROUND_HALF_UP
+                )
+            )
+            if total_general > 0
+            else 0.0
+        )
 
         items.append(
             DesgloseCategoriaItem(

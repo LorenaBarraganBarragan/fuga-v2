@@ -23,13 +23,13 @@ max_client_conn = 100
 
 [auth]
 enabled = true
-port = 54324
-site_url = "http://127.0.0.1:3000"
-additional_redirect_urls = ["https://127.0.0.1:3000"]
+site_url = "fugaplus://auth"
+additional_redirect_urls = ["fugaplus://auth", "fugaplus://auth?flow=recovery", "http://localhost:8081"]
 jwt_expiry = 3600
 enable_signup = true
+minimum_password_length = 8
 
 [auth.email]
 enable_signup = true
 double_confirm_changes = true
-enable_confirmations = false
+enable_confirmations = true

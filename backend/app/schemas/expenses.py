@@ -4,12 +4,13 @@ expenses.py — Esquemas Pydantic para gastos e interpretación (FUGA+)
 
 from __future__ import annotations
 
+import re
 from datetime import date, datetime
 from typing import Optional
 from uuid import UUID
 from zoneinfo import ZoneInfo
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, ValidationInfo, field_validator, model_validator
 
 ZONA_BOGOTA = ZoneInfo("America/Bogota")
 FECHA_MINIMA = date(2020, 1, 1)
@@ -26,18 +27,22 @@ class InterpretRequest(BaseModel):
         description="Texto libre del gasto escrito por el usuario (máx 280 caracteres)",
     )
 
-    @field_validator("texto")
+    @field_validator("texto", mode="before")
     @classmethod
     def validar_no_vacio(cls, v: str) -> str:
+        if not isinstance(v, str):
+            raise ValueError("El texto debe ser una cadena.")
         s = v.strip()
         if not s:
             raise ValueError("El texto no puede estar vacío.")
-        return v
+        return s
 
 
 class DraftResponse(BaseModel):
     texto: str
-    monto_cop: Optional[int] = Field(None, description="Monto entero en COP o None si no se detectó")
+    monto_cop: Optional[int] = Field(
+        None, description="Monto entero en COP o None si no se detectó"
+    )
     fecha_gasto: date
     descripcion: str = Field(..., max_length=120)
     categoria_id: Optional[str] = None
@@ -61,7 +66,10 @@ class InterpretResponse(BaseModel):
 
 
 class ExpenseCreate(BaseModel):
-    monto_cop: int = Field(..., ge=1, le=100_000_000, description="Monto entero en COP")
+    model_config = ConfigDict(extra="forbid")
+    monto_cop: int = Field(
+        ..., strict=True, ge=1, le=100_000_000, description="Monto entero en COP"
+    )
     descripcion: str = Field(..., min_length=1, max_length=120, description="Descripción del gasto")
     fecha_gasto: date = Field(..., description="Fecha de realización del gasto")
     categoria_id: UUID = Field(..., description="UUID de la categoría en BD")
@@ -70,12 +78,43 @@ class ExpenseCreate(BaseModel):
     diccionario_version: str = Field("1.0", max_length=10)
     reglas_version: str = Field("1.0", max_length=10)
 
+    @field_validator("diccionario_version", "reglas_version")
+    @classmethod
+    def validar_version_soportada(cls, value: str, info: ValidationInfo) -> str:
+        from app.domain.expenses.diccionario_v1 import VERSIONES_COMPATIBLES
+
+        index = 0 if info.field_name == "diccionario_version" else 1
+        if value not in {pair[index] for pair in VERSIONES_COMPATIBLES}:
+            raise ValueError(
+                "La versión de interpretación no está soportada; vuelve a procesar el gasto."
+            )
+        return value
+
+    @model_validator(mode="after")
+    def validar_versiones_compatibles(self):
+        from app.domain.expenses.diccionario_v1 import VERSIONES_COMPATIBLES
+
+        if (self.diccionario_version, self.reglas_version) not in VERSIONES_COMPATIBLES:
+            raise ValueError("Las versiones de interpretación no corresponden al mismo motor.")
+        return self
+
+    @field_validator("fecha_gasto", mode="before")
+    @classmethod
+    def validar_formato_fecha(cls, value):
+        if isinstance(value, date) and not isinstance(value, datetime):
+            return value
+        if not isinstance(value, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+            raise ValueError("La fecha debe usar el formato YYYY-MM-DD.")
+        return value
+
     @field_validator("descripcion")
     @classmethod
     def validar_descripcion(cls, v: str) -> str:
         s = v.strip()
         if len(s) < 1 or len(s) > 120:
-            raise ValueError("La descripción debe tener entre 1 y 120 caracteres tras recortar espacios.")
+            raise ValueError(
+                "La descripción debe tener entre 1 y 120 caracteres tras recortar espacios."
+            )
         return s
 
     @field_validator("fecha_gasto")

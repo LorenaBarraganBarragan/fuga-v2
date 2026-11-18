@@ -2,6 +2,12 @@
 
 Documento de referencia para el modelo de datos relacional de FUGA+ en Supabase PostgreSQL.
 
+**Revisión 2026-11-16:** nueve migraciones locales probadas. Consultar
+[orden de aplicación y conexión al proyecto nuevo](CONEXION_SUPABASE.md).
+El conjunto contiene diez tablas propias: las siete de dominio siguientes y
+`auditoria`, `actividad_mensual`, `tarea_retencion` incorporadas en 0008.
+0009 refuerza permisos e integridad sin borrar datos. No se ejecutaron migraciones remotas.
+
 ---
 
 ## 1. Tablas del MVP y Mapeo a Historias de Usuario

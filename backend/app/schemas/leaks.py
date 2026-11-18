@@ -5,6 +5,7 @@ leaks.py — Esquemas de respuesta para posibles fugas y evidencia (HU-23, HU-24
 from datetime import date
 from typing import List, Optional
 from uuid import UUID
+
 from pydantic import BaseModel
 
 
@@ -37,5 +38,5 @@ class LeakDetailResponse(BaseModel):
 class LeaksListResponse(BaseModel):
     items: List[LeakItemResponse]
     total: int
-    estado: str  # "sin_gastos" | "datos_insuficientes" | "candidatos"
+    estado: str  # sin_gastos | datos_insuficientes | sin_posibles_fugas | candidatos
     mensaje_d15: str

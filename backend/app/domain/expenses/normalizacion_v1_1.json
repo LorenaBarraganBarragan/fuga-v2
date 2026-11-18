@@ -1,0 +1,62 @@
+{
+  "version": "1.1",
+  "reglas_version": "1.1",
+  "fecha_vigencia": "2026-11-18",
+  "base_categorias": "diccionario_v1.json",
+  "prefijos_temporales": [
+    "el dia de hoy", "el dia de ayer", "esta manana", "esta tarde",
+    "esta noche", "hoy", "ayer", "anteayer", "anoche", "manana"
+  ],
+  "prefijos_transaccion": [
+    "he gastado", "he comprado", "he pagado", "he consumido",
+    "gaste", "gastamos", "compre", "compramos", "pague", "pagamos",
+    "tome", "tomamos", "consumi", "consumimos", "adquiri", "adquirimos",
+    "abone", "abonamos", "inverti", "use", "utilice",
+    "me costo", "nos costo", "gasto en", "compra de", "pago de"
+  ],
+  "conectores_iniciales": [
+    "en", "por", "de", "del", "al", "un", "una", "unos", "unas",
+    "el", "la", "los", "las"
+  ],
+  "frases_protegidas": ["el corral", "la rebaja", "el tiempo", "a la carta"],
+  "genericas_adicionales": ["sin descripcion"],
+  "keywords_adicionales": {
+    "servicios": ["recarga celular"],
+    "alimentacion": ["comida perro"],
+    "educacion": ["fotocopias"]
+  },
+  "equivalencias": {
+    "recarga de celular": "recarga celular",
+    "recarga para celular": "recarga celular",
+    "recarga de telefono movil": "recarga celular",
+    "comida para perro": "comida perro",
+    "comida de perro": "comida perro",
+    "alimento para perro": "comida perro",
+    "boleto de bus": "pasaje bus",
+    "pasaje de bus": "pasaje bus",
+    "fotocopia": "fotocopias",
+    "servicio de internet": "internet",
+    "arriendo de vivienda": "arriendo vivienda",
+    "alquiler de vivienda": "arriendo vivienda",
+    "entrada de cine": "entrada cine",
+    "boleta de cine": "entrada cine",
+    "cafe espresso": "cafe expreso"
+  },
+  "justificaciones_equivalencias": {
+    "recarga de celular": "Se conserva el servicio y su destino celular; solo cambia el conector.",
+    "recarga para celular": "Se conserva el servicio y su destino celular; solo cambia el conector.",
+    "recarga de telefono movil": "Telefono movil y celular denominan el mismo destino de la recarga.",
+    "comida para perro": "Se conservan tanto el alimento como su destinatario perro.",
+    "comida de perro": "Se conservan tanto el alimento como su destinatario perro.",
+    "alimento para perro": "Alimento y comida son equivalentes en esta frase completa; se conserva perro.",
+    "boleto de bus": "Boleto y pasaje identifican el mismo servicio; se conserva el medio bus.",
+    "pasaje de bus": "Se conserva el medio bus; solo se elimina el conector.",
+    "fotocopia": "Singular y plural del mismo servicio sin cantidad ni otro calificador.",
+    "servicio de internet": "La frase completa identifica el servicio de internet sin plan ni proveedor.",
+    "arriendo de vivienda": "Se conserva vivienda para distinguirlo de otros bienes arrendados.",
+    "alquiler de vivienda": "Alquiler y arriendo de vivienda designan el mismo servicio con igual calificador.",
+    "entrada de cine": "Se conserva cine; solo se elimina el conector.",
+    "boleta de cine": "Boleta y entrada son equivalentes en esta frase completa; se conserva cine.",
+    "cafe espresso": "Variantes ortograficas del mismo tipo de cafe; nunca se reduce a cafe generico."
+  }
+}

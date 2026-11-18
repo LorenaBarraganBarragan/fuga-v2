@@ -1,9 +1,9 @@
 -- 0004_gasto.sql — Tabla de gastos personales e índices de consulta
 
-CREATE TABLE IF NOT EXISTS gasto (
+CREATE TABLE IF NOT EXISTS public.gasto (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  usuario_id UUID NOT NULL REFERENCES perfil(id) ON DELETE RESTRICT,
-  categoria_id UUID NOT NULL REFERENCES categoria(id) ON DELETE RESTRICT,
+  usuario_id UUID NOT NULL REFERENCES public.perfil(id) ON DELETE RESTRICT,
+  categoria_id UUID NOT NULL REFERENCES public.categoria(id) ON DELETE RESTRICT,
   monto_cop BIGINT NOT NULL CHECK (monto_cop BETWEEN 1 AND 100000000),
   descripcion VARCHAR(120) NOT NULL
     CHECK (length(btrim(descripcion)) BETWEEN 1 AND 120),
@@ -22,14 +22,14 @@ CREATE TABLE IF NOT EXISTS gasto (
 
 -- Índices de consulta optimizados
 CREATE INDEX IF NOT EXISTS gasto_usuario_fecha_idx
-  ON gasto (usuario_id, fecha_gasto DESC, created_at DESC, id DESC);
+  ON public.gasto (usuario_id, fecha_gasto DESC, created_at DESC, id DESC);
 
 CREATE INDEX IF NOT EXISTS gasto_usuario_categoria_idx
-  ON gasto (usuario_id, categoria_id);
+  ON public.gasto (usuario_id, categoria_id);
 
 CREATE INDEX IF NOT EXISTS gasto_usuario_ventana_idx
-  ON gasto (usuario_id, fecha_gasto) WHERE deleted_at IS NULL;
+  ON public.gasto (usuario_id, fecha_gasto) WHERE deleted_at IS NULL;
 
-CREATE TRIGGER gasto_set_updated_at
-BEFORE UPDATE ON gasto
+CREATE OR REPLACE TRIGGER gasto_set_updated_at
+BEFORE UPDATE ON public.gasto
 FOR EACH ROW EXECUTE FUNCTION public.set_updated_at();

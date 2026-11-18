@@ -3,6 +3,7 @@ test_health.py — Pruebas de endpoints /health y /ready (F2)
 """
 
 import pytest
+
 from app.api.v1.health import health_check, readiness_check
 from app.core.errors import UpstreamException
 

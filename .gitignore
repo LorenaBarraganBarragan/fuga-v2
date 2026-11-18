@@ -77,3 +77,7 @@ supabase/.temp/
 
 # Cache de herramientas
 .cache/
+.tools/
+.test-postgres/
+.browser-smoke/
+mobile/.verification/

@@ -2,7 +2,7 @@
 test_aggregations.py — Pruebas unitarias del cálculo de estadísticas (HU-20, HU-21, F7)
 """
 
-from app.domain.analytics.aggregations import calcular_resumen, calcular_desglose_categorias
+from app.domain.analytics.aggregations import calcular_desglose_categorias, calcular_resumen
 
 
 def test_calcular_resumen_periodo_vacio():

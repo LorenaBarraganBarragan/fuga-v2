@@ -2,9 +2,11 @@
 session.py — Conexión a base de datos PostgreSQL con SQLAlchemy 2.0
 """
 
-from typing import Generator, Optional
+from typing import Generator
+
 from sqlalchemy import create_engine, text
-from sqlalchemy.orm import declarative_base, sessionmaker, Session
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import Session, declarative_base, sessionmaker
 
 from app.core.config import settings
 from app.core.errors import UpstreamException
@@ -22,6 +24,7 @@ def get_engine():
         _engine = create_engine(
             settings.DATABASE_URL,
             pool_pre_ping=True,
+            hide_parameters=True,
             pool_size=5,
             max_overflow=10,
         )
@@ -35,23 +38,32 @@ def get_engine():
 
 def get_db() -> Generator[Session, None, None]:
     """Dependencia para inyección de sesión de base de datos."""
-    engine = get_engine()
+    try:
+        engine = get_engine()
+    except SQLAlchemyError:
+        raise UpstreamException("La configuración de PostgreSQL no está disponible.") from None
     if engine is None or _SessionFactory is None:
         raise UpstreamException("Base de datos no configurada o no disponible.")
 
     db = _SessionFactory()
     try:
         yield db
+    except SQLAlchemyError:
+        db.rollback()
+        raise UpstreamException("No se pudo completar la operación en la base de datos.") from None
+    except Exception:
+        db.rollback()
+        raise
     finally:
         db.close()
 
 
 def check_db_health() -> bool:
     """Verifica si la base de datos responde a una consulta simple."""
-    engine = get_engine()
-    if engine is None:
-        return False
     try:
+        engine = get_engine()
+        if engine is None:
+            return False
         with engine.connect() as conn:
             conn.execute(text("SELECT 1"))
         return True

@@ -64,14 +64,16 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     details = []
     for err in exc.errors():
         field_name = ".".join(str(loc) for loc in err["loc"] if loc != "body")
-        details.append({
-            "field": field_name or "body",
-            "issue": err.get("type", "invalid"),
-            "message": err.get("msg", ""),
-        })
+        details.append(
+            {
+                "field": field_name or "body",
+                "issue": err.get("type", "invalid"),
+                "message": err.get("msg", ""),
+            }
+        )
 
     return JSONResponse(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
         content={
             "error": {
                 "code": "VALIDATION_ERROR",
@@ -86,7 +88,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 @app.exception_handler(Exception)
 async def generic_exception_handler(request: Request, exc: Exception):
     cid = getattr(request.state, "correlation_id", str(uuid.uuid4()))
-    logger.exception("Error no controlado", extra={"correlation_id": cid})
+    logger.error("Error interno no controlado", extra={"correlation_id": cid})
     return JSONResponse(
         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
         content={

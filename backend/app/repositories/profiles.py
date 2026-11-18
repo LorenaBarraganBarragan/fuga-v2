@@ -4,10 +4,10 @@ profiles.py — Repositorio para la tabla perfil (HU-01, HU-02, HU-04, HU-33)
 
 from typing import Optional
 from uuid import UUID
-from sqlalchemy.orm import Session
-from sqlalchemy import text
 
-from app.core.errors import NotFoundException
+from sqlalchemy import text
+from sqlalchemy.orm import Session
+
 from app.repositories.base import ScopedRepository
 from app.schemas.auth import ProfileResponse
 
@@ -21,7 +21,7 @@ class ProfilesRepository(ScopedRepository):
     def get_profile(self, db: Session) -> Optional[ProfileResponse]:
         result = db.execute(
             text(
-                "SELECT id, nombres, apellido, telefono, foto_url, rol, disabled_at, created_at, updated_at "
+                "SELECT id, nombres, apellido, telefono, coalesce(foto_url, foto_google_url), rol, disabled_at, created_at, updated_at "
                 "FROM perfil WHERE id = :uid"
             ),
             {"uid": str(self.usuario_id)},
@@ -61,4 +61,9 @@ class ProfilesRepository(ScopedRepository):
             {"uid": str(self.usuario_id), "nombres": nombres, "apellido": apellido},
         )
         db.commit()
-        return self.get_profile(db)
+        profile = self.get_profile(db)
+        if profile is None:
+            from app.core.errors import UpstreamException
+
+            raise UpstreamException("No se pudo aprovisionar el perfil.")
+        return profile

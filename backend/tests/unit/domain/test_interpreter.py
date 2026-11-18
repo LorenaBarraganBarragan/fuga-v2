@@ -5,19 +5,17 @@ Corpus obligatorio de 42 casos (§22.4 del Plan Maestro) y pruebas de determinis
 
 from datetime import date, timedelta
 from zoneinfo import ZoneInfo
+
 import pytest
 
-from app.domain.expenses.interpreter import Draft, ValidacionError, interpretar
-from app.domain.expenses.amount_parser import extraer_monto
-from app.domain.expenses.date_parser import extraer_fecha
-from app.domain.expenses.classifier import clasificar
-from app.domain.expenses.normalizer import normalizar
+from app.domain.expenses.interpreter import ValidacionError, interpretar
 
 ZONA = ZoneInfo("America/Bogota")
 
 
 def _hoy() -> date:
     from datetime import datetime
+
     return datetime.now(tz=ZONA).date()
 
 
@@ -28,6 +26,7 @@ def _ayer() -> date:
 # ============================================================================
 # Corpus obligatorio de 42 casos (§22.4)
 # ============================================================================
+
 
 def test_caso_01():
     d = interpretar("Hoy gasté $8.000 en un taxi")
@@ -170,7 +169,9 @@ def test_caso_18_monto_cero():
 def test_caso_19_monto_negativo():
     d = interpretar("Taxi -5000")
     # Los montos negativos no son válidos para el parser COP
-    assert d.monto_cop is None or d.monto_cop == 5000  # si se limpia el signo, pero -5000 no debe aceptarse como negativo
+    assert (
+        d.monto_cop is None or d.monto_cop == 5000
+    )  # si se limpia el signo, pero -5000 no debe aceptarse como negativo
 
 
 def test_caso_20_fuera_de_rango():
@@ -336,6 +337,7 @@ def test_caso_42_generico_compra():
 # ============================================================================
 # Determinismo y memoria
 # ============================================================================
+
 
 def test_determinismo():
     texto = "Hoy gasté $8.000 en un taxi al trabajo"
