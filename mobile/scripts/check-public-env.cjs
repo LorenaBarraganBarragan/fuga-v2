@@ -1,5 +1,14 @@
 /** Build-time guard: fail before Expo can inline a privileged key. No values are logged. */
 function validateBuildEnvironment(environment) {
+ if(environment.EXPO_PUBLIC_ADMIN_QA_MODE!==undefined){
+  if(!['','false','true'].includes(environment.EXPO_PUBLIC_ADMIN_QA_MODE))throw new Error('Indicador QA administrativo inválido.');
+  if(environment.EXPO_PUBLIC_ADMIN_QA_MODE==='true'&&(environment.FUGA_RELEASE_BUILD==='1'||environment.NODE_ENV==='production'
+    ||environment.EXPO_PUBLIC_SUPABASE_URL!=='https://admin-qa.invalid'
+    ||environment.EXPO_PUBLIC_SUPABASE_ANON_KEY!=='sb_publishable_fugaplus_admin_qa'
+    ||environment.EXPO_PUBLIC_API_URL!=='http://127.0.0.1:18002'))throw new Error('QA administrativo requiere debug y configuración exclusivamente local.');
+ }
+ if((environment.EXPO_PUBLIC_SUPABASE_URL==='https://admin-qa.invalid'||environment.EXPO_PUBLIC_SUPABASE_ANON_KEY==='sb_publishable_fugaplus_admin_qa')
+   &&environment.EXPO_PUBLIC_ADMIN_QA_MODE!=='true')throw new Error('La configuración del simulador requiere su modo QA explícito.');
  const entries=Object.entries(environment).filter(([name])=>name.startsWith('EXPO_PUBLIC_'));
  for(const [name,value] of entries){
   // Existing feature flags contain no credential; PASSWORD_RECOVERY is not a password.

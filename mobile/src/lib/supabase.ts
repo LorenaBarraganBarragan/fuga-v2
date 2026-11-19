@@ -8,6 +8,10 @@ import { isPublicSupabaseKey, isSupabaseRoot } from './publicConfig';
 const url = process.env.EXPO_PUBLIC_SUPABASE_URL || '';
 const key = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || '';
 export const authConfigured = isSupabaseRoot(url) && isPublicSupabaseKey(key);
+const adminQa=process.env.EXPO_PUBLIC_ADMIN_QA_MODE==='true';
+if(adminQa&&(!__DEV__||url!=='https://admin-qa.invalid'||key!=='sb_publishable_fugaplus_admin_qa'||process.env.EXPO_PUBLIC_API_URL!=='http://127.0.0.1:18002')){
+ throw new Error('El simulador administrativo solo está disponible en debug local.');
+}
 // Chunk sessions: native SecureStore has per-item size limits on some devices.
 const webStorage = createWebAuthStorage(() => typeof localStorage !== 'undefined' ? localStorage : null);
 const storage = {
@@ -35,6 +39,7 @@ const storage = {
   },
 };
 export const supabase = createClient(authConfigured ? url : 'https://not-configured.invalid', authConfigured ? key : 'not-configured', {
+  ...(__DEV__&&process.env.EXPO_PUBLIC_ADMIN_QA_MODE==='true'?{global:{fetch:(require('./adminQaAuth') as typeof import('./adminQaAuth')).adminQaFetch(fetch)}}:{}),
   auth: { storage, autoRefreshToken:true, persistSession:true, detectSessionInUrl:false, flowType:'pkce', lock:processLock },
 });
 if (Platform.OS !== 'web') {
