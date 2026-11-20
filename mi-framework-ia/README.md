@@ -1,407 +1,336 @@
 # FUGA+
 
-**Descubre por dónde se va tu plata.**
+**Descubre a dónde se va tu dinero.**
 
-FUGA+ es una aplicación móvil para el control de gastos personales, dirigida principalmente a jóvenes y estudiantes. Su propósito es facilitar el registro de gastos cotidianos, ayudar a comprender los hábitos de consumo y detectar posibles fugas de dinero asociadas a gastos pequeños y repetitivos.
+Aplicación académica de control de gastos personales para jóvenes y estudiantes. Integra registro por texto y voz Android, revisión antes del guardado, historial, estadísticas y detección explicable de posibles fugas mediante diccionarios y reglas deterministas.
 
-La aplicación permite registrar gastos mediante lenguaje natural, revisar y corregir los datos interpretados antes de confirmarlos, consultar el historial y visualizar estadísticas del comportamiento de los gastos.
-
-La interpretación de los gastos se implementará mediante diccionarios y reglas determinísticas propias. La detección de posibles fugas también utilizará reglas explícitas y explicables, sin depender de una API externa de inteligencia artificial.
-
-**Repositorio:** https://github.com/LorenaBarraganBarragan/fuga-v2
-
----
+**Revisión documental: 19 de noviembre de 2026.** Este documento presenta problema, alcance, trazabilidad y decisiones del proyecto. El [README principal](../README.md) contiene instalación, variables y compilación. La propietaria reporta un APK release operativo y backend desplegado en Render con Supabase; ese reporte se distingue de las comprobaciones del repositorio y de los ensayos locales.
 
 ## 1. Problema
 
-Los gastos pequeños del día a día pueden pasar desapercibidos y acumularse con el tiempo. Registrar manualmente cada movimiento puede resultar incómodo, provocar olvidos y disminuir el interés por llevar un seguimiento constante.
+Los gastos pequeños cotidianos pueden pasar desapercibidos y acumularse. Un registro manual incómodo favorece olvidos y dificulta mantener el seguimiento. La [entrevista con un usuario potencial](docs/entrevista-real.md) identificó la necesidad de simplificar el registro y consultar información financiera comprensible.
 
-A partir de una entrevista con un usuario potencial, se identificó la necesidad de simplificar el registro de gastos y facilitar la consulta de la información financiera personal.
-
-FUGA+ busca reducir esa dificultad mediante una experiencia de registro sencilla, un historial organizado y estadísticas comprensibles.
-
-[Consultar entrevista](docs/entrevista-real.md)
+FUGA+ permite revisar gastos y patrones repetitivos sin conexiones bancarias ni herramientas financieras complejas. Una posible fuga es un patrón para revisar, no una pérdida confirmada ni un juicio sobre el usuario.
 
 ## 2. Objetivos
 
-### Objetivo general
+**Objetivo general:** desarrollar y validar un MVP Android que facilite registrar y comprender gastos personales mediante texto, voz, estadísticas y reglas explicables.
 
-Desarrollar un MVP móvil que facilite el registro y seguimiento de gastos personales mediante lenguaje natural, reglas de interpretación propias, estadísticas y detección explicable de posibles fugas de dinero.
+**Objetivos específicos:**
 
-### Objetivos específicos
+- Registrar gastos por texto y dictado Android, manteniendo una alternativa escrita.
+- Interpretar monto, fecha, descripción y categoría, con revisión y confirmación obligatorias.
+- Persistir datos estructurados bajo la identidad de su propietario y prevenir duplicados accidentales.
+- Consultar historial, estadísticas y evidencia de posibles fugas.
+- Proteger sesiones, roles y aislamiento entre usuarios.
+- Mantener una arquitectura viable para un proyecto individual y documentar pruebas y limitaciones.
 
-- Facilitar el registro de gastos mediante texto y, como funcionalidad complementaria, voz en Android.
-- Interpretar los datos del gasto y permitir su revisión antes de guardarlos.
-- Almacenar los gastos asociados a la cuenta propietaria.
-- Consultar el historial y las estadísticas de gastos.
-- Detectar posibles fugas de dinero mediante reglas determinísticas.
-- Proteger la privacidad y garantizar el aislamiento de los datos entre usuarios.
-- Diseñar una arquitectura mantenible y viable para un proyecto académico individual de 12 semanas efectivas.
+La planificación original de **12 semanas efectivas** se conserva como antecedente en la sección 13.
 
 ## 3. Público objetivo y actores
 
-FUGA+ está dirigido principalmente a jóvenes y estudiantes que desean organizar sus gastos cotidianos sin utilizar herramientas financieras complejas.
+Público principal: jóvenes y estudiantes que desean organizar sus gastos diarios y comprender sus hábitos de consumo.
 
-| Actor | Responsabilidades |
-|---|---|
-| Visitante | Consultar información pública y acceder al registro o inicio de sesión. |
-| Usuario | Gestionar su cuenta, registrar gastos, consultar el historial, revisar estadísticas y analizar posibles fugas. |
-| Administrador | Consultar estadísticas agregadas y gestionar cuentas mediante operaciones autorizadas, sin acceder a los gastos individuales. |
+| Actor | Responsabilidades y límites reales |
+| --- | --- |
+| Visitante | Consultar bienvenida, registrarse e iniciar sesión; no es un rol persistido. |
+| Usuario | Registrar y gestionar gastos propios, consultar estadísticas/fugas y gestionar perfil/sesión. |
+| Administrador | Buscar cuentas, consultar detalle mínimo y estadísticas de cuentas/actividad, activar/desactivar cuentas usuarias; sin finanzas individuales. |
 
-El sistema debe aplicar la autorización en el backend. Ocultar botones en la interfaz no sustituye la validación de permisos ni el aislamiento de datos.
+Los roles persistidos en `public.perfil.rol` son `usuario` y `administrador`. Ambos ingresan por el mismo formulario. El operador aprovisiona el rol administrativo de forma privilegiada sobre el UUID correcto; no se concede desde el registro ni desde metadatos editables. FastAPI valida permisos, aunque la interfaz oculte operaciones.
 
 ## 4. Propuesta de valor
 
-FUGA+ busca que registrar un gasto sea más sencillo que completar formularios tradicionales.
+El usuario puede escribir o dictar «Hoy gasté 8000 en un taxi». El sistema propone campos estructurados, permite corregirlos y guarda solo después de confirmar. Los gastos alimentan un historial y un dashboard; los patrones detectados ofrecen regla, fechas, ocurrencias e información de soporte.
 
-Por ejemplo, el usuario puede escribir:
+La etiqueta **«Procesar con IA»** se conserva por decisión de producto, acompañada de su explicación: el procesamiento usa reglas y diccionarios, sin IA generativa ni envío del gasto a un modelo externo.
 
-> Hoy gasté $8.000 en un taxi.
+## 5. Funcionalidades y alcance actual
 
-El sistema procesa el texto y propone campos como monto, categoría, descripción y fecha cuando pueda reconocerla. El usuario revisa y corrige los datos antes de confirmar el registro.
+### MVP Android de esta entrega
 
-A partir de los gastos guardados, el sistema aplica reglas propias para identificar patrones que podrían representar fugas de dinero. Cada posible fuga debe poder explicarse mediante sus reglas, ocurrencias y gastos asociados.
+Incluye bienvenida, registro/login por correo, cierre de sesión, registro escrito, interpretación determinista, revisión/confirmación, persistencia privada, historial, estadísticas básicas, detección/evidencia y aislamiento de datos. **HU-17, HU-18 y HU-19 forman parte del MVP Android solicitado actualmente**: permiso de micrófono, dictado Kotlin, transcripción editable y confirmación.
 
-Una posible fuga no representa una pérdida confirmada ni constituye una evaluación negativa de los hábitos del usuario.
+La matriz oficial 3.0 mantiene esas tres historias como Could Have y registra su priorización adicional de entrega. Se conserva esa prioridad como dato de la línea base y se documenta aquí su inclusión efectiva en el MVP; no se modifican los documentos oficiales. Prioridad, alcance de entrega y estado funcional son dimensiones distintas.
 
-## 5. Funcionalidades y alcance
+### Ampliaciones ya presentes
 
-### Funcionalidades del MVP
+Perfil y fotografía firmada, filtros, edición/borrado lógico, comparación mensual, avisos locales, resumen mensual de patrones vigentes y administración tienen implementación; no deben describirse como propuestas futuras. Google, recuperación y foto Google tienen código condicionado a proveedores y aceptación real.
 
-El MVP prioriza las siguientes capacidades:
+### Pendientes y exclusiones
 
-- Consultar información pública.
-- Registrarse e iniciar sesión con correo y contraseña.
-- Cerrar sesión de forma segura.
-- Registrar gastos mediante texto.
-- Procesar el texto con diccionarios y reglas determinísticas.
-- Revisar y corregir los campos antes de confirmar.
-- Guardar cada gasto bajo su propietario.
-- Consultar el historial de gastos.
-- Consultar el total, la cantidad y el promedio de gastos por periodo.
-- Consultar el gasto por categoría.
-- Detectar posibles fugas de dinero mediante reglas.
-- Consultar la evidencia que sustenta cada posible fuga.
-- Aplicar autorización, privacidad y aislamiento entre usuarios.
+HU-26 no dispone de un catálogo implementado de sugerencias aprobadas. HU-28/29 se refieren al **límite mensual global y su avance**, están excluidas y no implementadas; no son metas de ahorro genéricas. No existen sus tablas en las migraciones actuales.
 
-### Funcionalidades complementarias
+Quedan fuera del alcance: conexiones bancarias, pagos/transferencias, créditos, inversiones, asesoría financiera profesional, entrenamiento de modelos e IA generativa externa obligatoria. Push remoto no es requisito de HU-25 ni una funcionalidad implementada.
 
-Se conservan en el backlog, pero no son necesarias para completar el MVP inicial:
+## 6. Historias de usuario y priorización
 
-- Inicio de sesión con Google.
-- Recuperación de contraseña.
-- Edición del perfil y fotografía.
-- Filtros de historial.
-- Edición y eliminación de gastos guardados.
-- Entrada por voz en Android.
-- Comparación de periodos.
-- Alertas y sugerencias relacionadas con posibles fugas.
-- Resumen mensual.
-- Estadísticas administrativas agregadas y gestión de cuentas.
+Fuente: [33 historias oficiales 3.0](docs/historias-usuario/HISTORIAS_DE_USUARIO.md), con decisiones D-01 a D-15. La [especificación RF](docs/requerimientos/REQUERIMIENTOS.md) conserva correspondencia uno a uno.
 
-### Funcionalidades aplazadas
+La columna **MVP de entrega** incluye las 13 Must Have y las tres historias de voz incorporadas por la indicación actual. «No» significa complemento o exclusión del MVP, no ausencia de código. La prioridad MoSCoW reproduce la fuente oficial.
 
-Las metas de gasto o ahorro y la consulta de su avance se conservan como funcionalidades futuras. Su implementación depende de definir el alcance de las metas y sus reglas de cálculo.
+**Estados:** Implementada = flujo existente e integrado, sin implicar aceptación de todos los criterios en producción; Parcial = alcance funcional/configuración o aceptación por completar; Pendiente = sin implementación funcional; Excluida = fuera de esta entrega y sin implementar.
 
-FUGA+ no contempla como parte del alcance actual:
+| HU | RF | Funcionalidad | MoSCoW oficial | MVP de entrega | Estado |
+| --- | --- | --- | --- | --- | --- |
+| HU-01 | RF-001 | Bienvenida y acceso público | Must Have | Sí | Implementada |
+| HU-02 | RF-002 | Registro/login por correo y contraseña | Must Have | Sí | Parcial: login operativo; confirmación real de alta por acreditar |
+| HU-03 | RF-003 | Acceso Google mediante Supabase OAuth | Should Have | No | Parcial: configuración/aceptación externa |
+| HU-04 | RF-004 | Cierre de sesión | Must Have | Sí | Implementada |
+| HU-05 | RF-005 | Recuperación de contraseña | Should Have | No | Parcial: correo y callback reales |
+| HU-06 | RF-006 | Desactivación propia | Could Have | No | Implementada; sincronización Auth requiere configuración |
+| HU-07 | RF-007 | Nombres, apellido y teléfono | Should Have | No | Implementada |
+| HU-08 | RF-008 | Fotografía de perfil | Should Have | No | Implementada; limpieza operativa manual |
+| HU-09 | RF-009 | Foto Google con consentimiento | Could Have | No | Parcial: depende de identidad Google vinculada |
+| HU-10 | RF-010 | Registro escrito en lenguaje natural | Must Have | Sí | Implementada |
+| HU-11 | RF-011 | Interpretación mediante reglas | Must Have | Sí | Implementada |
+| HU-12 | RF-012 | Revisión/corrección del borrador | Must Have | Sí | Implementada |
+| HU-13 | RF-013 | Guardado privado e idempotencia | Must Have | Sí | Implementada |
+| HU-14 | RF-014 | Historial ordenado y paginado | Must Have | Sí | Implementada |
+| HU-15 | RF-015 | Filtros de fecha/categoría | Should Have | No | Implementada |
+| HU-16 | RF-016 | Edición y eliminación lógica | Should Have | No | Implementada |
+| HU-17 | RF-017 | Captura de voz Android | Could Have | Sí · voz | Implementada |
+| HU-18 | RF-018 | Transcripción Kotlin SpeechRecognizer | Could Have | Sí · voz | Implementada |
+| HU-19 | RF-019 | Revisar/confirmar gasto dictado | Could Have | Sí · voz | Implementada |
+| HU-20 | RF-020 | Total, cantidad y promedio | Must Have | Sí | Implementada |
+| HU-21 | RF-021 | Estadísticas por categoría | Must Have | Sí | Implementada |
+| HU-22 | RF-022 | Comparación entre periodos | Could Have | No | Implementada: mes frente al anterior |
+| HU-23 | RF-023 | Detección FUGA-01 | Must Have | Sí | Implementada |
+| HU-24 | RF-024 | Evidencia de fuga propia | Must Have | Sí | Implementada |
+| HU-25 | RF-025 | Alertas internas y avisos locales | Could Have | No | Parcial en aceptación de plataformas/ciclo de vida; mecanismo implementado |
+| HU-26 | RF-026 | Sugerencias de catálogo aprobado | Could Have | No | Pendiente |
+| HU-27 | RF-027 | Resumen mensual de fugas | Could Have | No | Parcial: solo patrones vigentes de la ventana actual |
+| HU-28 | RF-028 | Límite mensual global | Won't Have | No | Excluida |
+| HU-29 | RF-029 | Avance del límite mensual | Won't Have | No | Excluida |
+| HU-30 | RF-030 | Estadísticas administrativas de uso | Should Have | No | Parcial: cuentas/actividad; falta conteo global de gastos |
+| HU-31 | RF-031 | Búsqueda, filtros y detalle de cuentas | Should Have | No | Implementada |
+| HU-32 | RF-032 | Activación/desactivación administrativa | Should Have | No | Implementada; aceptación remota completa por acreditar |
+| HU-33 | RF-033 | Privacidad y aislamiento transversal | Must Have | Sí | Implementada; pruebas locales no certifican permisos remotos |
 
-- Conexiones bancarias.
-- Pagos y transferencias.
-- Créditos o préstamos.
-- Inversiones.
-- Asesoría financiera profesional.
-- Entrenamiento de un modelo de IA propio.
-- Interpretación obligatoria mediante APIs externas de IA.
-- Notificaciones push remotas como requisito del MVP.
+**Distribución oficial:** 13 Must Have, 9 Should Have, 9 Could Have y 2 Won't Have: **33**. El MVP de entrega incorpora **16 historias** al sumar las tres de voz, sin convertir las Should/Could ya desarrolladas en Must. HU-33 es transversal y no requiere una pantalla independiente.
 
-## 6. Historias de usuario
+## 7. Requisitos funcionales y trazabilidad
 
-El proyecto cuenta con **33 historias de usuario**, identificadas de HU-01 a HU-33. Las prioridades siguen el modelo MoSCoW: Must Have, Should Have, Could Have y Won't Have (por ahora).
+La tabla anterior conserva los **33 RF**, RF-001 a RF-033, relacionados con HU-01 a HU-33; no elimina requisitos por no estar implementados. Los criterios detallados y dependencias siguen en los [requerimientos oficiales](docs/requerimientos/REQUERIMIENTOS.md).
 
-| ID | Historia de usuario | Prioridad | MVP |
-|---|---|---|---|
-| HU-01 | Consultar información pública y acceder al registro o inicio de sesión | Must Have | Sí |
-| HU-02 | Registrarse e iniciar sesión con correo y contraseña | Must Have | Sí |
-| HU-03 | Iniciar sesión con una cuenta de Google | Should Have | No |
-| HU-04 | Cerrar sesión de forma segura | Must Have | Sí |
-| HU-05 | Recuperar el acceso mediante restablecimiento de contraseña | Should Have | No |
-| HU-06 | Desactivar la propia cuenta de usuario | Could Have | No |
-| HU-07 | Consultar y editar nombres y teléfono del perfil | Should Have | No |
-| HU-08 | Cambiar la foto de perfil | Should Have | No |
-| HU-09 | Usar la foto de perfil de Google cuando esté disponible | Could Have | No |
-| HU-10 | Registrar un gasto escrito en lenguaje natural | Must Have | Sí |
-| HU-11 | Procesar el gasto con «Procesar con IA» y reglas determinísticas | Must Have | Sí |
-| HU-12 | Revisar y corregir los campos interpretados antes de guardar | Must Have | Sí |
-| HU-13 | Guardar el gasto bajo la cuenta propietaria y aislarlo de otros usuarios | Must Have | Sí |
-| HU-14 | Consultar el historial de gastos del más reciente al más antiguo | Must Have | Sí |
-| HU-15 | Filtrar el historial por fecha y categoría | Should Have | No |
-| HU-16 | Editar y eliminar gastos guardados, actualizando análisis y resúmenes | Should Have | No |
-| HU-17 | Iniciar la grabación de voz para un gasto en Android | Could Have | No |
-| HU-18 | Convertir la voz en texto con Kotlin y `SpeechRecognizer` | Could Have | No |
-| HU-19 | Revisar la transcripción y los campos antes de guardar un gasto por voz | Could Have | No |
-| HU-20 | Consultar total, cantidad y promedio de gasto por periodo | Must Have | Sí |
-| HU-21 | Consultar el gasto por categoría e identificar la categoría de mayor gasto | Must Have | Sí |
-| HU-22 | Comparar el gasto entre periodos | Could Have | No |
-| HU-23 | Detectar posibles fugas de dinero con reglas determinísticas | Must Have | Sí |
-| HU-24 | Consultar la evidencia de una posible fuga de dinero | Must Have | Sí |
-| HU-25 | Recibir alertas sobre posibles fugas de dinero | Could Have | No |
-| HU-26 | Consultar sugerencias prácticas sobre posibles fugas | Could Have | No |
-| HU-27 | Consultar el resumen mensual de posibles fugas | Could Have | No |
-| HU-28 | Definir una meta mensual de gasto o ahorro con alcance explícito | Won't Have (por ahora) | No |
-| HU-29 | Consultar el avance hacia la meta definida | Won't Have (por ahora) | No |
-| HU-30 | Consultar estadísticas agregadas de uso sin acceder a gastos individuales | Should Have | No |
-| HU-31 | Consultar usuarios registrados y la información administrativa necesaria | Should Have | No |
-| HU-32 | Activar o desactivar cuentas de usuario desde funciones administrativas autorizadas | Should Have | No |
-| HU-33 | Proteger la privacidad de los gastos y garantizar el aislamiento entre usuarios | Must Have | Sí |
+Contratos principales: `/api/v1/expenses` para interpretación, confirmación, consulta y cambios; `/analytics` para agregados/comparación; `/leaks` para detección, detalle y resumen; `/me` para perfil/fotografía y `/admin` para cuentas. Registro y login utilizan directamente el SDK Supabase Auth, no un emisor JWT propio en FastAPI.
 
-**Distribución de prioridades:**
+Límites que afectan al cumplimiento:
 
-| Prioridad | Cantidad |
-|---|---:|
-| Must Have | 13 |
-| Should Have | 9 |
-| Could Have | 9 |
-| Won't Have (por ahora) | 2 |
-| **Total** | **33** |
-
-HU-33 es una restricción transversal de seguridad y privacidad. Se verifica en el backend y en las operaciones que gestionan información, no mediante una pantalla independiente.
-
-La especificación detallada, los criterios de aceptación, las dependencias y la trazabilidad se documentan en los archivos de requisitos e historias de usuario.
-
-## 7. Requisitos funcionales
-
-FUGA+ cuenta con **33 requisitos funcionales**, identificados de RF-001 a RF-033. Cada requisito se relaciona con una historia de usuario.
-
-| Requisito | Funcionalidad | Historia |
-|---|---|---|
-| RF-001 | Información pública y acceso al registro o inicio de sesión | HU-01 |
-| RF-002 | Registro e inicio de sesión con correo y contraseña | HU-02 |
-| RF-003 | Inicio de sesión con Google | HU-03 |
-| RF-004 | Cierre de sesión seguro | HU-04 |
-| RF-005 | Restablecimiento de contraseña | HU-05 |
-| RF-006 | Desactivación de la propia cuenta | HU-06 |
-| RF-007 | Consulta y edición del perfil | HU-07 |
-| RF-008 | Cambio de foto de perfil | HU-08 |
-| RF-009 | Uso de la foto de perfil de Google | HU-09 |
-| RF-010 | Registro de gastos mediante lenguaje natural | HU-10 |
-| RF-011 | Procesamiento determinístico del texto del gasto | HU-11 |
-| RF-012 | Revisión y corrección antes de guardar | HU-12 |
-| RF-013 | Persistencia bajo el propietario y aislamiento de gastos | HU-13 |
-| RF-014 | Historial ordenado y paginado | HU-14 |
-| RF-015 | Filtros por fecha y categoría | HU-15 |
-| RF-016 | Edición y eliminación de gastos con actualización de análisis | HU-16 |
-| RF-017 | Inicio de grabación de voz en Android | HU-17 |
-| RF-018 | Transcripción de voz mediante `SpeechRecognizer` | HU-18 |
-| RF-019 | Revisión del gasto registrado por voz | HU-19 |
-| RF-020 | Total, cantidad y promedio por periodo | HU-20 |
-| RF-021 | Estadísticas por categoría | HU-21 |
-| RF-022 | Comparación entre periodos | HU-22 |
-| RF-023 | Detección de posibles fugas mediante reglas | HU-23 |
-| RF-024 | Consulta de evidencia de posibles fugas | HU-24 |
-| RF-025 | Alertas sobre posibles fugas | HU-25 |
-| RF-026 | Sugerencias prácticas relacionadas con posibles fugas | HU-26 |
-| RF-027 | Resumen mensual de posibles fugas | HU-27 |
-| RF-028 | Definición de metas mensuales | HU-28 |
-| RF-029 | Consulta del avance de metas | HU-29 |
-| RF-030 | Estadísticas administrativas agregadas | HU-30 |
-| RF-031 | Consulta administrativa de usuarios | HU-31 |
-| RF-032 | Activación y desactivación administrativa de cuentas | HU-32 |
-| RF-033 | Privacidad y aislamiento de datos entre usuarios | HU-33 |
-
-La prioridad y la inclusión en el MVP de cada requisito se mantienen en la matriz de requisitos priorizados.
+- **RF-025:** alertas internas y notificaciones locales no exigen push remoto. Funcionan al consultar análisis, con permiso y deduplicación; otras situaciones Android deben acreditarse manualmente. La ausencia de push no es una carencia de este requisito.
+- **RF-027:** la ruta mensual recalcula la ventana actual y suma gastos del mes asociados a fugas `vigente=TRUE`, sin duplicar gastos. No reconstruye un histórico completo de todas las fugas de meses anteriores.
+- **RF-030:** `/admin/stats` devuelve registrados/activos/inactivos y actividad mensual. No devuelve el conteo global de gastos exigido por la especificación ni todos los controles de consulta por mes; no se anuncia cumplimiento integral.
+- **C-04 / historial:** la API aplica cursor, 20 registros por carga y máximo 50. La interfaz actual ofrece «Cargar más»; la carga automática al desplazarse prevista en el plan no está implementada.
 
 ## 8. Requisitos no funcionales
 
-El proyecto define **16 requisitos no funcionales** para establecer condiciones de seguridad, privacidad, calidad y mantenimiento.
+Se conservan los **16 RNF** oficiales. La tabla indica controles y límites, no una certificación total:
 
-| ID | Requisito |
-|---|---|
-| RNF-001 | Autorización obligatoria y aislamiento en el backend |
-| RNF-002 | Privacidad y minimización de datos |
-| RNF-003 | Protección de credenciales y sesiones |
-| RNF-004 | Validación y rechazo de entradas no confiables |
-| RNF-005 | Integridad transaccional e idempotencia |
-| RNF-006 | Coherencia de agregados y análisis tras cambios |
-| RNF-007 | Registro seguro y ausencia de datos sensibles en logs |
-| RNF-008 | Transporte cifrado y manejo seguro de secretos |
-| RNF-009 | Usabilidad del flujo de revisión y de los estados de error |
-| RNF-010 | Transparencia de la etiqueta «Procesar con IA» |
-| RNF-011 | Compatibilidad de plataformas y límites de Expo |
-| RNF-012 | Fiabilidad, recuperación y ausencia de estados parciales |
-| RNF-013 | Rendimiento y capacidad bajo condiciones representativas |
-| RNF-014 | Mantenibilidad, versionado y pruebas automatizadas |
-| RNF-015 | Auditabilidad de acciones administrativas |
-| RNF-016 | Retención, desactivación y eliminación de datos |
+| ID | Requisito y correspondencia actual |
+| --- | --- |
+| RNF-001 | Autorización/aislamiento: rol, estado y propietario verificados en FastAPI. |
+| RNF-002 | Minimización: datos confirmados; `texto_original` persistido NULL, sin audio ni borradores de servidor. |
+| RNF-003 | Credenciales/sesiones: Supabase SDK, SecureStore nativo, localStorage Web y secretos exclusivos del servidor. |
+| RNF-004 | Entradas: validación de COP, fechas, UUID, categorías y versiones. |
+| RNF-005 | Transacciones/idempotencia: locks por usuario, huella, clave UUID y reintentos controlados. |
+| RNF-006 | Coherencia: invalidación de snapshots tras cambios y recálculo bajo demanda. |
+| RNF-007 | Logs: filtrado de tokens, claves y datos sensibles; errores sin credenciales. |
+| RNF-008 | Transporte/secretos: HTTPS y PostgreSQL con TLS verify-full en producción. |
+| RNF-009 | Usabilidad: revisión editable, errores, confirmaciones e insets; evidencia física limitada al dispositivo ensayado. |
+| RNF-010 | Transparencia de «Procesar con IA»: explicación del mecanismo determinista. |
+| RNF-011 | Compatibilidad: voz Android en build nativo, texto Web/iOS; sin certificación iOS física. |
+| RNF-012 | Fiabilidad: lecturas cancelables/reintentos acotados; mutaciones sin reenvío automático, fallos explícitos. |
+| RNF-013 | Rendimiento: mediciones históricas de alcance limitado; sin SLA global ni carga de producción acreditada. |
+| RNF-014 | Mantenibilidad: capas, versiones, pruebas automatizadas y controles estáticos documentados. |
+| RNF-015 | Auditoría: consultas administrativas, estados y denegaciones; sin contenido financiero. |
+| RNF-016 | Retención: cola a 30 días y cancelación al reactivar; depuración/supresión efectiva y auditoría a 90 días requieren operación revisada. |
 
-Los requisitos no funcionales se aplican de acuerdo con su prioridad, las historias relacionadas y las decisiones pendientes. La privacidad y la seguridad no deben eliminarse para reducir el alcance.
+## 9. Tecnologías y decisiones aprobadas
 
-## 9. Tecnologías y herramientas
+| Componente | Tecnología y uso real |
+| --- | --- |
+| App | React Native 0.88.1, Expo 58 y TypeScript 6; Android y alternativa Expo Web. |
+| Backend | Python 3.12, FastAPI, Uvicorn y Pydantic; rutas, servicios, dominio y repositorios. |
+| Base de datos | PostgreSQL en Supabase; SQLAlchemy 2/Psycopg 3, migraciones, constraints, índices y RLS. |
+| Consultas/estadísticas | SQL parametrizado, `SUM`, `COUNT`, `GROUP BY`, filtros de propietario/mes y cálculos exactos con Decimal/ROUND_HALF_UP en Python. |
+| Identidad | Supabase Auth, correo/contraseña, PKCE y OAuth Google condicionado; validación JWT/JWKS en FastAPI. |
+| Voz | Módulo Kotlin `FugaVoice` con Android SpeechRecognizer, permiso contextual y revisión escrita. |
+| Imágenes | Cloudinary: carga directa firmada, verificación servidor y URL en perfil. |
+| Notificaciones | expo-notifications: avisos locales, sin infraestructura push remota. |
+| Despliegue | Backend en Render según reporte de la propietaria; configuración en render.yaml y APK release autónomo. |
+| Calidad/documentación | pytest, Node test runner, TypeScript, Ruff, mypy, OpenAPI/Swagger, Git/GitHub y diagrams.net. |
 
-La arquitectura prevista utiliza las siguientes tecnologías. Su estado de implementación debe verificarse en el repositorio.
+**Correcciones frente al README anterior:** PostgreSQL sustituye MongoDB Atlas; agregaciones SQL/Python sustituyen MongoDB Aggregation; Supabase Auth administra identidad y OAuth en lugar de un JWT propio o Google Identity Services independiente. Expo, Render y los servicios ya integrados se describen como implementación, no como propuesta.
 
-| Componente | Tecnología | Propósito |
-|---|---|---|
-| Aplicación móvil | React Native + TypeScript | Interfaz móvil multiplataforma |
-| Backend | Python + FastAPI | API y lógica de negocio |
-| Base de datos | MongoDB Atlas | Persistencia documental en la nube |
-| Consultas y estadísticas | MongoDB Aggregation | Agregación de gastos y estadísticas |
-| Autenticación | JWT | Identificación de la sesión y autorización |
-| Acceso con Google | Google Identity Services | Inicio de sesión complementario |
-| Voz en Android | Kotlin + Android `SpeechRecognizer` | Conversión de voz en texto |
-| Fotos de perfil | Cloudinary | Almacenamiento de imágenes |
-| Notificaciones | Expo Notifications | Notificaciones compatibles con el alcance aprobado |
-| Control de versiones | Git + GitHub | Historial y colaboración con el repositorio |
-| Desarrollo | VS Code y Android Studio | Edición, compilación y depuración |
-| Pruebas de API | Postman | Validación de endpoints |
-| Documentación de API | OpenAPI / Swagger | Consulta y prueba de endpoints |
-| Agente de desarrollo | OpenCode | Análisis del repositorio y apoyo a la implementación |
-| Documentación técnica | Context7 | Consulta de documentación de bibliotecas |
-| Integraciones externas | Composio | Acceso a integraciones compatibles, según configuración |
-| Análisis de código | CodeGraphContext | Exploración de relaciones y dependencias, si está configurado |
+### Decisiones D-01 a D-15
 
-### Decisiones técnicas
+| ID | Decisión que se conserva |
+| --- | --- |
+| D-01 | FUGA-01 1.0, ventana de 30 días, categoría/concepto y parámetros versionados; ver sección 10. |
+| D-02 | Nueve categorías, «Otros» incluido en totales; desempate por frase más larga y revisión si persiste ambigüedad. |
+| D-03 | COP entero 1–100.000.000; porcentajes a un decimal y comparación sin división por cero. |
+| D-04 | America/Bogota; fechas ISO desde 2020-01-01 hasta hoy, meses calendario e historial con desempate estable. |
+| D-05 | Texto 1–280, descripción 1–120, borrador en memoria, confirmación e idempotencia UUID por 24 horas. |
+| D-06 | Borrado lógico de gastos y bloqueo por disabled_at; retención a 30 días sin promesa de borrar respaldos. |
+| D-07 | Sin finanzas individuales para administradores; cualquier agregado financiero futuro exige mínimo 10 usuarios. Los agregados actuales son de cuentas/actividad. |
+| D-08 | Roles y autorización en cada solicitud; aprovisionamiento administrativo privilegiado y RLS sin confiar en que cubra una conexión SQL privilegiada. |
+| D-09 | Supabase Auth; contraseña mínima de 8 caracteres, renovación/cierre SDK y recuperación gestionada por el proveedor. Sin revocación instantánea prometida de access tokens. |
+| D-10 | Google mediante Supabase OAuth configurado; sin vincular cuentas solo por coincidencia de correo. |
+| D-11 | Avisos locales con permiso, siete días entre recordatorios por patrón/versión y silencio 21:00–08:00 Bogotá; sin datos financieros en pantalla bloqueada. |
+| D-12 | Voz Android es-CO/es, máximo 30 segundos/280 caracteres, sin audio persistido y con alternativa escrita. |
+| D-13 | Nombres opcionales 2–80, teléfono opcional de 10 dígitos; JPEG/PNG/WebP hasta 5.000.000 bytes, firma y precedencia de fotografía manual. |
+| D-14 | Auditoría administrativa restringida; política de 90 días, sin depuración automática acreditada. |
+| D-15 | Etiqueta y explicación transparente; lenguaje de «posible fuga», sin culpa, pérdidas confirmadas ni ahorros garantizados. |
 
-- MongoDB Atlas se utilizará inicialmente con el plan gratuito M0 si su capacidad y condiciones vigentes son suficientes.
-- El backend debe validar los datos y aplicar los permisos, independientemente de las validaciones de la aplicación móvil.
-- Las credenciales y claves privadas deben mantenerse en variables de entorno o mecanismos seguros, nunca en el repositorio.
-- Redis y Docker no se consideran dependencias obligatorias del MVP hasta justificar su necesidad y validar su configuración.
-- La interpretación del gasto no requiere OpenAI API ni otra API externa de IA.
-- El reconocimiento de voz es complementario y requiere una compilación de Android que incluya el módulo nativo; no se debe asumir compatibilidad con Expo Go.
-- Los servicios externos deben evaluarse considerando disponibilidad, límites, configuración y posibles costos.
+El [Plan Maestro 1.1.1, anexo D](docs/planificacion/PLAN_MAESTRO_IMPLEMENTACION_FUGA_PLUS_v1.1.1.md#anexo-d--decisiones-aprobadas-c-01c-12-y-decisión-arquitectónica-complementaria) conserva C-01…C-12 y DA-01: minimización/nombres opcionales (C-01/02); idempotencia y cursor de 20 registros, máximo 50 (C-03/04); interpretación de decisiones cerradas y medición sin umbrales inventados (C-05/06); portabilidad sin gratuidad permanente (C-07); logo original (C-08); núcleo inicial de siete tablas (C-09); exclusión inicial de borrado y procedimiento de privacidad (C-10/11); FK UUID `regla_version_id` (C-12).
 
-## 10. Interpretación de gastos y detección de fugas
+Es un antecedente por fases: las migraciones posteriores incorporaron auditoría, actividad, retención y fotografías hasta 11 tablas; HU-16 añadió edición/borrado lógico como ampliación autorizada. Su existencia no elimina esos antecedentes ni permite afirmar que todas las puertas de aceptación estén cerradas. DA-01 mantiene FastAPI como puerta financiera y Supabase como emisor de identidad. Redis, Docker y modelos externos no son dependencias del MVP.
 
-### Interpretación del gasto
+## 10. Interpretación, voz y detección de fugas
 
-El procesamiento utiliza diccionarios propios y reglas determinísticas para proponer:
+### Registro y normalización
 
-- Monto.
-- Categoría.
-- Descripción.
-- Fecha, cuando se reconozca.
-- Texto original del usuario.
+El intérprete propone monto, fecha, categoría y descripción; una ausencia o ambigüedad requiere corrección. El texto original permanece en el borrador, pero el backend guarda los datos confirmados y `texto_original=NULL`. Los gastos legítimos idénticos pueden registrarse con claves distintas; reutilizar una clave con contenido distinto o vencida genera conflicto.
 
-El botón de la interfaz conserva la etiqueta «Procesar con IA» por decisión de requisitos, pero el mecanismo implementado debe explicarse transparentemente: se utilizarán reglas propias y no una API externa de IA.
+Interpretación/normalización **1.1** conserva compatibilidad con confirmaciones 1.0. Normaliza mayúsculas, tildes, puntuación, espacios, prefijos y equivalencias justificadas. Se comparte con el análisis de gastos antiguos, sin reescribirlos ni fusionar automáticamente conceptos compuestos diferentes. Ver [normalización](../docs/NORMALIZACION_CONCEPTOS.md).
 
-El procesamiento genera un borrador. No guarda automáticamente el gasto. El usuario debe revisar los datos y confirmar la operación.
+El catálogo inicial es Alimentación, Transporte, Vivienda, Servicios, Educación, Salud, Entretenimiento, Compras y Otros. Los UUID y el catálogo operativo se consultan en PostgreSQL; no se sustituyen fallos de conexión por datos ficticios.
 
-### Detección de posibles fugas
+La voz Android convierte el dictado a texto, que utiliza el mismo flujo de revisión/confirmación. Requiere permiso y build nativo con Kotlin, **no Expo Go**. El reconocedor del dispositivo puede procesar audio externamente; esto no convierte el intérprete financiero en un servicio de IA generativa.
 
-La detección se basa en reglas determinísticas versionadas y criterios aprobados por el proyecto.
+### FUGA-01 1.0
 
-Cada resultado debe explicar la regla aplicada, las ocurrencias identificadas, el periodo analizado y los gastos que sustentan el resultado.
+- Ventana: día actual y 29 anteriores, en America/Bogota.
+- Grupo: misma categoría y concepto canónico informativo.
+- Mínimo: **3 gastos en 3 fechas distintas**.
+- Importe individual: **COP 1.000–30.000**; suma mínima: **COP 15.000**.
+- Exclusión de borrados, fechas fuera de ventana y descripciones genéricas; «Otros» puede participar con concepto informativo.
+- Evidencia: regla/versión, ocurrencias, fechas, total y gastos propios asociados.
 
-Los umbrales de monto, frecuencia, ventanas de tiempo y condiciones mínimas deben definirse antes de implementar las reglas. No deben inventarse valores para presentar resultados artificiales.
+Son los parámetros del código y catálogo SQL versionado, sin una consulta remota nueva. Se leen de la versión activa; no se cambian umbrales para forzar resultados. El análisis bajo demanda puede escribir snapshots/evidencia, mientras conserva los gastos originales. El mismo conjunto de evidencia mantiene un snapshot estable. FUGA-01 no predice pérdidas ni garantiza ahorro.
 
-## 11. Arquitectura
+### HU-25: alertas y notificaciones
 
-La solución se organiza conceptualmente en tres capas principales:
+La pantalla Fugas muestra el patrón, importe, ocurrencias y acceso a evidencia. Al consultar análisis, `notifyCandidate` puede emitir un aviso local genérico, sujeto a permiso, deduplicación y horario. Tocar el aviso solo abre evidencia bajo la sesión de su propietario. Si no hay permiso, el análisis interno sigue disponible.
 
-1. **Aplicación móvil:** presenta la interfaz, recoge los datos, permite revisar los gastos y muestra el historial y las estadísticas.
-2. **Backend:** autentica las solicitudes, valida los datos, aplica las reglas de negocio, controla los permisos y expone la API.
-3. **Persistencia:** almacena usuarios, gastos, categorías y la información necesaria para generar estadísticas y evidencias.
+Expo Web no ofrece estos avisos locales. No hay push remoto, token push ni motor de análisis ejecutándose con la app cerrada; el estado cerrado/segundo plano no se acredita por una prueba en primer plano. La entrega/toque/sin duplicado se documentó físicamente en QA; los demás escenarios siguen separados de esa evidencia.
 
-Los servicios externos se incorporan únicamente cuando corresponda a una funcionalidad aprobada.
+## 11. Arquitectura y persistencia
 
-La arquitectura detallada y los diagramas deben mantenerse alineados con las historias, los requisitos y la estructura real del código.
+1. **Cliente React Native/Expo:** pantallas, formularios, AuthProvider y SDK Supabase; datos financieros por HTTPS `/api/v1`.
+2. **FastAPI:** validación de JWT/JWKS, roles/estado, servicios, dominio determinista y repositorios SQL con propietario obligatorio.
+3. **PostgreSQL en Supabase:** datos relacionales, constraints, índices, versiones, snapshots, evidencia y RLS.
+4. **Servicios:** Supabase Auth para identidad; Cloudinary para fotografías; Render para el backend; Kotlin y Expo Notifications para funciones Android.
 
-- [Arquitectura](docs/architecture.md)
-- [Diagramas del sistema](docs/diagramas/)
-- [Plan maestro](docs/prompts-diseño/plan_maestro.md)
+Las migraciones `0001`–`0010` definen `perfil`, `categoria`, `gasto`, `regla_fuga`, `regla_fuga_version`, `fuga`, `fuga_evidencia`, `auditoria`, `actividad_mensual`, `tarea_retencion` y `perfil_foto_carga`: **11 tablas propias y 13 FK**, además de la referencia externa `auth.users`. Predominan UUID; `perfil_foto_carga.public_id` es TEXT y `actividad_mensual` tiene PK compuesta. No hay tablas de límites mensuales.
+
+El APK release incorpora JavaScript y usa servicios HTTPS, sin Metro, USB ni PostgreSQL del computador. Render utiliza el launcher versionado, variables privadas y TLS PostgreSQL con certificado público. `/health` verifica proceso; `/ready` ejecuta SELECT 1, sin certificar esquema o servicios externos; `/docs` se deshabilita en producción.
+
+Fuentes: [arquitectura implementada](../docs/ARQUITECTURA_FUGA_PLUS.md), [migraciones/conexión](../supabase/docs/CONEXION_SUPABASE.md), [Render](../render.yaml) y [compilación release firmada](../mobile/docs/APK_RELEASE_LOCAL.md). La antigua plantilla `docs/architecture.md` no sustituye esa arquitectura real.
 
 ## 12. Seguridad y privacidad
 
-FUGA+ debe cumplir las siguientes reglas:
+- Identidad exclusivamente del JWT verificado; no se confía en un propietario enviado por el cliente.
+- Rol/disabled_at en PostgreSQL, require_user/require_admin y filtros por propietario; no se relajan en QA.
+- Perfil enlazado con `auth.users.id`; el trigger crea rol usuario, nunca administrador por metadatos de registro.
+- Conexión SQL de servidor privada; RLS y permisos directos financieros no sustituyen el aislamiento de FastAPI.
+- Claves públicas Supabase en cliente; clave administrativa moderna por `apikey` solo en backend. Sin secretos de firma Cloudinary o contraseñas en APK/Git/logs.
+- Cambios de estado auditados; si falla Auth al desactivar, se conserva el bloqueo local y se informa sincronización pendiente.
+- Cloudinary verifica propietario, formato y tamaño antes de persistir URL; la foto anterior se retira después de confirmar la nueva. Limpieza conservadora manual, sin borrar activos ajenos.
+- Supresión y auditoría requieren operación revisada: cola de retención no equivale a eliminación física ni a borrado de respaldos.
 
-- Cada gasto pertenece a un único usuario.
-- El backend obtiene la identidad del propietario desde una sesión validada, no desde un identificador enviado libremente por el cliente.
-- Un usuario no puede consultar, modificar ni eliminar gastos de otra cuenta.
-- El Administrador no puede acceder a los gastos individuales.
-- Las estadísticas administrativas deben utilizar datos agregados y limitarse a la información autorizada.
-- Las contraseñas no se almacenan en texto plano.
-- Los tokens, claves y datos financieros sensibles no deben aparecer en registros técnicos.
-- Las operaciones de edición y eliminación deben mantener coherentes el historial, las estadísticas y las posibles fugas.
-- Las políticas de retención y eliminación deben definirse antes de habilitar operaciones irreversibles.
+Ver [seguridad del backend](../backend/docs/seguridad.md), [fotografías HU-08](docs/auditoria/hu08-fotografia-perfil.md) y [retención operativa](../docs/RETENCION_OPERATIVA.md).
 
-## 13. Plan de desarrollo
+## 13. Planificación académica de 12 semanas
 
-El proyecto se desarrolla individualmente en 12 semanas efectivas.
+Antecedente de organización, **no cronología certificada de ejecución**:
 
-| Etapa | Trabajo principal | Resultado esperado |
-|---|---|---|
-| Semanas 1–2 | Entorno, estructura, acceso, autenticación y seguridad inicial | Aplicación ejecutable y gestión de sesiones |
-| Semanas 3–4 | Registro de gastos, procesamiento determinístico, revisión y guardado | Flujo de registro funcional |
-| Semana 5 | Historial y estadísticas básicas | Consulta de movimientos y dashboard |
-| Semana 6 | Detección de fugas y evidencia | Análisis explicable basado en reglas |
-| Semana 7 | Integración, pruebas de seguridad y estabilización | MVP integrado y demostrable |
-| Semanas 8–10 | Funcionalidades complementarias priorizadas | Mejoras según tiempo y dependencias |
-| Semana 11 | Complementos seleccionados y pruebas de rendimiento | Funcionalidades adicionales estables, si es viable |
-| Semana 12 | Regresión, documentación y preparación de la entrega | Versión final documentada y probada |
+| Etapa | Trabajo previsto | Resultado esperado |
+| --- | --- | --- |
+| Semanas 1–2 | Entorno, acceso y seguridad | App ejecutable y sesiones |
+| Semanas 3–4 | Registro, interpretación y confirmación | Flujo de gasto funcional |
+| Semana 5 | Historial y estadísticas | Movimientos y dashboard |
+| Semana 6 | Fugas y evidencia | Detección explicable |
+| Semana 7 | Integración y estabilización | MVP demostrable |
+| Semanas 8–10 | Ampliaciones priorizadas | Mejoras según dependencias |
+| Semana 11 | Complementos/rendimiento | Validaciones adicionales |
+| Semana 12 | Regresión/documentación | Preparación de la entrega |
 
-El orden definitivo debe seguir la matriz de dependencias y los criterios de aceptación. Las funcionalidades complementarias no deben retrasar la seguridad ni el flujo principal del MVP.
+El estado posterior se registra en el [informe de ejecución ACT-01…ACT-15](docs/auditoria/ejecucion-plan-mejora-fugaplus.md), no se infiere de este calendario. Voz es parte del MVP Android actual, aunque el calendario y la matriz inicial la trataran como ampliación.
 
 ## 14. Pruebas y criterios de aceptación
 
-La validación debe incluir:
+| Procedencia | Resultado y alcance |
+| --- | --- |
+| Revisión previa del README principal, 2026-11-19 | **307 backend aprobadas, 39 omitidas; 132 frontend aprobadas; TypeScript correcto.** Ejecución aislada, sin PostgreSQL ni HTTP externo; las 39 omitidas requieren SQL local. No se repitieron en esta edición documental. |
+| [QA administrativo](../mobile/docs/QA_ANDROID_ADMIN.md#validación-automatizada) | **346 backend**, incluidas pruebas SQL locales, y 124 frontend en esa etapa; PostgreSQL desechable y Auth simulado. |
+| [Evidencia HU-08](docs/auditoria/evidencia-hu08-fotografia.json) | 325 backend, 31 SQL incluidas, y 97 frontend en esa etapa; dos PNG sintéticos Cloudinary con URL solo en PostgreSQL local. Persistencia/sustitución confirmadas físicamente. |
+| Reporte actual de la propietaria | APK release instalado: login, texto/voz, dashboard, fugas, notificaciones, fotografía persistente y acceso administrativo; Render/Supabase operativos. No es una medición remota nueva del agente. |
 
-- Pruebas de registro, inicio y cierre de sesión.
-- Validación de textos y montos inválidos.
-- Pruebas del diccionario y las reglas determinísticas.
-- Verificación de la revisión obligatoria antes del guardado.
-- Pruebas de persistencia, reintentos y prevención de duplicados.
-- Pruebas de aislamiento entre usuarios.
-- Verificación de que el Administrador no acceda a gastos individuales.
-- Pruebas de historial, estadísticas y detección de fugas.
-- Pruebas de recuperación ante errores de red y del backend.
-- Pruebas de regresión tras cada cambio relevante.
+Los conteos corresponden a etapas y no se suman. Cobertura y auditorías de dependencias son resultados fechados, con exclusiones y avisos; no certifican seguridad o cobertura total actuales. Los controles nativos simulados no sustituyen permisos, teclado y comportamiento físico.
 
-Una funcionalidad no debe marcarse como terminada solo porque exista una pantalla: también debe funcionar en el backend, persistir los datos cuando corresponda y cumplir sus criterios de aceptación.
+Comandos con dependencias ya instaladas, desde la raíz del repositorio:
 
-## 15. Documentación del proyecto
+```powershell
+backend/.venv/Scripts/python.exe -B backend/scripts/test_safe.py
+cd mobile
+npm test
+npm run typecheck
+```
 
-### Requisitos y análisis
+La integración mediante `test_safe.py --integration` exige FUGA_TEST_DATABASE_URL local desechable y crea/retira su propia base. No usar Supabase ni datos QA que deban conservarse. Para instrucciones completas y cobertura, ver [pruebas del README principal](../README.md#8-pruebas-y-validaciones).
 
-- [Entrevista real](docs/entrevista-real.md)
-- [Visión del proyecto](docs/respuestas-ia/salida-vision.md)
-- [Análisis competitivo](docs/respuestas-ia/salida-analisis-competitivo.md)
-- [Historias de usuario](docs/respuestas-ia/salida-historias-usuario.md)
-- [Requisitos priorizados y trazabilidad](docs/respuestas-ia/salida-requerimientos-priorizados.md)
+La aceptación debe comprobar datos inválidos, interpretación, revisión obligatoria, idempotencia, aislamiento, permisos administrativos, coherencia tras cambios, fallos de red y regresión. Deben acreditarse por separado correo/OAuth, escenarios adicionales de notificaciones, operaciones administrativas remotas, carga representativa y otras plataformas. El acceso a una pantalla o SELECT 1 no cierra esos criterios.
 
-### Arquitectura y diseño
+## 15. Documentación y diagramas
 
-- [Arquitectura](docs/architecture.md)
-- [Diagramas](docs/diagramas/)
-- [Prompts de análisis y diseño](docs/prompts-diseño/)
-- [Plan maestro](docs/prompts-diseño/plan_maestro.md)
+### Fuentes oficiales y seguimiento
 
-Los enlaces deben verificarse contra el árbol real del repositorio. Si un documento todavía no existe, debe crearse como tarea de documentación o retirarse temporalmente el enlace hasta que esté disponible.
+- [Entrevista](docs/entrevista-real.md), [visión](docs/respuestas-ia/salida-vision.md) y [análisis competitivo](docs/respuestas-ia/salida-analisis-competitivo.md).
+- [Historias 3.0](docs/historias-usuario/HISTORIAS_DE_USUARIO.md) y [requerimientos 3.0](docs/requerimientos/REQUERIMIENTOS.md).
+- [Plan Maestro 1.1.1](docs/planificacion/PLAN_MAESTRO_IMPLEMENTACION_FUGA_PLUS_v1.1.1.md), [progreso](docs/planificacion/PROGRESO_BUILD.md) y [bitácora](docs/planificacion/BITACORA.md).
+- [Auditoría histórica](docs/auditoria/auditoria-tecnica-fugaplus.md), [plan de mejora](docs/auditoria/plan-mejora-fugaplus.md) e [informe de ejecución](docs/auditoria/ejecucion-plan-mejora-fugaplus.md).
+- [Arquitectura real](../docs/ARQUITECTURA_FUGA_PLUS.md), [normalización](../docs/NORMALIZACION_CONCEPTOS.md), [dependencias](../docs/DEPENDENCIAS_SEGURIDAD.md) y [OpenAPI estático](../backend/docs/openapi.json).
+- [QA Android financiero](../mobile/docs/QA_ANDROID_FUNCIONAL.md), [QA administrativo](../mobile/docs/QA_ANDROID_ADMIN.md), [áreas seguras](../mobile/docs/AREAS_SEGURAS_INTERNAS.md) y [release local](../mobile/docs/APK_RELEASE_LOCAL.md).
+- [Prompts existentes](docs/prompts/) y [ejecución/instalación principal](../README.md).
+
+Los documentos de planificación, auditoría inicial y versiones conservan etapas anteriores; no se utilizan como prueba de que hoy falten funciones ya implementadas. Se sustituyeron los enlaces inexistentes a salidas de HU/RF y a `prompts-diseño` por las rutas vigentes anteriores.
+
+### UML editable y PNG para Word
+
+Cuatro diagramas conciliados con código y migraciones; nueve imágenes de alta resolución a **300 ppp**. [Índice, fuentes y dimensiones](docs/diagramas/README.md).
+
+| Editable | PNG |
+| --- | --- |
+| [Casos de uso](docs/diagramas/diagrama-casos-uso.drawio) | [Acceso/perfil](docs/diagramas/png/diagrama-casos-uso-01-acceso-perfil.png), [gastos/análisis](docs/diagramas/png/diagrama-casos-uso-02-gastos-analisis.png), [administración](docs/diagramas/png/diagrama-casos-uso-03-administracion.png) |
+| [Clases](docs/diagramas/diagrama-clases.drawio) | [Contratos](docs/diagramas/png/diagrama-clases-01-contratos.png), [repositorios/fugas](docs/diagramas/png/diagrama-clases-02-repositorios-fugas.png) |
+| [Componentes](docs/diagramas/diagrama-componentes.drawio) | [Componentes/despliegue](docs/diagramas/png/diagrama-componentes.png) |
+| [Entidad–relación](docs/diagramas/diagrama-entidad-relacion.drawio) | [Completo](docs/diagramas/png/diagrama-entidad-relacion-01-esquema-completo.png), [identidad/soporte](docs/diagramas/png/diagrama-entidad-relacion-02-identidad-soporte.png), [finanzas/reglas](docs/diagramas/png/diagrama-entidad-relacion-03-finanzas-reglas.png) |
+
+El mapa de historias conservado en esa carpeta representa especificación, no inventario de funciones implementadas. Los diagramas no acreditan migraciones aplicadas remotamente.
 
 ## 16. Uso de herramientas de inteligencia artificial
 
-Durante el análisis y desarrollo pueden utilizarse asistentes de IA para apoyar:
+Los asistentes se utilizan como apoyo al análisis de requisitos, planificación, consulta técnica, revisión de código, elaboración de pruebas y documentación. La responsabilidad académica y la validación de resultados permanecen en la autora; una respuesta generada no sustituye pruebas ni aceptación.
 
-- La revisión de requisitos e historias de usuario.
-- La planificación de la arquitectura.
-- La consulta de documentación técnica.
-- El análisis de código y dependencias.
-- La generación inicial de código y pruebas.
-- La revisión de documentación.
+OpenCode, Context7, Composio y CodeGraphContext figuraban como herramientas de apoyo en la documentación anterior. No se presentan como servicios activos del producto ni como integraciones verificadas por su mera mención. El runtime no necesita un gateway LLM o agentes del framework para interpretar gastos.
 
-Todo resultado debe revisarse antes de incorporarse al proyecto. La asistencia de desarrollo no sustituye las pruebas ni la validación de los requisitos.
+El uso de IA durante el desarrollo se distingue del comportamiento de FUGA+: diccionario y reglas propias para gastos/fugas; reconocimiento de voz Android dependiente del servicio del dispositivo, sin guardar audio.
 
-La funcionalidad de interpretación de gastos de FUGA+ no depende de un proveedor externo de modelos de IA. Se basa en reglas y diccionarios propios, mientras que la detección de fugas utiliza reglas determinísticas explicables.
+## 17. Estado del proyecto y siguientes validaciones
 
-## 17. Estado del proyecto
+**Comprobable en repositorio:** frontend/API integrados, módulos nativos, contratos, diez migraciones con once tablas propias, cuatro UML/nueve PNG y suites automatizadas. El estado funcional por HU se registra en la sección 6, con parciales y exclusiones explícitas.
 
-FUGA+ es un proyecto académico de Ingeniería de Sistemas, desarrollado individualmente en el marco de Electiva CPC.
+**Reportado por la propietaria:** APK Android release instalado y probado, backend Render operativo y persistencia en Supabase. Los ensayos locales históricos mantienen su alcance: una URL guardada en PostgreSQL local no prueba un cambio en el perfil remoto.
 
-El proyecto cuenta con documentación de visión, historias de usuario, requisitos priorizados, trazabilidad y diseño. La implementación funcional debe evaluarse según el estado real del repositorio y los resultados de las pruebas.
+**Por consolidar:** evidencia del esquema remoto y aplicación de 0010, firma/hash del APK final, aceptación completa de registro/correo/OAuth y administración, límites de HU-27/HU-30, escenarios Android adicionales y rendimiento representativo. No se afirma que las diez migraciones estén aplicadas ni que todas las historias estén aceptadas. No se consultaron credenciales o datos remotos para esta edición.
 
-Las funcionalidades deben identificarse como **definidas**, **en desarrollo**, **implementadas** o **validadas**, evitando afirmar que están terminadas sin evidencia.
+El siguiente cierre académico consiste en revisar esta trazabilidad y adjuntar evidencias verificables de los flujos seleccionados, sin presentar los parciales o las exclusiones como funcionalidades terminadas. Los cambios de alcance se deben conciliar posteriormente en las fuentes oficiales bajo autorización; esta tarea modifica solo este README.
 
-## 18. Autor
+## 18. Autoría
 
 **Lorena Barragan Barragan**
 
-Proyecto académico — Ingeniería de Sistemas  
+Proyecto académico individual — Ingeniería de Sistemas
+
 Electiva CPC — Periodo académico 2026-2

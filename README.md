@@ -1,172 +1,271 @@
 # FUGA+
-Descubre por dónde se va tu plata.
 
-Aplicación React Native/Expo/TypeScript y API FastAPI con PostgreSQL en Supabase y Supabase Auth.
-La interpretación usa reglas propias; no envía gastos a una IA generativa.
+**Descubre a dónde se va tu dinero.**
 
-## Estado de esta entrega
+Aplicación para registrar gastos personales, visualizar hábitos de consumo e identificar posibles fugas mediante reglas automáticas.
 
-El 2026-11-18 se autorizó ejecutar ACT-01 a ACT-15 desde el respaldo `ce24348`.
-El [informe de ejecución](mi-framework-ia/docs/auditoria/ejecucion-plan-mejora-fugaplus.md)
-contiene resultados actuales, archivos y límites; la auditoría es una fotografía anterior.
-Se conserva el núcleo 3.0 y se prioriza además voz Android. No se cambian umbrales de FUGA-01.
-Código integrado de acceso, gastos, historial, edición/borrado lógico, estadísticas,
-fugas y evidencia, perfil y administración. También hay código de voz Android,
-alertas locales, comparación mensual y resumen de fugas.
+**Entrega académica · 19 de noviembre de 2026.** La propietaria reporta un APK Android release instalado y probado, y un backend operativo en Render con Supabase. Esta revisión contrasta código, documentación y pruebas aisladas; no consulta servicios remotos ni certifica las migraciones aplicadas en producción.
 
-Verificación actual: 325 pruebas backend (31 SQL locales), 97 frontend y controles
-mínimos de tipos/análisis aprobados. El release inicial abre sin Metro. En el posterior
-debug QA por USB se comprobaron acceso con cuenta ficticia, texto/dashboard, dictado y
-aviso local/toque/sin duplicado. La configuración pública se carga explícitamente en
-memoria; los gastos se guardan en PostgreSQL local, sin escribir finanzas en Supabase.
-Consulta [QA Android funcional](mobile/docs/QA_ANDROID_FUNCIONAL.md) para ejecutar ese
-entorno. El debug funcional requiere Metro; no sustituye un release configurado con API HTTPS.
+## 1. Presentación de FUGA+
 
-HU-08 incorpora vista previa/confirmación de fotografía y gestión segura de cargas.
-Cloudinary responde a GET /ping; dos PNG sintéticos autorizados se cargaron desde Android,
-con cancelación, sustitución y persistencia tras login/logout confirmadas en QA local.
-Ver [ensayo HU-08](mi-framework-ia/docs/auditoria/hu08-fotografia-perfil.md).
-La migración nueva 0010 se probó localmente y no se aplicó en Supabase.
+Los pequeños gastos cotidianos pueden acumularse sin que la persona recuerde en qué utilizó su dinero. FUGA+ facilita su registro por texto o voz y reúne historial, estadísticas y evidencia de patrones repetitivos.
 
-**No es una certificación de MVP terminado:** distinguir pruebas locales, teléfono y proveedores.
-Este plan prueba SQL en PostgreSQL local desechable; no recertifica el Supabase real ya
-validado anteriormente por la propietaria. Correo, Google, Cloudinary y flujos completos
-de dispositivo requieren su propia evidencia. No se aplican migraciones remotas ni se
-hacen commits, pushes o despliegues durante la ejecución del plan.
+Su objetivo es ayudar a comprender los hábitos de consumo, especialmente a jóvenes y estudiantes que necesitan organizar sus gastos sin herramientas financieras complejas. Maneja únicamente pesos colombianos (COP), con importes enteros positivos de COP 1 a COP 100.000.000 por gasto.
 
-- [Progreso y siguiente tarea](mi-framework-ia/docs/planificacion/PROGRESO_BUILD.md)
-- [Arquitectura y límites de seguridad](docs/ARQUITECTURA_FUGA_PLUS.md)
-- [Migraciones revisadas y conexión a Supabase](supabase/docs/CONEXION_SUPABASE.md)
-- [Informe y archivos de la entrega](docs/IMPLEMENTACION_2026-11-15.md)
-- [Historias oficiales 3.0](mi-framework-ia/docs/historias-usuario/HISTORIAS_DE_USUARIO.md)
-- [Requerimientos oficiales 3.0](mi-framework-ia/docs/requerimientos/REQUERIMIENTOS.md)
+La interpretación usa diccionario, normalización y reglas versionadas, sin enviar gastos a una IA generativa. El dictado puede utilizar servicios del dispositivo; FUGA+ no guarda archivos de audio.
 
-## Ejecutar el backend (PowerShell desde la raíz)
-Python 3.12. En esta ejecución el entorno backend/.venv ya está instalado y aislado.
-Para reconstruirlo en otra máquina:
+## 2. Funcionalidades implementadas
+
+**Implementada** describe un flujo presente en código e integrado con sus servicios; su aceptación se distingue en la sección 8. **Parcial** identifica límites de plataforma, configuración o aceptación pendientes.
+
+| Funcionalidad | Estado y alcance real |
+| --- | --- |
+| Bienvenida y autenticación | Implementadas: registro/login con Supabase Auth, persistencia y cierre de sesión. La aceptación del registro con confirmación por correo requiere comprobar proveedor y callback reales. |
+| Sesión y permisos | Implementados: JWT verificado mediante JWKS; rol y estado consultados en PostgreSQL en cada solicitud. |
+| Gastos por texto | Implementados: interpretación, borrador editable, confirmación explícita y almacenamiento idempotente bajo el propietario autenticado. |
+| Gastos por voz | Implementados en Android: permiso de micrófono, dictado de hasta 30 segundos, transcripción editable y confirmación. Web/iOS conservan entrada escrita. |
+| Historial | Implementado: paginación, filtros por fecha/categoría, edición y eliminación lógica, con actualización de resúmenes y análisis. |
+| Estadísticas | Implementadas: total, cantidad, promedio, distribución por categoría, mayor gasto y comparación con el mes anterior. |
+| Fugas | Implementadas: FUGA-01, agrupación por categoría/concepto canónico, snapshots versionados, evidencia propia y resumen mensual. |
+| Notificaciones locales | Parciales por plataforma/ciclo de vida: avisos nativos con permiso, control de duplicados y apertura de evidencia; no disponibles en Expo Web. |
+| Perfil y fotografía | Implementados: nombres/teléfono, galería, vista previa, confirmar/cancelar y carga firmada a Cloudinary. URL persistida en `public.perfil.foto_url` y registro de cargas. |
+| Administración | Implementada: login habitual, búsqueda, filtros, paginación, detalle mínimo, estadísticas de cuentas/actividad y activación/desactivación de cuentas usuarias con confirmación. El reporte manual actual acredita acceso al módulo, no todas sus operaciones. |
+| Google, foto Google y recuperación | Parciales en aceptación: existe código; OAuth/correo y sus redirecciones requieren configuración y verificación real. |
+| Desactivación y retención | Desactivación/reactivación implementadas con sincronización Auth y auditoría. Retención parcial: se agenda una tarea a 30 días, sin supresión física automática. |
+
+**FUGA-01 1.0:** ventana de hoy y los 29 días anteriores en `America/Bogota`; mínimo **3 gastos en 3 fechas distintas**, cada uno entre **COP 1.000 y COP 30.000**, con suma mínima de **COP 15.000**. Son los valores del código y catálogo SQL, no una consulta nueva de parámetros remotos. La normalización 1.1 también agrupa gastos antiguos sin reescribir descripciones y distingue conceptos como «café» y «café con leche».
+
+Los roles persistidos son `usuario` y `administrador`. El administrador gestiona metadatos de cuentas y **no accede a finanzas individuales**. El operador asigna el primer rol administrativo sobre el perfil identificado por UUID; ni el registro público ni una pantalla de la app conceden ese privilegio.
+
+## 3. Arquitectura y tecnologías
+
+```text
+React Native / Expo ── SDK Supabase ──> Supabase Auth
+        │                              │ JWT / JWKS
+        └── HTTPS /api/v1 ──> FastAPI en Render
+                                  ├── SQLAlchemy / Psycopg / TLS ──> PostgreSQL en Supabase
+                                  └── Firma y verificación ──> Cloudinary
+        └── Carga directa de fotografía con firma ───────────> Cloudinary
+```
+
+| Capa | Implementación |
+| --- | --- |
+| Frontend | React Native `0.88.1`, Expo SDK `58`, React `19.3` y TypeScript `6`; Expo Web para flujos compatibles con navegador. |
+| Android | Kotlin: `FugaVoice` con `SpeechRecognizer` y `FugaWindowInsets` para barras/teclado; `expo-notifications` para avisos locales. |
+| Backend | Python `3.12`, FastAPI, Uvicorn, Pydantic, servicios, dominio determinista y repositorios con SQL parametrizado. |
+| Identidad | Supabase Auth y PKCE; JWT RS256/ES256. SecureStore en nativo y localStorage en Web. FastAPI no emite tokens propios de usuario. |
+| Persistencia y archivos | PostgreSQL, SQLAlchemy 2/Psycopg 3, RLS y autorización por propietario; Cloudinary con firma exclusiva del backend. |
+| Alojamiento | Configuración de backend para Render Free; APK autónomo con acceso a servicios HTTPS. |
+
+FastAPI es la única entrada a datos financieros. Su conexión SQL de servidor puede omitir RLS, por lo que los controles de rol, estado y propietario son obligatorios en la API.
+
+Las migraciones `0001`–`0010` definen **11 tablas propias y 13 claves foráneas**, además de la referencia externa `auth.users`: `perfil`, `categoria`, `gasto`, `regla_fuga`, `regla_fuga_version`, `fuga`, `fuga_evidencia`, `auditoria`, `actividad_mensual`, `tarea_retencion` y `perfil_foto_carga`. El ER documenta UUID, nulabilidad y las excepciones de claves TEXT/compuestas. Este inventario describe los archivos SQL, no el estado remoto.
+
+## 4. Estructura del repositorio
+
+```text
+mobile/              App Expo, pantallas, cliente API, módulos Kotlin y pruebas Node
+backend/             FastAPI, reglas, repositorios, pruebas pytest y scripts operativos
+supabase/            Migraciones, catálogo inicial y comprobaciones SQL
+docs/                Arquitectura implementada, normalización, retención y dependencias
+mi-framework-ia/     Framework de apoyo; requerimientos, historias, auditorías y UML
+assets/              Recursos gráficos originales
+scripts/             Comprobación del candidato e inventario de seguridad
+.github/workflows/   Validación preparada para GitHub Actions
+render.yaml          Configuración declarativa del backend
+```
+
+El framework de apoyo no es un servicio requerido por la app. Herramientas locales, keystore y archivos de acceso QA quedan fuera de Git.
+
+## 5. Instalación y ejecución local
+
+### Requisitos y dependencias
+
+Python **3.12**, Node.js **24**, npm y una base PostgreSQL preparada. Android nativo requiere JDK **17** y Android SDK; consultar [Android local](mobile/docs/ANDROID_LOCAL.md). No se requieren Docker ni un servicio de IA.
+
+PowerShell desde la raíz:
 
 ```powershell
 python -m venv backend/.venv
-backend/.venv/Scripts/python -m pip install --upgrade pip
-backend/.venv/Scripts/python -m pip install -r backend/requirements.lock
-backend/.venv/Scripts/python -m pip install --no-deps -e backend
-```
-
-Copiar backend/.env.example a backend/.env.local y completar los valores reales, sin versionarlos.
-DATABASE_URL debe usar postgresql+psycopg://, un rol servidor autorizado y sslmode=verify-full.
-DATABASE_SSL_ROOT_CERT resuelve la CA pública desde backend, también en Linux, sin
-reescribir la cadena guardada. Settings valida prod sin mostrar entradas sensibles.
-CORS_ORIGINS es una lista JSON. La configuración se encuentra desde backend/ sin depender
-del directorio desde el que se lanza el proceso.
-
-Las migraciones 0001…0010 deben revisarse antes de aplicarlas: **la aplicación no migra automáticamente**.
-No ejecutar scripts sobre Supabase remoto sin aprobación.
-El catálogo real proviene de PostgreSQL; la API no sustituye fallas por datos ficticios.
-
-```powershell
-backend/.venv/Scripts/python -m uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port 8000
-```
-
-/health verifica el proceso. /ready requiere conexión real a la BD.
-/docs presenta los contratos en desarrollo. En producción configurar HTTPS y CORS restringido.
-Los tokens deben estar firmados por claves asimétricas publicadas en JWKS de Supabase (RS256/ES256).
-No se admiten JWT sin firma ni claves de prueba en ejecución normal.
-
-## Ejecutar el móvil
-Node 24 compatible con el SDK instalado. El lockfile fija Expo 58 y sus versiones compatibles.
-
-```powershell
+backend/.venv/Scripts/python.exe -m pip install -r backend/requirements.lock
+backend/.venv/Scripts/python.exe -m pip install --no-deps -e backend
 cd mobile
 npm ci
-npm start
 ```
 
-Copiar mobile/.env.example a mobile/.env.local y completar:
-- EXPO_PUBLIC_API_URL: http://10.0.2.2:8000 para emulador Android, o IP LAN del servidor para dispositivo físico.
-- EXPO_PUBLIC_SUPABASE_URL y EXPO_PUBLIC_SUPABASE_ANON_KEY: valores públicos del proyecto.
-- EXPO_PUBLIC_PASSWORD_RECOVERY_ENABLED=true solo cuando el correo saliente esté realmente configurado.
-- EXPO_PUBLIC_GOOGLE_ENABLED=true solo después de configurar Google OAuth en Supabase.
+### Variables de entorno
 
-Nunca incluir DATABASE_URL, service role ni secretos de Cloudinary en el móvil.
-Registrar fugaplus://auth y fugaplus://auth?flow=recovery en las redirecciones de Supabase.
+Preparar `backend/.env.local` y `mobile/.env.local` a partir de sus plantillas `.env.example`, completándolos solo en el equipo de trabajo. No versionar esos archivos ni copiar sus valores a informes o logs.
 
-Para Expo Web, usar `npm run web -- --localhost --port 8081` y abrir `http://localhost:8081`.
-En Supabase → Authentication → URL Configuration, añadir las redirecciones exactas
-`http://localhost:8081/auth/callback` y `http://localhost:8081/auth/callback?flow=recovery`,
-sin retirar las direcciones nativas anteriores. El callback intercambia el código mediante PKCE
-y limpia la URL; no acepta tokens de sesión en la URL. No requiere una ruta nueva en FastAPI.
-La confirmación debe abrirse en el mismo navegador y perfil donde se inició el registro;
-se admite otra pestaña porque el verificador PKCE y la sesión web usan localStorage.
-Los dispositivos nativos conservan SecureStore. En Web, `EXPO_PUBLIC_API_URL` puede ser
-`http://127.0.0.1:8000`, sin `/api/v1`; `EXPO_PUBLIC_SUPABASE_ANON_KEY` admite una clave
-publishable pública, nunca una clave secret/service role. Expo carga `mobile/.env.local`;
-reiniciar Expo después de cambiar esas variables. Google y recuperación siguen condicionados
-a su configuración y a las banderas existentes.
+| Variables del backend | Configuración necesaria |
+| --- | --- |
+| `APP_ENV`, `LOG_LEVEL` | `local` para desarrollo; `prod` y nivel de log permitido para producción. |
+| `DATABASE_URL` | Controlador `postgresql+psycopg://`; conservar los componentes de Connect y codificar caracteres reservados de la contraseña. |
+| `DATABASE_SSL_ROOT_CERT` | Para Supabase: `certs/prod-ca-2021.crt` y `sslmode=verify-full` en la conexión. Ruta resuelta desde `backend/`, también en Linux. |
+| `SUPABASE_URL`, `SUPABASE_JWT_AUDIENCE` | Raíz HTTPS del proyecto y audiencia `authenticated`. Issuer/JWKS se derivan automáticamente; no conservar overrides de ejemplo innecesarios. |
+| `SUPABASE_SERVICE_ROLE_KEY` | Secreto para sincronización administrativa Auth. La clave moderna `sb_secret_` se envía mediante `apikey`, sin tratarla como JWT. |
+| `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` | Configuración de fotografías y firma desde FastAPI. |
+| `CORS_ORIGINS` | Lista JSON de orígenes Web; desarrollo admite por defecto localhost en puertos 8081 y 19006. |
 
-Para Android nativo, instalar antes el Android SDK, licencias y JDK compatible con el SDK Expo:
+FastAPI local encuentra dotenv desde `backend/`, independientemente del directorio de lanzamiento. En `prod` utiliza las variables del servicio y no carga dotenv.
+
+| Variables públicas del frontend | Uso |
+| --- | --- |
+| `EXPO_PUBLIC_API_URL` | Raíz de FastAPI, **sin `/api/v1`**; HTTPS pública de Render para release. |
+| `EXPO_PUBLIC_SUPABASE_URL` | Raíz HTTPS del mismo proyecto Supabase. |
+| `EXPO_PUBLIC_SUPABASE_ANON_KEY` | Clave pública moderna `sb_publishable_` o legacy `anon`; se conserva el nombre de variable. |
+| `EXPO_PUBLIC_GOOGLE_ENABLED`, `EXPO_PUBLIC_PASSWORD_RECOVERY_ENABLED` | Activar solo tras configurar y comprobar cada proveedor. |
+| `EXPO_PUBLIC_ADMIN_QA_MODE` | Ausente o `false` normalmente; desactivado obligatoriamente en release. |
+
+Las variables `EXPO_PUBLIC_*` se incorporan al cliente. Nunca incluir conexión SQL, claves administrativas, contraseñas ni `CLOUDINARY_API_SECRET` en frontend/APK. Reiniciar Expo tras cambiarlas; un release instalado requiere recompilación para actualizar sus valores.
+
+### Iniciar backend y frontend
+
+Desde la raíz, en una terminal:
+
 ```powershell
-cd mobile
-npm run android
+backend/.venv/Scripts/python.exe -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
 ```
-El módulo de voz Kotlin se autovincula desde mobile/modules/fuga-voice.
-Requiere un development build; no se promete voz en Expo Go. iOS conserva entrada de texto;
-la compilación iOS requiere un entorno macOS/Xcode. Generar un bundle JS no equivale a crear un APK/IPA.
 
-## Configuración de ampliaciones
-- Google: proveedor habilitado y credenciales/redirecciones verificadas; vinculación mediante Supabase.
-- Recuperación: SMTP/correo y enlace de un solo uso gestionados por Supabase. Sin configurar, se muestra indisponibilidad.
-- Fotos: CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY y CLOUDINARY_API_SECRET solo en backend/.env.local.
-  Carga firmada y verificación servidor de propietario, formato y máximo 5 MB antes de guardar la URL.
-- Administración: aprovisionar el rol administrador por un mecanismo seguro del operador,
-  nunca desde registro ni metadatos editables. Configurar SUPABASE_SERVICE_ROLE_KEY en el backend
-  para sincronizar bloqueo/reactivación con Auth. Los gastos individuales están denegados a administradores.
-- Retención: se programan tareas a 30 días sin borrar datos automáticamente. La supresión efectiva y
-  el mantenimiento de auditoría a 90 días requieren revisión y autorización antes de operar sobre datos reales.
+Desde `mobile/`, en otra terminal:
 
-## Pruebas
-Sin PostgreSQL:
 ```powershell
-backend/.venv/Scripts/python -B backend/scripts/test_safe.py --coverage
-backend/.venv/Scripts/ruff check backend/app backend/tests --select F,E9,I
-backend/.venv/Scripts/mypy backend/app/domain --no-incremental
+npm run web -- --localhost --port 8081
+```
+
+Abrir `http://localhost:8081`, con API `http://127.0.0.1:8000`. `/health` comprueba FastAPI, `/ready` ejecuta `SELECT 1` y `/docs` expone Swagger en desarrollo; las rutas funcionales usan `/api/v1`.
+
+Web permite probar acceso y funciones por texto. Para nativo, `npm start` inicia Metro y `npm run android` genera/ejecuta Android con la toolchain instalada. **Expo Go no incluye los módulos Kotlin propios**: utilizar una compilación nativa de desarrollo.
+
+Desde un teléfono, localhost es el dispositivo: usar IP LAN del computador, backend con `--host 0.0.0.0` y acceso de red privada, o seguir el [QA por USB](mobile/docs/QA_ANDROID_FUNCIONAL.md). El emulador Android usa `http://10.0.2.2:8000`. Esos destinos HTTP no se admiten para distribución release.
+
+Registrar en Supabase Auth las redirecciones que se utilizarán:
+
+- Nativo: `fugaplus://auth` y `fugaplus://auth?flow=recovery`.
+- Web local: `http://localhost:8081/auth/callback` y `http://localhost:8081/auth/callback?flow=recovery`.
+
+El callback intercambia código PKCE y limpia la URL, sin aceptar tokens en el enlace ni requerir una ruta FastAPI. Para correo Web, abrir la confirmación en el mismo navegador/perfil del registro; puede ser otra pestaña.
+
+La app **no migra al arrancar**. Revisar el [orden de migraciones](supabase/docs/CONEXION_SUPABASE.md) antes de preparar una base. `0002` incorpora nueve categorías y FUGA-01; `seed.sql` es opcional. No reejecutar migraciones sobre datos existentes sin comparar esquema e historial.
+
+## 6. Despliegue del backend
+
+La propietaria reporta Render operativo y `/health` y `/ready` correctos. Aquí se revisaron [render.yaml](render.yaml) y [start.py](backend/scripts/start.py), sin acceder al servicio.
+
+| Formulario de Render | Valor previsto |
+| --- | --- |
+| Servicio / plan / rama de entrega | Web Service Python / Free / `develop` |
+| Root Directory | `backend` |
+| Build Command | `pip install -r requirements.lock` |
+| Start Command | `python scripts/start.py` |
+| Health Check Path | `/health` |
+
+Configurar las variables de backend anteriores, `APP_ENV=prod`, `PYTHON_VERSION=3.12.16`, `LOG_LEVEL=INFO` y audiencia `authenticated`. Credenciales Supabase y variables Cloudinary deben proporcionarse de forma privada en Render; las de Cloudinary no están declaradas en el YAML.
+
+El [certificado público versionado](backend/certs/prod-ca-2021.crt) corresponde a `DATABASE_SSL_ROOT_CERT=certs/prod-ca-2021.crt` con raíz `backend`. Conservar `sslmode=verify-full`. El launcher usa `PORT`, un proceso y pool inicial de 3 conexiones más 2 adicionales.
+
+En producción CORS admite orígenes HTTPS; `[]` es compatible con el cliente nativo. Añadir orígenes concretos si se publica Web. `/docs` está deshabilitado en `prod`: su 404 es esperado. `/health` solo verifica proceso y `/ready` conectividad SQL, **no** esquema, Auth, Cloudinary o funcionalidad completa.
+
+No se afirma que todas las migraciones estén aplicadas en Supabase: la evidencia histórica HU-08 acredita `0010` local, sin confirmación posterior de aplicación remota en ese documento. El reporte de fotografías operativas no sustituye una verificación de tablas, índices y RLS.
+
+## 7. APK Android release firmado
+
+El procedimiento vigente es local, sin EAS Build. Paquete **`co.edu.fugaplus.app`**, versión **`0.1.0`**. Usar [APK release local](mobile/docs/APK_RELEASE_LOCAL.md), [Android local](mobile/docs/ANDROID_LOCAL.md) y los scripts [android-release.ps1](mobile/scripts/android-release.ps1), [android-release.cjs](mobile/scripts/android-release.cjs) y [android-local.ps1](mobile/scripts/android-local.ps1).
+
+Requiere SDK/JDK, dependencias coincidentes con el lock, copia corta de compilación registrada localmente y keystore propio con alias `fugaplus-release`. Keystore y contraseñas quedan fuera de Git; conservarlos protegidos para futuras actualizaciones. No recrear la clave existente ni reemplazarla por debug.
+
+Para una futura compilación autorizada, desde la raíz:
+
+```powershell
+powershell -NoProfile -File .\mobile\scripts\android-release.ps1 -Task Check
+powershell -NoProfile -File .\mobile\scripts\android-release.ps1 -Task Prepare
+powershell -NoProfile -File .\mobile\scripts\android-release.ps1 -Task Apk
+```
+
+`Check` valida sin compilar; `Prepare` sincroniza fuentes/firma; `Apk` compila y firma. El lanzador lee exclusivamente variables públicas permitidas de `mobile/.env.local`, exige HTTPS público, fuerza `EXPO_PUBLIC_ADMIN_QA_MODE=false` y `FUGA_RELEASE_BUILD=1`, y desactiva dotenv durante el build. El adaptador administrativo está limitado a debug y excluido del bundle release. No usar launchers de QA o bienvenida para distribución.
+
+PowerShell solicita las contraseñas interactivamente; Gradle las recibe como variables temporales, sin incorporarlas al JavaScript. El [plugin de firma](mobile/plugins/withReleaseSigning.cjs) conserva la configuración tras prebuild.
+
+Salida de la copia documentada:
+
+```text
+C:\fuga-plus-build-bd5fcedc\mobile\android\app\build\outputs\apk\release\app-release.apk
+```
+
+El destino depende de `.tools/android-short-build.json`, no versionado. Se genera `arm64-v8a`, con JavaScript incluido y sin instalación automática. El APK requiere Internet para los servicios HTTPS, **sin Metro, USB ni servidores del computador**. Una firma distinta puede impedir actualizar una instalación anterior; no borrar datos para resolverlo sin revisión.
+
+El manual registra una preparación anterior a la firma. El APK final instalado y probado posteriormente es un resultado reportado por la propietaria; no se recompiló ni inspeccionó otro binario en esta revisión.
+
+## 8. Pruebas y validaciones
+
+| Procedencia | Resultado verificable y límites |
+| --- | --- |
+| Esta revisión, 2026-11-19 | **307 backend aprobadas, 39 omitidas, 0 fallos**; Python 3.12.6 y `test_safe.py`, sin dotenv real, PostgreSQL ni HTTP externo. Las omitidas requieren PostgreSQL local. |
+| Esta revisión | **132 frontend aprobadas, 0 fallos, 0 omitidas; TypeScript aprobado**; Node 24.16.0. Componentes, lógica y configuración con proveedores/controles nativos simulados. |
+| [QA administrativo documentado](mobile/docs/QA_ANDROID_ADMIN.md#validación-automatizada) | **346 backend aprobadas**, incluida integración SQL, y 124 frontend en esa etapa. PostgreSQL local desechable y Auth simulado; no repetido aquí ni atribuible a Supabase remoto. |
+| [Evidencia HU-08](mi-framework-ia/docs/auditoria/evidencia-hu08-fotografia.json) | 325 backend, incluidas 31 SQL, y 97 frontend en esa etapa. Dos PNG sintéticos cargados a Cloudinary bajo autorización; URL solo en PostgreSQL local, persistencia y sustitución confirmadas físicamente. |
+| [Plan de mejora](mi-framework-ia/docs/auditoria/ejecucion-plan-mejora-fugaplus.md) | Resultados históricos por fase: Windows/Linux, cobertura, arranque sintético y compilaciones iniciales. No describen por sí solos el release posterior. |
+| Reporte actual de la propietaria | APK release físico: login, texto, voz, dashboard, fugas, notificaciones, fotografía persistente y acceso administrativo. Render/Supabase operativos según su reporte; no revalidados remotamente aquí. |
+
+Los conteos de etapas distintas **no se suman**. Se observaron avisos de deprecación de Starlette/httpx y `react-test-renderer`, sin fallos. La cobertura histórica tiene exclusiones y no representa cobertura total de UI, Kotlin o proveedores.
+
+Comandos reproducibles, primero desde la raíz y después desde `mobile/`:
+
+```powershell
+backend/.venv/Scripts/python.exe -B backend/scripts/test_safe.py
 cd mobile
-npm run test:coverage
+npm test
 npm run typecheck
-npx expo install --check
-npx expo export --platform all
 ```
 
-Pruebas PostgreSQL: autorizadas para una base local desechable; los totales actuales
-y cobertura están en el informe de ejecución, sin confundirlos con Supabase remoto.
-El fixture requiere FUGA_TEST_DATABASE_URL y rechaza hosts remotos. Crea y retira únicamente
-su propia base con prefijo fuga_test_; el esquema auth de esas pruebas es un sustituto local del proveedor,
-no una verificación de Supabase Auth real. El lanzador elimina dotenv y HTTP externo.
+Para integración, configurar `FUGA_TEST_DATABASE_URL` solo contra un clúster PostgreSQL **local desechable**, con permisos para crear bases; desde la raíz:
 
-Para un clúster local ya preparado y autorizado:
 ```powershell
-$env:FUGA_TEST_DATABASE_URL='postgresql://fuga_test@127.0.0.1:55440/postgres'
-backend/.venv/Scripts/python -B backend/scripts/test_safe.py --integration --coverage
+backend/.venv/Scripts/python.exe -B backend/scripts/test_safe.py --integration
 ```
 
-[Android local y validación](mobile/docs/ANDROID_LOCAL.md) describe el script
-`mobile/scripts/android-local.ps1`, SDK, manifiesto y diferencia entre APK y Expo Go.
-app.config.js bloquea claves privadas antes de empaquetar. La compilación automatizada
-de esta sesión no carga .env.local. Un APK sin configuración pública no certifica finanzas.
+El fixture aplica migraciones en una base temporal `fuga_test_*`, sustituye Auth y retira su propia base. Rechaza hosts remotos y `hostaddr`. No usar Supabase ni las bases QA que se quieran conservar.
 
-[Retención operativa](docs/RETENCION_OPERATIVA.md) define revisión, FK y límites de supresión.
-`render.yaml` y `.github/workflows/validate.yml` preparan alojamiento y validación;
-no crean servicios, despliegan ni acceden a datos reales. El launcher usa PORT y un proceso.
-Las lecturas del cliente tienen hasta dos intentos cancelables de 45 s; mutaciones no
-se reenvían automáticamente. Una respuesta de una sesión anterior se descarta.
+Controles adicionales: `test_safe.py --coverage`, `npm run test:coverage`, Ruff `--select F,E9,I` y mypy sobre `backend/app/domain`. No se recalculó cobertura aquí. [validate.yml](.github/workflows/validate.yml) prepara CI y SQL local; su existencia no prueba una ejecución remota aprobada.
 
-Smoke público con Chrome existente, sin credenciales y perfil temporal:
-1. Exportar web con npx expo export --platform web desde mobile/.
-2. Servir desde la raíz con python -m http.server 8766 --bind 127.0.0.1 --directory mobile/dist.
-3. En otra terminal: backend/.venv/Scripts/python mobile/scripts/smoke_web.py.
-No prueba cuentas reales ni el flujo privado. Ver mobile/docs/smoke-web.json y public-smoke.png.
+El [smoke Web](mobile/docs/smoke-web.json) y su [captura](mobile/docs/public-smoke.png) documentan navegación pública histórica sin login. Los ensayos [QA financiero](mobile/docs/QA_ANDROID_FUNCIONAL.md) y [administrativo](mobile/docs/QA_ANDROID_ADMIN.md) están separados de producción; no se iniciaron ni cambiaron en esta revisión.
 
-## Referencias técnicas
-- https://supabase.com/docs/guides/auth/quickstarts/react-native
-- https://docs.expo.dev/versions/latest/
-- https://docs.expo.dev/modules/module-api/
-- https://pyjwt.readthedocs.io/en/stable/usage.html
+## 9. Diagramas UML
+
+Cuatro archivos editables conciliados con código/migraciones y **9 PNG de alta resolución, a 300 ppp**, para Word:
+
+| Editable | Imágenes PNG |
+| --- | --- |
+| [Casos de uso](mi-framework-ia/docs/diagramas/diagrama-casos-uso.drawio) | [Acceso/perfil](mi-framework-ia/docs/diagramas/png/diagrama-casos-uso-01-acceso-perfil.png), [gastos/análisis](mi-framework-ia/docs/diagramas/png/diagrama-casos-uso-02-gastos-analisis.png), [administración](mi-framework-ia/docs/diagramas/png/diagrama-casos-uso-03-administracion.png) |
+| [Clases](mi-framework-ia/docs/diagramas/diagrama-clases.drawio) | [Contratos](mi-framework-ia/docs/diagramas/png/diagrama-clases-01-contratos.png), [repositorios/fugas](mi-framework-ia/docs/diagramas/png/diagrama-clases-02-repositorios-fugas.png) |
+| [Componentes](mi-framework-ia/docs/diagramas/diagrama-componentes.drawio) | [Componentes y despliegue](mi-framework-ia/docs/diagramas/png/diagrama-componentes.png) |
+| [Entidad–relación](mi-framework-ia/docs/diagramas/diagrama-entidad-relacion.drawio) | [Completo](mi-framework-ia/docs/diagramas/png/diagrama-entidad-relacion-01-esquema-completo.png), [identidad/soporte](mi-framework-ia/docs/diagramas/png/diagrama-entidad-relacion-02-identidad-soporte.png), [finanzas/reglas](mi-framework-ia/docs/diagramas/png/diagrama-entidad-relacion-03-finanzas-reglas.png) |
+
+El [índice UML](mi-framework-ia/docs/diagramas/README.md) detalla fuentes y dimensiones. El mapa de historias de esa carpeta conserva la especificación y puede incluir funciones previstas; no acredita implementación.
+
+## 10. Estado actual y limitaciones
+
+El núcleo financiero, las ampliaciones Android y la administración están integrados. Para cerrar la aceptación, conservar la diferencia entre pruebas aisladas, SQL local, teléfono y servicios desplegados:
+
+- **Correo/Google:** falta evidencia integral de registro con confirmación, recuperación y OAuth reales. Las banderas no certifican configuración.
+- **Administración:** acceso release reportado; documentar por separado búsquedas, filtros, estados contra Auth y revisión de todas sus pantallas/teclado si se presentan en la sustentación.
+- **Android/Web:** voz solo Android; avisos locales sin soporte Web. Las [áreas seguras](mobile/docs/AREAS_SEGURAS_INTERNAS.md) se comprobaron en el Xiaomi; faltan otros modelos, iOS físico y pruebas adicionales de accesibilidad.
+- **Notificaciones:** se originan al consultar análisis, con siete días entre avisos por patrón/versión y silencio 21:00–08:00 Bogotá. No hay push remoto ni análisis con la app cerrada; los demás estados/restricciones Android requieren evidencia específica.
+- **Fotos/retención:** JPEG, PNG y WebP hasta 5.000.000 bytes. La limpieza de activos registrados es manual, con simulación previa; no hay cron ni supresión automática de cuentas. La carga no acredita un borrado real.
+- **Conectividad:** sin modo financiero offline, caché financiera persistente o conversión de divisas. Lecturas: hasta dos intentos de 45 segundos y cancelación; mutaciones sin reenvío automático. Falta registrar el comportamiento real ante arranque lento del servicio desplegado.
+- **Evidencia final:** consolidar esquema remoto, firma/hash del APK y recorridos de aceptación. `SELECT 1` y bundles JS no prueban esos puntos.
+- **Dependencias:** la [revisión de seguridad](docs/DEPENDENCIAS_SEGURIDAD.md) es histórica; no se consultaron avisos nuevos ni se afirma ausencia actual de vulnerabilidades.
+
+El alcance actual no incorpora metas de ahorro, límites mensuales ni IA generativa. Las prioridades Must/Should/Could/Won't de la especificación 3.0 se conservan; implementar voz adicional no reclasifica la matriz ni acredita todas las historias.
+
+## 11. Documentación adicional
+
+- [Arquitectura implementada](docs/ARQUITECTURA_FUGA_PLUS.md) y [seguridad del backend](backend/docs/seguridad.md).
+- [Requerimientos definitivos 3.0](mi-framework-ia/docs/requerimientos/REQUERIMIENTOS.md) e [historias de usuario 3.0](mi-framework-ia/docs/historias-usuario/HISTORIAS_DE_USUARIO.md): especificación y prioridades, no aceptación automática.
+- [Normalización](docs/NORMALIZACION_CONCEPTOS.md) y [retención operativa](docs/RETENCION_OPERATIVA.md).
+- [Migraciones y conexión Supabase](supabase/docs/CONEXION_SUPABASE.md) y [comprobador SQL](supabase/tests/verificar_esquema.sql).
+- [Auditoría inicial](mi-framework-ia/docs/auditoria/auditoria-tecnica-fugaplus.md), [plan de mejora](mi-framework-ia/docs/auditoria/plan-mejora-fugaplus.md) e [informe de ejecución](mi-framework-ia/docs/auditoria/ejecucion-plan-mejora-fugaplus.md).
+- [Ensayo HU-08](mi-framework-ia/docs/auditoria/hu08-fotografia-perfil.md), [formularios y áreas seguras](mobile/docs/AREAS_SEGURAS_FORMULARIOS.md) y [bienvenida visual](mobile/docs/BIENVENIDA_VISUAL.md).
+- [OpenAPI exportado](backend/docs/openapi.json): referencia estática que debe contrastarse con las rutas actuales.
+
+Los manuales e informes registran etapas y pueden conservar estados anteriores, como firma pendiente o Render aún no desplegado. Este README distingue ese historial del código revisado y del reporte posterior de la propietaria, sin modificar retrospectivamente las evidencias.
