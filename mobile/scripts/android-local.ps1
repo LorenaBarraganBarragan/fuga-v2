@@ -1,5 +1,8 @@
 param([ValidateSet('Preflight','Debug','Apk','Manifest')][string]$Task='Preflight', [ValidatePattern('^[D-Z]$')][string]$BuildDrive='Q', [string]$MobileRoot='', [switch]$SkipPrebuild)
 $ErrorActionPreference='Stop'
+if($Task -eq 'Apk' -and $env:FUGA_RELEASE_PREPARED -ne '1'){
+ throw 'Para release usa mobile/scripts/android-release.ps1 -Task Apk; carga solo variables publicas y exige firma propia.'
+}
 $mobileTaskRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $repositoryTaskRoot=[IO.Path]::GetFullPath((Join-Path $mobileTaskRoot '..'))
 $shortTaskRoot=$BuildDrive+':\'
@@ -50,7 +53,7 @@ Push-Location $mobileTaskRoot
 $enteredTaskLocation=$true
  node scripts/check-public-env.cjs
  if($LASTEXITCODE -ne 0){throw 'Configuracion publica no valida.'}
- if(Test-Path -LiteralPath $adbTaskExecutable){
+ if($Task -in @('Debug','Manifest') -and (Test-Path -LiteralPath $adbTaskExecutable)){
   $deviceTaskLines=& $adbTaskExecutable devices
   foreach($deviceTaskLine in $deviceTaskLines){if($deviceTaskLine -match '\s+(device|unauthorized|offline)$'){Write-Output ('Android: '+$Matches[1])}}
  }

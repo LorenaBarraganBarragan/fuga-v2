@@ -20,6 +20,12 @@ Solo retira el alias que él mismo creó. El SDK y las fuentes siguen en su ruta
 
 ## Script reproducible
 
+Para el APK final usar [APK_RELEASE_LOCAL.md](APK_RELEASE_LOCAL.md) y el nuevo
+`android-release.ps1 -Task Apk`. Ese lanzador carga solo variables públicas,
+sincroniza la copia y exige firma propia. Los comandos Apk directos de este
+documento corresponden al procedimiento histórico y ya no son el punto de entrada
+para distribución. Debug y Manifest conservan su uso anterior.
+
 Desde la raíz, `powershell -File mobile/scripts/android-local.ps1 -Task Preflight`.
 Tareas disponibles: Debug (assembleDebug), Manifest (processDebugMainManifest) y
 Apk (assembleRelease). Se limita la compilación a arm64-v8a y cuatro workers para el

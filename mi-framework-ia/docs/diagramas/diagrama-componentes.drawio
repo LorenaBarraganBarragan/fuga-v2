@@ -1,252 +1,259 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mxfile host="app.diagrams.net" agent="FUGA+ UML" version="24.7.17" type="device">
-  <diagram id="componentes" name="FUGA+ — Componentes UML">
-    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2340" pageHeight="1080" math="0" shadow="0">
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="FUGA+ · modelo implementado" version="24.7.17" type="device">
+  <diagram id="componentes" name="Componentes y despliegue implementados / componentes">
+    <mxGraphModel dx="1800" dy="1550" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1550" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="band-cliente" value="&lt;div style=&quot;font-size:12.5px;font-weight:700;color:#12444F;&quot;&gt;Cliente · Aplicación móvil&lt;/div&gt;&lt;div style=&quot;font-size:8.6px;color:#6C8794;margin-top:2px;&quot;&gt;React Native + TypeScript · Android e iOS · sesión segura del dispositivo&lt;/div&gt;" style="rounded=1;arcSize=1;whiteSpace=wrap;html=1;fillColor=#F7FBFD;strokeColor=#B9D3DE;strokeWidth=1.3;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontFamily=Helvetica;" vertex="1" parent="1">
-          <mxGeometry x="40" y="140" width="720" height="880" as="geometry" />
+        <mxCell id="title" value="Componentes y despliegue implementados" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=30;fontColor=#1A5B5A;fontStyle=1;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="35" width="1700" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="band-servidor" value="&lt;div style=&quot;font-size:12.5px;font-weight:700;color:#12444F;&quot;&gt;Servidor · Backend&lt;/div&gt;&lt;div style=&quot;font-size:8.6px;color:#6C8794;margin-top:2px;&quot;&gt;FastAPI + Python · API REST, seguridad y lógica de dominio&lt;/div&gt;" style="rounded=1;arcSize=1;whiteSpace=wrap;html=1;fillColor=#F8FCF9;strokeColor=#BED8C8;strokeWidth=1.3;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontFamily=Helvetica;" vertex="1" parent="1">
-          <mxGeometry x="820" y="140" width="940" height="620" as="geometry" />
+        <mxCell id="subtitle" value="APK Android → FastAPI en Render → PostgreSQL en Supabase. Identidad y fotografías por servicios separados." style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#5A6E6C;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="90" width="1700" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="band-servicios" value="&lt;div style=&quot;font-size:12.5px;font-weight:700;color:#12444F;&quot;&gt;Servicios externos&lt;/div&gt;&lt;div style=&quot;font-size:8.6px;color:#6C8794;margin-top:2px;&quot;&gt;Plataforma y proveedores · borde discontinuo = ampliación opcional&lt;/div&gt;" style="rounded=1;arcSize=1;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#E3D5B8;strokeWidth=1.3;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontFamily=Helvetica;" vertex="1" parent="1">
-          <mxGeometry x="1840" y="140" width="460" height="520" as="geometry" />
+        <mxCell id="footer" value="FUGA+ · Implementación del repositorio · 19 nov 2026 · Sin datos de cuentas ni credenciales" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=14;fontColor=#5A6E6C;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1505" width="1700" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="band-datos" value="&lt;div style=&quot;font-size:12.5px;font-weight:700;color:#12444F;&quot;&gt;Datos&lt;/div&gt;&lt;div style=&quot;font-size:8.6px;color:#6C8794;margin-top:2px;&quot;&gt;PostgreSQL en Supabase · persistencia única del sistema&lt;/div&gt;" style="rounded=1;arcSize=1;whiteSpace=wrap;html=1;fillColor=#F8FBFD;strokeColor=#C4D5DF;strokeWidth=1.3;verticalAlign=top;align=left;spacingLeft=18;spacingTop=10;fontFamily=Helvetica;" vertex="1" parent="1">
-          <mxGeometry x="820" y="790" width="940" height="230" as="geometry" />
+        <mxCell id="device" value="" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=18;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#fff;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="185" width="570" height="940" as="geometry" />
         </mxCell>
-        <mxCell id="c-acceso" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Acceso y sesión&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;HU-01 a HU-05 · rutas protegidas&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#DCEEF4;strokeColor=#3F8CA3;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="70" y="210" width="440" height="64" as="geometry" />
+        <mxCell id="device_title" value="«device» Android · APK release / Expo + React Native" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=21;fontColor=#1A5B5A;fontStyle=1;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="70" y="199" width="530" height="68" as="geometry" />
         </mxCell>
-        <mxCell id="c-gastos" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Registro de gastos&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;HU-10, HU-11 · texto en lenguaje natural&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#DCEEF4;strokeColor=#3F8CA3;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="70" y="288" width="440" height="64" as="geometry" />
+        <mxCell id="screens" value="" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=18;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#fff;align=left;verticalAlign=middle;spacing=0;container=1;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="85" y="270" width="500" height="141" as="geometry" />
         </mxCell>
-        <mxCell id="c-revision" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Revisión y confirmación&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;HU-12, HU-13 · validación y guardado&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#DCEEF4;strokeColor=#3F8CA3;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="70" y="366" width="440" height="64" as="geometry" />
+        <mxCell id="screens_header" value="«component» Pantallas y navegación" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=20;fontColor=#fff;fontStyle=1;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#1A5B5A;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="screens">
+          <mxGeometry x="0" y="0" width="500" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="c-historial" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Historial de gastos&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;HU-14, HU-15 · paginación y filtros&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#DCEEF4;strokeColor=#3F8CA3;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="70" y="444" width="440" height="64" as="geometry" />
+        <mxCell id="screens__0" value="Visitante / Usuario / Administrador" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="screens">
+          <mxGeometry x="0" y="54" width="500" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="c-dashboard" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Dashboard y estadísticas&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;HU-20 a HU-22 · periodos y categorías&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#DCEEF4;strokeColor=#3F8CA3;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="70" y="522" width="440" height="64" as="geometry" />
+        <mxCell id="screens__1" value="App.tsx + Access + pantallas privadas" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="screens">
+          <mxGeometry x="0" y="79" width="500" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="c-fugas" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Posibles fugas&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;HU-23, HU-24 · evidencia por regla&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#DCEEF4;strokeColor=#3F8CA3;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="70" y="600" width="440" height="64" as="geometry" />
+        <mxCell id="screens__2" value="Datos privados por HTTP /api/v1" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="screens">
+          <mxGeometry x="0" y="104" width="500" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="c-perfil" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Perfil y foto&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;HU-07 a HU-09 · Cloudinary&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#DCEEF4;strokeColor=#3F8CA3;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="70" y="678" width="440" height="64" as="geometry" />
+        <mxCell id="auth_client" value="" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=18;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#fff;align=left;verticalAlign=middle;spacing=0;container=1;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="85" y="500" width="500" height="141" as="geometry" />
         </mxCell>
-        <mxCell id="c-admin" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Administración&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;HU-30 a HU-32 · rol Administrador&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#DCEEF4;strokeColor=#3F8CA3;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="70" y="756" width="440" height="64" as="geometry" />
+        <mxCell id="auth_client_header" value="«component» SDK Supabase Auth" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=20;fontColor=#fff;fontStyle=1;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#1A5B5A;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="auth_client">
+          <mxGeometry x="0" y="0" width="500" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="c-voz" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Voz Android&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;HU-17 a HU-19 · Kotlin SpeechRecognizer&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#FDF6E9;strokeColor=#C9A46B;strokeWidth=1.2;dashed=1;dashPattern=5 3;" vertex="1" parent="1">
-          <mxGeometry x="70" y="834" width="440" height="64" as="geometry" />
+        <mxCell id="auth_client__0" value="Correo / contraseña · PKCE" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="auth_client">
+          <mxGeometry x="0" y="54" width="500" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="c-notif" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Notificaciones locales&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;HU-25 · Expo Notifications · permiso del sistema&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#FDF6E9;strokeColor=#C9A46B;strokeWidth=1.2;dashed=1;dashPattern=5 3;" vertex="1" parent="1">
-          <mxGeometry x="70" y="912" width="440" height="64" as="geometry" />
+        <mxCell id="auth_client__1" value="AuthProvider + SecureStore" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="auth_client">
+          <mxGeometry x="0" y="79" width="500" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="c-http" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.6px;font-weight:600;color:#12444F;line-height:1.15;margin-top:4px;&quot;&gt;Cliente de servicios&lt;/div&gt;&lt;div style=&quot;font-size:7.8px;color:#4F6B78;line-height:1.35;margin-top:6px;&quot;&gt;HTTP / HTTPS&lt;/div&gt;&lt;div style=&quot;font-size:7.8px;color:#4F6B78;line-height:1.35;&quot;&gt;SDK Supabase Auth&lt;/div&gt;&lt;div style=&quot;font-size:7.4px;color:#5E7683;line-height:1.3;margin-top:6px;&quot;&gt;almacenamiento seguro&lt;br&gt;de sesión&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#CBE2EC;strokeColor=#2F7A8C;strokeWidth=1.5;" vertex="1" parent="1">
-          <mxGeometry x="540" y="210" width="190" height="766" as="geometry" />
+        <mxCell id="auth_client__2" value="Google / recuperación: configurables" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="auth_client">
+          <mxGeometry x="0" y="104" width="500" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="b-auth" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Autenticación de solicitudes&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;Verifica firma, vigencia y cuenta activa del token de Supabase Auth (D-08)&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#E4F1E7;strokeColor=#5E9C77;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="880" y="205" width="820" height="44" as="geometry" />
+        <mxCell id="native" value="" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=18;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#fff;align=left;verticalAlign=middle;spacing=0;container=1;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="85" y="730" width="500" height="141" as="geometry" />
         </mxCell>
-        <mxCell id="b-authz" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Autorización por rol y propietario&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;Denegación por defecto · aislamiento entre usuarios (RF-033)&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#E4F1E7;strokeColor=#5E9C77;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="880" y="265" width="820" height="44" as="geometry" />
+        <mxCell id="native_header" value="«component» Módulos Android" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=20;fontColor=#fff;fontStyle=1;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#1A5B5A;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="native">
+          <mxGeometry x="0" y="0" width="500" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="b-api" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;API REST FastAPI · /api/v1&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;Routers, validación Pydantic e idempotencia UUID por intento (D-05)&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#E4F1E7;strokeColor=#5E9C77;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="880" y="325" width="820" height="48" as="geometry" />
+        <mxCell id="native__0" value="FugaVoice / Kotlin SpeechRecognizer" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="native">
+          <mxGeometry x="0" y="54" width="500" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="b-gastos" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:9.3px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Gestión de gastos&lt;/div&gt;&lt;div style=&quot;font-size:6.9px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;IGastos · RF-013/014/016&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#E4F1E7;strokeColor=#5E9C77;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="880" y="415" width="125" height="140" as="geometry" />
+        <mxCell id="native__1" value="FugaWindowInsets / barras y teclado" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="native">
+          <mxGeometry x="0" y="79" width="500" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="b-proc" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:9.3px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Procesamiento determinista&lt;/div&gt;&lt;div style=&quot;font-size:6.9px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;IProcesamiento · RF-011 · dicc. v1.0&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#E4F1E7;strokeColor=#5E9C77;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="1019" y="415" width="125" height="140" as="geometry" />
+        <mxCell id="native__2" value="expo-notifications / avisos locales" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="native">
+          <mxGeometry x="0" y="104" width="500" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="b-stats" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:9.3px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Estadísticas&lt;/div&gt;&lt;div style=&quot;font-size:6.9px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;IEstadisticas · RF-020 a RF-022&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#E4F1E7;strokeColor=#5E9C77;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="1158" y="415" width="125" height="140" as="geometry" />
+        <mxCell id="device_note" value="Voz: permiso y reconocedor del dispositivo.&lt;br&gt;Avisos al consultar análisis; sin push remoto.&lt;br&gt;El APK incluye JS y no requiere Metro ni USB." style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#EEF5F3;align=left;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="85" y="955" width="500" height="125" as="geometry" />
         </mxCell>
-        <mxCell id="b-fugas" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:9.3px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Detección de fugas&lt;/div&gt;&lt;div style=&quot;font-size:6.9px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;IFugas · RF-023/024 · FUGA-01 v1.0&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#E4F1E7;strokeColor=#5E9C77;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="1297" y="415" width="125" height="140" as="geometry" />
+        <mxCell id="render" value="" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=18;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#fff;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="715" y="185" width="540" height="940" as="geometry" />
         </mxCell>
-        <mxCell id="b-admin" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:9.3px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Administración&lt;/div&gt;&lt;div style=&quot;font-size:6.9px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;IAdministracion · RF-030 a RF-032&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#E4F1E7;strokeColor=#5E9C77;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="1436" y="415" width="125" height="140" as="geometry" />
+        <mxCell id="render_title" value="«executionEnvironment» Render · FastAPI / Uvicorn" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=21;fontColor=#1A5B5A;fontStyle=1;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="735" y="199" width="500" height="68" as="geometry" />
         </mxCell>
-        <mxCell id="b-perfil" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:9.3px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Perfil e imágenes&lt;/div&gt;&lt;div style=&quot;font-size:6.9px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;IPerfil · RF-007 a RF-009&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#E4F1E7;strokeColor=#5E9C77;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="1575" y="415" width="125" height="140" as="geometry" />
+        <mxCell id="api" value="" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=18;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#fff;align=left;verticalAlign=middle;spacing=0;container=1;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="750" y="270" width="470" height="141" as="geometry" />
         </mxCell>
-        <mxCell id="b-repo" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Repositorio de datos&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;SQLAlchemy · transacciones · consultas filtradas por propietario&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#E7EEF3;strokeColor=#6F8C9C;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="880" y="600" width="820" height="56" as="geometry" />
+        <mxCell id="api_header" value="«component» API REST /api/v1" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=20;fontColor=#fff;fontStyle=1;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#1A5B5A;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="api">
+          <mxGeometry x="0" y="0" width="470" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="ext-auth" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Supabase Auth&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;Registro, sesión, recuperación y OAuth (D-09, D-10)&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#FCF0DC;strokeColor=#C49A5C;strokeWidth=1.3;" vertex="1" parent="1">
-          <mxGeometry x="1875" y="205" width="390" height="110" as="geometry" />
+        <mxCell id="api__0" value="Identidad, gastos, categorías, analítica" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="api">
+          <mxGeometry x="0" y="54" width="470" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="ext-google" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Google OAuth&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;Proveedor de identidad · HU-03 · opcional&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#FDF6E9;strokeColor=#C9A46B;strokeWidth=1.2;dashed=1;dashPattern=5 3;" vertex="1" parent="1">
-          <mxGeometry x="1875" y="360" width="390" height="95" as="geometry" />
+        <mxCell id="api__1" value="Fugas, perfil/fotos y administración" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="api">
+          <mxGeometry x="0" y="79" width="470" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="ext-cloud" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;Cloudinary&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;Imágenes de perfil · subida firmada · HU-08 · opcional&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#FDF6E9;strokeColor=#C9A46B;strokeWidth=1.2;dashed=1;dashPattern=5 3;" vertex="1" parent="1">
-          <mxGeometry x="1875" y="500" width="390" height="95" as="geometry" />
+        <mxCell id="api__2" value="/health proceso · /ready PostgreSQL" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="api">
+          <mxGeometry x="0" y="104" width="470" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="ext-pg" value="&lt;div style=&quot;font-size:6.4px;color:#7E97A6;letter-spacing:.8px;line-height:1;&quot;&gt;«component»&lt;/div&gt;&lt;div style=&quot;font-size:10.4px;font-weight:600;color:#12444F;line-height:1.12;margin-top:2px;&quot;&gt;PostgreSQL · Supabase&lt;/div&gt;&lt;div style=&quot;font-size:7.6px;color:#5E7683;line-height:1.22;margin-top:2px;&quot;&gt;Gastos, perfiles, cuentas y auditoría · RLS y aislamiento (D-08)&lt;/div&gt;" style="shape=umlComponent;whiteSpace=wrap;html=1;fontFamily=Helvetica;align=center;verticalAlign=middle;spacingLeft=6;spacingRight=6;spacingTop=2;spacingBottom=2;fillColor=#E7EEF3;strokeColor=#6F8C9C;strokeWidth=1.35;" vertex="1" parent="1">
-          <mxGeometry x="1060" y="860" width="440" height="110" as="geometry" />
+        <mxCell id="security" value="" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=18;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#fff;align=left;verticalAlign=middle;spacing=0;container=1;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="750" y="500" width="470" height="141" as="geometry" />
         </mxCell>
-        <mxCell id="if-rest" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#3F8CA3;strokeWidth=1.7;" vertex="1" parent="1">
-          <mxGeometry x="792" y="219" width="16" height="16" as="geometry" />
+        <mxCell id="security_header" value="«component» Seguridad" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=20;fontColor=#fff;fontStyle=1;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#1A5B5A;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="security">
+          <mxGeometry x="0" y="0" width="470" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="lbl-rest" value="IREST" style="text;html=1;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=6.8;fontColor=#2F6B7C;spacing=0;" vertex="1" parent="1">
-          <mxGeometry x="762" y="205" width="42" height="12" as="geometry" />
+        <mxCell id="security__0" value="Verificar JWT con JWKS / issuer / aud" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="security">
+          <mxGeometry x="0" y="54" width="470" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="if-auth" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#3F8CA3;strokeWidth=1.7;" vertex="1" parent="1">
-          <mxGeometry x="1849" y="254" width="16" height="16" as="geometry" />
+        <mxCell id="security__1" value="Consultar perfil.rol y disabled_at" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="security">
+          <mxGeometry x="0" y="79" width="470" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="lbl-auth" value="IAutenticacion" style="text;html=1;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=6.8;fontColor=#2F6B7C;spacing=0;" vertex="1" parent="1">
-          <mxGeometry x="1761" y="238" width="78" height="12" as="geometry" />
+        <mxCell id="security__2" value="Autorizar rol y propietario por petición" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="security">
+          <mxGeometry x="0" y="104" width="470" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="if-cloud" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#3F8CA3;strokeWidth=1.7;" vertex="1" parent="1">
-          <mxGeometry x="1849" y="539" width="16" height="16" as="geometry" />
+        <mxCell id="domain" value="" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=18;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#fff;align=left;verticalAlign=middle;spacing=0;container=1;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="750" y="730" width="470" height="141" as="geometry" />
         </mxCell>
-        <mxCell id="lbl-cloud" value="IImagenes" style="text;html=1;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=6.8;fontColor=#2F6B7C;spacing=0;" vertex="1" parent="1">
-          <mxGeometry x="1774" y="523" width="66" height="12" as="geometry" />
+        <mxCell id="domain_header" value="«component» Servicios y dominio" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=20;fontColor=#fff;fontStyle=1;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#1A5B5A;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="domain">
+          <mxGeometry x="0" y="0" width="470" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="if-pg" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#3F8CA3;strokeWidth=1.7;" vertex="1" parent="1">
-          <mxGeometry x="1282" y="840" width="16" height="16" as="geometry" />
+        <mxCell id="domain__0" value="Interpretación / normalización 1.1" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="domain">
+          <mxGeometry x="0" y="54" width="470" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="lbl-pg" value="IPersistencia" style="text;html=1;strokeColor=none;fillColor=#FFFFFF;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=6.8;fontColor=#2F6B7C;spacing=0;" vertex="1" parent="1">
-          <mxGeometry x="1302" y="833" width="70" height="12" as="geometry" />
+        <mxCell id="domain__1" value="FUGA-01 1.0 · estadísticas / snapshots" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="domain">
+          <mxGeometry x="0" y="79" width="470" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="e-c-acceso" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.0418;" edge="1" parent="1" source="c-acceso" target="c-http">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        <mxCell id="domain__2" value="Gestión de cuentas y firma de cargas" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="domain">
+          <mxGeometry x="0" y="104" width="470" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="e-c-gastos" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.1436;" edge="1" parent="1" source="c-gastos" target="c-http">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        <mxCell id="sql" value="" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=18;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#fff;align=left;verticalAlign=middle;spacing=0;container=1;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="750" y="960" width="470" height="141" as="geometry" />
         </mxCell>
-        <mxCell id="e-c-revision" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.2454;" edge="1" parent="1" source="c-revision" target="c-http">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        <mxCell id="sql_header" value="«component» Acceso a datos" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=20;fontColor=#fff;fontStyle=1;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#1A5B5A;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="sql">
+          <mxGeometry x="0" y="0" width="470" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="e-c-historial" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.3473;" edge="1" parent="1" source="c-historial" target="c-http">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        <mxCell id="sql__0" value="Repositorios · SQL parametrizado" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="sql">
+          <mxGeometry x="0" y="54" width="470" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="e-c-dashboard" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.4491;" edge="1" parent="1" source="c-dashboard" target="c-http">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        <mxCell id="sql__1" value="SQLAlchemy + Psycopg / TLS verify-full" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="sql">
+          <mxGeometry x="0" y="79" width="470" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="e-c-fugas" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5509;" edge="1" parent="1" source="c-fugas" target="c-http">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        <mxCell id="sql__2" value="Transacciones, idempotencia y auditoría" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=17;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="sql">
+          <mxGeometry x="0" y="104" width="470" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="e-c-perfil" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.6527;" edge="1" parent="1" source="c-perfil" target="c-http">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        <mxCell id="providers" value="" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=18;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#fff;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="1350" y="185" width="400" height="940" as="geometry" />
         </mxCell>
-        <mxCell id="e-c-admin" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.7546;" edge="1" parent="1" source="c-admin" target="c-http">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        <mxCell id="providers_title" value="Servicios externos" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=21;fontColor=#1A5B5A;fontStyle=1;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="1370" y="199" width="360" height="68" as="geometry" />
         </mxCell>
-        <mxCell id="e-c-voz" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.8564;" edge="1" parent="1" source="c-voz" target="c-http">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        <mxCell id="supabase_auth" value="" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=18;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#fff;align=left;verticalAlign=middle;spacing=0;container=1;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="270" width="340" height="141" as="geometry" />
         </mxCell>
-        <mxCell id="e-c-notif" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.9582;" edge="1" parent="1" source="c-notif" target="c-http">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        <mxCell id="supabase_auth_header" value="«service» Supabase Auth" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=20;fontColor=#fff;fontStyle=1;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#1A5B5A;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="supabase_auth">
+          <mxGeometry x="0" y="0" width="340" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="e-voz-gastos" value="transcripción" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="c-voz" target="c-gastos">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="60" y="866" /><mxPoint x="60" y="320" /></Array></mxGeometry>
+        <mxCell id="supabase_auth__0" value="Registro y sesiones / JWT" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="supabase_auth">
+          <mxGeometry x="0" y="54" width="340" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="e-fugas-notif" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="c-fugas" target="c-notif">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="50" y="632" /><mxPoint x="50" y="944" /></Array></mxGeometry>
-        </mxCell>
-        <mxCell id="e-http-rest" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="c-http" target="if-rest">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="790" y="593" /><mxPoint x="790" y="227" /></Array></mxGeometry>
-        </mxCell>
-        <mxCell id="e-stick-rest" value="" style="endArrow=none;html=1;strokeColor=#3F8CA3;strokeWidth=1.3;" edge="1" parent="1" source="if-rest" target="b-auth">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="808" y="227" /><mxPoint x="880" y="227" /></Array></mxGeometry>
-        </mxCell>
-        <mxCell id="e-http-auth" value="«use» IAutenticacion · SDK Supabase · HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;entryX=0.5;entryY=0;" edge="1" parent="1" source="c-http" target="ext-auth">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="635" y="118" /><mxPoint x="2070" y="118" /></Array></mxGeometry>
-        </mxCell>
-        <mxCell id="e-auth-authz" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=5;strokeColor=#4E7A8A;strokeWidth=1.2;dashed=0;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-auth" target="b-authz">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-authz-api" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=5;strokeColor=#4E7A8A;strokeWidth=1.2;dashed=0;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-authz" target="b-api">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-api-b-gastos" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-api" target="b-gastos">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-api-b-proc" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-api" target="b-proc">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-api-b-stats" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-api" target="b-stats">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-api-b-fugas" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-api" target="b-fugas">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-api-b-admin" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-api" target="b-admin">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-api-b-perfil" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-api" target="b-perfil">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-proc-gastos" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=5;strokeColor=#4E7A8A;strokeWidth=1.2;dashed=0;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="b-proc" target="b-gastos">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-repo-b-gastos" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-gastos" target="b-repo">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-repo-b-proc" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-proc" target="b-repo">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-repo-b-stats" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-stats" target="b-repo">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-repo-b-fugas" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-fugas" target="b-repo">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-repo-b-admin" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-admin" target="b-repo">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-repo-b-perfil" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-perfil" target="b-repo">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-repo-pg" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="b-repo" target="if-pg">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1290" y="840" /></Array></mxGeometry>
-        </mxCell>
-        <mxCell id="e-stick-pg" value="" style="endArrow=none;html=1;strokeColor=#3F8CA3;strokeWidth=1.3;" edge="1" parent="1" source="if-pg" target="ext-pg">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1290" y="856" /><mxPoint x="1290" y="860" /></Array></mxGeometry>
-        </mxCell>
-        <mxCell id="e-auth-supabase" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="b-auth" target="if-auth">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1790" y="227" /><mxPoint x="1790" y="262" /></Array></mxGeometry>
-        </mxCell>
-        <mxCell id="e-stick-auth" value="" style="endArrow=none;html=1;strokeColor=#3F8CA3;strokeWidth=1.3;" edge="1" parent="1" source="if-auth" target="ext-auth">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1865" y="262" /><mxPoint x="1875" y="262" /></Array></mxGeometry>
-        </mxCell>
-        <mxCell id="e-auth-google" value="OAuth 2.0" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="ext-auth" target="ext-google">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
-        </mxCell>
-        <mxCell id="e-perfil-cloud" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;html=1;endArrow=open;endSize=6;strokeColor=#6C8794;strokeWidth=1.1;dashed=1;dashPattern=5 3;fontFamily=Helvetica;fontSize=7;fontColor=#52707E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="b-perfil" target="if-cloud">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1740" y="485" /><mxPoint x="1740" y="547" /></Array></mxGeometry>
-        </mxCell>
-        <mxCell id="e-stick-cloud" value="" style="endArrow=none;html=1;strokeColor=#3F8CA3;strokeWidth=1.3;" edge="1" parent="1" source="if-cloud" target="ext-cloud">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1865" y="547" /><mxPoint x="1875" y="547" /></Array></mxGeometry>
-        </mxCell>
-        <mxCell id="hdr-bar" value="" style="rounded=1;html=1;fillColor=#2F7A8C;strokeColor=none;arcSize=50;" vertex="1" parent="1">
-          <mxGeometry x="40" y="32" width="6" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="hdr-title" value="FUGA+ · Diagrama de componentes UML" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=25;fontStyle=1;fontColor=#12444F;" vertex="1" parent="1">
-          <mxGeometry x="58" y="26" width="1400" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="hdr-sub" value="Arquitectura de ejecución · Especificación 3.0 · React Native/TypeScript · FastAPI/Python · Supabase PostgreSQL · Supabase Auth" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=#5E7683;" vertex="1" parent="1">
-          <mxGeometry x="60" y="66" width="1700" height="22" as="geometry" />
-        </mxCell>
-        <mxCell id="hdr-rule" value="" style="rounded=0;html=1;fillColor=#DCE7EC;strokeColor=none;" vertex="1" parent="1">
-          <mxGeometry x="40" y="104" width="2260" height="1" as="geometry" />
-        </mxCell>
-        <mxCell id="note-panel" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#DCE7EC;strokeWidth=1;arcSize=3;" vertex="1" parent="1">
-          <mxGeometry x="1840" y="690" width="460" height="300" as="geometry" />
-        </mxCell>
-        <mxCell id="note-txt" value="&lt;div style=&quot;font-size:11.5px;font-weight:700;color:#12444F;&quot;&gt;Límites de la arquitectura&lt;/div&gt;&lt;div style=&quot;font-size:8.2px;color:#546B78;line-height:1.55;margin-top:10px;&quot;&gt;• Autenticación y sesión delegadas en Supabase Auth; FastAPI valida el token en cada solicitud protegida.&lt;/div&gt;&lt;div style=&quot;font-size:8.2px;color:#546B78;line-height:1.55;margin-top:8px;&quot;&gt;• Aislamiento por propietario en el backend y RLS en PostgreSQL (RF-033, D-08).&lt;/div&gt;&lt;div style=&quot;font-size:8.2px;color:#546B78;line-height:1.55;margin-top:8px;&quot;&gt;• Procesamiento determinista versionado: sin API externa de IA generativa.&lt;/div&gt;&lt;div style=&quot;font-size:8.2px;color:#546B78;line-height:1.55;margin-top:8px;&quot;&gt;• Cloudinary, Google OAuth, voz Android y notificaciones locales son ampliaciones opcionales.&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontFamily=Helvetica;spacingLeft=10;spacingRight=10;" vertex="1" parent="1">
-          <mxGeometry x="1852" y="706" width="436" height="270" as="geometry" />
-        </mxCell>
-        <mxCell id="foot" value="FUGA+ · Diagrama de componentes UML · Especificación 3.0 · Editable en diagrams.net" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=9;fontColor=#8AA0AC;" vertex="1" parent="1">
-          <mxGeometry x="40" y="1044" width="1200" height="18" as="geometry" />
+        <mxCell id="supabase_auth__1" value="JWKS público" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="supabase_auth">
+          <mxGeometry x="0" y="79" width="340" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="supabase_auth__2" value="API administrativa de cuentas" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="supabase_auth">
+          <mxGeometry x="0" y="104" width="340" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="database" value="" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=18;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#fff;align=left;verticalAlign=middle;spacing=0;container=1;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="565" width="340" height="141" as="geometry" />
+        </mxCell>
+        <mxCell id="database_header" value="«database» PostgreSQL" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=20;fontColor=#fff;fontStyle=1;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#1A5B5A;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="database">
+          <mxGeometry x="0" y="0" width="340" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="database__0" value="Supabase · 11 tablas propias" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="database">
+          <mxGeometry x="0" y="54" width="340" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="database__1" value="auth.users gestionada por Auth" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="database">
+          <mxGeometry x="0" y="79" width="340" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="database__2" value="FK, CHECK, índices y RLS" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="database">
+          <mxGeometry x="0" y="104" width="340" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="cloudinary" value="" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=18;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#fff;align=left;verticalAlign=middle;spacing=0;container=1;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="860" width="340" height="141" as="geometry" />
+        </mxCell>
+        <mxCell id="cloudinary_header" value="«service» Cloudinary" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=20;fontColor=#fff;fontStyle=1;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#1A5B5A;align=center;verticalAlign=middle;spacing=8;" vertex="1" parent="cloudinary">
+          <mxGeometry x="0" y="0" width="340" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="cloudinary__0" value="Fotografía JPEG / PNG / WebP" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="cloudinary">
+          <mxGeometry x="0" y="54" width="340" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="cloudinary__1" value="Carga firmada y verificación" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="cloudinary">
+          <mxGeometry x="0" y="79" width="340" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="cloudinary__2" value="URL en perfil; registro de cargas" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontColor=#243332;fontStyle=0;text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacing=0;spacingLeft=12;" vertex="1" parent="cloudinary">
+          <mxGeometry x="0" y="104" width="340" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="flows_left" value="Flujos HTTPS (flechas = dependencia / solicitud)&lt;br&gt;1. API REST con JWT del usuario.&lt;br&gt;2. Registro e inicio de sesión mediante Supabase Auth.&lt;br&gt;3. Consulta de JWKS para validar la firma del JWT.&lt;br&gt;4. Administración de acceso desde FastAPI." style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#EEF5F3;align=left;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1205" width="820" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="flows_right" value="Persistencia y fotografías&lt;br&gt;5. PostgreSQL mediante SQL y TLS verify-full.&lt;br&gt;6. FastAPI firma y verifica las cargas de Cloudinary.&lt;br&gt;7. El cliente sube directamente la imagen firmada.&lt;br&gt;La respuesta y las URL regresan por los mismos canales." style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#EEF5F3;align=left;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="920" y="1205" width="820" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="privacy" value="El móvil no consulta tablas financieras por PostgREST; FastAPI valida rol y propiedad. El administrador no ve gastos individuales.&lt;br&gt;No se usa IA generativa externa ni un simulador en producción. Fuentes: mobile/src + modules · backend/app · render.yaml · migrations/0001…0010." style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontColor=#243332;fontStyle=0;rounded=1;arcSize=8;strokeColor=#D7E3E0;fillColor=#EEF5F3;align=left;verticalAlign=middle;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1390" width="1680" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_0" value="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=1.5;strokeColor=#5A6E6C;fontSize=15;fontColor=#1A5B5A;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="screens" target="api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_1" value="2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=1.5;strokeColor=#5A6E6C;fontSize=15;fontColor=#1A5B5A;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="auth_client" target="supabase_auth">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="665" y="570.5" />
+              <mxPoint x="665" y="155" />
+              <mxPoint x="1320" y="155" />
+              <mxPoint x="1320" y="340.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_2" value="3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=1.5;strokeColor=#5A6E6C;fontSize=15;fontColor=#1A5B5A;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="security" target="supabase_auth">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1290" y="570.5" />
+              <mxPoint x="1290" y="400" />
+              <mxPoint x="1360" y="400" />
+              <mxPoint x="1360" y="340.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_3" value="4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=1.5;strokeColor=#5A6E6C;fontSize=15;fontColor=#1A5B5A;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="domain" target="supabase_auth">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1275" y="800.5" />
+              <mxPoint x="1275" y="450" />
+              <mxPoint x="1330" y="450" />
+              <mxPoint x="1330" y="400" />
+              <mxPoint x="1330" y="340.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_4" value="5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=1.5;strokeColor=#5A6E6C;fontSize=15;fontColor=#1A5B5A;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="sql" target="database">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1305" y="1030.5" />
+              <mxPoint x="1305" y="635.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_5" value="6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=1.5;strokeColor=#5A6E6C;fontSize=15;fontColor=#1A5B5A;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="domain" target="cloudinary">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1280" y="800.5" />
+              <mxPoint x="1280" y="930.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_6" value="7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=1.5;strokeColor=#5A6E6C;fontSize=15;fontColor=#1A5B5A;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="screens" target="cloudinary">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="635" y="340.5" />
+              <mxPoint x="635" y="1170" />
+              <mxPoint x="1325" y="1170" />
+              <mxPoint x="1325" y="1000" />
+              <mxPoint x="1325" y="930.5" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
